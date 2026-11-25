@@ -1,9 +1,6 @@
 name: Engineering maintenance
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '37 7 * * 0'
-      timezone: America/New_York
 
 concurrency:
   group: huntforge-engineering
