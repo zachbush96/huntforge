@@ -1,0 +1,5 @@
+DeviceProcessEvents
+| where TimeGenerated > ago(7d)
+| where InitiatingProcessFileName =~ "QuickAssist.exe" and FileName in~ ("powershell.exe", "pwsh.exe")
+| project TimeGenerated, DeviceName, AccountName, InitiatingProcessFileName, FileName, ProcessCommandLine
+| order by TimeGenerated desc

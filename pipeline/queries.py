@@ -39,7 +39,8 @@ def reviewed():
         ref = evidence("microsoft", url, url, item["date"], item["location"], item["claim"])
         ref["observation_date"] = item.get("observation_date")
         row = record("microsoft", url, item["date"], item["title"], item["claim"], "Research", "unrated",
-                     [ref], cves=[], tags=item["tags"], techniques=item["techniques"], software=item.get("software", []))
+                     [ref], cves=[], tags=item["tags"], techniques=item["techniques"], software=item.get("software", []),
+                     **({"actors": item["actors"]} if item.get("actors") else {}))
         by_key[item["key"]] = row["id"]
         row["indicators"] = []
         for kind, original, context in item.get("indicators", []):
@@ -87,6 +88,42 @@ def render_query(table, schema, statements, days, json_output=False):
 def variant(rule, profile, indicators):
     validate_profile(profile)
     key = rule["research"]
+    template = rule.get("query")
+    if template:
+        table = template["table"]
+        schema = profile["tables"][table]
+        statements = []
+        for statement in template["statements"]:
+            statement = statement.replace("{time}", schema["timestamp"])
+            for kind in ("domain", "ipv4"):
+                marker = "{" + kind + "}"
+                if marker in statement:
+                    literals = ", ".join(kql_string(x["value"]) for x in indicators if x["type"] == kind)
+                    if not literals:
+                        raise ValueError(f"Missing reviewed {kind} indicators for {rule['id']}")
+                    statement = statement.replace(marker, literals)
+            statements.append(statement)
+        return table, schema, statements
+    if profile["id"] == "sentinel-windows" and key in {"powershell-download", "quick-assist"}:
+        if key == "powershell-download":
+            table = "WindowsEvent"
+            statements = [
+                '| where Channel == "Microsoft-Windows-Sysmon/Operational" and EventID == 3',
+                '| extend Image = tostring(EventData.Image), DestinationIP = tostring(EventData.DestinationIp)',
+                r'| where Image endswith @"\powershell.exe" or Image endswith @"\pwsh.exe"',
+                '| where isnotempty(DestinationIP)',
+                '| project TimeGenerated, Computer, Image, DestinationIP, DestinationPort = tostring(EventData.DestinationPort),',
+                '          ProcessGuid = tostring(EventData.ProcessGuid), User = tostring(EventData.User)',
+                '| order by TimeGenerated desc',
+            ]
+        else:
+            table = "SecurityEvent"
+            statements = [
+                r'| where EventID == 4688 and NewProcessName endswith @"\QuickAssist.exe"',
+                '| project TimeGenerated, Computer, Account, NewProcessName, CommandLine',
+                '| order by TimeGenerated desc',
+            ]
+        return table, profile["tables"][table], statements
     table = TABLES[key]
     if key == "outage-phishing" and table not in profile["tables"]:
         table = next((name for name, item in profile["tables"].items() if item["capability"] == "web"), "")
@@ -102,19 +139,19 @@ def variant(rule, profile, indicators):
             '    "pwsh.exe"',
             ')',
             "| where isnotempty(RemoteIP)",
-            "| project Timestamp, DeviceName, RemoteIP, RemotePort, RemoteUrl,",
-            "          InitiatingProcessCommandLine", "| order by Timestamp desc"]
+            f"| project {timestamp}, DeviceName, RemoteIP, RemotePort, RemoteUrl,",
+            "          InitiatingProcessCommandLine", f"| order by {timestamp} desc"]
     elif key == "gsocket":
         statements = [
             '| where FileName in~ ("gs-netcat", "gsocket", "gsnetcat")',
             '     or ProcessCommandLine contains "gs-netcat"',
-            "| project Timestamp, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine, InitiatingProcessFileName",
-            "| order by Timestamp desc"]
+            f"| project {timestamp}, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine, InitiatingProcessFileName",
+            f"| order by {timestamp} desc"]
     elif key == "quick-assist":
         statements = [
             '| where FileName =~ "QuickAssist.exe"',
-            "| project Timestamp, DeviceName, AccountName, ProcessCommandLine, InitiatingProcessFileName",
-            "| order by Timestamp desc"]
+            f"| project {timestamp}, DeviceName, AccountName, ProcessCommandLine, InitiatingProcessFileName",
+            f"| order by {timestamp} desc"]
     elif key == "service-principal":
         literals = ", ".join(kql_string(x["value"]) for x in indicators if x["type"] == "ipv4")
         if not literals:
@@ -166,9 +203,11 @@ def generate_hunts(records, indicators, by_key, profiles, techniques, previous, 
         if rule["technique"] not in ids or not source["evidence"] or rule["technique"] not in source["techniques"]:
             rejected.append({"id": rule["id"], "reason": "Missing reviewed behavioral evidence or ATT&CK reference"})
             continue
-        candidate = {**rule, "schema_version": 1, "status": "partially_validated", "source_ids": [source["id"]],
+        metadata = {key: value for key, value in rule.items() if key != "query"}
+        candidate = {**metadata, "schema_version": 1, "status": "partially_validated", "source_ids": [source["id"]],
+                     "source_published": source["published"], "tags": source["tags"],
                      "evidence": source["evidence"], "indicator_ids": source.get("indicators", []),
-                     "variants": {}, "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+                     "variants": {}, "expected_output": rule.get("expected_output", "One row per matching event in tabular mode. A match supports triage."),
                      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
                      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run."}
         for profile_id in rule["profiles"]:
@@ -188,6 +227,7 @@ def generate_hunts(records, indicators, by_key, profiles, techniques, previous, 
                 "validation": {"evidence":"pass", "syntax":"pass", "schema":"pass", "static":"pass",
                                "synthetic_fixture":"not_run", "engine":"not_run", "workspace":"not_run", "analyst":"not_run"},
             }
+        candidate["primary_table"] = candidate["variants"][rule["profiles"][0]]["table"]
         candidates.append(candidate)
     diagnostics = run_validator(jobs) if jobs else []
     accepted = []

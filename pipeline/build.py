@@ -53,8 +53,9 @@ def make_search(records, hunts, indicators, reference):
         for item in items:
             title = item.get("title", item.get("display"))
             terms = [title, item.get("summary"), item.get("description"), item.get("value"), item.get("source"), item["id"]]
-            terms.extend(term for field in ("cves", "tags", "techniques", "aliases", "software") for term in item.get(field, []))
+            terms.extend(term for field in ("cves", "tags", "techniques", "aliases", "software", "actors") for term in item.get(field, []))
             if kind == "hunt":
+                terms.extend(ref.get("claim") for ref in item["evidence"])
                 terms.extend(variant["queries"][str(item["lookback"])]["table"] for variant in item["variants"].values())
             result.append({"kind": kind, "id": item["id"], "title": title,
                            "text": " ".join(dict.fromkeys(v.lower() for v in terms if isinstance(v, str)))})

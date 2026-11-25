@@ -214,6 +214,10 @@ def attack():
                           "url": ref["url"], "modified": row["modified"],
                           "aliases": [plain(alias) for alias in row.get("aliases", [])],
                           "tactics": [p["phase_name"] for p in row.get("kill_chain_phases", [])]})
+            if row["type"] == "attack-pattern":
+                opening = row.get("description", "").split("\n\n", 1)[0]
+                opening = re.sub(r"\[([^\]]+)\]\([^)]+\)|\(Citation:[^)]+\)", lambda match: match[1] or "", opening)
+                items[-1]["description"] = plain(opening, 680)
     return {"collection": collection.get("x_mitre_version"), "license": license_text, "items": sorted(items, key=lambda x: x["id"])}, {
         "snapshot": collection["modified"], "coverage": "reference", "coverage_note": "Current Enterprise snapshot."}
 

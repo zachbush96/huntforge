@@ -68,10 +68,20 @@ class QueriesTests(unittest.TestCase):
         profiles = read_json(PROFILE_CATALOG)
         rules = read_json(ROOT / "hunts/rules.json")
         ps = next(row for row in rules if row["research"] == "powershell-download")
-        web = next(row for row in profiles if row["id"] == "custom-menlo")
+        web = next(row for row in profiles if row["id"] == "custom-proxy")
         self.assertRaises(ValueError, variant, ps, web, [])
         web["tables"]["CustomWeb_CL"]["columns"]["TimeGenerated"] = "string"
         self.assertRaises(ValueError, validate_profile, web)
+
+    def test_published_hunts_default_to_sentinel(self):
+        profiles = {row["id"]: row for row in read_json(PROFILE_CATALOG)}
+        hunts = read_json(HUNTS)
+        for hunt in hunts:
+            with self.subTest(hunt=hunt["id"]):
+                profile_id = hunt["profiles"][0]
+                self.assertEqual(profiles[profile_id]["target"], "Microsoft Sentinel Logs")
+                self.assertEqual(hunt["primary_table"], hunt["variants"][profile_id]["table"])
+                self.assertIn("| where TimeGenerated >", hunt["variants"][profile_id]["queries"][str(hunt["lookback"])]["table"])
 
 
 class ReleaseTests(unittest.TestCase):
@@ -83,7 +93,7 @@ class ReleaseTests(unittest.TestCase):
             for hunt in hunts:
                 for profile in hunt["variants"]:
                     path = f"{hunt['id']}-r{hunt['revision']}-{profile}.kql"
-                    self.assertEqual(archive.read(path).decode(),hunt["variants"][profile]["queries"]["7"]["table"])
+                    self.assertEqual(archive.read(path).decode(),hunt["variants"][profile]["queries"][str(hunt["lookback"])]["table"])
 
     def test_release_build_is_deterministic_and_has_real_provenance(self):
         inputs = [read_json(path) for path in (CATALOG,HUNTS,PROFILE_CATALOG,REPORT)]

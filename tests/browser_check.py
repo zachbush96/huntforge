@@ -105,6 +105,98 @@ def drilldowns(page, base):
     expect(page.get_by_role("heading",name="Intelligence",exact=True)).to_be_visible()
 
 
+def sentinel_catalog(page, base):
+    page.goto(base+"#/hunts")
+    page.get_by_role("link",name=re.compile("hunts from the latest 30-day window")).click()
+    expect(page.get_by_label("Source date",exact=True)).to_have_value("recent")
+    assert page.locator(".catalog-card").count() > 5
+    page.get_by_role("link",name="ARTEX and agentic AI").click()
+    expect(page.get_by_role("searchbox",name="Search",exact=True)).to_have_value("ARTEX")
+    expect(page.get_by_role("heading",name="ARTEX and WISP Infrastructure in CEF Logs")).to_be_visible()
+    page.get_by_role("link",name="Nation-state",exact=True).click()
+    expect(page.get_by_label("Topic",exact=True)).to_have_value("Nation-State")
+    page.get_by_label("Actor",exact=True).select_option("North Korea")
+    expect(page.get_by_role("heading",name="North Korea · Jasper Sleet Sign-in Alerts")).to_be_visible()
+    page.goto(base+"#/techniques/T1059.001")
+    expect(page.get_by_role("heading",name="What this technique means")).to_be_visible()
+    expect(page.get_by_role("heading",name="How to hunt in Sentinel")).to_be_visible()
+    query = page.locator(".technique-query").filter(has_text="Suspicious PowerShell Network Activity")
+    query.locator("summary").click()
+    expect(query.locator("pre")).to_contain_text("WindowsEvent")
+    query.get_by_role("button",name="Copy KQL").click()
+    expect(page.get_by_text("KQL copied.",exact=True)).to_have_text("KQL copied.")
+    assert "TimeGenerated" in page.evaluate("navigator.clipboard.readText()")
+
+
+def results_explanation(page, base):
+    requests = []
+    endpoint = "https://model.example.test"
+    headers = {
+        "Access-Control-Allow-Origin":"*",
+        "Access-Control-Allow-Headers":"content-type, authorization",
+        "Access-Control-Allow-Methods":"POST, OPTIONS",
+    }
+
+    def model_response(route):
+        request = route.request
+        if request.method == "OPTIONS":
+            route.fulfill(status=204,headers=headers)
+            return
+        payload = request.post_data_json
+        requests.append((request.url,request.all_headers(),payload))
+        if payload["model"] == "simulated-error":
+            route.fulfill(status=401,headers=headers,json={"error":"example"})
+        elif request.url.endswith("/api/chat"):
+            route.fulfill(headers=headers,json={"message":{"content":"Ollama synthetic explanation."}})
+        else:
+            route.fulfill(headers=headers,json={"choices":[{"message":{"content":"Synthetic explanation. <script>fixture()</script>"}}]})
+
+    page.route(endpoint+"/**",model_response)
+    try:
+        page.goto(base+"#/hunts/HF-2025-0001")
+        page.get_by_role("link",name="Explain the results to me",exact=True).click()
+        expect(page.get_by_role("heading",name="Explain the results to me",exact=True)).to_be_visible()
+        page.get_by_label("Hunt results",exact=True).fill('{"Computer":"synthetic-workstation"}')
+        page.get_by_label("Endpoint URL",exact=True).fill(endpoint+"/v1/chat/completions")
+        page.get_by_label("Model",exact=True).fill("synthetic-test-model")
+        page.get_by_label("API key (optional)",exact=True).fill("fixture-access-token")
+        page.get_by_text("System prompt and generation settings",exact=True).click()
+        page.get_by_label("System prompt",exact=True).fill("Use a short SOC summary.")
+        page.get_by_label("Temperature",exact=True).fill("0.4")
+        page.get_by_label("Max output tokens",exact=True).fill("512")
+        assert not requests
+        page.get_by_role("button",name="Send and explain").click()
+        expect(page.locator(".explain-status")).to_have_text("Explanation ready.")
+        assert len(requests) == 1
+        _, sent_headers, body = requests[-1]
+        assert sent_headers["authorization"] == "Bearer fixture-access-token"
+        assert body["model"] == "synthetic-test-model" and body["max_tokens"] == 512 and body["temperature"] == 0.4
+        assert "Use a short SOC summary" in body["messages"][0]["content"]
+        assert "untrusted evidence" in body["messages"][0]["content"]
+        evidence = json.loads(body["messages"][1]["content"])
+        assert "synthetic-workstation" in evidence["results"] and evidence["hunt"]["table"] == "WindowsEvent"
+        expect(page.locator(".explain-response pre")).to_contain_text("<script>fixture()</script>")
+        assert page.locator(".explain-response script").count() == 0
+        assert "fixture-access-token" not in page.evaluate("JSON.stringify(localStorage)")
+        assert "synthetic-workstation" not in page.evaluate("JSON.stringify(localStorage)")
+
+        page.get_by_label("API format",exact=True).select_option("ollama")
+        page.get_by_label("Endpoint URL",exact=True).fill(endpoint+"/api/chat")
+        page.get_by_label("API key (optional)",exact=True).fill("")
+        page.get_by_role("button",name="Send and explain").click()
+        expect(page.locator(".explain-response pre")).to_have_text("Ollama synthetic explanation.")
+        assert requests[-1][2]["options"] == {"temperature":0.4,"num_predict":512}
+        page.get_by_label("Model",exact=True).fill("simulated-error")
+        page.get_by_role("button",name="Send and explain").click()
+        expect(page.locator(".explain-status")).to_contain_text("HTTP 401")
+        page.get_by_label("Endpoint URL",exact=True).fill("http://insecure.example.test/chat")
+        page.get_by_role("button",name="Send and explain").click()
+        expect(page.locator(".explain-status")).to_contain_text("Use HTTPS")
+        assert len(requests) == 3
+    finally:
+        page.unroute(endpoint+"/**",model_response)
+
+
 def check(base, channel, screenshots):
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(channel=channel, headless=True)
@@ -116,6 +208,8 @@ def check(base, channel, screenshots):
         page.goto(base)
         expect(page.get_by_role("heading", name="Daily Threat Brief")).to_be_visible()
         drilldowns(page,base)
+        sentinel_catalog(page,base)
+        results_explanation(page,base)
         page.goto(base)
         expect(page.get_by_role("heading", name="Daily Threat Brief")).to_be_visible()
         if screenshots:
@@ -139,7 +233,9 @@ def check(base, channel, screenshots):
         expect(page.get_by_role("heading", name="Suspicious PowerShell Network Activity")).to_be_visible()
         if screenshots:
             page.screenshot(path=str(screenshots / "hunt.png"), full_page=True)
-        expect(page.get_by_text("InitiatingProcessFileName in~",exact=False)).to_be_visible()
+        expect(page.locator(".code-line").first).to_have_text("WindowsEvent")
+        expect(page.get_by_role("heading",name="Microsoft Sentinel Logs KQL")).to_be_visible()
+        expect(page.get_by_role("complementary", name="Environment profile and schema")).to_have_count(0)
         page.get_by_label("Lookback",exact=True).select_option("14")
         expect(page.get_by_text("ago(14d)",exact=False)).to_be_visible()
         json_toggle = page.get_by_label("Single-row JSON output")
@@ -151,7 +247,7 @@ def check(base, channel, screenshots):
         page.get_by_role("button",name="Copy KQL").click()
         expect(page.get_by_text("KQL copied.",exact=True)).to_have_text("KQL copied.")
         copied = page.evaluate("navigator.clipboard.readText()").replace("\r\n","\n")
-        assert copied.startswith("DeviceNetworkEvents\n") and copied.count("make_list(pack_all())") == 1
+        assert copied.startswith("WindowsEvent\n") and copied.count("make_list(pack_all())") == 1
         with page.expect_download() as download:
             page.get_by_role("button",name="KQL (.kql)").click()
         assert download.value.path().read_bytes().decode()==copied
@@ -166,12 +262,16 @@ def check(base, channel, screenshots):
         expect(page.get_by_role("dialog",name="KQL")).to_be_visible()
         expect(page.get_by_role("textbox",name="KQL")).to_have_value(copied)
         page.keyboard.press("Escape")
-        page.get_by_label("Environment Profile",exact=True).select_option("custom-menlo")
-        expect(page.get_by_role("button",name="Copy KQL")).to_be_disabled()
-        expect(page.get_by_text("This profile cannot supply",exact=False)).to_be_visible()
+        page.get_by_label("Query profile",exact=True).select_option("defender-xdr")
+        expect(page.locator(".code-line").first).to_have_text("DeviceNetworkEvents")
+        expect(page.get_by_text("where Timestamp >",exact=False)).to_be_visible()
+        page.get_by_label("Query profile",exact=True).select_option("sentinel-endpoint")
+        expect(page.get_by_text("where TimeGenerated >",exact=False)).to_be_visible()
         page.goto(base+"#/hunts/HF-2026-0003")
         expect(page.get_by_role("heading",name="Microsoft 365 Outage Phishing Destinations")).to_be_visible()
-        page.get_by_label("Environment Profile",exact=True).select_option("custom-proxy")
+        expect(page.get_by_label("Query profile",exact=True)).to_have_value("sentinel-cef")
+        expect(page.locator(".code-line").first).to_have_text("CommonSecurityLog")
+        page.get_by_label("Query profile",exact=True).select_option("custom-proxy")
         expect(page.locator(".code-line").first).to_have_text("CustomWeb_CL")
         expect(page.get_by_label("Single-row JSON output")).to_be_checked()
         page.get_by_role("tab",name="Investigation").click()
@@ -180,10 +280,11 @@ def check(base, channel, screenshots):
         expect(page.get_by_role("heading",name="Reviewed source evidence")).to_be_visible()
         page.goto(base+"#/hunts")
         expect(page.get_by_role("heading",name="Hunts",exact=True)).to_be_visible()
+        page.get_by_role("searchbox",name="Search",exact=True).fill("Microsoft 365 Outage Phishing Destinations")
         page.get_by_label("Profile",exact=True).select_option("sentinel-cef")
         expect(page.get_by_role("heading",name="Microsoft 365 Outage Phishing Destinations")).to_be_visible()
         expect(page.get_by_role("heading",name="Suspicious PowerShell Network Activity")).to_have_count(0)
-        page.get_by_label("Include in ZIP pack").check()
+        page.locator(".catalog-card").filter(has=page.get_by_role("heading",name="Microsoft 365 Outage Phishing Destinations")).get_by_label("Include in ZIP pack").check()
         with page.expect_download() as download:
             page.get_by_role("button",name="Download selected (1)").click()
         with zipfile.ZipFile(download.value.path()) as archive:

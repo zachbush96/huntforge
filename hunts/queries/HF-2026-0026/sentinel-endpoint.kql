@@ -1,0 +1,7 @@
+DeviceRegistryEvents
+| where TimeGenerated > ago(14d)
+| where ActionType == "RegistryValueSet"
+| where RegistryKey endswith @"\CurrentVersion\Run" or RegistryKey endswith @"\CurrentVersion\RunOnce"
+| where RegistryValueName contains "RelayTrap" or RegistryValueData contains "RelayTrap"
+| project TimeGenerated, DeviceName, RegistryKey, RegistryValueName, RegistryValueData, InitiatingProcessFileName
+| order by TimeGenerated desc

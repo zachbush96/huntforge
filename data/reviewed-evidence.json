@@ -24,13 +24,28 @@
       "APT Activity",
       "Exploitation"
     ],
-    "claim": "Microsoft observed GSocket and gs-netcat process activity on compromised Linux hosts, sometimes with renamed binaries.",
+    "claim": "Microsoft observed GSocket tooling on compromised Linux servers, including renamed relay binaries, cron persistence and connections to GSocket distribution infrastructure.",
     "location": "Advanced hunting queries and indicators sections",
     "techniques": [
-      "T1090.002"
+      "T1090.002",
+      "T1053.003",
+      "T1105",
+      "T1036"
     ],
     "software": [
       "GSocket"
+    ],
+    "indicators": [
+      [
+        "domain",
+        "gsocket[.]io",
+        "Public GSocket distribution domain. The service is dual-use."
+      ],
+      [
+        "domain",
+        "gsgg[.]b-cdn[.]net",
+        "Public GSocket distribution host. The service is dual-use."
+      ]
     ]
   },
   {
@@ -81,10 +96,12 @@
       "Phishing",
       "Identity"
     ],
-    "claim": "Microsoft observed fraudulent IT support sessions conducted primarily through Quick Assist before staging additional tools.",
+    "claim": "Microsoft observed fraudulent Quick Assist support sessions followed by scripting and certificate-services abuse during the investigated intrusions.",
     "location": "Intrusion case studies and initial access sections",
     "techniques": [
-      "T1219.002"
+      "T1219.002",
+      "T1649",
+      "T1059.001"
     ]
   },
   {
@@ -97,11 +114,16 @@
       "Identity",
       "Supply Chain"
     ],
-    "claim": "Microsoft reported successful service-principal sign-ins from a campaign-associated address across multiple application IDs. The date below is the earliest activity Microsoft describes.",
+    "claim": "Microsoft observed ARTEX-associated use of exposed cloud credentials, service-principal sign-ins from a reported IP, rapid cloud discovery and attempted access to Azure Key Vault and other resources.",
     "observation_date": "2026-10-28",
     "location": "Credential abuse via Entra ID and indicators sections",
     "techniques": [
-      "T1078.004"
+      "T1078.004",
+      "T1555.006",
+      "T1580",
+      "T1087.004",
+      "T1110.003",
+      "T1528"
     ],
     "indicators": [
       [
@@ -109,6 +131,174 @@
         "199.19.77[.]84",
         "IP observed in successful service principal sign-ins across multiple applications."
       ]
+    ]
+  },
+  {
+    "key": "artex-finance",
+    "url": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/",
+    "date": "2026-11-06",
+    "title": "ARTEX abuse expands as cybercriminals target financial sector",
+    "tags": [
+      "Agentic AI",
+      "Initial Access",
+      "Network"
+    ],
+    "claim": "Microsoft reported Storm-3358 using ARTEX around financial-sector intrusions, including fast network probing, password abuse and infrastructure associated with remote access tooling.",
+    "location": "Behavioral signals and indicators sections",
+    "techniques": [
+      "T1595",
+      "T1110.003",
+      "T1078.004",
+      "T1105"
+    ],
+    "actors": [
+      "Storm-3358"
+    ],
+    "indicators": [
+      [
+        "ipv4",
+        "91.92.240[.]238",
+        "Listed by Microsoft as an ARTEX server."
+      ],
+      [
+        "ipv4",
+        "85.11.168[.]45",
+        "Listed by Microsoft as an ARTEX server."
+      ],
+      [
+        "ipv4",
+        "31.77.229[.]35",
+        "Listed by Microsoft as an ARTEX server."
+      ],
+      [
+        "ipv4",
+        "199.19.95[.]66",
+        "Listed by Microsoft as a WISP command-and-control node."
+      ],
+      [
+        "ipv4",
+        "199.19.95[.]67",
+        "Listed by Microsoft as a WISP command-and-control node."
+      ],
+      [
+        "ipv4",
+        "199.19.95[.]68",
+        "Listed by Microsoft as a WISP command-and-control node."
+      ]
+    ]
+  },
+  {
+    "key": "dprk-ai",
+    "url": "https://www.microsoft.com/en-us/security/blog/2026/10/29/tracking-ai-adoption-in-north-korean-threat-actor-tradecraft/",
+    "date": "2026-10-29",
+    "title": "Tracking AI adoption in North Korean threat actor tradecraft",
+    "tags": [
+      "Agentic AI",
+      "Nation-State",
+      "Supply Chain",
+      "Identity"
+    ],
+    "claim": "Microsoft documented North Korean actors adopting AI, identified Onyx Sleet and Pearl Sleet using ARTEX, and listed Defender detections for Jasper Sleet sign-ins and Sapphire Sleet-related ProcmacSteal payloads.",
+    "location": "AI-assisted development, operational scaling and Microsoft Defender detections",
+    "techniques": [
+      "T1078.004",
+      "T1195.002"
+    ],
+    "actors": [
+      "Onyx Sleet",
+      "Pearl Sleet",
+      "Jasper Sleet",
+      "Sapphire Sleet",
+      "North Korea"
+    ],
+    "software": [
+      "ARTEX",
+      "ProcmacSteal"
+    ]
+  },
+  {
+    "key": "artex-storm0940",
+    "url": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/",
+    "date": "2026-10-21",
+    "title": "AI-driven, large-scale nation-state campaign using ARTEX enables supply chain compromise",
+    "tags": [
+      "Agentic AI",
+      "Nation-State",
+      "Supply Chain",
+      "Identity"
+    ],
+    "claim": "Microsoft attributed application abuse, password spraying and cloud role or credential changes to Storm-0940, a China-state-aligned actor, in activity that included the ConnectWise Cloud Backup compromise.",
+    "location": "Observed attack patterns, Sentinel queries and ATT&CK mapping",
+    "techniques": [
+      "T1078.004",
+      "T1098.001",
+      "T1098.003",
+      "T1114.002",
+      "T1195.002",
+      "T1199"
+    ],
+    "actors": [
+      "Storm-0940",
+      "China"
+    ],
+    "indicators": [
+      [
+        "ipv4",
+        "144.172.64[.]99",
+        "Microsoft associated this address with spraying and ConnectWise-related activity."
+      ],
+      [
+        "ipv4",
+        "144.172.64[.]60",
+        "Included in the publisher's Sentinel pivots."
+      ],
+      [
+        "ipv4",
+        "144.172.64[.]128",
+        "Included in the publisher's Sentinel pivots."
+      ]
+    ]
+  },
+  {
+    "key": "sckit",
+    "url": "https://www.microsoft.com/en-us/security/blog/2026/11/13/sckit-abuses-screenconnect-deploy-remote-access-target-technician-sessions/",
+    "date": "2026-11-13",
+    "title": "SCKit abuses ScreenConnect to deploy remote access and target technician sessions",
+    "tags": [
+      "Supply Chain",
+      "Remote Access",
+      "LOLBins"
+    ],
+    "claim": "Microsoft documented unauthorized ScreenConnect sessions, scripting, scheduled tasks, Run keys and changes to Defender exclusions while investigating SCKit.",
+    "location": "Investigation guidance and advanced hunting examples",
+    "techniques": [
+      "T1219.002",
+      "T1059.001",
+      "T1053.005",
+      "T1547.001",
+      "T1685"
+    ],
+    "software": [
+      "SCKit",
+      "ScreenConnect",
+      "RelayTrap"
+    ]
+  },
+  {
+    "key": "device-code",
+    "url": "https://www.microsoft.com/en-us/security/blog/2026/11/17/the-risks-of-device-code-authentication-for-ai-coding-agents/",
+    "date": "2026-11-17",
+    "title": "The risks of device code authentication for AI coding agents",
+    "tags": [
+      "Agentic AI",
+      "Phishing",
+      "Identity"
+    ],
+    "claim": "Microsoft demonstrated in a lab that device code phishing can expose sessions used by coding agents, and noted earlier device-code phishing campaigns. The demonstration is distinct from observed incidents.",
+    "location": "Research scope and mitigation guidance",
+    "techniques": [
+      "T1528",
+      "T1566.002"
     ]
   }
 ]

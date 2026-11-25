@@ -1,6 +1,7 @@
 import { briefAside, briefMain } from "./brief.js";
 import { catalog, changelog, developers, entityDetail, intelligenceDetail, missing, systemStatus } from "./catalog.js";
-import { huntAside, huntMain, huntTabs } from "./hunt.js";
+import { huntMain, huntTabs } from "./hunt.js";
+import { cancelExplanation, explainResults } from "./explain.js";
 import { activeQuery, escape, header, icon, neutral, queryMode, route, sidebar } from "./ui.js";
 import { zip } from "./zip.js";
 
@@ -11,7 +12,8 @@ const settingsDialog = document.querySelector("#settings-dialog");
 const copyDialog = document.querySelector("#copy-dialog");
 const releaseIdPattern = /^hf-\d{8}-[0-9a-f]{12}$/;
 const filterKeys = new Set(["q","severity","source","start","through","cve","tag","technique","tactic","malware",
-  "validation","profile","freshness","category","indicatorType","hunt","change","recordType","following","sourceState","panel"]);
+  "validation","profile","freshness","category","indicatorType","hunt","change","recordType","following","sourceState","panel",
+  "evidenceRange","actor","coverage"]);
 let data;
 let navigation = 0;
 
@@ -102,6 +104,7 @@ async function comparison() {
 
 async function navigate() {
   if (!data || location.hash === "#main") return;
+  cancelExplanation(app.querySelector("#explain-results"));
   const sequence = ++navigation;
   const {section,id,filters,tab} = readRoute();
   Object.assign(state,{section,id,page:0,filters,hunt:null,detail:null,error:false,tab,profile:null});
@@ -112,7 +115,14 @@ async function navigate() {
       detail = await data.get("intelligence/" + encodeURIComponent(id) + ".json");
     }
     if (section === "indicators" && id) detail = data.indicators.find(x=>x.id===id);
-    if (section === "techniques" && id) detail = data.reference.find(x=>x.type==="attack-pattern" && x.id===id);
+    if (section === "techniques" && id) {
+      detail = data.reference.find(x=>x.type==="attack-pattern" && x.id===id);
+      if (detail) {
+        const matches = data.hunts.filter(row=>row.technique===id);
+        const requests = await Promise.allSettled(matches.map(row=>huntCard(row.id)));
+        detail = {...detail, huntCards:requests.filter(result=>result.status==="fulfilled").map(result=>result.value)};
+      }
+    }
     if (section === "adversaries" && id) detail = data.reference.find(x=>x.type!=="attack-pattern" && x.id===id);
     if (section === "changelog" && id === "since-last-visit") detail = {release_id: "comparison since last visit",items:await comparison()};
     if (section === "changelog" && data.history.some(row=>row.release_id===id)) {
@@ -126,7 +136,7 @@ async function navigate() {
   state.detail = detail;
   if (hunt) {
     const preferred = state.preferences.profiles[hunt.id];
-    state.profile = data.profiles.some(row=>row.id===preferred) ? preferred : hunt.profiles[0];
+    state.profile = hunt.profiles.includes(preferred) ? preferred : hunt.profiles[0];
   }
   render();
   if (sequence > 1) {
@@ -136,6 +146,7 @@ async function navigate() {
 }
 
 function render(preserve = null) {
+  cancelExplanation(app.querySelector("#explain-results"));
   const brief = state.section === "brief";
   let main;
   let aside = "";
@@ -144,7 +155,6 @@ function render(preserve = null) {
     aside = briefAside(data);
   } else if (state.hunt) {
     main = huntMain(data,state);
-    aside = huntAside(data,state);
   } else if (state.id && !state.detail) main = missing(data,state);
   else if (["intelligence","research","vulnerabilities"].includes(state.section) && state.detail) main = intelligenceDetail(data,state);
   else if (["indicators","techniques","adversaries"].includes(state.section) && state.detail) main = entityDetail(data,state);
@@ -278,6 +288,17 @@ app.addEventListener("click", event=>{
     copy(new URL(control.dataset.copyUrl,document.baseURI).href,"API URL");
     return;
   }
+  if (control.dataset.copyTechnique) {
+    const card = state.detail?.huntCards?.find(row=>row.id===control.dataset.copyTechnique);
+    if (card) copy(card.variants[card.profiles[0]].queries[card.lookback].table,"KQL");
+    return;
+  }
+  if (control.dataset.explain) {
+    const form = control.form;
+    if (control.dataset.explain === "cancel") cancelExplanation(form);
+    if (control.dataset.explain === "copy") copy(form.querySelector(".explain-response pre").textContent,"Explanation");
+    return;
+  }
   if (control.dataset.page != null) {
     state.page = Number(control.dataset.page);
     render({selector:`[data-page="${state.page}"]`});
@@ -287,7 +308,6 @@ app.addEventListener("click", event=>{
     syncRoute();
     render({selector:`[data-tab="${state.tab}"]`});
   }
-  if (control.dataset.setProfile) setPreference("profile",control.dataset.setProfile,`[data-set-profile="${control.dataset.setProfile}"]`);
   const actions = {
     search:showSearch, settings:showSettings,
     "clear-filters":()=>{
@@ -348,6 +368,22 @@ app.addEventListener("change",event=>{
 });
 app.addEventListener("submit",event=>{
   if (event.target.matches(".filters")) event.preventDefault();
+  if (event.target.id === "explain-results" && state.hunt) {
+    event.preventDefault();
+    const hunt = state.hunt;
+    explainResults(event.target,{
+      id:hunt.id, title:hunt.title, hypothesis:hunt.hypothesis, resultShape:hunt.expected_output,
+      table:hunt.variants[state.profile].table, lookbackDays:state.preferences.days
+    });
+  }
+});
+app.addEventListener("reset",event=>{
+  if (event.target.id !== "explain-results") return;
+  const form = event.target;
+  cancelExplanation(form);
+  form.querySelector(".explain-response").hidden = true;
+  form.querySelector(".explain-response pre").textContent = "";
+  form.querySelector(".explain-status").textContent = "";
 });
 searchDialog.addEventListener("input",event=>{ if (event.target.type === "search") showResults(event.target.value); });
 searchDialog.addEventListener("click",event=>{ if (event.target.closest("a")) searchDialog.close(); });

@@ -7,6 +7,8 @@
     "hypothesis": "PowerShell used to retrieve a payload may leave a process-attributed network event.",
     "confidence": "Behavioral hypothesis",
     "profiles": [
+      "sentinel-windows",
+      "sentinel-endpoint",
       "defender-xdr"
     ],
     "technique": "T1059.001",
@@ -27,6 +29,7 @@
     "hypothesis": "Known GSocket executable names or command-line references may identify investigated relay tooling.",
     "confidence": "Publisher-observed tooling",
     "profiles": [
+      "sentinel-endpoint",
       "defender-xdr"
     ],
     "technique": "T1090.002",
@@ -46,9 +49,9 @@
     "hypothesis": "Exact destination host matches can identify traffic associated with the documented phishing campaign.",
     "confidence": "Publisher-observed indicators",
     "profiles": [
-      "defender-xdr",
       "sentinel-cef",
-      "custom-menlo",
+      "sentinel-endpoint",
+      "defender-xdr",
       "custom-proxy"
     ],
     "technique": "T1566.002",
@@ -69,6 +72,8 @@
     "hypothesis": "Fraudulent remote support sessions can start with Quick Assist process activity.",
     "confidence": "Contextual behavioral hypothesis",
     "profiles": [
+      "sentinel-windows",
+      "sentinel-endpoint",
       "defender-xdr"
     ],
     "technique": "T1219.002",
@@ -82,7 +87,7 @@
   },
   {
     "id": "HF-2026-0005",
-    "title": "Service Principal Sign-ins From a Reported IP",
+    "title": "ARTEX Service Principal Sign-ins From a Reported IP",
     "research": "service-principal",
     "description": "Review successful Entra service-principal sign-ins from a campaign-associated IP Microsoft reported.",
     "hypothesis": "A successful sign-in from the published address warrants correlation with app ownership and expected egress.",
@@ -98,5 +103,867 @@
       "Check Azure activity and resource audit logs for follow-on actions."
     ],
     "lookback": 7
+  },
+  {
+    "id": "HF-2026-0006",
+    "research": "artex-finance",
+    "title": "ARTEX and WISP Infrastructure in CEF Logs",
+    "description": "Look for traffic involving IP addresses Microsoft reported around Storm-3358.",
+    "hypothesis": "Look for traffic involving IP addresses Microsoft reported around Storm-3358.",
+    "confidence": "Publisher-observed indicators",
+    "profiles": [
+      "sentinel-cef"
+    ],
+    "technique": "T1595",
+    "tactic": "Reconnaissance",
+    "lookback": 14,
+    "considerations": [
+      "SourceIP and DestinationIP indicate which side matched. Check traffic direction and policy action.",
+      "Confirm independent evidence before attributing a match."
+    ],
+    "actors": [
+      "Storm-3358"
+    ],
+    "query": {
+      "table": "CommonSecurityLog",
+      "statements": [
+        "| where SourceIP in ({ipv4}) or DestinationIP in ({ipv4})",
+        "| project {time}, SourceIP, DestinationIP, DestinationPort, DeviceAction, DeviceVendor, DeviceProduct",
+        "| order by {time} desc"
+      ]
+    }
+  },
+  {
+    "id": "HF-2026-0007",
+    "research": "artex-finance",
+    "title": "ARTEX-Associated Remote Connections on Endpoints",
+    "description": "Review process-attributed connections to reported Storm-3358 infrastructure.",
+    "hypothesis": "Review process-attributed connections to reported Storm-3358 infrastructure.",
+    "confidence": "Publisher-observed indicators",
+    "profiles": [
+      "sentinel-endpoint"
+    ],
+    "technique": "T1105",
+    "tactic": "Command and Control",
+    "lookback": 14,
+    "considerations": [
+      "Check process ancestry and file activity around permitted connections.",
+      "An address match cannot establish tool transfer, execution or actor attribution."
+    ],
+    "actors": [
+      "Storm-3358"
+    ],
+    "query": {
+      "table": "DeviceNetworkEvents",
+      "statements": [
+        "| where RemoteIP in ({ipv4})",
+        "| project {time}, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine, RemoteIP, RemotePort, ActionType",
+        "| order by {time} desc"
+      ]
+    }
+  },
+  {
+    "id": "HF-2026-0008",
+    "research": "artex-finance",
+    "title": "Rapid Network Probing Across Ports and Hosts",
+    "description": "Look for five-minute bursts touching many destination hosts and ports from one source.",
+    "hypothesis": "Look for five-minute bursts touching many destination hosts and ports from one source.",
+    "confidence": "Behavioral hypothesis",
+    "profiles": [
+      "sentinel-cef"
+    ],
+    "technique": "T1595",
+    "tactic": "Reconnaissance",
+    "lookback": 7,
+    "considerations": [
+      "Tune the thresholds against approved scanners, load testing and monitoring.",
+      "Burst shape can support triage, but does not establish that activity came from AI."
+    ],
+    "actors": [
+      "Storm-3358"
+    ],
+    "query": {
+      "table": "CommonSecurityLog",
+      "statements": [
+        "| where isnotempty(SourceIP) and isnotempty(DestinationIP) and DestinationPort > 0",
+        "| summarize Events = count(), Hosts = dcount(DestinationIP), Ports = dcount(DestinationPort), Actions = make_set(DeviceAction, 8) by SourceIP, Window = bin({time}, 5m)",
+        "| where Events >= 80 and Hosts >= 5 and Ports >= 12",
+        "| order by Events desc"
+      ]
+    },
+    "expected_output": "One row per matching source IP and five-minute window."
+  },
+  {
+    "id": "HF-2026-0009",
+    "research": "artex-finance",
+    "title": "Entra Password Spray Across Accounts",
+    "description": "Find invalid-password failures across many user accounts from one IP.",
+    "hypothesis": "Find invalid-password failures across many user accounts from one IP.",
+    "confidence": "Behavioral hypothesis",
+    "profiles": [
+      "sentinel-entra"
+    ],
+    "technique": "T1110.003",
+    "tactic": "Credential Access",
+    "lookback": 7,
+    "considerations": [
+      "Exclude approved tests and shared egress.",
+      "Check successful sign-ins and account changes near the same window."
+    ],
+    "actors": [],
+    "query": {
+      "table": "SigninLogs",
+      "statements": [
+        "| where ResultType == \"50126\" and isnotempty(UserPrincipalName) and isnotempty(IPAddress)",
+        "| summarize Failures = count(), Accounts = dcount(UserPrincipalName), SampleAccounts = make_set(UserPrincipalName, 12), Apps = make_set(AppDisplayName, 8) by IPAddress, Window = bin({time}, 15m)",
+        "| where Failures >= 25 and Accounts >= 10",
+        "| order by Accounts desc, Failures desc"
+      ]
+    },
+    "expected_output": "One row per IP and fifteen-minute window passing the account and failure thresholds."
+  },
+  {
+    "id": "HF-2026-0010",
+    "research": "service-principal",
+    "title": "One Address Signing In as Many Service Principals",
+    "description": "Review successful service principal sign-ins across multiple apps from one IP.",
+    "hypothesis": "Review successful service principal sign-ins across multiple apps from one IP.",
+    "confidence": "Behavioral hypothesis",
+    "profiles": [
+      "sentinel-entra"
+    ],
+    "technique": "T1078.004",
+    "tactic": "Initial Access",
+    "lookback": 7,
+    "considerations": [
+      "Baseline managed automation and shared vendor egress.",
+      "Pivot by service principal ID and check credential additions and Graph activity."
+    ],
+    "actors": [],
+    "query": {
+      "table": "AADServicePrincipalSignInLogs",
+      "statements": [
+        "| where ResultType == \"0\" and isnotempty(IPAddress) and isnotempty(ServicePrincipalId)",
+        "| summarize SignIns = count(), Principals = dcount(ServicePrincipalId), Names = make_set(ServicePrincipalName, 12), Resources = make_set(ResourceDisplayName, 12) by IPAddress, Window = bin({time}, 15m)",
+        "| where Principals >= 4",
+        "| order by Principals desc"
+      ]
+    },
+    "expected_output": "One row per source IP and fifteen-minute window with four or more principals."
+  },
+  {
+    "id": "HF-2026-0011",
+    "research": "service-principal",
+    "title": "Key Vault Activity From the Reported ARTEX Address",
+    "description": "Review secret requests from the address Microsoft associated with exposed application credentials.",
+    "hypothesis": "Review secret requests from the address Microsoft associated with exposed application credentials.",
+    "confidence": "Publisher-observed indicators",
+    "profiles": [
+      "sentinel-azure"
+    ],
+    "technique": "T1555.006",
+    "tactic": "Credential Access",
+    "lookback": 14,
+    "considerations": [
+      "Compare operation outcomes and caller identity.",
+      "Correlate addresses and timestamps with Entra service principal sign-ins."
+    ],
+    "actors": [],
+    "query": {
+      "table": "AZKVAuditLogs",
+      "statements": [
+        "| where CallerIpAddress in ({ipv4}) and OperationName startswith \"Secret\"",
+        "| project {time}, CallerIpAddress, OperationName, ResultType, _ResourceId",
+        "| order by {time} desc"
+      ]
+    }
+  },
+  {
+    "id": "HF-2026-0012",
+    "research": "service-principal",
+    "title": "Rapid Secret Requests Across Key Vaults",
+    "description": "Look for a caller rapidly requesting secrets across several vaults.",
+    "hypothesis": "Look for a caller rapidly requesting secrets across several vaults.",
+    "confidence": "Behavioral hypothesis",
+    "profiles": [
+      "sentinel-azure"
+    ],
+    "technique": "T1555.006",
+    "tactic": "Credential Access",
+    "lookback": 7,
+    "considerations": [
+      "Exclude documented workloads that make multi-vault accesses.",
+      "Review operation outcomes and identities before inferring secret access."
+    ],
+    "actors": [],
+    "query": {
+      "table": "AZKVAuditLogs",
+      "statements": [
+        "| where OperationName in~ (\"SecretGet\", \"SecretList\", \"SecretListVersions\") and isnotempty(CallerIpAddress)",
+        "| summarize Requests = count(), Vaults = dcount(_ResourceId), Operations = make_set(OperationName, 8), Outcomes = make_set(ResultType, 8) by CallerIpAddress, Window = bin({time}, 5m)",
+        "| where Requests >= 15 and Vaults >= 3",
+        "| order by Vaults desc, Requests desc"
+      ]
+    },
+    "expected_output": "One row per caller IP and five-minute window."
+  },
+  {
+    "id": "HF-2026-0013",
+    "research": "service-principal",
+    "title": "ARTEX-Associated Microsoft Graph Activity",
+    "description": "Pivot from the reported cloud credential abuse address to Graph activity.",
+    "hypothesis": "Pivot from the reported cloud credential abuse address to Graph activity.",
+    "confidence": "Publisher-observed indicators",
+    "profiles": [
+      "sentinel-azure"
+    ],
+    "technique": "T1078.004",
+    "tactic": "Initial Access",
+    "lookback": 14,
+    "considerations": [
+      "Compare application and principal IDs with observed sign-ins.",
+      "Check response codes and positions in the tenant baseline."
+    ],
+    "actors": [],
+    "query": {
+      "table": "MicrosoftGraphActivityLogs",
+      "statements": [
+        "| where IPAddress in ({ipv4})",
+        "| project {time}, IPAddress, AppId, ServicePrincipalId, RequestMethod, RequestUri, ResponseStatusCode",
+        "| order by {time} desc"
+      ]
+    }
+  },
+  {
+    "id": "HF-2026-0014",
+    "research": "service-principal",
+    "title": "Burst of App-Only Directory Enumeration",
+    "description": "Look for a cloud principal querying many Graph user or group paths in quick succession.",
+    "hypothesis": "Look for a cloud principal querying many Graph user or group paths in quick succession.",
+    "confidence": "Behavioral hypothesis",
+    "profiles": [
+      "sentinel-azure"
+    ],
+    "technique": "T1087.004",
+    "tactic": "Discovery",
+    "lookback": 7,
+    "considerations": [
+      "Known provisioning and inventory apps may produce this pattern.",
+      "Inspect Graph permissions and the associated sign-in session."
+    ],
+    "actors": [],
+    "query": {
+      "table": "MicrosoftGraphActivityLogs",
+      "statements": [
+        "| where RequestMethod == \"GET\" and isnotempty(ServicePrincipalId)",
+        "| where tostring(parse_url(RequestUri).Path) has_any (\"users\", \"groups\", \"servicePrincipals\")",
+        "| summarize Calls = count(), Paths = dcount(tostring(parse_url(RequestUri).Path)), Successes = countif(ResponseStatusCode between (200 .. 299)) by AppId, ServicePrincipalId, IPAddress, Window = bin({time}, 5m)",
+        "| where Calls >= 30 and Paths >= 10",
+        "| order by Calls desc"
+      ]
+    },
+    "expected_output": "One row per principal, app, source IP and five-minute window."
+  },
+  {
+    "id": "HF-2026-0015",
+    "research": "artex-storm0940",
+    "title": "Storm-0940 ConnectWise Cloud App Sign-ins",
+    "description": "Review successful app sign-ins for the ConnectWise IDs in Microsoft's Sentinel sample.",
+    "hypothesis": "Review successful app sign-ins for the ConnectWise IDs in Microsoft's Sentinel sample.",
+    "confidence": "Publisher-observed indicators",
+    "profiles": [
+      "sentinel-entra"
+    ],
+    "technique": "T1199",
+    "tactic": "Initial Access",
+    "lookback": 30,
+    "considerations": [
+      "These app IDs can appear during legitimate backup operations.",
+      "Prioritize reported-source matches and review ownership and expected egress."
+    ],
+    "actors": [
+      "Storm-0940",
+      "China"
+    ],
+    "query": {
+      "table": "AADServicePrincipalSignInLogs",
+      "statements": [
+        "| where ResultType == \"0\" and AppId in (\"506e08f9-6e9a-4da4-942b-a099a03644ae\", \"24205314-2b89-4e07-a2a4-579e898a5640\", \"0de14c77-b9b0-4137-9360-34878a929827\")",
+        "| extend ReportedSource = IPAddress in ({ipv4})",
+        "| project {time}, ServicePrincipalName, ServicePrincipalId, AppId, IPAddress, ReportedSource, ResourceDisplayName",
+        "| order by {time} desc"
+      ]
+    }
+  },
+  {
+    "id": "HF-2026-0016",
+    "research": "artex-storm0940",
+    "title": "Cloud Application Credential Additions",
+    "description": "Review additions of service principal credentials or changes to application secrets and certificates.",
+    "hypothesis": "Review additions of service principal credentials or changes to application secrets and certificates.",
+    "confidence": "Behavioral hypothesis",
+    "profiles": [
+      "sentinel-entra"
+    ],
+    "technique": "T1098.001",
+    "tactic": "Persistence",
+    "lookback": 14,
+    "considerations": [
+      "Verify the actor and key dates against an approved rotation or change ticket.",
+      "Pivot to successful service principal sign-ins after an unexpected addition."
+    ],
+    "actors": [
+      "Storm-0940",
+      "China"
+    ],
+    "query": {
+      "table": "AuditLogs",
+      "statements": [
+        "| where Category =~ \"ApplicationManagement\"",
+        "| where OperationName =~ \"Add service principal credentials\" or OperationName has_all (\"certificates\", \"secrets\", \"application\")",
+        "| project {time}, OperationName, Category, Result, InitiatedBy, TargetResources, CorrelationId",
+        "| order by {time} desc"
+      ]
+    }
+  },
+  {
+    "id": "HF-2026-0017",
+    "research": "artex-storm0940",
+    "title": "Cloud App Role Grants and Directory Role Changes",
+    "description": "Review audit events granting app roles or adding directory role members.",
+    "hypothesis": "Review audit events granting app roles or adding directory role members.",
+    "confidence": "Behavioral hypothesis",
+    "profiles": [
+      "sentinel-entra"
+    ],
+    "technique": "T1098.003",
+    "tactic": "Privilege Escalation",
+    "lookback": 14,
+    "considerations": [
+      "Identify the grantor, target and exact role in the audit data.",
+      "Prioritize unexpected self-grants by service principals."
+    ],
+    "actors": [
+      "Storm-0940",
+      "China"
+    ],
+    "query": {
+      "table": "AuditLogs",
+      "statements": [
+        "| where OperationName in~ (\"Add app role assignment to service principal\", \"Add app role assignment to the service principal\", \"Add member to role\")",
+        "| project {time}, OperationName, Category, Result, InitiatedBy, TargetResources, CorrelationId",
+        "| order by {time} desc"
+      ]
+    }
+  },
+  {
+    "id": "HF-2026-0018",
+    "research": "artex-storm0940",
+    "title": "Storm-0940 Cloud App Mail Access",
+    "description": "Find successful Graph mailbox reads by the ConnectWise applications in the published Sentinel sample.",
+    "hypothesis": "Find successful Graph mailbox reads by the ConnectWise applications in the published Sentinel sample.",
+    "confidence": "Behavioral hypothesis",
+    "profiles": [
+      "sentinel-azure"
+    ],
+    "technique": "T1114.002",
+    "tactic": "Collection",
+    "lookback": 30,
+    "considerations": [
+      "Legitimate backup may read mailboxes. Compare source IP and environment history.",
+      "Correlate unexpected accesses with service principal sign-ins."
+    ],
+    "actors": [
+      "Storm-0940",
+      "China"
+    ],
+    "query": {
+      "table": "MicrosoftGraphActivityLogs",
+      "statements": [
+        "| where AppId in (\"506e08f9-6e9a-4da4-942b-a099a03644ae\", \"24205314-2b89-4e07-a2a4-579e898a5640\", \"0de14c77-b9b0-4137-9360-34878a929827\")",
+        "| where RequestMethod == \"GET\" and ResponseStatusCode between (200 .. 299)",
+        "| where tostring(parse_url(RequestUri).Path) has_any (\"messages\", \"mailFolders\")",
+        "| extend ReportedSource = IPAddress in ({ipv4})",
+        "| project {time}, IPAddress, AppId, ServicePrincipalId, RequestMethod, RequestUri, ResponseStatusCode, ReportedSource, ResponseSizeBytes",
+        "| order by {time} desc"
+      ]
+    }
+  },
+  {
+    "id": "HF-2026-0019",
+    "research": "dprk-ai",
+    "title": "North Korea · Jasper Sleet Sign-in Alerts",
+    "description": "Find ingested provider alerts for Jasper Sleet sign-in activity.",
+    "hypothesis": "Find ingested provider alerts for Jasper Sleet sign-in activity.",
+    "confidence": "Publisher-listed detection",
+    "profiles": [
+      "sentinel-alerts"
+    ],
+    "technique": "T1078.004",
+    "tactic": "Initial Access",
+    "lookback": 30,
+    "considerations": [
+      "This query depends on the provider emitting and forwarding the named detection.",
+      "Review affected identity and device evidence before accepting attribution."
+    ],
+    "actors": [
+      "Jasper Sleet",
+      "North Korea"
+    ],
+    "query": {
+      "table": "SecurityAlert",
+      "statements": [
+        "| where AlertName has_all (\"Jasper\", \"Sleet\") and (AlertName contains \"sign-in\" or AlertName has \"signin\")",
+        "| project {time}, AlertName, AlertSeverity, ProductName, CompromisedEntity, SystemAlertId",
+        "| order by {time} desc"
+      ]
+    }
+  },
+  {
+    "id": "HF-2026-0020",
+    "research": "dprk-ai",
+    "title": "North Korea · Sapphire Sleet ProcmacSteal Alerts",
+    "description": "Find ingested alerts for ProcmacSteal, a payload family reported in Sapphire Sleet's Rust software compromise.",
+    "hypothesis": "Find ingested alerts for ProcmacSteal, a payload family reported in Sapphire Sleet's Rust software compromise.",
+    "confidence": "Publisher-listed detection",
+    "profiles": [
+      "sentinel-alerts"
+    ],
+    "technique": "T1195.002",
+    "tactic": "Initial Access",
+    "lookback": 30,
+    "considerations": [
+      "Determine whether the alert was a prevention, detection or test.",
+      "Check dependency and build lineage. The payload label alone does not establish actor attribution."
+    ],
+    "actors": [
+      "Sapphire Sleet",
+      "North Korea"
+    ],
+    "query": {
+      "table": "SecurityAlert",
+      "statements": [
+        "| where AlertName contains \"ProcmacSteal\" or Description contains \"ProcmacSteal\" or ExtendedProperties contains \"ProcmacSteal\"",
+        "| project {time}, AlertName, AlertSeverity, ProductName, CompromisedEntity, SystemAlertId",
+        "| order by {time} desc"
+      ]
+    }
+  },
+  {
+    "id": "HF-2026-0021",
+    "research": "device-code",
+    "title": "Successful Entra Device-Code Sign-ins",
+    "description": "Review device-code sign-ins for unexpected users, apps and source addresses.",
+    "hypothesis": "Review device-code sign-ins for unexpected users, apps and source addresses.",
+    "confidence": "Lab-informed defensive lead",
+    "profiles": [
+      "sentinel-entra"
+    ],
+    "technique": "T1528",
+    "tactic": "Credential Access",
+    "lookback": 7,
+    "considerations": [
+      "Baseline approved device codes and confirm what prompted authorization.",
+      "GitHub-only device grants are outside Entra sign-in telemetry."
+    ],
+    "actors": [],
+    "query": {
+      "table": "SigninLogs",
+      "statements": [
+        "| where AuthenticationProtocol =~ \"deviceCode\" and ResultType == \"0\"",
+        "| project {time}, UserPrincipalName, AppDisplayName, IPAddress, Location, ResultType, ConditionalAccessStatus, AppId",
+        "| order by {time} desc"
+      ]
+    }
+  },
+  {
+    "id": "HF-2026-0022",
+    "research": "device-code",
+    "title": "Device-Code Attempts Blocked by Conditional Access",
+    "description": "Find device-code attempts failing Conditional Access.",
+    "hypothesis": "Find device-code attempts failing Conditional Access.",
+    "confidence": "Lab-informed defensive lead",
+    "profiles": [
+      "sentinel-entra"
+    ],
+    "technique": "T1528",
+    "tactic": "Credential Access",
+    "lookback": 7,
+    "considerations": [
+      "Identify the specific blocking policy in sign-in details.",
+      "Look for later successful grants for the same app and user."
+    ],
+    "actors": [],
+    "query": {
+      "table": "SigninLogs",
+      "statements": [
+        "| where AuthenticationProtocol =~ \"deviceCode\" and ConditionalAccessStatus =~ \"failure\"",
+        "| project {time}, UserPrincipalName, AppDisplayName, IPAddress, Location, ResultType, ConditionalAccessStatus",
+        "| order by {time} desc"
+      ]
+    }
+  },
+  {
+    "id": "HF-2026-0023",
+    "research": "device-code",
+    "title": "Device-Code Grants From Multiple Network Origins",
+    "description": "Look for successful device-code sign-ins from multiple addresses for one user and app in fifteen minutes.",
+    "hypothesis": "Look for successful device-code sign-ins from multiple addresses for one user and app in fifteen minutes.",
+    "confidence": "Lab-informed defensive lead",
+    "profiles": [
+      "sentinel-entra"
+    ],
+    "technique": "T1528",
+    "tactic": "Credential Access",
+    "lookback": 7,
+    "considerations": [
+      "Check for shared VPNs, mobile roaming and normal tool use.",
+      "Review sign-in and token activity before deciding whether it is suspicious."
+    ],
+    "actors": [],
+    "query": {
+      "table": "SigninLogs",
+      "statements": [
+        "| where AuthenticationProtocol =~ \"deviceCode\" and ResultType == \"0\" and isnotempty(UserPrincipalName) and isnotempty(IPAddress)",
+        "| summarize SignIns = count(), Origins = dcount(IPAddress), Locations = make_set(Location, 8), Addresses = make_set(IPAddress, 12) by UserPrincipalName, AppDisplayName, Window = bin({time}, 15m)",
+        "| where Origins >= 3",
+        "| order by Origins desc"
+      ]
+    },
+    "expected_output": "One row per user, app and fifteen-minute window."
+  },
+  {
+    "id": "HF-2026-0024",
+    "research": "sckit",
+    "title": "ScreenConnect Spawning a Command Shell",
+    "description": "Look for shell process launches parented by ScreenConnect.",
+    "hypothesis": "Look for shell process launches parented by ScreenConnect.",
+    "confidence": "Behavioral hypothesis",
+    "profiles": [
+      "sentinel-endpoint"
+    ],
+    "technique": "T1219.002",
+    "tactic": "Command and Control",
+    "lookback": 7,
+    "considerations": [
+      "Confirm the technician, session and change ticket.",
+      "Investigate unexpected commands on downstream managed endpoints."
+    ],
+    "actors": [],
+    "query": {
+      "table": "DeviceProcessEvents",
+      "statements": [
+        "| where InitiatingProcessFileName startswith \"ScreenConnect\"",
+        "| where FileName in~ (\"cmd.exe\", \"powershell.exe\", \"pwsh.exe\")",
+        "| project {time}, DeviceName, AccountName, InitiatingProcessFileName, FileName, ProcessCommandLine",
+        "| order by {time} desc"
+      ]
+    }
+  },
+  {
+    "id": "HF-2026-0025",
+    "research": "sckit",
+    "title": "RelayTrap Scheduled Task Activity",
+    "description": "Find scheduled task events containing two markers Microsoft identified in SCKit activity.",
+    "hypothesis": "Find scheduled task events containing two markers Microsoft identified in SCKit activity.",
+    "confidence": "Publisher-observed artifacts",
+    "profiles": [
+      "sentinel-endpoint"
+    ],
+    "technique": "T1053.005",
+    "tactic": "Persistence",
+    "lookback": 14,
+    "considerations": [
+      "Review registration context, trigger and referenced file.",
+      "Correlate with ScreenConnect sessions and nearby registry changes."
+    ],
+    "actors": [],
+    "query": {
+      "table": "DeviceEvents",
+      "statements": [
+        "| where ActionType contains \"ScheduledTask\" and (tostring(AdditionalFields) contains \"RelayTrap\" or tostring(AdditionalFields) contains \"TrapWatch\")",
+        "| project {time}, DeviceName, ActionType, InitiatingProcessFileName, AdditionalFields",
+        "| order by {time} desc"
+      ]
+    }
+  },
+  {
+    "id": "HF-2026-0026",
+    "research": "sckit",
+    "title": "SCKit Run Key Persistence",
+    "description": "Review Run and RunOnce changes carrying a RelayTrap marker.",
+    "hypothesis": "Review Run and RunOnce changes carrying a RelayTrap marker.",
+    "confidence": "Publisher-observed artifacts",
+    "profiles": [
+      "sentinel-endpoint"
+    ],
+    "technique": "T1547.001",
+    "tactic": "Persistence",
+    "lookback": 14,
+    "considerations": [
+      "Compare the configured path with files on the host.",
+      "Review the initiating process and unexpected support activity."
+    ],
+    "actors": [],
+    "query": {
+      "table": "DeviceRegistryEvents",
+      "statements": [
+        "| where ActionType == \"RegistryValueSet\"",
+        "| where RegistryKey endswith @\"\\CurrentVersion\\Run\" or RegistryKey endswith @\"\\CurrentVersion\\RunOnce\"",
+        "| where RegistryValueName contains \"RelayTrap\" or RegistryValueData contains \"RelayTrap\"",
+        "| project {time}, DeviceName, RegistryKey, RegistryValueName, RegistryValueData, InitiatingProcessFileName",
+        "| order by {time} desc"
+      ]
+    }
+  },
+  {
+    "id": "HF-2026-0027",
+    "research": "sckit",
+    "title": "Defender Path Exclusions Near SCKit Activity",
+    "description": "Review Defender exclusions that reference remote-support staging or RelayTrap.",
+    "hypothesis": "Review Defender exclusions that reference remote-support staging or RelayTrap.",
+    "confidence": "Behavioral hypothesis",
+    "profiles": [
+      "sentinel-endpoint"
+    ],
+    "technique": "T1685",
+    "tactic": "Defense Impairment",
+    "lookback": 7,
+    "considerations": [
+      "Confirm whether an administrator or endpoint policy created the exclusion.",
+      "Review files written into newly excluded folders."
+    ],
+    "actors": [],
+    "query": {
+      "table": "DeviceRegistryEvents",
+      "statements": [
+        "| where ActionType == \"RegistryValueSet\"",
+        "| where RegistryKey contains @\"\\Windows Defender\\Exclusions\\Paths\"",
+        "| where RegistryValueName contains \"ConnectWiseControl\" or RegistryValueName contains \"CWInstall\" or RegistryValueName contains \"RelayTrap\" or RegistryValueData contains \"RelayTrap\"",
+        "| project {time}, DeviceName, RegistryKey, RegistryValueName, RegistryValueData, InitiatingProcessFileName",
+        "| order by {time} desc"
+      ]
+    }
+  },
+  {
+    "id": "HF-2026-0028",
+    "research": "gsocket",
+    "title": "GSocket Distribution Endpoint Connections",
+    "description": "Review process-attributed connections to published GSocket distribution domains.",
+    "hypothesis": "Review process-attributed connections to published GSocket distribution domains.",
+    "confidence": "Publisher-observed indicators",
+    "profiles": [
+      "sentinel-endpoint"
+    ],
+    "technique": "T1105",
+    "tactic": "Command and Control",
+    "lookback": 14,
+    "considerations": [
+      "The distribution domains are dual-use. Verify whether the download was approved.",
+      "Review process, file and persistence events following the network activity."
+    ],
+    "actors": [],
+    "query": {
+      "table": "DeviceNetworkEvents",
+      "statements": [
+        "| extend DestinationHost = tolower(iff(RemoteUrl contains \"://\", tostring(parse_url(RemoteUrl).Host), RemoteUrl))",
+        "| where DestinationHost in ({domain})",
+        "| project {time}, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine, DestinationHost, RemoteIP, ActionType",
+        "| order by {time} desc"
+      ]
+    }
+  },
+  {
+    "id": "HF-2026-0029",
+    "research": "gsocket",
+    "title": "GSocket Launch From Cron",
+    "description": "Look for cron starting a GSocket-related process on Linux.",
+    "hypothesis": "Look for cron starting a GSocket-related process on Linux.",
+    "confidence": "Behavioral hypothesis",
+    "profiles": [
+      "sentinel-endpoint"
+    ],
+    "technique": "T1053.003",
+    "tactic": "Persistence",
+    "lookback": 7,
+    "considerations": [
+      "Correlate the process and account with host-level cron entries.",
+      "Renamed binaries may evade this specific name-based pivot."
+    ],
+    "actors": [],
+    "query": {
+      "table": "DeviceProcessEvents",
+      "statements": [
+        "| where InitiatingProcessFileName in~ (\"cron\", \"crond\")",
+        "| where FileName in~ (\"gs-netcat\", \"gsocket\", \"gsnetcat\") or ProcessCommandLine contains \"gs-netcat\" or ProcessCommandLine contains \"gsocket\"",
+        "| project {time}, DeviceName, AccountName, InitiatingProcessFileName, FileName, ProcessCommandLine",
+        "| order by {time} desc"
+      ]
+    }
+  },
+  {
+    "id": "HF-2026-0030",
+    "research": "gsocket",
+    "title": "GSocket-Related Files in Linux Shared Memory",
+    "description": "Review GSocket artifacts written to the shared-memory staging area described by Microsoft.",
+    "hypothesis": "Review GSocket artifacts written to the shared-memory staging area described by Microsoft.",
+    "confidence": "Behavioral hypothesis",
+    "profiles": [
+      "sentinel-endpoint"
+    ],
+    "technique": "T1105",
+    "tactic": "Command and Control",
+    "lookback": 7,
+    "considerations": [
+      "Check package provenance and approved administrative work.",
+      "Correlate file creation with transfer and process execution events."
+    ],
+    "actors": [],
+    "query": {
+      "table": "DeviceFileEvents",
+      "statements": [
+        "| where FolderPath startswith \"/dev/shm/\" and FileName contains \"gs-netcat\"",
+        "| project {time}, DeviceName, FolderPath, FileName, SHA256, ActionType, InitiatingProcessFileName",
+        "| order by {time} desc"
+      ]
+    }
+  },
+  {
+    "id": "HF-2026-0031",
+    "research": "outage-phishing",
+    "title": "Microsoft 365 Outage Phishing Messages",
+    "description": "Look for mail matching the reported randomized outage subject format.",
+    "hypothesis": "Look for mail matching the reported randomized outage subject format.",
+    "confidence": "Publisher-observed artifacts",
+    "profiles": [
+      "sentinel-email"
+    ],
+    "technique": "T1566.002",
+    "tactic": "Initial Access",
+    "lookback": 14,
+    "considerations": [
+      "Check whether the message was blocked or delivered.",
+      "Corroborate with the sender, embedded URL and campaign reporting."
+    ],
+    "actors": [],
+    "query": {
+      "table": "EmailEvents",
+      "statements": [
+        "| where Subject matches regex @\"(?i)^(?:\\[external\\]\\s*|\\*external\\*\\s*)?outage\\s*[-–]\\s*[a-z0-9]{6}$\"",
+        "| project {time}, Subject, SenderFromDomain, SenderFromAddress, RecipientEmailAddress, DeliveryAction, NetworkMessageId",
+        "| order by {time} desc"
+      ]
+    }
+  },
+  {
+    "id": "HF-2026-0032",
+    "research": "outage-phishing",
+    "title": "Microsoft 365 Outage Phishing URLs in Mail",
+    "description": "Find reported phishing domains in mail URL extraction.",
+    "hypothesis": "Find reported phishing domains in mail URL extraction.",
+    "confidence": "Publisher-observed indicators",
+    "profiles": [
+      "sentinel-email"
+    ],
+    "technique": "T1566.002",
+    "tactic": "Initial Access",
+    "lookback": 14,
+    "considerations": [
+      "Use NetworkMessageId to look up delivery status.",
+      "Corroborate clicks and subsequent sign-ins separately."
+    ],
+    "actors": [],
+    "query": {
+      "table": "EmailUrlInfo",
+      "statements": [
+        "| where UrlDomain in~ ({domain})",
+        "| project {time}, NetworkMessageId, UrlDomain, Url, UrlLocation",
+        "| order by {time} desc"
+      ]
+    }
+  },
+  {
+    "id": "HF-2026-0033",
+    "research": "quick-assist",
+    "title": "Certificate Issuance After a Suspected Help Desk Intrusion",
+    "description": "Review AD CS certificate issuance near a suspicious support session.",
+    "hypothesis": "Review AD CS certificate issuance near a suspicious support session.",
+    "confidence": "Behavioral hypothesis",
+    "profiles": [
+      "sentinel-windows"
+    ],
+    "technique": "T1649",
+    "tactic": "Credential Access",
+    "lookback": 3,
+    "considerations": [
+      "Forward Certification Services auditing from the CA into WindowsEvent.",
+      "Compare template, requester and time against routine issuance and incident evidence."
+    ],
+    "actors": [],
+    "query": {
+      "table": "WindowsEvent",
+      "statements": [
+        "| where Channel == \"Security\" and EventID == 4887",
+        "| project {time}, Computer, Requester = tostring(EventData.Requester), RequestId = tostring(EventData.RequestId), Attributes = tostring(EventData.Attributes)",
+        "| order by {time} desc"
+      ]
+    }
+  },
+  {
+    "id": "HF-2026-0034",
+    "research": "quick-assist",
+    "title": "PowerShell Launched by a Remote Support Process",
+    "description": "Review observed direct PowerShell child processes of Quick Assist.",
+    "hypothesis": "Review observed direct PowerShell child processes of Quick Assist.",
+    "confidence": "Behavioral hypothesis",
+    "profiles": [
+      "sentinel-endpoint"
+    ],
+    "technique": "T1059.001",
+    "tactic": "Execution",
+    "lookback": 7,
+    "considerations": [
+      "This is a narrow process-chain lead. Remote sessions may spawn processes through another parent.",
+      "Check the host timeline and support records for context."
+    ],
+    "actors": [],
+    "query": {
+      "table": "DeviceProcessEvents",
+      "statements": [
+        "| where InitiatingProcessFileName =~ \"QuickAssist.exe\" and FileName in~ (\"powershell.exe\", \"pwsh.exe\")",
+        "| project {time}, DeviceName, AccountName, InitiatingProcessFileName, FileName, ProcessCommandLine",
+        "| order by {time} desc"
+      ]
+    }
+  },
+  {
+    "id": "HF-2026-0035",
+    "research": "artex-finance",
+    "title": "Rapid Denied Probes Against a Single Network Edge",
+    "description": "Find bursts of firewall denies across many ports on one destination.",
+    "hypothesis": "Find bursts of firewall denies across many ports on one destination.",
+    "confidence": "Behavioral hypothesis",
+    "profiles": [
+      "sentinel-cef"
+    ],
+    "technique": "T1595",
+    "tactic": "Reconnaissance",
+    "lookback": 7,
+    "considerations": [
+      "Map vendor-specific action values before using the threshold.",
+      "Exclude approved scanners and confirm that targets are part of your intended perimeter."
+    ],
+    "actors": [],
+    "query": {
+      "table": "CommonSecurityLog",
+      "statements": [
+        "| where DeviceAction in~ (\"deny\", \"denied\", \"drop\", \"dropped\", \"block\", \"blocked\")",
+        "| where isnotempty(SourceIP) and isnotempty(DestinationIP) and DestinationPort > 0",
+        "| summarize Denies = count(), Ports = dcount(DestinationPort), SamplePorts = make_set(DestinationPort, 20) by SourceIP, DestinationIP, Window = bin({time}, 5m)",
+        "| where Denies >= 40 and Ports >= 12",
+        "| order by Ports desc, Denies desc"
+      ]
+    },
+    "expected_output": "One row per source, destination and five-minute window."
   }
 ]

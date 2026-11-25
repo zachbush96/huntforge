@@ -1,0 +1,10 @@
+DeviceNetworkEvents
+| where TimeGenerated > ago(7d)
+| where InitiatingProcessFileName in~ (
+    "powershell.exe",
+    "pwsh.exe"
+)
+| where isnotempty(RemoteIP)
+| project TimeGenerated, DeviceName, RemoteIP, RemotePort, RemoteUrl,
+          InitiatingProcessCommandLine
+| order by TimeGenerated desc
