@@ -5,7 +5,7 @@
     "research": "powershell-download",
     "description": "Scope outbound PowerShell connections on monitored devices and correlate them with published behavior and local incident evidence.",
     "hypothesis": "PowerShell used to retrieve a payload may leave a process-attributed network event.",
-    "confidence": "Contextual behavioral hypothesis",
+    "confidence": "Behavioral hypothesis",
     "profiles": [
       "defender-xdr"
     ],

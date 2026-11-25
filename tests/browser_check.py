@@ -107,6 +107,7 @@ def check(base, channel, screenshots):
             if screenshots:
                 page.screenshot(path=str(screenshots / (name+".png")), full_page=True)
         assert not errors,errors
+        context.close()
         browser.close()
         print("Browser QA passed at 1586×992 and 390×844.")
 

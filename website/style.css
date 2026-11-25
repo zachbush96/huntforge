@@ -196,7 +196,7 @@ select, input[type=search], input[type=date] { background: #fff; color: #141414;
 input[type=checkbox] { accent-color: #0b0b0b; }
 .query-note { margin: 5px 0 0; font: 650 .72rem/1.4 var(--mono); }
 .code-surface { background: #0a0a0a; color: #f5f5f5; border: 1px solid #161616; border-radius: 3px; margin: 8px 0 8px; min-height: 156px; padding: 7px 12px 6px; overflow: auto; }
-.code-surface pre { margin: 0; font: 650 .78rem/1.25 var(--mono); }
+.code-surface pre { margin: 0; font: 650 .78rem/1.17 var(--mono); }
 .code-line { display: block; }
 .code-line::before { content: attr(data-line); display: inline-block; width: 2.2em; margin-right: 1.8em; text-align: right; color: #dedede; user-select: none; }
 .code-line code { font: inherit; }
@@ -273,7 +273,7 @@ dialog textarea { min-height: 200px; resize: vertical; font: .77rem/1.5 var(--mo
 @media (min-width: 1081px) {
   .developments .finding { min-height: 130px; grid-template-rows: 1fr auto; }
   .developments .finding-body h3, .developments .finding-body p { display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
-  .developments .finding-body h3 { -webkit-line-clamp: 1; }
+  .developments .finding-body h3 { -webkit-line-clamp: 2; }
   .developments .finding-body p { -webkit-line-clamp: 2; }
   .side-art { height: clamp(290px, 39vh, 395px); }
   .compact .side-art { height: clamp(250px, 34vh, 350px); }
