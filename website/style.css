@@ -80,7 +80,7 @@ button:hover, .button:hover { background: #e7e7e7; }
 .side-update a { display: block; margin-top: 9px; font: 700 .75rem Arial, sans-serif; }
 .side-art { position: absolute; z-index: 0; bottom: 0; width: 100%; height: clamp(245px, 38vh, 370px); left: 0; overflow: hidden; pointer-events: none; background: #080808; }
 .side-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(#080808 0%, transparent 30%); }
-.side-art i { display: block; width: 100%; height: 100%; background: url("assets/halftone.png") 0 100% / 307% auto no-repeat; }
+.side-art i { display: block; width: 100%; height: 100%; background: url("assets/halftone.webp") 0 100% / 307% auto no-repeat; }
 .compact .side-art { height: clamp(190px, 31vh, 305px); }
 .compact .side-art i { background-position: 100% 100%; }
 main { min-width: 0; }
@@ -88,7 +88,7 @@ main { min-width: 0; }
 .brief-hero { position: relative; border-top: 1px solid #444; border-bottom: 1px solid #151515; margin-top: 10px; padding: 13px 15px 13px 19px; overflow: hidden; isolation: isolate; }
 .brief-hero::before { content: ""; z-index: -1; position: absolute; inset: 0 0 auto; height: 159px; opacity: .6; background-image: radial-gradient(#646464 .55px, transparent .8px); background-size: 4px 4px; mask-image: linear-gradient(105deg, transparent 35%, black 85%); }
 .globe-art { position: absolute; right: 0; top: 0; z-index: -1; height: 160px; width: 36%; overflow: hidden; }
-.globe-art::before { content: ""; display: block; width: 100%; height: 100%; background: url("assets/halftone.png") 50% 22% / 305% auto no-repeat; filter: contrast(1.2); }
+.globe-art::before { content: ""; display: block; width: 100%; height: 100%; background: url("assets/halftone.webp") 50% 22% / 305% auto no-repeat; filter: contrast(1.2); }
 .globe-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(105deg, var(--paper) 0%, transparent 36%); }
 .eyebrow { margin: 0 0 10px; font: 750 .81rem var(--mono); letter-spacing: .005em; text-transform: uppercase; }
 h1, h2, h3, p { margin-top: 0; }
