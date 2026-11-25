@@ -26,11 +26,46 @@ CISA = "https://www.cisa.gov/cybersecurity-advisories/all.xml"
 CISA_ARCHIVE = "https://www.cisa.gov/news-events/cybersecurity-advisories"
 MS = "https://www.microsoft.com/en-us/security/blog/feed/"
 NCSC = "https://www.ncsc.gov.uk/api/1/services/v1/all-rss-feed.xml"
-FETCH_PATHS = {urlsplit(url)[:3] for url in (KEV, ATTACK, ATTACK_LICENSE, EPSS, CISA, CISA_ARCHIVE, MS, NCSC)}
+CERT_FR = "https://cert.cyber.gouv.fr/avis/feed/"
+UNIT_42 = "https://unit42.paloaltonetworks.com/category/threat-research/feed/"
+TALOS = "https://blog.talosintelligence.com/category/threat-advisory/rss/"
+TALOS_BLOG = "https://blog.talosintelligence.com/rss/"
+TALOS_SPOTLIGHT = "https://blog.talosintelligence.com/category/threat-spotlight/rss/"
+IC3 = "https://www.ic3.gov/CSA/rss"
+GOOGLE_TI = "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v"
+SECURELIST = "https://securelist.com/feed/"
+DFIR_REPORT = "https://thedfirreport.com/feed/"
+GREYNOISE = "https://api.greynoise.io/v3/articles/rss"
+SHADOWSERVER = "https://www.shadowserver.org/news-insights/"
+ADVISORY_FEEDS = {
+    "cisa-advisories": (CISA, 1, "Advisory"),
+    "microsoft": (MS, 6, "Research"),
+    "ncsc": (NCSC, 1, "Research"),
+    "cert-fr": (CERT_FR, 1, "Advisory"),
+    "unit-42": (UNIT_42, 1, "Research"),
+    "cisco-talos": (TALOS, 1, "Advisory"),
+    "fbi-flash": (IC3, 1, "Advisory"),
+    "google-threat-intelligence": (GOOGLE_TI, 1, "Research"),
+    "securelist": (SECURELIST, 3, "Research"),
+    "dfir-report": (DFIR_REPORT, 1, "Research"),
+    "greynoise": (GREYNOISE, 1, "Research"),
+}
+FIXED_FEED_PATHS = {urlsplit(url)[:3] for url in (CERT_FR, UNIT_42, TALOS, TALOS_BLOG, TALOS_SPOTLIGHT, IC3,
+                                                GOOGLE_TI, DFIR_REPORT, GREYNOISE, SHADOWSERVER)}
+FETCH_PATHS = {urlsplit(url)[:3] for url in (KEV, ATTACK, ATTACK_LICENSE, EPSS, CISA_ARCHIVE)} | FIXED_FEED_PATHS
+FETCH_PATHS.update(urlsplit(url)[:3] for url, _, _ in ADVISORY_FEEDS.values())
 SOURCE_HOSTS = {
     "cisa-advisories": {"www.cisa.gov", "cisa.gov"},
     "microsoft": {"www.microsoft.com"},
     "ncsc": {"www.ncsc.gov.uk"},
+    "cert-fr": {"cert.cyber.gouv.fr", "www.cert.cyber.gouv.fr"},
+    "unit-42": {"unit42.paloaltonetworks.com"},
+    "cisco-talos": {"blog.talosintelligence.com"},
+    "fbi-flash": {"www.ic3.gov"},
+    "google-threat-intelligence": {"cloud.google.com"},
+    "securelist": {"securelist.com"},
+    "dfir-report": {"thedfirreport.com"},
+    "greynoise": {"www.greynoise.io", "viz.greynoise.io"},
 }
 CVE = re.compile(r"\bCVE-\d{4}-\d{4,}\b", re.I)
 LIMIT = 64 * 1024 * 1024
@@ -66,7 +101,10 @@ class DenyRedirect(HTTPRedirectHandler):
 
 def fetch(url):
     parts = urlsplit(url)
-    if parts[:3] not in FETCH_PATHS or parts.username or parts.password or parts.fragment:
+    target = parts[:3]
+    if (target not in FETCH_PATHS or parts.username or parts.password or parts.fragment
+            or (parts.query and target in FIXED_FEED_PATHS)
+            or (target == urlsplit(SECURELIST)[:3] and parts.query not in {"", "paged=2", "paged=3"})):
         raise ValueError("Endpoint is outside the source registry")
     addresses = socket.getaddrinfo(parts.hostname, 443, type=socket.SOCK_STREAM)
     if not addresses or any(not ipaddress.ip_address(row[4][0]).is_global for row in addresses):
@@ -235,47 +273,93 @@ TOPICS = {
 }
 
 
-def advisory(source, start, end):
-    config = {"cisa-advisories": (CISA, 1), "microsoft": (MS, 6), "ncsc": (NCSC, 1)}
-    url, max_pages = config[source]
+def publisher_record(source, source_id, link, published, title, kind, text, location="Publisher feed entry"):
+    cves = sorted({match.group().upper() for match in CVE.finditer(text)})
+    topics = TOPICS
+    if source in {"fbi-flash", "google-threat-intelligence", "securelist", "dfir-report", "greynoise", "shadowserver"}:
+        topics = {**TOPICS, "Malware": ("malware", "infostealer", "botnet", "backdoor", "loader"),
+                  "Exposure": ("internet-facing", "internet-exposed", "honeypot", "exposed devices")}
+    lower = text.lower()
+    tags = [topic for topic, terms in topics.items() if any(term in lower for term in terms)]
+    summary = "Publisher security advisory." if kind == "Advisory" else "Publisher research and guidance."
+    if source == "cert-fr":
+        summary = "CERT-FR security advisory. The publisher lists affected products and mitigations."
+        tags = ["Vulnerability management"]
+    elif tags:
+        summary += " Topics include " + ", ".join(tags).lower() + "."
+    if cves:
+        summary += " References " + ", ".join(cves[:5]) + "."
+    ref = evidence(source, link, source_id, published.isoformat(), location, title)
+    return record(source, source_id, published.isoformat(), title, summary, kind, "unrated",
+                  [ref], cves=cves, tags=tags)
+
+
+def rss_records(source, url, max_pages, kind, start, end):
     observed = {}
-    oldest = end
+    dates = []
     for page in range(1, max_pages + 1):
         raw = fetch(url if page == 1 else f"{url}?paged={page}")
-        if re.search(br"<!DOCTYPE|<!ENTITY", raw, re.I):
-            raise ValueError("DTD declarations are not supported")
+        if b"\0" in raw or re.search(br"<!DOCTYPE|<!ENTITY", raw, re.I):
+            raise ValueError("Feed must use a single-byte or UTF-8 encoding without DTD declarations")
         for item in ET.fromstring(raw).findall("./channel/item"):
-            link = urlsplit(item.findtext("link", "").strip())
+            try:
+                link = urlsplit(item.findtext("link", "").strip())
+                published = parsedate_to_datetime(item.findtext("pubDate")).date()
+            except (TypeError, ValueError, OverflowError):
+                continue
             if link.scheme != "https" or link.netloc not in SOURCE_HOSTS[source]:
                 continue
-            published = parsedate_to_datetime(item.findtext("pubDate")).date()
-            oldest = min(oldest, published)
-            if not start <= published <= end:
-                continue
-            canonical_url = link._replace(query="", fragment="").geturl()
+            link = link._replace(query="", fragment="")
+            source_id = advisory_id(source, item, link)
             title = plain(item.findtext("title"), 200)
+            if not source_id or not title:
+                continue
+            dates.append(published)
+            if published > end or (published < start and source != "dfir-report"):
+                continue
             excerpt = plain(item.findtext("description"), 600)
-            cves = sorted(set(m.group().upper() for m in CVE.finditer(title + " " + excerpt)))
-            tags = [topic for topic, terms in TOPICS.items() if any(term in (title + " " + excerpt).lower() for term in terms)]
             categories = {plain(row.text).lower() for row in item.findall("category")}
+            text = title + " " + excerpt
+            if source in {"unit-42", "securelist", "cisco-talos"}:
+                text += " " + " ".join(sorted(categories))
             microsoft_security = {"linux", "malware", "incident response", "lateral movement", "frontier ai models",
                                   "vulnerability", "credential theft", "token theft", "supply chain attack"}
-            if source == "microsoft" and (not tags and not categories & microsoft_security or
+            row_kind = kind
+            if source == "cisco-talos" and url != TALOS:
+                research = {"threat advisory", "threat spotlight", "threats", "on the radar",
+                            "talos ir trends", "patch tuesday"}
+                if not categories & research:
+                    continue
+                row_kind = "Advisory" if "threat advisory" in categories else "Research"
+            row = publisher_record(source, source_id, link.geturl(), published, title, row_kind, text)
+            if source == "microsoft" and (not row["tags"] and not categories & microsoft_security or
                                           "/gartner-" in link.path or "/idc-" in link.path):
                 continue
-            summary = ("Publisher security advisory." if source == "cisa-advisories" else "Publisher research and guidance.")
-            if tags:
-                summary += " Topics include " + ", ".join(tags).lower() + "."
-            if cves:
-                summary += " References " + ", ".join(cves[:5]) + "."
-            ref = evidence(source, canonical_url, canonical_url, published.isoformat(), "Publisher feed entry", title)
-            observed[canonical_url] = record(source, canonical_url, published.isoformat(), title, summary,
-                                             "Advisory" if source == "cisa-advisories" else "Research",
-                                             "unrated", [ref], cves=cves, tags=tags, in_window=True)
-        if oldest <= start:
+            observed[source_id] = {**row, "in_window": start <= published}
+        if dates and min(dates) <= start:
             break
+    return observed, dates
+
+
+def advisory(source, start, end):
+    observed, dates = rss_records(source, *ADVISORY_FEEDS[source], start, end)
     archive_note = ""
-    if source == "cisa-advisories" and oldest > start:
+    coverage_floor = min(dates) if dates else None
+    incomplete = False
+    if source == "cisco-talos" and dates:
+        for endpoint in (TALOS_BLOG, TALOS_SPOTLIGHT):
+            try:
+                more, available = rss_records(source, endpoint, 1, "Research", start, end)
+                if not available:
+                    raise ValueError("No usable entries in supplemental RSS feed")
+                coverage_floor = max(coverage_floor, min(available))
+                dates.extend(available)
+                observed = {**more, **observed}
+            except (OSError, ValueError, ET.ParseError):
+                incomplete = True
+        archive_note = (" Supplemental Talos RSS coverage is incomplete." if incomplete
+                        else " Includes Threat Advisories, Threat Spotlights and security research from the main Talos feed.")
+    if source == "cisa-advisories" and (not dates or min(dates) > start):
         try:
             for page in range(5):
                 parser = CisaListing()
@@ -283,7 +367,7 @@ def advisory(source, start, end):
                 if not parser.entries:
                     raise ValueError("No advisory entries matched the listing")
                 for published, path, title in parser.entries:
-                    oldest = min(oldest, published)
+                    dates.append(published)
                     url = "https://www.cisa.gov" + path
                     if not start <= published <= end or url in observed:
                         continue
@@ -292,15 +376,116 @@ def advisory(source, start, end):
                     cves = sorted(set(m.group().upper() for m in CVE.finditer(title)))
                     observed[url] = record(source, url, published.isoformat(), title, summary, "Advisory", "unrated",
                                            [ref], cves=cves, tags=["Exploitation"] if cves else [], in_window=True)
-                if oldest <= start:
+                if min(dates) <= start:
                     break
             archive_note = " Includes the paginated CISA advisory archive."
         except (OSError, ValueError) as error:
             archive_note = f" Archive retrieval incomplete ({type(error).__name__})."
-    if oldest == end and not observed:
+        coverage_floor = min(dates) if dates else None
+    if not dates:
         raise ValueError("Feed did not contain usable entries")
-    return list(observed.values()), {"first_available": oldest.isoformat(), "coverage": "full" if oldest <= start else "partial",
-                                     "coverage_note": "Coverage reflects available publisher feed entries." + archive_note}
+    details = {"first_available": min(dates).isoformat(),
+               "coverage": "full" if coverage_floor <= start and not incomplete else "partial",
+               "coverage_note": "Coverage reflects available publisher feed entries." + archive_note}
+    if source == "dfir-report":
+        details["historical_count"] = sum(not row["in_window"] for row in observed.values())
+        details["coverage_note"] += " Older reports in the feed are retained as historical research."
+    return list(observed.values()), details
+
+
+def advisory_id(source, item, link):
+    guid = item.findtext("guid", "").strip()
+    if source == "cert-fr":
+        match = re.fullmatch(r"/avis/(CERTFR-\d{4}-AVI-\d+)/", link.path)
+    elif source == "unit-42":
+        match = re.fullmatch(r"https://unit42\.paloaltonetworks\.com/\?p=(\d+)", guid)
+    elif source == "cisco-talos":
+        match = re.fullmatch(r"([0-9a-f]{24})", guid)
+    elif source == "fbi-flash":
+        match = re.fullmatch(r"(\d{6}(?:-\d+)?)", guid) if link.path.startswith("/CSA/") else None
+    elif source == "securelist":
+        match = re.search(r"/(\d+)/?$", link.path)
+    elif source == "dfir-report":
+        match = re.fullmatch(r"https://thedfirreport\.com/\?p=(\d+)", guid)
+    elif source == "greynoise":
+        match = re.fullmatch(r"([0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12})", guid)
+    elif source == "google-threat-intelligence":
+        return link.geturl() if link.path.startswith("/blog/topics/threat-intelligence/") else None
+    else:
+        return link.geturl()
+    return f"{source}:{match[1]}" if match else None
+
+
+def shadowserver(start, end):
+    parser = ShadowserverListing()
+    parser.feed(fetch(SHADOWSERVER).decode("utf-8"))
+    parser.close()
+    if not parser.entries:
+        raise ValueError("No entries matched the Shadowserver public listing")
+    records = {}
+    report_terms = ("attack", "infection", "ransomware", "malware", "vulnerab", "exploitation",
+                    "compromis", "botnet", "credential", "scann", "exposure", "honeypot", "remediation",
+                    "abuse", "threat", "incident", "ddos", "security advisory")
+    for published, path, title in parser.entries:
+        if not start <= published <= end or not any(word in title.lower() for word in report_terms):
+            continue
+        link = "https://www.shadowserver.org" + path
+        row = publisher_record("shadowserver", link, link, published, title, "Research", title,
+                               "Shadowserver public News & Insights listing")
+        records[row["id"]] = row
+    oldest = min(entry[0] for entry in parser.entries)
+    return list(records.values()), {
+        "first_available": oldest.isoformat(), "coverage": "full" if oldest <= start else "partial",
+        "coverage_note": "Coverage reflects threat and exposure publications on the public News & Insights listing.",
+    }
+
+
+class ShadowserverListing(HTMLParser):
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.entries = []
+        self.depth = 0
+        self.heading = False
+        self.date_depth = None
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        if tag == "div":
+            if self.depth:
+                self.depth += 1
+                if "the-date" in (attrs.get("class") or "").split():
+                    self.date_depth = self.depth
+            elif "article-content" in (attrs.get("class") or "").split():
+                self.depth = 1
+                self.path, self.title, self.published = None, [], []
+        elif self.depth and tag == "h4":
+            self.heading = True
+        elif self.heading and tag == "a":
+            path = attrs.get("href") or ""
+            if re.fullmatch(r"/news/[a-zA-Z0-9_-]+/", path):
+                self.path = path
+
+    def handle_data(self, data):
+        if self.heading and self.path:
+            self.title.append(data)
+        elif self.date_depth:
+            self.published.append(data)
+
+    def handle_endtag(self, tag):
+        if tag == "h4":
+            self.heading = False
+        elif tag == "div" and self.depth:
+            if self.depth == self.date_depth:
+                self.date_depth = None
+            self.depth -= 1
+            if self.depth == 0 and self.path:
+                title = plain(html.escape(" ".join(self.title)), 200)
+                try:
+                    published = datetime.strptime(" ".join(self.published).strip(), "%B %d, %Y").date()
+                except ValueError:
+                    return
+                if title:
+                    self.entries.append((published, self.path, title))
 
 
 class CisaListing(HTMLParser):

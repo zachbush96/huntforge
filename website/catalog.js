@@ -330,8 +330,9 @@ export function systemStatus(data,state) {
       const browse = row.id==="mitre" ? link("Browse techniques",route("techniques")) :
         row.id==="first-epss" ? link("Browse vulnerabilities",route("vulnerabilities")) :
         data.records.some(record=>record.source===row.id) ? link("Browse findings",route("intelligence",null,{source:row.id})) : "";
+      const count = row.historical_count ? `${row.count} in window, ${row.historical_count} historical` : row.count??"—";
       return [link(row.name,route("status",null,{source:row.id})),escape(sourceState(row)),escape(row.coverage),day(row.first_available),
-        utc(row.retrieved), row.count??"—",escape(row.coverage_note||""),browse];
+        utc(row.retrieved), escape(count),escape(row.coverage_note||""),browse];
     });
   const fields = [["Latest release",link(manifest.release_id,route("changelog",manifest.release_id))],["Collection start",utc(report.started)],["Collection end",utc(report.finished)],
     ["Historical window",link(`${day(report.window.from)} through ${day(report.window.through)}`,route("intelligence",null,{start:report.window.from,through:report.window.through}))],
@@ -349,6 +350,7 @@ export function systemStatus(data,state) {
     <h3>Quarantined hunts</h3>${report.quarantined.length ? table(["Hunt","Reason"],report.quarantined.map(row=>[escape(row.id),neutral(row.reason)])) :
       '<p class="empty">No hunts were quarantined in this release.</p>'}</section>` : "";
   const sources = `<section class="detail-section">${section("Source health & historical coverage","database")}
+    <p>${external("Full source registry",repo + "/blob/main/SOURCES.yaml")}</p>
     <form class="filters" aria-label="Filter sources">
       ${dropdown("source","Source",report.sources.map(row=>[row.id,row.name]),source)}
       ${dropdown("sourceState","Collection state",[["live","Retrieved live"],["fresh","Fresh"],["cached","Cached"],["failed","Failed"]],selectedState)}

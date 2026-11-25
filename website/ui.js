@@ -32,6 +32,9 @@ export const repo = "https://github.com/zachbush96/huntforge";
 export const sourceNames = {
   "cisa-kev":"CISA KEV", "first-epss":"FIRST EPSS", "cisa-advisories":"CISA Advisories",
   "microsoft":"Microsoft Security", "ncsc":"UK NCSC", "mitre":"MITRE ATT&CK®",
+  "cert-fr":"CERT-FR", "unit-42":"Unit 42", "cisco-talos":"Cisco Talos",
+  "fbi-flash":"FBI FLASH / IC3", "google-threat-intelligence":"Google Threat Intelligence",
+  "securelist":"Securelist", "dfir-report":"The DFIR Report", "shadowserver":"Shadowserver", "greynoise":"GreyNoise",
   "drupal":"Drupal Security Team", "ctir":"CTIR Gov", "gitlab":"GitLab Security", "volexity":"Volexity",
   "aws-security":"AWS Security", "optimizely":"Optimizely", "f6":"F6"
 };

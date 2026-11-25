@@ -31,6 +31,29 @@ CURATED_EVIDENCE = {
     "optimizely": {"https://pages.optimizely.com/rs/947-RKE-048/images/Security%20Incident%20Report%20-%20Optimizely%20Web%20Experimentation%20-%20Nov%2017%202026.pdf"},
     "f6": {"https://www.f6.ru/blog/CVE-2026-76466/"},
 }
+CURATED_FEED_EVIDENCE = {
+    "fbi-flash": {
+        "https://www.ic3.gov/CSA/2026/261116.pdf": "fbi-flash:261116",
+    },
+    "google-threat-intelligence": {
+        "https://cloud.google.com/blog/topics/threat-intelligence/shutting-the-door-on-the-xcpe-botnet/":
+            "https://cloud.google.com/blog/topics/threat-intelligence/shutting-the-door-on-the-xcpe-botnet/",
+    },
+    "securelist": {
+        "https://securelist.com/virtualization-security-esxi-and-proxmox-ransomware-cases/121819/": "securelist:121819",
+    },
+    "dfir-report": {
+        "https://thedfirreport.com/2026/08/24/bengalseo-part-1-anatomy-of-the-operation/": "dfir-report:50572",
+    },
+    "shadowserver": {
+        "https://www.shadowserver.org/news/castlerat-historical-bot-infection-special-report-stolen-credentials/":
+            "https://www.shadowserver.org/news/castlerat-historical-bot-infection-special-report-stolen-credentials/",
+    },
+    "greynoise": {
+        "https://www.greynoise.io/blog/check-point-security-management-servers-intrusion-campaign":
+            "greynoise:2de3299b-0f1b-4940-8fdd-acccdb1e59da",
+    },
+}
 
 
 def kql_string(value):
@@ -48,15 +71,18 @@ def reviewed():
         parts = urlsplit(url)
         source = item.get("source", "microsoft")
         microsoft = source == "microsoft" and parts[:2] == ("https", "www.microsoft.com") and parts.path.startswith("/en-us/security/blog/")
-        if not microsoft and url not in CURATED_EVIDENCE.get(source, ()):
+        feed_id = CURATED_FEED_EVIDENCE.get(source, {}).get(url)
+        if not microsoft and not feed_id and url not in CURATED_EVIDENCE.get(source, ()):
             raise ValueError("Reviewed evidence must reference the approved publisher")
         cves = item.get("cves", [])
         if any(not CVE.fullmatch(cve) for cve in cves):
             raise ValueError("Invalid CVE in reviewed evidence")
-        ref = evidence(source, url, url, item["date"], item["location"], item["claim"])
+        source_id = feed_id or url
+        ref = evidence(source, url, source_id, item["date"], item["location"], item["claim"])
         ref["observation_date"] = item.get("observation_date")
         ref["modified"] = item.get("updated_date")
-        row = record(source, url, item["date"], item["title"], item["claim"], "Research", "unrated",
+        kind = "Advisory" if source == "fbi-flash" else "Research"
+        row = record(source, source_id, item["date"], item["title"], item["claim"], kind, "unrated",
                      [ref], cves=cves, tags=item["tags"], techniques=item["techniques"], software=item.get("software", []),
                      **({"actors": item["actors"]} if item.get("actors") else {}))
         by_key[item["key"]] = row["id"]

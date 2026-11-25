@@ -13,7 +13,7 @@ gh workflow run engineering.yml --ref main
 gh run list --workflow release.yml
 ```
 
-The daily job checks accepted catalog state before release. Source failures preserve previously accepted data and reduce freshness. Same-day duplicate runs retain the current snapshot. Workflow summaries record the run outcome even when the site remains on the previous release.
+The daily job uses the publication branch for record revisions. It also imports reviewed canonical records from the source branch when their IDs are new to the publication branch. This preserves the first collection for a new publisher even if its feed rotates during review. Source failures preserve accepted data and reduce freshness. Same-day duplicate runs retain the current snapshot. Workflow summaries record the run outcome even when the site remains on the previous release.
 
 The engineering lane optimizes the generated halftone asset losslessly when the unoptimized source is present. It verifies the pixel values and reduced size, rerenders its candidate under a separate runner and grants write access only for the exact reproduced path set. A failed deployment triggers a source revert if the main branch still permits a fast-forward. This workflow does not submit source text to agents or widen its own authority.
 
