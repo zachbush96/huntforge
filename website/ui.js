@@ -70,7 +70,14 @@ export function hoursAgo(value) {
 
 export const day = value => value ? escape(value.slice(0, 10)) : "—";
 export const utc = value => value ? escape(value.slice(0, 16).replace("T", " ") + " UTC") : "—";
-export const route = (section, id) => `#/${section}${id ? "/" + encodeURIComponent(id) : ""}`;
+export function route(section, id = null, filters = {}) {
+  const params = new URLSearchParams(Object.entries(filters).filter(([,value]) => value));
+  const query = params.toString();
+  return `#/${section}${id ? "/" + encodeURIComponent(id) : ""}${query ? "?" + query : ""}`;
+}
+export const tacticKey = value => value.toLowerCase().replaceAll(" ", "-");
+export const tacticName = value => value.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+export const validationNames = {validated:"Validated", partially_validated:"Partially validated", unvalidated:"Unvalidated"};
 export const profileBy = (data, id) => data.profiles.find(row => row.id === id);
 export const queryMode = state => state.preferences.json ? "json" : "table";
 export const activeQuery = state => state.hunt?.variants[state.profile]?.queries[String(state.preferences.days)]?.[queryMode(state)] || "";
@@ -79,12 +86,16 @@ export function badge(value, className = "chip") {
   return `<span class="${className}">${neutral(value)}</span>`;
 }
 
+export function link(text, href, className = "") {
+  return `<a class="${className}" href="${escape(href)}">${neutral(text)}</a>`;
+}
+
 export function button(text, action, symbol, extra = "") {
   return `<button type="button" class="btn ${extra}" data-action="${action}">${symbol ? icon(symbol) : ""}${escape(text)}</button>`;
 }
 
 export function anchor(text, href, symbol, extra = "") {
-  return `<a class="button ${extra}" href="${href}">${symbol ? icon(symbol) : ""}${escape(text)}</a>`;
+  return `<a class="button ${extra}" href="${escape(href)}">${symbol ? icon(symbol) : ""}${neutral(text)}</a>`;
 }
 
 export function external(text, href) {
@@ -121,11 +132,11 @@ export function header(data, brief) {
     <div class="tagline">${brief ? "Autonomous Threat Intelligence<br>&amp; Detection Engineering<br>for Microsoft Sentinel" :
       "Threat Intelligence&nbsp; / &nbsp;Detection Engineering&nbsp; / &nbsp;Microsoft Sentinel"}</div>
     <div class="top-end">
-      ${brief ? `<span class="top-box">v0.1.0-mvp</span><span class="top-divider"></span><span class="public">PUBLIC</span><span class="top-divider"></span>
+      ${brief ? `<span class="top-box">v0.1.1-mvp</span><span class="top-divider"></span><span class="public">PUBLIC</span><span class="top-divider"></span>
         <button type="button" class="top-icon brief-search" aria-label="Search" data-action="search">${icon("search")}</button>` :
         `<button type="button" class="btn search-button" data-action="search" aria-label="Search hunts, actors, CVEs, indicators, techniques">${icon("search")}<span>Search Hunts, Actors, CVEs, Indicators, Techniques...</span><kbd>/</kbd></button><span class="top-divider"></span>`}
       <a class="top-link" href="${repo}" aria-label="GitHub repository">${icon("github")}${brief ? "<span>GitHub</span>" : ""}</a>
-      ${brief ? `<span class="top-divider"></span><span class="header-date">Last Update: ${utc(data.manifest.created)}</span>` :
+      ${brief ? `<span class="top-divider"></span>${link("Last Update: " + utc(data.manifest.created), route("changelog"), "header-date")}` :
         '<a class="top-box api-link" href="#/developers">API</a><button type="button" class="top-icon" aria-label="Settings" data-action="settings">' + icon("settings") + "</button>"}
     </div>
   </header>`;
@@ -138,9 +149,9 @@ export function sidebar(state, data, brief) {
     `<a href="${route(id)}"${state.section === id ? ' aria-current="page"' : ""}>${icon(brief ? briefGlyph : glyph)}<span>${text}</span>
     ${!brief && id === "brief" ? `<span class="menu-badge">${data.manifest.counts.in_window}</span>` : ""}</a>`).join("")}</nav><div class="side-rule"></div>
     ${brief ? "" : `<div class="side-update"><strong>LATEST UPDATE</strong><time>${utc(data.manifest.created)}</time><dl>
-      <dt>New hunts</dt><dd>${huntChanges.filter(x => x.action === "created").length}</dd>
-      <dt>Updated</dt><dd>${items.filter(x => x.action === "updated").length}</dd>
-      <dt>Retired</dt><dd>${items.filter(x => x.action === "retired").length}</dd></dl>
+      <dt>${link("New hunts",route("hunts",null,{change:"created"}))}</dt><dd>${huntChanges.filter(x => x.action === "created").length}</dd>
+      <dt>${link("Updated",route("changelog",null,{change:"updated"}))}</dt><dd>${items.filter(x => x.action === "updated").length}</dd>
+      <dt>${link("Retired",route("changelog",null,{change:"retired"}))}</dt><dd>${items.filter(x => x.action === "retired").length}</dd></dl>
       <a href="#/changelog">View changelog&nbsp; →</a></div>`}
     <div class="side-art" aria-hidden="true"><i></i></div></aside>`;
 }

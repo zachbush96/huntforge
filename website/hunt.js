@@ -1,6 +1,7 @@
-import { activeQuery, anchor, badge, button, day, escape, external, icon, neutral, options, profileBy, route, section, sourceNames, table, utc } from "./ui.js";
+import { activeQuery, anchor, badge, day, escape, external, icon, link, neutral, options, profileBy, route, section, sourceNames,
+  table, tacticKey, utc, validationNames } from "./ui.js";
 
-const tabs = [["query","Hunting Query"],["environment","Environment Profiles"],["investigation","Investigation"],
+export const huntTabs = [["query","Hunting Query"],["environment","Environment Profiles"],["investigation","Investigation"],
   ["evidence","Intelligence"],["related","Related"],["revisions","Revision History"]];
 const lookbacks = [1, 3, 7, 14, 30];
 
@@ -13,7 +14,8 @@ function tabPanel(data, state, variant) {
   const profile = profileBy(data, state.profile);
   if (tab === "environment") return `<div class="tab-body"><h3>${escape(profile.name)}</h3>
     <p>${escape(profile.assumptions)}</p><p>${variant ? `Query target: ${escape(profile.target)}. Table: <code>${escape(variant.table)}</code>.` :
-    "This profile lacks the event capability required for this hunt."}</p><p>HuntForge supplies public and synthetic profiles. Configure workplace fields locally.</p></div>`;
+    "This profile lacks the event capability required for this hunt."}</p><p>HuntForge supplies public and synthetic profiles. Configure workplace fields locally.</p>
+    ${anchor("Browse hunts using this profile",route("hunts",null,{profile:profile.id}),"crosshair")}</div>`;
   if (tab === "investigation") return `<div class="tab-body"><h3>Hunt hypothesis</h3><p>${escape(hunt.hypothesis)}</p>
     <p>${escape(hunt.expected_output)} ${escape(hunt.performance)}</p><ul>${hunt.considerations.map(x=>`<li>${escape(x)}</li>`).join("")}</ul></div>`;
   if (tab === "evidence") return `<div class="tab-body"><h3>Reviewed source evidence</h3>${hunt.evidence.map(ref =>
@@ -31,7 +33,7 @@ function tabPanel(data, state, variant) {
       `<span class="code-line" data-line="${index+1}"><code>${escape(line)}</code></span>`).join("")}</pre></div>` :
       '<div class="empty" role="status">This profile cannot supply the required event fields. Query copy and downloads are unavailable for this selection.</div>'}
     <div class="query-options">
-      <label class="select-wrap">Lookback <select data-setting="days" ${query ? "" : "disabled"}>${options(lookbacks.map(n=>[n,`${n} day${n === 1 ? "" : "s"}`]), preferences.days)}</select></label>
+      <label class="select-wrap">Lookback <select aria-label="Lookback" data-setting="days" ${query ? "" : "disabled"}>${options(lookbacks.map(n=>[n,`${n} day${n === 1 ? "" : "s"}`]), preferences.days)}</select></label>
       <label class="checkbox"><input type="checkbox" data-setting="json"${preferences.json ? " checked" : ""}${query ? "" : " disabled"}> Single-row JSON output</label>
     </div>
     ${preferences.json && query ? '<p class="query-note">Aggregation shares engine memory and result-size limits. Your client may limit display of the JSON cell.</p>' : ""}
@@ -50,7 +52,7 @@ function related(data, hunt) {
   const indicators = data.indicators.filter(x => hunt.indicator_ids.includes(x.id));
   const rows = records.map(row => [route("intelligence", row.id), row.title, `Research · ${row.id} · ${row.published}`]);
   if (technique) rows.push([route("techniques", technique.id), technique.title, `Technique · ${technique.id}`]);
-  if (indicators.length) rows.push([route("indicators", indicators[0].id), `Reported indicators (${indicators.length})`, "Indicators · Publisher-observed"]);
+  if (indicators.length) rows.push([route("indicators",null,{hunt:hunt.id}), `Reported indicators (${indicators.length})`, "Indicators · Publisher-observed"]);
   const other = data.hunts.find(row => row.id !== hunt.id &&
     (hunt.research === "powershell-download" && row.research === "quick-assist" || row.research === "powershell-download" && hunt.research === "quick-assist"));
   if (other) rows.push([route("hunts", other.id), other.title, `Related hunt · ${other.id}`]);
@@ -69,26 +71,31 @@ export function huntMain(data, state) {
   const following = state.preferences.followed.includes(hunt.id);
   const previous = data.hunts[position - 1];
   const next = data.hunts[position + 1];
+  const tabLink = tab => route("hunts",hunt.id,{tab});
   return `<main id="main" tabindex="-1">
     <nav class="breadcrumb" aria-label="Breadcrumb"><a href="#/hunts">Hunts</a>${icon("chevron")}<span>Hunt Card</span>${icon("chevron")}<span>${escape(hunt.id)}</span>
       <span class="right-buttons">${previous ? anchor("← Prev",route("hunts",previous.id)) : '<button class="btn" disabled>← Prev</button>'}
       ${next ? anchor("Next →",route("hunts",next.id)) : '<button class="btn" disabled>Next →</button>'}</span></nav>
     <header class="hunt-hero"><div class="terminal-art" aria-hidden="true">&gt;_</div><div>
-      <div class="hunt-meta"><span class="id-tag">HUNTFORGE / ${escape(hunt.id)}</span><span>REV. ${hunt.revision}</span>
+      <div class="hunt-meta"><span class="id-tag">HUNTFORGE / ${escape(hunt.id)}</span><span>${link("REV. " + hunt.revision,tabLink("revisions"))}</span>
         <span>PUBLISHED: ${day(hunt.published)}</span><span>UPDATED: ${day(hunt.updated)}</span>
         <span class="right-buttons"><button class="permalink" type="button" data-action="permalink">${icon("link")} Permanent URL</button>
         <button class="btn" type="button" data-action="follow" aria-pressed="${following}">${icon("star")} ${following ? "Following" : "Follow"}</button></span>
       </div><h1>${escape(hunt.title)}</h1><p>${neutral(hunt.description)}</p>
-      <div class="chips"><a class="chip" href="${route("techniques",hunt.technique)}">${escape(hunt.technique)}</a>${badge(hunt.tactic)}${badge(variant?.table === "DeviceNetworkEvents" || variant?.table === "DeviceProcessEvents" ? "Microsoft Defender" : "Microsoft Sentinel")}${badge("KQL")}</div>
+      <div class="chips">${link(hunt.technique,route("techniques",hunt.technique),"chip")}
+        ${link(hunt.tactic,route("hunts",null,{tactic:tacticKey(hunt.tactic)}),"chip")}
+        ${link(variant?.table === "DeviceNetworkEvents" || variant?.table === "DeviceProcessEvents" ? "Microsoft Defender" : "Microsoft Sentinel",tabLink("environment"),"chip")}
+        ${link("KQL",route("hunts",hunt.id),"chip")}</div>
     </div></header>
     <section class="hunt-facts" aria-label="Hunt summary">
-      <div><span>INTELLIGENCE CONFIDENCE</span><strong>${escape(hunt.confidence)}</strong></div>
-      <div><span>QUERY VALIDATION</span><strong title="${escape(hunt.scope)}">${variant ? "Partially validated" : "Incompatible"} ${icon("info")}</strong></div>
-      <div><span>SUGGESTED LOOKBACK</span><strong>${hunt.lookback} days</strong></div>
-      <div><span>REQUIRED TELEMETRY</span><strong>${escape(variant?.table || "Missing capability")}</strong></div>
+      <div><span>INTELLIGENCE CONFIDENCE</span><strong>${link(hunt.confidence,tabLink("evidence"))}</strong></div>
+      <div><span>QUERY VALIDATION</span><strong title="${escape(hunt.scope)}"><a href="${escape(tabLink("evidence"))}">${escape(variant ? validationNames[hunt.status] || hunt.status : "Incompatible")} ${icon("info")}</a></strong></div>
+      <div><span>SUGGESTED LOOKBACK</span><strong>${variant ?
+        `<button type="button" class="text-button" data-action="use-lookback" aria-label="Use suggested lookback of ${hunt.lookback} days">${hunt.lookback} days</button>` : `${hunt.lookback} days`}</strong></div>
+      <div><span>REQUIRED TELEMETRY</span><strong>${link(variant?.table || "Missing capability",tabLink("environment"))}</strong></div>
     </section>
     <section class="query-workspace">
-      <div class="tabs" role="tablist" aria-label="Hunt card sections">${tabs.map(([id,name]) => `<button type="button" data-tab="${id}" id="tab-${id}" role="tab" aria-selected="${state.tab === id}" aria-controls="hunt-panel" tabindex="${state.tab === id ? 0 : -1}">${name}${id === "revisions" ? ` · ${hunt.history.length}` : ""}</button>`).join("")}</div>
+      <div class="tabs" role="tablist" aria-label="Hunt card sections">${huntTabs.map(([id,name]) => `<button type="button" data-tab="${id}" id="tab-${id}" role="tab" aria-selected="${state.tab === id}" aria-controls="hunt-panel" tabindex="${state.tab === id ? 0 : -1}">${name}${id === "revisions" ? ` · ${hunt.history.length}` : ""}</button>`).join("")}</div>
       <div id="hunt-panel" class="query-box" role="tabpanel" aria-labelledby="tab-${state.tab}">${tabPanel(data,state,variant)}</div>
     </section>
     <div class="hunt-context"><section>${section("Analyst Considerations","file")}
