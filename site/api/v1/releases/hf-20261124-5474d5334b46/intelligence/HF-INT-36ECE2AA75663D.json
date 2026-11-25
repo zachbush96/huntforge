@@ -1,0 +1,37 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "SCKit abuses ScreenConnect to deploy remote access and target technician sessions",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-13",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/13/sckit-abuses-screenconnect-deploy-remote-access-target-technician-sessions/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/13/sckit-abuses-screenconnect-deploy-remote-access-target-technician-sessions/"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-36ECE2AA75663D",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-13",
+  "related": [],
+  "release_id": "hf-20261124-5474d5334b46",
+  "retrieved": "2026-11-25T02:09:50Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "31e2f679ee58c37d1a5a64928795b4c1846fcc4f970172320fb7725833c4bc24",
+  "source": "microsoft",
+  "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/13/sckit-abuses-screenconnect-deploy-remote-access-target-technician-sessions/",
+  "status": "active",
+  "summary": "Publisher research and guidance.",
+  "tags": [],
+  "title": "SCKit abuses ScreenConnect to deploy remote access and target technician sessions",
+  "updated": "2026-11-25T01:48:50Z"
+}

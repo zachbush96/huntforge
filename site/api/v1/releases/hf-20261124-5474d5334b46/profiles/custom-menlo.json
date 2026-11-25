@@ -1,0 +1,38 @@
+{
+  "assumptions": "Example table and field names only. Map your schema locally. Action values are retained as supplied; review the source vocabulary.",
+  "id": "custom-menlo",
+  "name": "Custom Menlo (Browser Isolation)",
+  "release_id": "hf-20261124-5474d5334b46",
+  "revision": 1,
+  "schema_version": 1,
+  "short": "Synthetic Menlo",
+  "source": "Synthetic browser-isolation schema",
+  "synthetic": true,
+  "tables": {
+    "CustomWeb_CL": {
+      "capability": "web",
+      "columns": {
+        "ClientIp": "string",
+        "Disposition": "string",
+        "Host": "string",
+        "RemoteIp": "string",
+        "TimeGenerated": "datetime",
+        "Url": "string",
+        "UserPrincipal": "string"
+      },
+      "documentation": null,
+      "mappings": {
+        "Action": "Disposition",
+        "Destination IP": "RemoteIp",
+        "Destination URL": "Url",
+        "Hostname": "Host",
+        "Source IP": "ClientIp",
+        "Timestamp": "TimeGenerated",
+        "User": "UserPrincipal"
+      },
+      "semantics": "TimeGenerated is the documented event time field for this profile.",
+      "timestamp": "TimeGenerated"
+    }
+  },
+  "target": "Microsoft Sentinel Logs"
+}

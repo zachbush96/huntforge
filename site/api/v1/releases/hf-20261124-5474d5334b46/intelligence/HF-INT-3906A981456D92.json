@@ -1,0 +1,48 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Microsoft observed PowerShell downloading an MSI after fraudulent remote support access.",
+      "location": "Execution and MITRE ATT&CK sections",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-09-02",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/09/02/impersonating-it-support-threat-actors-turn-remote-session-into-enterprise-wide-access/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/09/02/impersonating-it-support-threat-actors-turn-remote-session-into-enterprise-wide-access/"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [
+    "HF-2025-0001"
+  ],
+  "id": "HF-INT-3906A981456D92",
+  "in_window": false,
+  "indicators": [],
+  "kind": "Research",
+  "published": "2026-09-02",
+  "related": [],
+  "release_id": "hf-20261124-5474d5334b46",
+  "retrieved": "2026-11-25T02:09:50Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "93b67f5e8a931ac90c8273d95071ebde8bfe255230730a557d601a32bbe47bda",
+  "software": [],
+  "source": "microsoft",
+  "source_id": "https://www.microsoft.com/en-us/security/blog/2026/09/02/impersonating-it-support-threat-actors-turn-remote-session-into-enterprise-wide-access/",
+  "status": "active",
+  "summary": "Microsoft observed PowerShell downloading an MSI after fraudulent remote support access.",
+  "tags": [
+    "LOLBins",
+    "Phishing"
+  ],
+  "techniques": [
+    "T1059.001",
+    "T1105"
+  ],
+  "title": "Impersonating IT support: how threat actors turn a remote session into enterprise-wide access",
+  "updated": "2026-11-25T01:48:50Z"
+}

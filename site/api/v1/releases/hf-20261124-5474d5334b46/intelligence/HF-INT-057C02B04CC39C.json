@@ -1,0 +1,46 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-109618",
+    "CVE-2026-109619"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Siemens RUGGEDCOM APE1808",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-12",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-316-05",
+      "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-316-05"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-057C02B04CC39C",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-12",
+  "related": [
+    "HF-INT-1CB9F463F8DAF5",
+    "HF-INT-3B6E9E7F34FEAC",
+    "HF-INT-89146FF5418730"
+  ],
+  "release_id": "hf-20261124-5474d5334b46",
+  "retrieved": "2026-11-25T02:09:50Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "19763ad8f322ebfce013d319cb2371aa84d95ba62e56a8aee7667bf3e9eb8470",
+  "source": "cisa-advisories",
+  "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-316-05",
+  "status": "active",
+  "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-109618, CVE-2026-109619.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Siemens RUGGEDCOM APE1808",
+  "updated": "2026-11-25T01:48:50Z"
+}

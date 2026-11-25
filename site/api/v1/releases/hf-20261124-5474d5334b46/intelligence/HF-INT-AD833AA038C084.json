@@ -1,0 +1,201 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-46300"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-24",
+      "epss": "0.172030000",
+      "percentile": "0.971510000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.17203000",
+      "percentile": "0.97169000"
+    },
+    {
+      "date": "2026-11-22",
+      "epss": "0.17203000",
+      "percentile": "0.97169000"
+    },
+    {
+      "date": "2026-11-21",
+      "epss": "0.17203000",
+      "percentile": "0.97167000"
+    },
+    {
+      "date": "2026-11-20",
+      "epss": "0.16130000",
+      "percentile": "0.97003000"
+    },
+    {
+      "date": "2026-11-19",
+      "epss": "0.16130000",
+      "percentile": "0.96993000"
+    },
+    {
+      "date": "2026-11-18",
+      "epss": "0.16130000",
+      "percentile": "0.96989000"
+    },
+    {
+      "date": "2026-11-17",
+      "epss": "0.16130000",
+      "percentile": "0.96981000"
+    },
+    {
+      "date": "2026-11-16",
+      "epss": "0.16130000",
+      "percentile": "0.96979000"
+    },
+    {
+      "date": "2026-11-15",
+      "epss": "0.16130000",
+      "percentile": "0.96979000"
+    },
+    {
+      "date": "2026-11-14",
+      "epss": "0.16130000",
+      "percentile": "0.96979000"
+    },
+    {
+      "date": "2026-11-13",
+      "epss": "0.16130000",
+      "percentile": "0.96977000"
+    },
+    {
+      "date": "2026-11-12",
+      "epss": "0.16130000",
+      "percentile": "0.96972000"
+    },
+    {
+      "date": "2026-11-11",
+      "epss": "0.16130000",
+      "percentile": "0.96968000"
+    },
+    {
+      "date": "2026-11-10",
+      "epss": "0.16130000",
+      "percentile": "0.96953000"
+    },
+    {
+      "date": "2026-11-09",
+      "epss": "0.16130000",
+      "percentile": "0.96950000"
+    },
+    {
+      "date": "2026-11-08",
+      "epss": "0.16130000",
+      "percentile": "0.96948000"
+    },
+    {
+      "date": "2026-11-07",
+      "epss": "0.16130000",
+      "percentile": "0.96946000"
+    },
+    {
+      "date": "2026-11-06",
+      "epss": "0.16130000",
+      "percentile": "0.96942000"
+    },
+    {
+      "date": "2026-11-05",
+      "epss": "0.16130000",
+      "percentile": "0.96939000"
+    },
+    {
+      "date": "2026-11-04",
+      "epss": "0.16130000",
+      "percentile": "0.96937000"
+    },
+    {
+      "date": "2026-11-03",
+      "epss": "0.16130000",
+      "percentile": "0.96932000"
+    },
+    {
+      "date": "2026-11-02",
+      "epss": "0.16130000",
+      "percentile": "0.96928000"
+    },
+    {
+      "date": "2026-11-01",
+      "epss": "0.16130000",
+      "percentile": "0.96927000"
+    },
+    {
+      "date": "2026-10-31",
+      "epss": "0.16130000",
+      "percentile": "0.96927000"
+    },
+    {
+      "date": "2026-10-30",
+      "epss": "0.16130000",
+      "percentile": "0.96923000"
+    },
+    {
+      "date": "2026-10-29",
+      "epss": "0.15719000",
+      "percentile": "0.96854000"
+    },
+    {
+      "date": "2026-10-28",
+      "epss": "0.10192000",
+      "percentile": "0.95651000"
+    },
+    {
+      "date": "2026-10-27",
+      "epss": "0.10192000",
+      "percentile": "0.95643000"
+    },
+    {
+      "date": "2026-10-26",
+      "epss": "0.10192000",
+      "percentile": "0.95636000"
+    },
+    {
+      "date": "2026-10-25",
+      "epss": "0.10192000",
+      "percentile": "0.95635000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-10-28",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-46300",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-46300"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-AD833AA038C084",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "Kernel",
+  "published": "2026-10-28",
+  "ransomware_use": "unknown",
+  "related": [],
+  "release_id": "hf-20261124-5474d5334b46",
+  "remediation_due": "2026-10-31",
+  "retrieved": "2026-11-25T02:09:50Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "bce42ec607a27f057073e9e6b0a67a93f482abcbcea9f35bd4ea1dfa219f74a1",
+  "source": "cisa-kev",
+  "source_id": "CVE-2026-46300",
+  "status": "active",
+  "summary": "CISA added CVE-2026-46300 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-10-31.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Linux Kernel Missing Initialization of a Variable Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "Linux"
+}

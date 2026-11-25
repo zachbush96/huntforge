@@ -1,6 +1,6 @@
 import { briefAside, briefMain } from "./brief.js";
 import { catalog, changelog, developers, entityDetail, intelligenceDetail, missing, systemStatus } from "./catalog.js";
-import { huntAside, huntMain } from "./hunt.js";
+import { huntAside, huntMain, huntTabs } from "./hunt.js";
 import { activeQuery, escape, header, icon, neutral, queryMode, route, sidebar } from "./ui.js";
 import { zip } from "./zip.js";
 
@@ -10,6 +10,8 @@ const searchDialog = document.querySelector("#search-dialog");
 const settingsDialog = document.querySelector("#settings-dialog");
 const copyDialog = document.querySelector("#copy-dialog");
 const releaseIdPattern = /^hf-\d{8}-[0-9a-f]{12}$/;
+const filterKeys = new Set(["q","severity","source","start","through","cve","tag","technique","tactic","malware",
+  "validation","profile","freshness","category","indicatorType","hunt","change","recordType","following","sourceState","panel"]);
 let data;
 let navigation = 0;
 
@@ -65,9 +67,26 @@ function huntCard(id) {
 }
 
 function readRoute() {
-  const [section,id] = location.hash.slice(2).split("/");
-  try { return [section || "brief", id ? decodeURIComponent(id) : null]; }
-  catch { return [section,null]; }
+  const url = location.hash.startsWith("#/") ? location.hash.slice(2) : "";
+  const split = url.indexOf("?");
+  const [section,id] = (split < 0 ? url : url.slice(0,split)).split("/");
+  const params = new URLSearchParams(split < 0 ? "" : url.slice(split+1));
+  const filters = Object.fromEntries([...params].filter(([key,value]) => filterKeys.has(key) && value));
+  const tab = params.get("tab");
+  let recordId = null;
+  try { recordId = id ? decodeURIComponent(id) : null; }
+  catch { /* A malformed ID has no detail route. */ }
+  return {section:section || "brief",id:recordId,filters,tab:huntTabs.some(([key])=>key===tab) ? tab : "query"};
+}
+
+function stateRoute() {
+  const filters = {...state.filters};
+  if (state.hunt && state.tab !== "query") filters.tab = state.tab;
+  return route(state.section,state.id,filters);
+}
+
+function syncRoute() {
+  history.replaceState(null,"",stateRoute());
 }
 
 async function comparison() {
@@ -84,8 +103,8 @@ async function comparison() {
 async function navigate() {
   if (!data || location.hash === "#main") return;
   const sequence = ++navigation;
-  const [section,id] = readRoute();
-  Object.assign(state,{section,id,page:0,filters:{},hunt:null,detail:null,error:false,tab:"query",profile:null});
+  const {section,id,filters,tab} = readRoute();
+  Object.assign(state,{section,id,page:0,filters,hunt:null,detail:null,error:false,tab,profile:null});
   let hunt, detail;
   try {
     if (section === "hunts" && id && data.hunts.some(row => row.id === id)) hunt = await huntCard(id);
@@ -130,7 +149,7 @@ function render(preserve = null) {
   else if (["intelligence","research","vulnerabilities"].includes(state.section) && state.detail) main = intelligenceDetail(data,state);
   else if (["indicators","techniques","adversaries"].includes(state.section) && state.detail) main = entityDetail(data,state);
   else if (state.section === "changelog") main = changelog(data,state);
-  else if (state.section === "status") main = systemStatus(data);
+  else if (state.section === "status") main = systemStatus(data,state);
   else if (state.section === "developers") main = developers(data);
   else if (["intelligence","hunts","adversaries","vulnerabilities","indicators","techniques","research"].includes(state.section)) main = catalog(data,state);
   else main = missing(data,state);
@@ -191,9 +210,15 @@ async function copy(value,label) {
     await navigator.clipboard.writeText(value);
     announce(`${label} copied.`);
     const focused = document.activeElement;
-    if (focused?.dataset.action === "copy-query") {
+    if (focused?.matches("[data-action=copy-query], [data-copy-url]") && !focused.hasAttribute("data-copied")) {
+      const original = focused.innerHTML;
+      focused.setAttribute("data-copied","");
       focused.innerHTML = icon("check") + " Copied";
-      setTimeout(()=>{ if (focused.isConnected) focused.innerHTML = icon("copy") + " Copy KQL"; },1800);
+      setTimeout(()=>{
+        if (!focused.isConnected) return;
+        focused.innerHTML = original;
+        focused.removeAttribute("data-copied");
+      },1800);
     }
   } catch {
     copyDialog.innerHTML = `<form method="dialog"><button class="btn close">Close</button></form><h2 id="copy-title">${escape(label)}</h2>
@@ -249,21 +274,36 @@ async function pack(huntIds) {
 app.addEventListener("click", event=>{
   const control = event.target.closest("button");
   if (!control || !data) return;
+  if (control.dataset.copyUrl) {
+    copy(new URL(control.dataset.copyUrl,document.baseURI).href,"API URL");
+    return;
+  }
   if (control.dataset.page != null) {
     state.page = Number(control.dataset.page);
     render({selector:`[data-page="${state.page}"]`});
   }
   if (control.dataset.tab) {
     state.tab = control.dataset.tab;
+    syncRoute();
     render({selector:`[data-tab="${state.tab}"]`});
   }
   if (control.dataset.setProfile) setPreference("profile",control.dataset.setProfile,`[data-set-profile="${control.dataset.setProfile}"]`);
   const actions = {
     search:showSearch, settings:showSettings,
-    "clear-filters":()=>{ state.filters={};state.page=0;render({selector:"[data-filter=q]"}); },
+    "clear-filters":()=>{
+      state.filters={};
+      state.page=0;
+      syncRoute();
+      render({selector:"[data-filter]"});
+    },
     "copy-query":()=>copy(activeQuery(state),"KQL"),
     "copy-indicator":()=>copy(state.detail?.value,"Canonical indicator"),
-    permalink:()=>copy(new URL(route("hunts",state.hunt.id),location.href).href,"Hunt permalink"),
+    permalink:()=>copy(new URL(stateRoute(),location.href).href,"Hunt permalink"),
+    "use-lookback":()=>{
+      state.tab = "query";
+      syncRoute();
+      setPreference("days",state.hunt.lookback,"[data-setting=days]");
+    },
     follow:()=>{
       const id = state.hunt.id;
       setPreference("followed",state.preferences.followed.includes(id) ? state.preferences.followed.filter(value=>value!==id) :
@@ -282,15 +322,17 @@ app.addEventListener("click", event=>{
 function handleFilter(control) {
   const key = control.dataset.filter;
   state.filters[key] = control.value;
+  if (!control.value) delete state.filters[key];
   state.page = 0;
+  syncRoute();
   render({selector:`[data-filter="${key}"]`,cursor:control.type === "search" ? control.selectionStart : null});
 }
 app.addEventListener("input",event=>{
-  if (event.target.matches("[data-filter=q]")) handleFilter(event.target);
+  if (event.target.matches("input[type=search][data-filter]")) handleFilter(event.target);
 });
 app.addEventListener("change",event=>{
   const control = event.target;
-  if (control.matches("[data-filter]:not([data-filter=q])")) handleFilter(control);
+  if (control.matches("[data-filter]:not(input[type=search])")) handleFilter(control);
   if (control.dataset.setting) {
     const key = control.dataset.setting;
     const selector = control.closest("aside") ? `aside [data-setting="${key}"]` : `main [data-setting="${key}"]`;

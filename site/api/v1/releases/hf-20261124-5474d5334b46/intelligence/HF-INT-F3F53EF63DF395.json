@@ -1,0 +1,49 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Microsoft observed GSocket and gs-netcat process activity on compromised Linux hosts, sometimes with renamed binaries.",
+      "location": "Advanced hunting queries and indicators sections",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-11",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [
+    "HF-2026-0002"
+  ],
+  "id": "HF-INT-F3F53EF63DF395",
+  "in_window": true,
+  "indicators": [],
+  "kind": "Research",
+  "published": "2026-11-11",
+  "related": [],
+  "release_id": "hf-20261124-5474d5334b46",
+  "retrieved": "2026-11-25T02:09:50Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "0aaccd470d98d45a09b65770162e668bebf0a28066e925f0df5f749d1186a422",
+  "software": [
+    "GSocket"
+  ],
+  "source": "microsoft",
+  "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/",
+  "status": "active",
+  "summary": "Microsoft observed GSocket and gs-netcat process activity on compromised Linux hosts, sometimes with renamed binaries.",
+  "tags": [
+    "APT Activity",
+    "Exploitation"
+  ],
+  "techniques": [
+    "T1090.002"
+  ],
+  "title": "The global socket: how threat actors are weaponizing GSocket for stealthy C2",
+  "updated": "2026-11-25T01:48:50Z"
+}

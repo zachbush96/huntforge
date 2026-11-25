@@ -1,0 +1,42 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-112136",
+    "CVE-2026-112137"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Siemens Mendix Studio Pro",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-17",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-05",
+      "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-05"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-F61EFCA8F592B8",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-17",
+  "related": [],
+  "release_id": "hf-20261124-5474d5334b46",
+  "retrieved": "2026-11-25T02:09:50Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "e8aadf899e818b6b71182cc2e2261ff35590b7df4230e4c6ce85f96e58ca6520",
+  "source": "cisa-advisories",
+  "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-05",
+  "status": "active",
+  "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-112136, CVE-2026-112137.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Siemens Mendix Studio Pro",
+  "updated": "2026-11-25T01:48:50Z"
+}

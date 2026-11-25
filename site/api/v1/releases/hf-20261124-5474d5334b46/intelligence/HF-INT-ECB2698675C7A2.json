@@ -1,0 +1,39 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Tracking AI adoption in North Korean threat actor tradecraft",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-10-29",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/29/tracking-ai-adoption-in-north-korean-threat-actor-tradecraft/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/10/29/tracking-ai-adoption-in-north-korean-threat-actor-tradecraft/"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-ECB2698675C7A2",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-10-29",
+  "related": [],
+  "release_id": "hf-20261124-5474d5334b46",
+  "retrieved": "2026-11-25T02:09:50Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "343118272b75d0a1ac1b683da9701b17642f0876cf39a02f4d27413113f5e829",
+  "source": "microsoft",
+  "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/29/tracking-ai-adoption-in-north-korean-threat-actor-tradecraft/",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include apt activity.",
+  "tags": [
+    "APT Activity"
+  ],
+  "title": "Tracking AI adoption in North Korean threat actor tradecraft",
+  "updated": "2026-11-25T01:48:50Z"
+}

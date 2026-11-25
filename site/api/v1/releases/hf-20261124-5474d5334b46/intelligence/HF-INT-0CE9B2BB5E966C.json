@@ -1,0 +1,201 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-97229"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-24",
+      "epss": "0.743150000",
+      "percentile": "0.994940000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.743150000",
+      "percentile": "0.994990000"
+    },
+    {
+      "date": "2026-11-22",
+      "epss": "0.74315000",
+      "percentile": "0.99499000"
+    },
+    {
+      "date": "2026-11-21",
+      "epss": "0.74315000",
+      "percentile": "0.99499000"
+    },
+    {
+      "date": "2026-11-20",
+      "epss": "0.69289000",
+      "percentile": "0.99373000"
+    },
+    {
+      "date": "2026-11-19",
+      "epss": "0.69289000",
+      "percentile": "0.99371000"
+    },
+    {
+      "date": "2026-11-18",
+      "epss": "0.69289000",
+      "percentile": "0.99370000"
+    },
+    {
+      "date": "2026-11-17",
+      "epss": "0.69289000",
+      "percentile": "0.99369000"
+    },
+    {
+      "date": "2026-11-16",
+      "epss": "0.69289000",
+      "percentile": "0.99369000"
+    },
+    {
+      "date": "2026-11-15",
+      "epss": "0.69289000",
+      "percentile": "0.99369000"
+    },
+    {
+      "date": "2026-11-14",
+      "epss": "0.69289000",
+      "percentile": "0.99369000"
+    },
+    {
+      "date": "2026-11-13",
+      "epss": "0.69289000",
+      "percentile": "0.99369000"
+    },
+    {
+      "date": "2026-11-12",
+      "epss": "0.69289000",
+      "percentile": "0.99368000"
+    },
+    {
+      "date": "2026-11-11",
+      "epss": "0.69289000",
+      "percentile": "0.99368000"
+    },
+    {
+      "date": "2026-11-10",
+      "epss": "0.65220000",
+      "percentile": "0.99261000"
+    },
+    {
+      "date": "2026-11-09",
+      "epss": "0.65220000",
+      "percentile": "0.99260000"
+    },
+    {
+      "date": "2026-11-08",
+      "epss": "0.65220000",
+      "percentile": "0.99259000"
+    },
+    {
+      "date": "2026-11-07",
+      "epss": "0.65220000",
+      "percentile": "0.99259000"
+    },
+    {
+      "date": "2026-11-06",
+      "epss": "0.65220000",
+      "percentile": "0.99258000"
+    },
+    {
+      "date": "2026-11-05",
+      "epss": "0.65220000",
+      "percentile": "0.99257000"
+    },
+    {
+      "date": "2026-11-04",
+      "epss": "0.65220000",
+      "percentile": "0.99256000"
+    },
+    {
+      "date": "2026-11-03",
+      "epss": "0.27692000",
+      "percentile": "0.98089000"
+    },
+    {
+      "date": "2026-11-02",
+      "epss": "0.27300000",
+      "percentile": "0.98060000"
+    },
+    {
+      "date": "2026-11-01",
+      "epss": "0.27300000",
+      "percentile": "0.98061000"
+    },
+    {
+      "date": "2026-10-31",
+      "epss": "0.27300000",
+      "percentile": "0.98060000"
+    },
+    {
+      "date": "2026-10-30",
+      "epss": "0.26569000",
+      "percentile": "0.98015000"
+    },
+    {
+      "date": "2026-10-29",
+      "epss": "0.18427000",
+      "percentile": "0.97229000"
+    },
+    {
+      "date": "2026-10-28",
+      "epss": "0.18427000",
+      "percentile": "0.97225000"
+    },
+    {
+      "date": "2026-10-27",
+      "epss": "0.18427000",
+      "percentile": "0.97220000"
+    },
+    {
+      "date": "2026-10-26",
+      "epss": "0.18427000",
+      "percentile": "0.97216000"
+    },
+    {
+      "date": "2026-10-25",
+      "epss": "0.18427000",
+      "percentile": "0.97215000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-10-29",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-97229",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-97229"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-0CE9B2BB5E966C",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "Community Edition and Enterprise Edition",
+  "published": "2026-10-29",
+  "ransomware_use": "unknown",
+  "related": [],
+  "release_id": "hf-20261124-5474d5334b46",
+  "remediation_due": "2026-11-01",
+  "retrieved": "2026-11-25T02:09:50Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "60b29eeed798e5c630679236cd14d1f234f4e322b53967e52edaefa3de29d62a",
+  "source": "cisa-kev",
+  "source_id": "CVE-2026-97229",
+  "status": "active",
+  "summary": "CISA added CVE-2026-97229 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-01.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "GitLab Community Edition and Enterprise Edition Integer Overflow or Wraparound Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "GitLab"
+}

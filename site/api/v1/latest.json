@@ -8,11 +8,11 @@
     "sources": 6,
     "techniques": 706
   },
-  "created": "2026-11-25T01:56:29Z",
-  "release_id": "hf-20261124-5a6141bcbc8d",
+  "created": "2026-11-25T02:09:56Z",
+  "release_id": "hf-20261124-5474d5334b46",
   "schema_version": 1,
-  "snapshot": "releases/hf-20261124-5a6141bcbc8d/manifest.json",
-  "source_commit": "f960b79d27f094763092436c0eb26f017e6634e3",
+  "snapshot": "releases/hf-20261124-5474d5334b46/manifest.json",
+  "source_commit": "f5029518369869d1b24e6de40fd61a55995f541a",
   "window": {
     "from": "2026-10-25",
     "through": "2026-11-24"
