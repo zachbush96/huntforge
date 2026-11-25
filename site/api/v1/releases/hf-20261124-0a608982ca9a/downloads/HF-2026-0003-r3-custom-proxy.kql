@@ -1,0 +1,6 @@
+CustomWeb_CL
+| where TimeGenerated > ago(7d)
+| extend HuntDestinationHost = tolower(trim_end(@"\.+", coalesce(iff(TargetHost contains "://", tostring(parse_url(TargetHost).Host), TargetHost), tostring(parse_url(RequestUrl).Host))))
+| where HuntDestinationHost in ("reallifeaccounting.com", "outagefixed.sbs", "outagerestored.sbs")
+| project TimeGenerated, UserId, SourceAddress, TargetAddress, RequestUrl, ProxyAction, HuntDestinationHost
+| order by TimeGenerated desc

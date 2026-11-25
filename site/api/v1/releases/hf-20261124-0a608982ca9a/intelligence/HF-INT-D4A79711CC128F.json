@@ -1,0 +1,40 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "What exploited vulnerabilities have in common: A data-driven analysis of real-world attacks",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-02",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/02/exploited-vulnerabilities-common-data-driven-analysis-real-world-attacks/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/02/exploited-vulnerabilities-common-data-driven-analysis-real-world-attacks/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-D4A79711CC128F",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-02",
+  "related": [],
+  "release_id": "hf-20261124-0a608982ca9a",
+  "retrieved": "2026-11-25T03:40:23Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "a8564c23247b554c37edae8107597f096e18ae172bae5fc08de29cc73cb9118d",
+  "source": "microsoft",
+  "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/02/exploited-vulnerabilities-common-data-driven-analysis-real-world-attacks/",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include exploitation.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "What exploited vulnerabilities have in common: A data-driven analysis of real-world attacks",
+  "updated": "2026-11-25T01:48:50Z"
+}

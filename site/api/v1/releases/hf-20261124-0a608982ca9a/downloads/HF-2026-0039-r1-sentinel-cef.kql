@@ -1,0 +1,7 @@
+CommonSecurityLog
+| where TimeGenerated > ago(30d)
+| where DeviceVendor =~ "GitLab" or DeviceProduct contains "GitLab"
+| where Message contains_cs "[BUG]" and Message contains_cs "regexp_matcher.rb"
+| where Message contains_cs "onig_compile" or Message contains_cs "compile_tree" or Message contains_cs "compile_length_tree"
+| project TimeGenerated, DeviceVendor, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message
+| order by TimeGenerated desc

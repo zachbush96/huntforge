@@ -1,0 +1,82 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-132224"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-24",
+      "epss": "0.004110000",
+      "percentile": "0.358450000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.00426000",
+      "percentile": "0.37601000"
+    },
+    {
+      "date": "2026-11-22",
+      "epss": "0.00426000",
+      "percentile": "0.37615000"
+    },
+    {
+      "date": "2026-11-21",
+      "epss": "0.00411000",
+      "percentile": "0.36089000"
+    },
+    {
+      "date": "2026-11-20",
+      "epss": "0.00411000",
+      "percentile": "0.36206000"
+    },
+    {
+      "date": "2026-11-19",
+      "epss": "0.00411000",
+      "percentile": "0.36067000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-24",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-132224",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-132224"
+    }
+  ],
+  "exploitation_hunts": [
+    "HF-2026-0043"
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-2F28B8DACDF26A",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "Web Experimentation",
+  "published": "2026-11-24",
+  "ransomware_use": "unknown",
+  "related": [
+    "HF-INT-165729C3CBFBB2",
+    "HF-INT-B4C56F8C95F7AE"
+  ],
+  "release_id": "hf-20261124-0a608982ca9a",
+  "remediation_due": "2026-11-27",
+  "retrieved": "2026-11-25T03:40:23Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "07b67b53cfc1b8b1fcce048637eeb09ab117fbb1c09c74a988d41a60e592974c",
+  "source": "cisa-kev",
+  "source_id": "CVE-2026-132224",
+  "status": "active",
+  "summary": "CISA added CVE-2026-132224 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-27.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Optimizely Web Experimentation External Control of Critical State Data Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "Optimizely"
+}

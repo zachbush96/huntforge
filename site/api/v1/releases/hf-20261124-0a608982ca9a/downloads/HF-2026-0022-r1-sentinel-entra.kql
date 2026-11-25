@@ -1,0 +1,5 @@
+SigninLogs
+| where TimeGenerated > ago(7d)
+| where AuthenticationProtocol =~ "deviceCode" and ConditionalAccessStatus =~ "failure"
+| project TimeGenerated, UserPrincipalName, AppDisplayName, IPAddress, Location, ResultType, ConditionalAccessStatus
+| order by TimeGenerated desc

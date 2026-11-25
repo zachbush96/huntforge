@@ -1,0 +1,5 @@
+CommonSecurityLog
+| where TimeGenerated > ago(14d)
+| where SourceIP in ("91.92.240.238", "85.11.168.45", "31.77.229.35", "199.19.95.66", "199.19.95.67", "199.19.95.68") or DestinationIP in ("91.92.240.238", "85.11.168.45", "31.77.229.35", "199.19.95.66", "199.19.95.67", "199.19.95.68")
+| project TimeGenerated, SourceIP, DestinationIP, DestinationPort, DeviceAction, DeviceVendor, DeviceProduct
+| order by TimeGenerated desc

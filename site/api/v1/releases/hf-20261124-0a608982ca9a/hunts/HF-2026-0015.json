@@ -1,0 +1,111 @@
+{
+  "actors": [
+    "Storm-0940",
+    "China"
+  ],
+  "confidence": "Publisher-observed indicators",
+  "considerations": [
+    "These app IDs can appear during legitimate backup operations.",
+    "Prioritize reported-source matches and review ownership and expected egress."
+  ],
+  "description": "Review successful app sign-ins for the ConnectWise IDs in Microsoft's Sentinel sample.",
+  "evidence": [
+    {
+      "claim": "Microsoft attributed application abuse, password spraying and cloud role or credential changes to Storm-0940, a China-state-aligned actor, in activity that included the ConnectWise Cloud Backup compromise.",
+      "location": "Observed attack patterns, Sentinel queries and ATT&CK mapping",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-10-21",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/"
+    }
+  ],
+  "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+  "history": [
+    {
+      "change": "Created",
+      "date": "2026-11-25T02:32:19Z",
+      "revision": 1,
+      "summary": "Created evidence-backed hunt and validated all supported variants."
+    }
+  ],
+  "hypothesis": "Review successful app sign-ins for the ConnectWise IDs in Microsoft's Sentinel sample.",
+  "id": "HF-2026-0015",
+  "indicator_ids": [
+    "HF-IOC-30B83342101D2F",
+    "HF-IOC-85B8A518112C30",
+    "HF-IOC-45D7C4479888DC"
+  ],
+  "lookback": 30,
+  "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+  "primary_table": "AADServicePrincipalSignInLogs",
+  "profiles": [
+    "sentinel-entra"
+  ],
+  "published": "2026-11-25T02:32:19Z",
+  "release_id": "hf-20261124-0a608982ca9a",
+  "research": "artex-storm0940",
+  "revision": 1,
+  "schema_version": 1,
+  "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+  "signature": "f3732d6ae425cf23909f3752142e4a9d424a07ecc854532233968e5c51d27185",
+  "source_ids": [
+    "HF-INT-F111D392DD54D8"
+  ],
+  "source_published": "2026-10-21",
+  "status": "partially_validated",
+  "tactic": "Initial Access",
+  "tags": [
+    "Agentic AI",
+    "Nation-State",
+    "Supply Chain",
+    "Identity"
+  ],
+  "technique": "T1199",
+  "title": "Storm-0940 ConnectWise Cloud App Sign-ins",
+  "updated": "2026-11-25T02:32:19Z",
+  "validation": {
+    "date": "2026-11-25T02:32:19Z",
+    "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+    "variants_checked": 10
+  },
+  "variants": {
+    "sentinel-entra": {
+      "profile_revision": 2,
+      "queries": {
+        "1": {
+          "json": "AADServicePrincipalSignInLogs\n| where TimeGenerated > ago(1d)\n| where ResultType == \"0\" and AppId in (\"506e08f9-6e9a-4da4-942b-a099a03644ae\", \"24205314-2b89-4e07-a2a4-579e898a5640\", \"0de14c77-b9b0-4137-9360-34878a929827\")\n| extend ReportedSource = IPAddress in (\"144.172.64.99\", \"144.172.64.60\", \"144.172.64.128\")\n| project TimeGenerated, ServicePrincipalName, ServicePrincipalId, AppId, IPAddress, ReportedSource, ResourceDisplayName\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "AADServicePrincipalSignInLogs\n| where TimeGenerated > ago(1d)\n| where ResultType == \"0\" and AppId in (\"506e08f9-6e9a-4da4-942b-a099a03644ae\", \"24205314-2b89-4e07-a2a4-579e898a5640\", \"0de14c77-b9b0-4137-9360-34878a929827\")\n| extend ReportedSource = IPAddress in (\"144.172.64.99\", \"144.172.64.60\", \"144.172.64.128\")\n| project TimeGenerated, ServicePrincipalName, ServicePrincipalId, AppId, IPAddress, ReportedSource, ResourceDisplayName\n| order by TimeGenerated desc\n"
+        },
+        "14": {
+          "json": "AADServicePrincipalSignInLogs\n| where TimeGenerated > ago(14d)\n| where ResultType == \"0\" and AppId in (\"506e08f9-6e9a-4da4-942b-a099a03644ae\", \"24205314-2b89-4e07-a2a4-579e898a5640\", \"0de14c77-b9b0-4137-9360-34878a929827\")\n| extend ReportedSource = IPAddress in (\"144.172.64.99\", \"144.172.64.60\", \"144.172.64.128\")\n| project TimeGenerated, ServicePrincipalName, ServicePrincipalId, AppId, IPAddress, ReportedSource, ResourceDisplayName\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "AADServicePrincipalSignInLogs\n| where TimeGenerated > ago(14d)\n| where ResultType == \"0\" and AppId in (\"506e08f9-6e9a-4da4-942b-a099a03644ae\", \"24205314-2b89-4e07-a2a4-579e898a5640\", \"0de14c77-b9b0-4137-9360-34878a929827\")\n| extend ReportedSource = IPAddress in (\"144.172.64.99\", \"144.172.64.60\", \"144.172.64.128\")\n| project TimeGenerated, ServicePrincipalName, ServicePrincipalId, AppId, IPAddress, ReportedSource, ResourceDisplayName\n| order by TimeGenerated desc\n"
+        },
+        "3": {
+          "json": "AADServicePrincipalSignInLogs\n| where TimeGenerated > ago(3d)\n| where ResultType == \"0\" and AppId in (\"506e08f9-6e9a-4da4-942b-a099a03644ae\", \"24205314-2b89-4e07-a2a4-579e898a5640\", \"0de14c77-b9b0-4137-9360-34878a929827\")\n| extend ReportedSource = IPAddress in (\"144.172.64.99\", \"144.172.64.60\", \"144.172.64.128\")\n| project TimeGenerated, ServicePrincipalName, ServicePrincipalId, AppId, IPAddress, ReportedSource, ResourceDisplayName\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "AADServicePrincipalSignInLogs\n| where TimeGenerated > ago(3d)\n| where ResultType == \"0\" and AppId in (\"506e08f9-6e9a-4da4-942b-a099a03644ae\", \"24205314-2b89-4e07-a2a4-579e898a5640\", \"0de14c77-b9b0-4137-9360-34878a929827\")\n| extend ReportedSource = IPAddress in (\"144.172.64.99\", \"144.172.64.60\", \"144.172.64.128\")\n| project TimeGenerated, ServicePrincipalName, ServicePrincipalId, AppId, IPAddress, ReportedSource, ResourceDisplayName\n| order by TimeGenerated desc\n"
+        },
+        "30": {
+          "json": "AADServicePrincipalSignInLogs\n| where TimeGenerated > ago(30d)\n| where ResultType == \"0\" and AppId in (\"506e08f9-6e9a-4da4-942b-a099a03644ae\", \"24205314-2b89-4e07-a2a4-579e898a5640\", \"0de14c77-b9b0-4137-9360-34878a929827\")\n| extend ReportedSource = IPAddress in (\"144.172.64.99\", \"144.172.64.60\", \"144.172.64.128\")\n| project TimeGenerated, ServicePrincipalName, ServicePrincipalId, AppId, IPAddress, ReportedSource, ResourceDisplayName\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "AADServicePrincipalSignInLogs\n| where TimeGenerated > ago(30d)\n| where ResultType == \"0\" and AppId in (\"506e08f9-6e9a-4da4-942b-a099a03644ae\", \"24205314-2b89-4e07-a2a4-579e898a5640\", \"0de14c77-b9b0-4137-9360-34878a929827\")\n| extend ReportedSource = IPAddress in (\"144.172.64.99\", \"144.172.64.60\", \"144.172.64.128\")\n| project TimeGenerated, ServicePrincipalName, ServicePrincipalId, AppId, IPAddress, ReportedSource, ResourceDisplayName\n| order by TimeGenerated desc\n"
+        },
+        "7": {
+          "json": "AADServicePrincipalSignInLogs\n| where TimeGenerated > ago(7d)\n| where ResultType == \"0\" and AppId in (\"506e08f9-6e9a-4da4-942b-a099a03644ae\", \"24205314-2b89-4e07-a2a4-579e898a5640\", \"0de14c77-b9b0-4137-9360-34878a929827\")\n| extend ReportedSource = IPAddress in (\"144.172.64.99\", \"144.172.64.60\", \"144.172.64.128\")\n| project TimeGenerated, ServicePrincipalName, ServicePrincipalId, AppId, IPAddress, ReportedSource, ResourceDisplayName\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "AADServicePrincipalSignInLogs\n| where TimeGenerated > ago(7d)\n| where ResultType == \"0\" and AppId in (\"506e08f9-6e9a-4da4-942b-a099a03644ae\", \"24205314-2b89-4e07-a2a4-579e898a5640\", \"0de14c77-b9b0-4137-9360-34878a929827\")\n| extend ReportedSource = IPAddress in (\"144.172.64.99\", \"144.172.64.60\", \"144.172.64.128\")\n| project TimeGenerated, ServicePrincipalName, ServicePrincipalId, AppId, IPAddress, ReportedSource, ResourceDisplayName\n| order by TimeGenerated desc\n"
+        }
+      },
+      "table": "AADServicePrincipalSignInLogs",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    }
+  }
+}

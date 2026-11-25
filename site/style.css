@@ -47,6 +47,7 @@ button:hover, .button:hover { background: #e7e7e7; }
 .top-box { border: 1px solid white; padding: 4px 9px; }
 .top-divider { width: 1px; height: 23px; background: #b3b3b3; }
 .top-link, .top-icon { display: inline-flex; align-items: center; gap: 8px; }
+.feedback-link { min-height: 32px; }
 .top-icon { color: white; background: transparent; border: 0; padding: 4px; }
 .top-icon:hover { background: #333; }
 .top-icon .icon, .top-link .icon { width: 22px; height: 22px; }
@@ -296,6 +297,12 @@ dialog textarea { min-height: 200px; resize: vertical; font: .77rem/1.5 var(--mo
 .search-list a:hover { background: #eee; }
 .search-list small { text-transform: uppercase; font: 700 .7rem var(--mono); }
 .search-list span { font-size: .84rem; overflow-wrap: anywhere; }
+.feedback-main { max-width: 46rem; padding: clamp(26px, 6vw, 64px) 20px; margin-inline: auto; }
+.feedback-main h1 { margin-bottom: 12px; font: 950 clamp(36px, 5vw, 56px)/1 var(--heavy); letter-spacing: -.04em; }
+.feedback-main p { line-height: 1.5; }
+.feedback-main .notice { margin-block: 24px; padding: 14px; }
+.feedback-main .notice h2 { font-weight: 850; font-size: 1rem; margin-bottom: 6px; }
+.feedback-main .notice p:last-child { margin-bottom: 0; }
 @media (min-width: 1081px) {
   .developments .finding { min-height: 130px; grid-template-rows: 1fr auto; }
   .developments .finding-body h3, .developments .finding-body p { display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
@@ -327,7 +334,8 @@ dialog textarea { min-height: 200px; resize: vertical; font: .77rem/1.5 var(--mo
 }
 @media (max-width: 860px) {
   .topbar .tagline, .topbar .brand-slash { display: none; }
-  .search-button { width: 250px; }
+  .search-button { width: clamp(175px, 25vw, 250px); }
+  .top-end { gap: 10px; }
   .brief-aside { grid-template-columns: 1fr; }
 }
 @media (max-width: 740px) {
@@ -335,6 +343,8 @@ dialog textarea { min-height: 200px; resize: vertical; font: .77rem/1.5 var(--mo
   .brand, .compact-header .brand { font-size: 29px; }
   .brand .anvil { width: 33px; height: 23px; }
   .topbar .brand-slash, .topbar .tagline, .top-end .top-box, .top-end .top-divider, .top-end .public, .top-end .top-link span, .top-end .api-link { display: none; }
+  .top-end .feedback-link span { display: inline; }
+  .feedback-link .icon { display: none; }
   .top-end { gap: 9px; }
   .search-button { border: 0; width: auto; padding: 0 2px; }
   .search-button span, .search-button kbd { display: none; }
@@ -389,4 +399,9 @@ dialog textarea { min-height: 200px; resize: vertical; font: .77rem/1.5 var(--mo
   .hunt-context { display: block; margin: 13px 4px; }
   .hunt-context > section { padding: 0 3px 6px; }
   .hunt-context > section:last-child { border: 0; padding: 8px 3px 0; }
+}
+@media (max-width: 370px) {
+  .top-end { gap: 7px; }
+  .top-end .feedback-link span { display: none; }
+  .feedback-link .icon { display: block; }
 }

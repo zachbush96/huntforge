@@ -1,0 +1,29 @@
+{
+  "aging_review": "2026-12-21",
+  "context": "Listed by Microsoft as an ARTEX server.",
+  "display": "91[.]92[.]240[.]238",
+  "evidence": [
+    {
+      "claim": "Microsoft reported Storm-3358 using ARTEX around financial-sector intrusions, including fast network probing, password abuse and infrastructure associated with remote access tooling.",
+      "location": "Behavioral signals and indicators sections",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-06",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/"
+    }
+  ],
+  "first_observed": null,
+  "id": "HF-IOC-4DAAE2BF2ABDF4",
+  "last_observed": null,
+  "original": "91.92.240[.]238",
+  "record_id": "HF-INT-631279C95E3417",
+  "release_id": "hf-20261124-0a608982ca9a",
+  "reported": "2026-11-06",
+  "revision": 1,
+  "schema_version": 1,
+  "source_expires": null,
+  "type": "ipv4",
+  "value": "91.92.240.238"
+}

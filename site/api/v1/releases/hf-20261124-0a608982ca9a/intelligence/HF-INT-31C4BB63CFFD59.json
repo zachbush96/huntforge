@@ -1,0 +1,44 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-124281",
+    "CVE-2026-125273",
+    "CVE-2026-96805"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Elecbrakes EB2, VM1, ELBC2000",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-19",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-323-02",
+      "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-323-02"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-31C4BB63CFFD59",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-19",
+  "related": [],
+  "release_id": "hf-20261124-0a608982ca9a",
+  "retrieved": "2026-11-25T03:40:23Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "fb73166f532458ad3bade860668435b95b43a84f96857d39934d3788e88a486a",
+  "source": "cisa-advisories",
+  "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-323-02",
+  "status": "active",
+  "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-124281, CVE-2026-125273, CVE-2026-96805.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Elecbrakes EB2, VM1, ELBC2000",
+  "updated": "2026-11-25T01:48:50Z"
+}

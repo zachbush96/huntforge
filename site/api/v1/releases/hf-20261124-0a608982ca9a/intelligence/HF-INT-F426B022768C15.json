@@ -1,0 +1,41 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Trained to betray: How post-training supply chain attacks hijack coding agents",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-12",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/12/trained-to-betray-how-post-training-supply-chain-attacks-hijack-coding-agents/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/12/trained-to-betray-how-post-training-supply-chain-attacks-hijack-coding-agents/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-F426B022768C15",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-12",
+  "related": [],
+  "release_id": "hf-20261124-0a608982ca9a",
+  "retrieved": "2026-11-25T03:40:23Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "f5fb8b10e63dc4dd7245c9ebee1fc31ae232573f4b75a20c6e2b1a10f120bf20",
+  "source": "microsoft",
+  "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/12/trained-to-betray-how-post-training-supply-chain-attacks-hijack-coding-agents/",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include supply chain, agentic ai.",
+  "tags": [
+    "Supply Chain",
+    "Agentic AI"
+  ],
+  "title": "Trained to betray: How post-training supply chain attacks hijack coding agents",
+  "updated": "2026-11-25T01:48:50Z"
+}

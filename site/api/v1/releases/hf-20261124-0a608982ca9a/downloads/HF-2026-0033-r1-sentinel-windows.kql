@@ -1,0 +1,5 @@
+WindowsEvent
+| where TimeGenerated > ago(3d)
+| where Channel == "Security" and EventID == 4887
+| project TimeGenerated, Computer, Requester = tostring(EventData.Requester), RequestId = tostring(EventData.RequestId), Attributes = tostring(EventData.Attributes)
+| order by TimeGenerated desc

@@ -1,0 +1,5 @@
+EmailUrlInfo
+| where TimeGenerated > ago(14d)
+| where UrlDomain in~ ("reallifeaccounting.com", "outagefixed.sbs", "outagerestored.sbs")
+| project TimeGenerated, NetworkMessageId, UrlDomain, Url, UrlLocation
+| order by TimeGenerated desc

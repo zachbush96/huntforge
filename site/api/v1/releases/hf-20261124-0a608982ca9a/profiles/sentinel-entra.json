@@ -1,0 +1,77 @@
+{
+  "assumptions": "Stream the relevant Entra diagnostic categories to the workspace: interactive user sign-ins, service principal sign-ins, or directory audit logs.",
+  "id": "sentinel-entra",
+  "name": "Sentinel · Entra ID",
+  "release_id": "hf-20261124-0a608982ca9a",
+  "revision": 2,
+  "schema_version": 1,
+  "short": "Sentinel Entra",
+  "source": "Microsoft Entra ID diagnostic logs",
+  "synthetic": false,
+  "tables": {
+    "AADServicePrincipalSignInLogs": {
+      "capability": "service-principal",
+      "columns": {
+        "AppId": "string",
+        "IPAddress": "string",
+        "ResourceDisplayName": "string",
+        "ResultType": "string",
+        "ServicePrincipalId": "string",
+        "ServicePrincipalName": "string",
+        "TimeGenerated": "datetime"
+      },
+      "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/aadserviceprincipalsigninlogs",
+      "mappings": {
+        "Outcome": "ResultType",
+        "Principal ID": "ServicePrincipalId",
+        "Resource": "ResourceDisplayName",
+        "Source IP": "IPAddress",
+        "Timestamp": "TimeGenerated",
+        "User": "ServicePrincipalName"
+      },
+      "semantics": "TimeGenerated is the documented event time field for this profile.",
+      "timestamp": "TimeGenerated"
+    },
+    "AuditLogs": {
+      "capability": "directory-audit",
+      "columns": {
+        "ActivityDisplayName": "string",
+        "Category": "string",
+        "CorrelationId": "string",
+        "InitiatedBy": "dynamic",
+        "OperationName": "string",
+        "Result": "string",
+        "TargetResources": "dynamic",
+        "TimeGenerated": "datetime"
+      },
+      "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/auditlogs",
+      "mappings": {
+        "Timestamp": "TimeGenerated"
+      },
+      "semantics": "TimeGenerated is the timestamp exposed by the workspace table.",
+      "timestamp": "TimeGenerated"
+    },
+    "SigninLogs": {
+      "capability": "identity",
+      "columns": {
+        "AppDisplayName": "string",
+        "AppId": "string",
+        "AuthenticationProtocol": "string",
+        "ConditionalAccessStatus": "string",
+        "IPAddress": "string",
+        "Location": "string",
+        "ResultType": "string",
+        "RiskLevelDuringSignIn": "string",
+        "TimeGenerated": "datetime",
+        "UserPrincipalName": "string"
+      },
+      "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/signinlogs",
+      "mappings": {
+        "Timestamp": "TimeGenerated"
+      },
+      "semantics": "TimeGenerated is the timestamp exposed by the workspace table.",
+      "timestamp": "TimeGenerated"
+    }
+  },
+  "target": "Microsoft Sentinel Logs"
+}

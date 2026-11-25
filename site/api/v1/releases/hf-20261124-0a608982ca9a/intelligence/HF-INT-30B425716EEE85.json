@@ -1,0 +1,55 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-132165"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "The Drupal Security Team received a report of live exploitation starting November 19. The team identifies settings.php writability by the web server as a condition for some exploitation paths. The hunt infers a file-write signal from this condition.",
+      "location": "Description and exploitation update",
+      "modified": null,
+      "observation_date": "2026-11-19",
+      "published": "2026-11-18",
+      "source": "drupal",
+      "source_id": "https://www.drupal.org/sa-core-2026-017",
+      "url": "https://www.drupal.org/sa-core-2026-017"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T03:12:33Z",
+  "hunts": [
+    "HF-2026-0036"
+  ],
+  "id": "HF-INT-30B425716EEE85",
+  "in_window": true,
+  "indicators": [],
+  "kind": "Research",
+  "published": "2026-11-18",
+  "related": [
+    "HF-INT-165729C3CBFBB2",
+    "HF-INT-F309498FDB4201"
+  ],
+  "release_id": "hf-20261124-0a608982ca9a",
+  "retrieved": "2026-11-25T03:12:33Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "d4657db01bddecf6749750851a6483e0ca1aa479fa583ecede103df0cdd0c11f",
+  "software": [
+    "Drupal Core"
+  ],
+  "source": "drupal",
+  "source_id": "https://www.drupal.org/sa-core-2026-017",
+  "status": "active",
+  "summary": "The Drupal Security Team received a report of live exploitation starting November 19. The team identifies settings.php writability by the web server as a condition for some exploitation paths. The hunt infers a file-write signal from this condition.",
+  "tags": [
+    "Exploitation",
+    "Web Applications"
+  ],
+  "techniques": [
+    "T1190"
+  ],
+  "title": "Drupal core installer remote code execution advisory SA-CORE-2026-017",
+  "updated": "2026-11-25T03:12:33Z"
+}

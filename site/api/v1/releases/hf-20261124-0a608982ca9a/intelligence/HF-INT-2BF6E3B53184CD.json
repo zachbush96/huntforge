@@ -1,0 +1,50 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2024-10441",
+    "CVE-2026-40217",
+    "CVE-2026-90436",
+    "CVE-2026-90817"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "CISA Adds Four Known Exploited Vulnerabilities to Catalog",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-18",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/18/cisa-adds-four-known-exploited-vulnerabilities-catalog",
+      "url": "https://www.cisa.gov/news-events/alerts/2026/11/18/cisa-adds-four-known-exploited-vulnerabilities-catalog"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-2BF6E3B53184CD",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-18",
+  "related": [
+    "HF-INT-1B0EA03D6E0F5F",
+    "HF-INT-3D0466478FCBC3",
+    "HF-INT-43A108F4566E7E",
+    "HF-INT-C6D4CF5FA050A6"
+  ],
+  "release_id": "hf-20261124-0a608982ca9a",
+  "retrieved": "2026-11-25T03:40:23Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "714ca1aa6100bc4ffbda962dadc7643a0658d1230a0a08e25585e26d8056dd55",
+  "source": "cisa-advisories",
+  "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/18/cisa-adds-four-known-exploited-vulnerabilities-catalog",
+  "status": "active",
+  "summary": "Publisher security advisory. Topics include exploitation. References CVE-2024-10441, CVE-2026-40217, CVE-2026-90436, CVE-2026-90817.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "CISA Adds Four Known Exploited Vulnerabilities to Catalog",
+  "updated": "2026-11-25T01:48:50Z"
+}

@@ -1,0 +1,29 @@
+{
+  "aging_review": "2026-12-20",
+  "context": "IP observed in successful service principal sign-ins across multiple applications.",
+  "display": "199[.]19[.]77[.]84",
+  "evidence": [
+    {
+      "claim": "Microsoft observed ARTEX-associated use of exposed cloud credentials, service-principal sign-ins from a reported IP, rapid cloud discovery and attempted access to Azure Key Vault and other resources.",
+      "location": "Credential abuse via Entra ID and indicators sections",
+      "modified": null,
+      "observation_date": "2026-10-28",
+      "published": "2026-11-05",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/"
+    }
+  ],
+  "first_observed": "2026-10-28",
+  "id": "HF-IOC-334489FDDAC4E4",
+  "last_observed": null,
+  "original": "199.19.77[.]84",
+  "record_id": "HF-INT-4B6ABBDBB70347",
+  "release_id": "hf-20261124-0a608982ca9a",
+  "reported": "2026-11-05",
+  "revision": 1,
+  "schema_version": 1,
+  "source_expires": null,
+  "type": "ipv4",
+  "value": "199.19.77.84"
+}

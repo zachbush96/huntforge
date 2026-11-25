@@ -1,0 +1,5 @@
+EmailEvents
+| where TimeGenerated > ago(14d)
+| where Subject matches regex @"(?i)^(?:\[external\]\s*|\*external\*\s*)?outage\s*[-–]\s*[a-z0-9]{6}$"
+| project TimeGenerated, Subject, SenderFromDomain, SenderFromAddress, RecipientEmailAddress, DeliveryAction, NetworkMessageId
+| order by TimeGenerated desc

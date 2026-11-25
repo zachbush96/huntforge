@@ -1,0 +1,122 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-124194"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-24",
+      "epss": "0.248940000",
+      "percentile": "0.979430000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.24894000",
+      "percentile": "0.97959000"
+    },
+    {
+      "date": "2026-11-22",
+      "epss": "0.01939000",
+      "percentile": "0.80659000"
+    },
+    {
+      "date": "2026-11-21",
+      "epss": "0.01939000",
+      "percentile": "0.80646000"
+    },
+    {
+      "date": "2026-11-20",
+      "epss": "0.01620000",
+      "percentile": "0.76668000"
+    },
+    {
+      "date": "2026-11-19",
+      "epss": "0.01620000",
+      "percentile": "0.76594000"
+    },
+    {
+      "date": "2026-11-18",
+      "epss": "0.01620000",
+      "percentile": "0.76562000"
+    },
+    {
+      "date": "2026-11-17",
+      "epss": "0.01620000",
+      "percentile": "0.76498000"
+    },
+    {
+      "date": "2026-11-16",
+      "epss": "0.01620000",
+      "percentile": "0.76477000"
+    },
+    {
+      "date": "2026-11-15",
+      "epss": "0.01620000",
+      "percentile": "0.76470000"
+    },
+    {
+      "date": "2026-11-14",
+      "epss": "0.01620000",
+      "percentile": "0.76470000"
+    },
+    {
+      "date": "2026-11-13",
+      "epss": "0.01620000",
+      "percentile": "0.76454000"
+    },
+    {
+      "date": "2026-11-12",
+      "epss": "0.01620000",
+      "percentile": "0.76419000"
+    },
+    {
+      "date": "2026-11-11",
+      "epss": "0.01620000",
+      "percentile": "0.76390000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-10",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-124194",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-124194"
+    }
+  ],
+  "exploitation_hunts": [
+    "HF-2026-0037"
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-319DE574E6A282",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "Office",
+  "published": "2026-11-10",
+  "ransomware_use": "unknown",
+  "related": [
+    "HF-INT-6532E5CD2531FA",
+    "HF-INT-F4B34728A6F8E3"
+  ],
+  "release_id": "hf-20261124-0a608982ca9a",
+  "remediation_due": "2026-11-24",
+  "retrieved": "2026-11-25T03:40:23Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "8541be567ea338e0c2bb3bb543e9ade2a1064028736f2bd0714633a3bf58abb6",
+  "source": "cisa-kev",
+  "source_id": "CVE-2026-124194",
+  "status": "active",
+  "summary": "CISA added CVE-2026-124194 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-24.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Microsoft Office Outlook Missing User Interaction for Potentially Unsafe Action Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "Microsoft"
+}

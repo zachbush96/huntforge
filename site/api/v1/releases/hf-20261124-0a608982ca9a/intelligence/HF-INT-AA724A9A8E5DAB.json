@@ -1,0 +1,38 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Artificial intelligence and cyber intrusion",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-03",
+      "source": "ncsc",
+      "source_id": "https://www.ncsc.gov.uk/report/artificial-intelligence-and-cyber-intrusion",
+      "url": "https://www.ncsc.gov.uk/report/artificial-intelligence-and-cyber-intrusion"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-AA724A9A8E5DAB",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-03",
+  "related": [],
+  "release_id": "hf-20261124-0a608982ca9a",
+  "retrieved": "2026-11-25T03:40:23Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "4fd0ea3ffef23299884fd8d9af2cf19db5c8f8319ae1ada7376ae2429fd979ce",
+  "source": "ncsc",
+  "source_id": "https://www.ncsc.gov.uk/report/artificial-intelligence-and-cyber-intrusion",
+  "status": "active",
+  "summary": "Publisher research and guidance.",
+  "tags": [],
+  "title": "Artificial intelligence and cyber intrusion",
+  "updated": "2026-11-25T01:48:50Z"
+}
