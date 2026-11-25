@@ -151,17 +151,17 @@ export function header(data, brief) {
   </header>`;
 }
 
-export function sidebar(state, data, brief) {
-  const {items} = data.changes;
+export function sidebar(state, data, brief, base = "") {
+  const items = data?.changes.items ?? [];
   const huntChanges = items.filter(row => row.type === "hunt");
   return `<aside class="sidebar"><nav aria-label="Main navigation">${links.map(([id, text, glyph, briefGlyph]) =>
-    `<a href="${route(id)}"${state.section === id ? ' aria-current="page"' : ""}>${icon(brief ? briefGlyph : glyph)}<span>${text}</span>
-    ${!brief && id === "brief" ? `<span class="menu-badge">${data.manifest.counts.in_window}</span>` : ""}</a>`).join("")}</nav><div class="side-rule"></div>
-    ${brief ? "" : `<div class="side-update"><strong>LATEST UPDATE</strong><time>${utc(data.manifest.created)}</time><dl>
+    `<a href="${base}${route(id)}"${state?.section === id ? ' aria-current="page"' : ""}>${icon(brief ? briefGlyph : glyph)}<span>${text}</span>
+    ${data && !brief && id === "brief" ? `<span class="menu-badge">${data.manifest.counts.in_window}</span>` : ""}</a>`).join("")}</nav><div class="side-rule"></div>
+    ${data && !brief ? `<div class="side-update"><strong>LATEST UPDATE</strong><time>${utc(data.manifest.created)}</time><dl>
       <dt>${link("New hunts",route("hunts",null,{change:"created"}))}</dt><dd>${huntChanges.filter(x => x.action === "created").length}</dd>
       <dt>${link("Updated",route("changelog",null,{change:"updated"}))}</dt><dd>${items.filter(x => x.action === "updated").length}</dd>
       <dt>${link("Retired",route("changelog",null,{change:"retired"}))}</dt><dd>${items.filter(x => x.action === "retired").length}</dd></dl>
-      <a href="#/changelog">View changelog&nbsp; →</a></div>`}
+      <a href="#/changelog">View changelog&nbsp; →</a></div>` : ""}
     <div class="side-art" aria-hidden="true"><i></i></div></aside>`;
 }
 

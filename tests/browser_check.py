@@ -76,7 +76,7 @@ def drilldowns(page, base):
     expect(page.get_by_label("Related hunt",exact=True)).to_have_value("HF-2026-0003")
     expect(page.locator(".catalog-card")).to_have_count(count)
     page.locator(".catalog-card .meta a").first.click()
-    assert page.get_by_label("Indicator type",exact=True).input_value()
+    expect(page.get_by_label("Indicator type",exact=True)).not_to_have_value("")
 
     page.goto(base+"#/techniques/T1059.001")
     expect(page.get_by_role("heading",name="PowerShell",exact=True)).to_be_visible()
@@ -84,7 +84,7 @@ def drilldowns(page, base):
     expect(page.get_by_label("Tactic",exact=True)).to_have_value("execution")
     page.goto(base+"#/adversaries")
     page.locator(".catalog-card .meta a").first.click()
-    assert page.get_by_label("Entity type",exact=True).input_value()
+    expect(page.get_by_label("Entity type",exact=True)).not_to_have_value("")
     page.goto(base+"#/research")
     page.locator(".finding h3 a").first.click()
     expect(page.get_by_text("HuntForge / Research",exact=True)).to_be_visible()
@@ -308,12 +308,63 @@ def defender_queries(page, base):
     assert "RemoteIP" in endpoint_query and "RemoteUrl" in endpoint_query
 
 
+def persistent_navigation(page, base):
+    page.set_viewport_size({"width": 1586, "height": 800})
+    nav = page.get_by_role("navigation", name="Main navigation")
+    main = page.get_by_role("main")
+    summary = page.get_by_role("complementary", name="Operational summary")
+
+    page.goto(base + "#/brief")
+    expect(summary).to_be_visible()
+    nav_top = nav.bounding_box()["y"]
+    summary_top = summary.bounding_box()["y"]
+    page.mouse.move(550, 430)
+    page.mouse.wheel(0, 160)
+    page.wait_for_function("document.querySelector('#main').scrollTop > 0")
+    assert nav.bounding_box()["y"] == nav_top
+    assert summary.bounding_box()["y"] == summary_top
+    assert page.evaluate("window.scrollY") == 0
+
+    page_size = page.get_by_label("Results per page", exact=True)
+    before = main.evaluate("element => element.scrollTop")
+    page_size.select_option("8")
+    position, limit = main.evaluate("element => [element.scrollTop, element.scrollHeight - element.clientHeight]")
+    assert position == min(before, limit)
+    page_size.select_option("4")
+    nav.get_by_role("link", name="Hunts", exact=True).click()
+    expect(page.get_by_role("heading", name="Hunts", exact=True)).to_be_visible()
+    pane = page.locator(".page-content")
+    assert pane.evaluate("element => element.scrollTop") == 0
+    nav_top = nav.bounding_box()["y"]
+    page.mouse.move(550, 430)
+    page.mouse.wheel(0, 350)
+    page.wait_for_function("document.querySelector('.page-content').scrollTop >= 100")
+    assert nav.bounding_box()["y"] == nav_top
+
+    page.set_viewport_size({"width": 390, "height": 600})
+    try:
+        page.goto(base + "#/brief")
+        expect(summary).to_be_visible()
+        nav_top = nav.bounding_box()["y"]
+        page.mouse.move(200, 350)
+        page.mouse.wheel(0, 400)
+        page.wait_for_function("document.querySelector('.page-content').scrollTop >= 100")
+        assert nav.bounding_box()["y"] == nav_top
+        summary.get_by_role("link").last.scroll_into_view_if_needed()
+        assert nav.bounding_box()["y"] == nav_top
+        assert page.evaluate("window.scrollY") == 0
+    finally:
+        page.set_viewport_size({"width": 1586, "height": 992})
+
+
 def feedback_entry(page, base, screenshots):
     page.goto(base + "#/changelog")
     feedback = page.get_by_role("link", name="Feedback", exact=True)
     expect(feedback).to_be_visible()
     feedback.click()
     expect(page).to_have_url(base + "feedback.html")
+    nav = page.get_by_role("navigation", name="Main navigation")
+    expect(nav.get_by_role("link", name="The Brief", exact=False)).to_have_attribute("href", "./#/brief")
     expect(page.get_by_role("heading", name="Feedback", exact=True)).to_be_visible()
     expect(page.get_by_role("heading", name="Where your feedback goes")).to_be_visible()
     form = page.get_by_role("link", name="Open feedback form on Google")
@@ -347,6 +398,7 @@ def check(base, channel, screenshots):
         sentinel_catalog(page,base)
         results_explanation(page,base)
         defender_queries(page,base)
+        persistent_navigation(page,base)
         feedback_entry(page,base,screenshots)
         page.goto(base)
         expect(page.get_by_role("heading", name="Daily Threat Brief")).to_be_visible()
