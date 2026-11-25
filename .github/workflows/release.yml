@@ -38,7 +38,6 @@ jobs:
           if git ls-remote --exit-code --heads origin refs/heads/codex/publications > /dev/null; then
             git fetch --no-tags origin refs/heads/codex/publications
             git worktree add --detach .archive/prior FETCH_HEAD
-            cp .archive/prior/data/catalog.json data/catalog.json
             cp .archive/prior/hunts/catalog.json hunts/catalog.json
             previous=$(jq -r .release_id .archive/prior/site/api/v1/latest.json)
             echo "previous=$previous" >> "$GITHUB_OUTPUT"
@@ -46,7 +45,7 @@ jobs:
             previous=
           fi
           if [[ -n "$previous" ]]; then
-            python -m pipeline.collect
+            python -m pipeline.collect --previous-catalog .archive/prior/data/catalog.json
           else
             python -m pipeline.collect --initial-release
           fi

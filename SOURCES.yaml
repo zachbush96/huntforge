@@ -68,19 +68,115 @@ sources:
     access: Public GitHub STIX and license. One request each.
     rights: Reproduce original MITRE license and attribution alongside the index.
     coverage: Current Enterprise reference snapshot.
-evaluated_inactive:
+  - id: cert-fr
+    status: active
+    trust: government advisory
+    publisher: https://cert.cyber.gouv.fr/flux-rss/
+    endpoint: https://cert.cyber.gouv.fr/avis/feed/
+    adapter: pipeline.sources.advisory
+    dates: RSS pubDate, retained independently of retrieval and later site edits.
+    access: Public single-page security advisories feed. No advisory pages fetched by the collector.
+    rights: Attribute reference number, original French title and publication date. Write original summaries and link to the bulletin.
+    coverage: French security advisories visible in the publisher buffer. Partial when the oldest entry postdates the window start.
+  - id: unit-42
+    status: active
+    trust: primary vendor research
+    publisher: https://unit42.paloaltonetworks.com/unit-42-all-articles/
+    endpoint: https://unit42.paloaltonetworks.com/category/threat-research/feed/
+    adapter: pipeline.sources.advisory
+    dates: RSS pubDate
+    access: Public single-page RSS scoped to the Threat Research category.
+    rights: Attribution, source links and independently written summaries. No publisher excerpts, images or full posts.
+    coverage: Threat Research entries available in the feed buffer.
+  - id: cisco-talos
+    status: active
+    trust: primary vendor advisory and research
+    publisher: https://blog.talosintelligence.com/category/threat-advisory/
+    endpoint: https://blog.talosintelligence.com/category/threat-advisory/rss/
+    supplemental_endpoints:
+      - https://blog.talosintelligence.com/rss/
+      - https://blog.talosintelligence.com/category/threat-spotlight/rss/
+    adapter: pipeline.sources.advisory
+    dates: RSS pubDate
+    access: One public RSS page from each endpoint. Merge by publisher GUID.
+    rights: Attribution, source links and independently written summaries. No publisher excerpts, images or full posts.
+    coverage: Published Threat Advisories, Threat Spotlights and selected threat research, patch coverage and incident response reporting.
   - id: fbi-flash
+    status: active
+    trust: government advisory
     publisher: https://www.ic3.gov/CSA
-    reason: Direct ingestion deferred. CISA joint advisories are covered by the CISA adapter.
+    endpoint: https://www.ic3.gov/CSA/rss
+    adapter: pipeline.sources.advisory
+    dates: RSS pubDate, using the publisher's local date.
+    access: Public Industry Alerts RSS. One page. No attachment downloads.
+    rights: Attribute and link to the original notice. Publish title, date and independently written summaries.
+    coverage: FBI FLASH notices and other alerts visible in the IC3 Industry Alerts feed.
+  - id: google-threat-intelligence
+    status: active
+    trust: primary vendor research
+    publisher: https://cloud.google.com/blog/topics/threat-intelligence
+    endpoint: https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v
+    adapter: pipeline.sources.advisory
+    dates: RSS pubDate
+    access: Public single-page RSS advertised on the Google Cloud threat intelligence blog. Evidence links must point to Google's threat intelligence blog.
+    rights: Attribute title and date, link to the article, and publish independently written summaries.
+    coverage: Public Google Threat Intelligence Group and Mandiant publications in the feed buffer.
+  - id: securelist
+    status: active
+    trust: primary vendor research
+    publisher: https://securelist.com/
+    endpoint: https://securelist.com/feed/
+    supplemental_endpoints:
+      - https://securelist.com/feed/?paged=2
+      - https://securelist.com/feed/?paged=3
+    adapter: pipeline.sources.advisory
+    dates: RSS pubDate
+    access: Public RSS. Up to three fixed pages, stopping after reaching the window start.
+    rights: Attribute title and date to Securelist and link to the article. No article excerpts or imagery.
+    coverage: Public malware, vulnerability, threat statistics and campaign research in the feed pages.
+  - id: dfir-report
+    status: active
+    trust: primary incident research
+    publisher: https://thedfirreport.com/
+    endpoint: https://thedfirreport.com/feed/
+    adapter: pipeline.sources.advisory
+    dates: RSS pubDate
+    access: Public single-page RSS. The subscribed threat feed and lab resources are excluded.
+    rights: Attribute titles, dates and source links. Do not copy article text, subscriber indicators or lab telemetry.
+    coverage: Public intrusion reports in the publisher buffer. Keep older visible reports as historical research and count them separately from the daily window.
+  - id: shadowserver
+    status: active
+    trust: primary nonprofit research
+    publisher: https://www.shadowserver.org/news-insights/
+    endpoint: https://www.shadowserver.org/news-insights/
+    adapter: pipeline.sources.shadowserver
+    dates: Publication date on the public listing.
+    access: One public News & Insights listing page. No member reports, data downloads or dashboard queries.
+    rights: Attribute and link to public publications. Exclude restricted report content and raw scan data.
+    coverage: Public threat, exposure and remediation publications on the latest listing.
+  - id: greynoise
+    status: active
+    trust: primary vendor research
+    publisher: https://docs.greynoise.io/reference/getpublicrssfeed
+    endpoint: https://api.greynoise.io/v3/articles/rss
+    adapter: pipeline.sources.advisory
+    dates: RSS pubDate
+    access: Unauthenticated public Community Threat Briefs RSS. One page.
+    rights: Attribute publication metadata and link to each article. Exclude private feeds and raw scan observations.
+    coverage: Community threat briefs visible in the public feed buffer.
+evaluated_inactive:
   - id: threatfox
     publisher: https://threatfox.abuse.ch/api/
-    reason: Auth-Key required for the community API. Historical and redistribution scope pending.
+    reason: The official IOC API and exports require an Auth-Key. Review historical scope, expiry semantics and public redistribution before enabling.
   - id: urlhaus
     publisher: https://urlhaus.abuse.ch/api/
-    reason: Auth-Key and feed reuse terms need review. Never retrieve URLs listed as indicators.
+    reason: The official URL feed requires an Auth-Key. Review public redistribution. Never retrieve URLs listed as indicators.
   - id: malwarebazaar
     publisher: https://bazaar.abuse.ch/api/
-    reason: Auth-Key and metadata reuse terms need review. Samples are excluded.
+    reason: The official metadata API requires an Auth-Key. Review hash and metadata redistribution. Samples are excluded.
+  - id: alienvault-otx
+    publisher: https://otx.alienvault.com/api
+    reason: The documented DirectConnect subscription feed requires an OTX key. Review community verification and contributor reuse rights before public ingestion.
   - id: microsoft-sentinel-repository
     publisher: https://github.com/Azure/Azure-Sentinel
     reason: Use Microsoft documentation for table semantics. Source-code imports require individual review.

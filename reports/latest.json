@@ -1,6 +1,6 @@
 {
   "accepted": 44,
-  "changes": 30,
+  "changes": 110,
   "engine": {
     "calls": 0,
     "cost_usd": 0,
@@ -10,7 +10,7 @@
     "tokens": 0,
     "type": "deterministic reviewed rules"
   },
-  "finished": "2026-11-25T03:09:55Z",
+  "finished": "2026-11-25T16:25:18Z",
   "quarantined": [],
   "schema_version": 1,
   "sources": [
@@ -20,7 +20,7 @@
       "first_available": "2021-11-03",
       "id": "cisa-kev",
       "name": "CISA KEV",
-      "retrieved": "2026-11-25T03:09:52Z",
+      "retrieved": "2026-11-25T16:25:14Z",
       "snapshot": "2026-11-24T17:47:46.199Z",
       "state": "live"
     },
@@ -28,12 +28,12 @@
       "count": 38,
       "coverage": "full",
       "coverage_note": "Scoped to 38 CVEs with available KEV-linked scores.",
-      "first_available": "2026-10-25",
+      "first_available": "2026-10-26",
       "id": "first-epss",
       "name": "FIRST EPSS",
-      "retrieved": "2026-11-25T03:09:52Z",
+      "retrieved": "2026-11-25T16:25:14Z",
       "score_days": 31,
-      "snapshot": "2026-11-24",
+      "snapshot": "2026-11-25",
       "state": "live"
     },
     {
@@ -43,7 +43,7 @@
       "first_available": "2026-10-23",
       "id": "cisa-advisories",
       "name": "CISA Advisories",
-      "retrieved": "2026-11-25T03:09:52Z",
+      "retrieved": "2026-11-25T16:25:14Z",
       "state": "live"
     },
     {
@@ -53,7 +53,7 @@
       "first_available": "2026-10-07",
       "id": "microsoft",
       "name": "Microsoft Security",
-      "retrieved": "2026-11-25T03:09:52Z",
+      "retrieved": "2026-11-25T16:25:14Z",
       "state": "live"
     },
     {
@@ -63,7 +63,98 @@
       "first_available": "2026-09-15",
       "id": "ncsc",
       "name": "UK NCSC",
-      "retrieved": "2026-11-25T03:09:52Z",
+      "retrieved": "2026-11-25T16:25:14Z",
+      "state": "live"
+    },
+    {
+      "count": 40,
+      "coverage": "partial",
+      "coverage_note": "Coverage reflects available publisher feed entries.",
+      "first_available": "2026-11-17",
+      "id": "cert-fr",
+      "name": "CERT-FR",
+      "retrieved": "2026-11-25T16:25:14Z",
+      "state": "live"
+    },
+    {
+      "count": 6,
+      "coverage": "full",
+      "coverage_note": "Coverage reflects available publisher feed entries.",
+      "first_available": "2026-09-10",
+      "id": "unit-42",
+      "name": "Unit 42",
+      "retrieved": "2026-11-25T16:25:14Z",
+      "state": "live"
+    },
+    {
+      "count": 10,
+      "coverage": "partial",
+      "coverage_note": "Coverage reflects available publisher feed entries. Includes Threat Advisories, Threat Spotlights and security research from the main Talos feed.",
+      "first_available": "2025-08-20",
+      "id": "cisco-talos",
+      "name": "Cisco Talos",
+      "retrieved": "2026-11-25T16:25:14Z",
+      "state": "live"
+    },
+    {
+      "count": 4,
+      "coverage": "full",
+      "coverage_note": "Coverage reflects available publisher feed entries.",
+      "first_available": "2026-10-20",
+      "id": "fbi-flash",
+      "name": "FBI FLASH / IC3",
+      "retrieved": "2026-11-25T16:25:14Z",
+      "state": "live"
+    },
+    {
+      "count": 6,
+      "coverage": "full",
+      "coverage_note": "Coverage reflects available publisher feed entries.",
+      "first_available": "2026-07-16",
+      "id": "google-threat-intelligence",
+      "name": "Google Threat Intelligence",
+      "retrieved": "2026-11-25T16:25:14Z",
+      "state": "live"
+    },
+    {
+      "count": 20,
+      "coverage": "full",
+      "coverage_note": "Coverage reflects available publisher feed entries.",
+      "first_available": "2026-10-26",
+      "id": "securelist",
+      "name": "Securelist",
+      "retrieved": "2026-11-25T16:25:14Z",
+      "state": "live"
+    },
+    {
+      "count": 0,
+      "coverage": "full",
+      "coverage_note": "Coverage reflects available publisher feed entries. Older reports in the feed are retained as historical research.",
+      "first_available": "2025-07-14",
+      "historical_count": 10,
+      "id": "dfir-report",
+      "name": "The DFIR Report",
+      "retrieved": "2026-11-25T16:25:14Z",
+      "state": "live"
+    },
+    {
+      "count": 2,
+      "coverage": "full",
+      "coverage_note": "Coverage reflects threat and exposure publications on the public News & Insights listing.",
+      "first_available": "2025-11-13",
+      "id": "shadowserver",
+      "name": "Shadowserver",
+      "retrieved": "2026-11-25T16:25:14Z",
+      "state": "live"
+    },
+    {
+      "count": 4,
+      "coverage": "full",
+      "coverage_note": "Coverage reflects available publisher feed entries.",
+      "first_available": "2026-01-26",
+      "id": "greynoise",
+      "name": "GreyNoise",
+      "retrieved": "2026-11-25T16:25:14Z",
       "state": "live"
     },
     {
@@ -72,15 +163,15 @@
       "coverage_note": "Current Enterprise snapshot.",
       "id": "mitre",
       "name": "MITRE ATT&CK®",
-      "retrieved": "2026-11-25T03:09:52Z",
+      "retrieved": "2026-11-25T16:25:14Z",
       "snapshot": "2026-11-05T15:11:27.678Z",
       "state": "live"
     }
   ],
-  "started": "2026-11-25T03:09:52Z",
+  "started": "2026-11-25T16:25:14Z",
   "status": "passed",
   "window": {
-    "from": "2026-10-25",
-    "through": "2026-11-24"
+    "from": "2026-10-26",
+    "through": "2026-11-25"
   }
 }

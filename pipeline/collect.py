@@ -3,31 +3,39 @@
 import argparse
 from concurrent.futures import ThreadPoolExecutor
 from datetime import date, datetime, timedelta
+from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from .queries import add_technique_pivots, generate_hunts, reviewed
-from .sources import ROOT, advisory, attack, canonical, digest, epss, kev, read_json, utc_now, write_json
+from .sources import ADVISORY_FEEDS, ROOT, advisory, attack, canonical, digest, epss, kev, read_json, shadowserver, utc_now, write_json
 
 CATALOG = ROOT / "data/catalog.json"
 HUNTS = ROOT / "hunts/catalog.json"
 PROFILE_CATALOG = ROOT / "profiles/catalog.json"
 REPORT = ROOT / "reports/latest.json"
 SOURCE_NAMES = {"cisa-kev": "CISA KEV", "first-epss": "FIRST EPSS", "cisa-advisories": "CISA Advisories",
-                "microsoft": "Microsoft Security", "ncsc": "UK NCSC", "mitre": "MITRE ATT&CK®"}
+                "microsoft": "Microsoft Security", "ncsc": "UK NCSC", "cert-fr": "CERT-FR", "unit-42": "Unit 42",
+                "cisco-talos": "Cisco Talos", "fbi-flash": "FBI FLASH / IC3",
+                "google-threat-intelligence": "Google Threat Intelligence", "securelist": "Securelist",
+                "dfir-report": "The DFIR Report", "shadowserver": "Shadowserver", "greynoise": "GreyNoise",
+                "mitre": "MITRE ATT&CK®"}
 
 
-def collection(start, end, previous, stamp):
+def collection(start, end, previous, stamp, seed=None):
     status = {}
     earliest = start.isoformat()
     record_inputs = {}
+    seed = seed or {}
     old = {item["id"]: item for item in previous.get("records", [])}
-    old_sources = {item["id"]: item for item in previous.get("sources", [])}
+    seeded = {item["id"]: item for item in seed.get("records", []) if item["published"] <= end.isoformat()}
+    retained = {**seeded, **old}
+    old_sources = {item["id"]: item for catalog in (seed, previous) for item in catalog.get("sources", [])}
 
     def obtain(source, future, fallback):
         try:
             data, details = future.result()
             count = len(data["items"]) if source == "mitre" else len(data)
-            if source == "cisa-kev":
+            if source in {"cisa-kev", "dfir-report"}:
                 count = sum(item["in_window"] for item in data)
             status[source] = {"id": source, "name": SOURCE_NAMES[source], "state": "live", "retrieved": stamp,
                               "count": count, **details}
@@ -40,41 +48,43 @@ def collection(start, end, previous, stamp):
             return fallback
 
     with ThreadPoolExecutor(max_workers=5) as pool:
-        jobs = {source: pool.submit(advisory, source, start, end) for source in ("cisa-advisories", "microsoft", "ncsc")}
-        jobs["cisa-kev"] = pool.submit(kev, start, end)
-        jobs["mitre"] = pool.submit(attack)
-        record_inputs["cisa-kev"] = obtain("cisa-kev", jobs["cisa-kev"], [x for x in old.values() if x["source"] == "cisa-kev"])
+        kev_job = pool.submit(kev, start, end)
+        attack_job = pool.submit(attack)
+        jobs = {source: pool.submit(advisory, source, start, end) for source in ADVISORY_FEEDS}
+        jobs["shadowserver"] = pool.submit(shadowserver, start, end)
+        record_inputs["cisa-kev"] = obtain("cisa-kev", kev_job, [x for x in retained.values() if x["source"] == "cisa-kev"])
         cves = sorted({cve for row in record_inputs["cisa-kev"] if earliest <= row["published"] <= end.isoformat() for cve in row["cves"]})
         score_job = pool.submit(epss, start, end, cves)
-        for source in ("cisa-advisories", "microsoft", "ncsc"):
-            record_inputs[source] = obtain(source, jobs[source], [x for x in old.values() if x["source"] == source])
-        references = obtain("mitre", jobs["mitre"], previous.get("reference", {"items": []}) if previous else {})
+        for source, job in jobs.items():
+            record_inputs[source] = obtain(source, job, [x for x in retained.values() if x["source"] == source])
+        references = obtain("mitre", attack_job, previous.get("reference", {"items": []}) if previous else {})
         scores = obtain("first-epss", score_job, previous.get("epss", {}))
     if not any(status[key]["state"] == "live" for key in record_inputs):
         raise RuntimeError("No live intelligence source succeeded. Retaining the previous release.")
     curated, indicators, reviewed_ids = reviewed()
-    records = dict(old)
+    records = dict(retained)
+    retrieved_ids = set()
     for source, inputs in record_inputs.items():
         for row in inputs:
-            if row["published"] >= earliest or row["id"] in old:
+            if row["published"] >= earliest or row["id"] in old or source == "dfir-report":
                 records[row["id"]] = row
+                if status[source]["state"] == "live":
+                    retrieved_ids.add(row["id"])
     for row in curated:
         records[row["id"]] = row
+        if row["id"] not in retained:
+            retrieved_ids.add(row["id"])
     released = []
     changes = []
     volatile = {"in_window", "revision", "signature", "updated", "retrieved", "first_retrieved"}
     for identifier, row in sorted(records.items()):
         prior = old.get(identifier, {})
+        provenance = prior or seeded.get(identifier, {})
         signature = digest(canonical({k: v for k, v in row.items() if k not in volatile}))
         changed = prior.get("signature") != signature
-        feed = status.get(row["source"], {})
-        retrieved = feed.get("retrieved")
-        if row["id"] in reviewed_ids.values() and not prior:
-            retrieved = stamp
-        if feed.get("state") != "live":
-            retrieved = prior.get("retrieved", retrieved)
+        retrieved = stamp if identifier in retrieved_ids else provenance.get("retrieved")
         row = {**row, "signature": signature, "revision": prior.get("revision", 0) + changed,
-               "first_retrieved": prior.get("first_retrieved", retrieved), "retrieved": retrieved,
+               "first_retrieved": provenance.get("first_retrieved", retrieved), "retrieved": retrieved,
                "updated": stamp if changed else prior.get("updated"), "in_window": earliest <= row["published"] <= end.isoformat()}
         if changed:
             changes.append({"id": identifier, "type": "intelligence", "action": "updated" if prior else "created",
@@ -99,12 +109,15 @@ def material_changes(hunts, previous):
     return changes
 
 
-def update(as_of, initial_release=False):
+def update(as_of, initial_release=False, previous_catalog=None):
     started = utc_now()
-    previous = read_json(CATALOG, {})
+    seed = read_json(CATALOG, {})
+    previous = read_json(previous_catalog) if previous_catalog else seed
+    if previous_catalog and (not isinstance(previous, dict) or "records" not in previous):
+        raise ValueError("Previous publication catalog is missing or invalid. Retaining the previous release.")
     prior_hunts = read_json(HUNTS, [])
     start = as_of - timedelta(days=30)
-    catalog, changes, reviewed_ids = collection(start, as_of, previous, started)
+    catalog, changes, reviewed_ids = collection(start, as_of, previous, started, seed if previous_catalog else None)
     profiles = read_json(PROFILE_CATALOG)
     add_technique_pivots(catalog["reference"]["items"], profiles)
     hunts, rejected = generate_hunts(catalog["records"], catalog["indicators"], reviewed_ids, profiles,
@@ -148,9 +161,10 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--as-of", type=date.fromisoformat)
     parser.add_argument("--initial-release", action="store_true")
+    parser.add_argument("--previous-catalog", type=Path)
     args = parser.parse_args()
     day = args.as_of or datetime.now(ZoneInfo("America/New_York")).date()
-    update(day, args.initial_release)
+    update(day, args.initial_release, args.previous_catalog)
 
 
 if __name__ == "__main__":
