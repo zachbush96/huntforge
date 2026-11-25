@@ -1,0 +1,111 @@
+{
+  "actors": [],
+  "confidence": "Publisher-observed indicators",
+  "considerations": [
+    "The distribution domains are dual-use. Verify whether the download was approved.",
+    "Review process, file and persistence events following the network activity."
+  ],
+  "description": "Review process-attributed connections to published GSocket distribution domains.",
+  "evidence": [
+    {
+      "claim": "Microsoft observed GSocket tooling on compromised Linux servers, including renamed relay binaries, cron persistence and connections to GSocket distribution infrastructure.",
+      "location": "Advanced hunting queries and indicators sections",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-11",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/"
+    }
+  ],
+  "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+  "history": [
+    {
+      "change": "Created",
+      "date": "2026-11-25T02:32:19Z",
+      "revision": 1,
+      "summary": "Created evidence-backed hunt and validated all supported variants."
+    },
+    {
+      "change": "Updated",
+      "date": "2026-11-25T03:12:33Z",
+      "revision": 2,
+      "summary": "Revalidated after changes to variants."
+    }
+  ],
+  "hypothesis": "Review process-attributed connections to published GSocket distribution domains.",
+  "id": "HF-2026-0028",
+  "indicator_ids": [
+    "HF-IOC-93EEECFDCFE129",
+    "HF-IOC-69DD14AE2022D2"
+  ],
+  "lookback": 14,
+  "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+  "primary_table": "DeviceNetworkEvents",
+  "profiles": [
+    "sentinel-endpoint"
+  ],
+  "published": "2026-11-25T02:32:19Z",
+  "release_id": "hf-20261124-246c73630c26",
+  "research": "gsocket",
+  "revision": 2,
+  "schema_version": 1,
+  "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+  "signature": "2be39d7448bcceaec8970da479c062f2e96571542493f20fcd82cf6e746f1921",
+  "source_ids": [
+    "HF-INT-F3F53EF63DF395"
+  ],
+  "source_published": "2026-11-11",
+  "status": "partially_validated",
+  "tactic": "Command and Control",
+  "tags": [
+    "APT Activity",
+    "Exploitation"
+  ],
+  "technique": "T1105",
+  "title": "GSocket Distribution Endpoint Connections",
+  "updated": "2026-11-25T03:12:33Z",
+  "validation": {
+    "date": "2026-11-25T03:12:33Z",
+    "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+    "variants_checked": 10
+  },
+  "variants": {
+    "sentinel-endpoint": {
+      "profile_revision": 2,
+      "queries": {
+        "1": {
+          "json": "DeviceNetworkEvents\n| where TimeGenerated > ago(1d)\n| extend DestinationHost = tolower(iff(RemoteUrl contains \"://\", tostring(parse_url(RemoteUrl).Host), RemoteUrl))\n| where DestinationHost in (\"gsocket.io\", \"gsgg.b-cdn.net\")\n| project TimeGenerated, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine, DestinationHost, RemoteIP, ActionType\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceNetworkEvents\n| where TimeGenerated > ago(1d)\n| extend DestinationHost = tolower(iff(RemoteUrl contains \"://\", tostring(parse_url(RemoteUrl).Host), RemoteUrl))\n| where DestinationHost in (\"gsocket.io\", \"gsgg.b-cdn.net\")\n| project TimeGenerated, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine, DestinationHost, RemoteIP, ActionType\n| order by TimeGenerated desc\n"
+        },
+        "14": {
+          "json": "DeviceNetworkEvents\n| where TimeGenerated > ago(14d)\n| extend DestinationHost = tolower(iff(RemoteUrl contains \"://\", tostring(parse_url(RemoteUrl).Host), RemoteUrl))\n| where DestinationHost in (\"gsocket.io\", \"gsgg.b-cdn.net\")\n| project TimeGenerated, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine, DestinationHost, RemoteIP, ActionType\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceNetworkEvents\n| where TimeGenerated > ago(14d)\n| extend DestinationHost = tolower(iff(RemoteUrl contains \"://\", tostring(parse_url(RemoteUrl).Host), RemoteUrl))\n| where DestinationHost in (\"gsocket.io\", \"gsgg.b-cdn.net\")\n| project TimeGenerated, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine, DestinationHost, RemoteIP, ActionType\n| order by TimeGenerated desc\n"
+        },
+        "3": {
+          "json": "DeviceNetworkEvents\n| where TimeGenerated > ago(3d)\n| extend DestinationHost = tolower(iff(RemoteUrl contains \"://\", tostring(parse_url(RemoteUrl).Host), RemoteUrl))\n| where DestinationHost in (\"gsocket.io\", \"gsgg.b-cdn.net\")\n| project TimeGenerated, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine, DestinationHost, RemoteIP, ActionType\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceNetworkEvents\n| where TimeGenerated > ago(3d)\n| extend DestinationHost = tolower(iff(RemoteUrl contains \"://\", tostring(parse_url(RemoteUrl).Host), RemoteUrl))\n| where DestinationHost in (\"gsocket.io\", \"gsgg.b-cdn.net\")\n| project TimeGenerated, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine, DestinationHost, RemoteIP, ActionType\n| order by TimeGenerated desc\n"
+        },
+        "30": {
+          "json": "DeviceNetworkEvents\n| where TimeGenerated > ago(30d)\n| extend DestinationHost = tolower(iff(RemoteUrl contains \"://\", tostring(parse_url(RemoteUrl).Host), RemoteUrl))\n| where DestinationHost in (\"gsocket.io\", \"gsgg.b-cdn.net\")\n| project TimeGenerated, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine, DestinationHost, RemoteIP, ActionType\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceNetworkEvents\n| where TimeGenerated > ago(30d)\n| extend DestinationHost = tolower(iff(RemoteUrl contains \"://\", tostring(parse_url(RemoteUrl).Host), RemoteUrl))\n| where DestinationHost in (\"gsocket.io\", \"gsgg.b-cdn.net\")\n| project TimeGenerated, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine, DestinationHost, RemoteIP, ActionType\n| order by TimeGenerated desc\n"
+        },
+        "7": {
+          "json": "DeviceNetworkEvents\n| where TimeGenerated > ago(7d)\n| extend DestinationHost = tolower(iff(RemoteUrl contains \"://\", tostring(parse_url(RemoteUrl).Host), RemoteUrl))\n| where DestinationHost in (\"gsocket.io\", \"gsgg.b-cdn.net\")\n| project TimeGenerated, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine, DestinationHost, RemoteIP, ActionType\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceNetworkEvents\n| where TimeGenerated > ago(7d)\n| extend DestinationHost = tolower(iff(RemoteUrl contains \"://\", tostring(parse_url(RemoteUrl).Host), RemoteUrl))\n| where DestinationHost in (\"gsocket.io\", \"gsgg.b-cdn.net\")\n| project TimeGenerated, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine, DestinationHost, RemoteIP, ActionType\n| order by TimeGenerated desc\n"
+        }
+      },
+      "table": "DeviceNetworkEvents",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    }
+  }
+}

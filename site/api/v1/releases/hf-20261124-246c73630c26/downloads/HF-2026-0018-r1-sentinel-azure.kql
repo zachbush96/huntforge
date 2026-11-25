@@ -1,0 +1,8 @@
+MicrosoftGraphActivityLogs
+| where TimeGenerated > ago(30d)
+| where AppId in ("506e08f9-6e9a-4da4-942b-a099a03644ae", "24205314-2b89-4e07-a2a4-579e898a5640", "0de14c77-b9b0-4137-9360-34878a929827")
+| where RequestMethod == "GET" and ResponseStatusCode between (200 .. 299)
+| where tostring(parse_url(RequestUri).Path) has_any ("messages", "mailFolders")
+| extend ReportedSource = IPAddress in ("144.172.64.99", "144.172.64.60", "144.172.64.128")
+| project TimeGenerated, IPAddress, AppId, ServicePrincipalId, RequestMethod, RequestUri, ResponseStatusCode, ReportedSource, ResponseSizeBytes
+| order by TimeGenerated desc

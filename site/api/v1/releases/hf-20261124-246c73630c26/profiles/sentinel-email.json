@@ -1,0 +1,48 @@
+{
+  "assumptions": "Enable EmailEvents or EmailUrlInfo raw event streaming from Defender for Office 365 through the Microsoft Defender XDR connector.",
+  "id": "sentinel-email",
+  "name": "Sentinel · Email events",
+  "release_id": "hf-20261124-246c73630c26",
+  "revision": 1,
+  "schema_version": 1,
+  "short": "Sentinel Email",
+  "source": "Defender for Office 365 raw event streaming",
+  "synthetic": false,
+  "tables": {
+    "EmailEvents": {
+      "capability": "email",
+      "columns": {
+        "DeliveryAction": "string",
+        "NetworkMessageId": "string",
+        "RecipientEmailAddress": "string",
+        "SenderFromAddress": "string",
+        "SenderFromDomain": "string",
+        "Subject": "string",
+        "TimeGenerated": "datetime"
+      },
+      "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/emailevents",
+      "mappings": {
+        "Timestamp": "TimeGenerated"
+      },
+      "semantics": "TimeGenerated is the timestamp exposed by the workspace table.",
+      "timestamp": "TimeGenerated"
+    },
+    "EmailUrlInfo": {
+      "capability": "email-url",
+      "columns": {
+        "NetworkMessageId": "string",
+        "TimeGenerated": "datetime",
+        "Url": "string",
+        "UrlDomain": "string",
+        "UrlLocation": "string"
+      },
+      "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/emailurlinfo",
+      "mappings": {
+        "Timestamp": "TimeGenerated"
+      },
+      "semantics": "TimeGenerated is the timestamp exposed by the workspace table.",
+      "timestamp": "TimeGenerated"
+    }
+  },
+  "target": "Microsoft Sentinel Logs"
+}

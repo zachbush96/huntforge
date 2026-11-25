@@ -1,0 +1,7 @@
+DeviceFileEvents
+| where TimeGenerated > ago(30d)
+| where ActionType in~ ("FileCreated", "FileModified", "FileRenamed") and FileName =~ "settings.php"
+| where FolderPath matches regex @"(?i)(?:^|[/\\])sites[/\\][^/\\]+(?:[/\\]settings[.]php)?[/\\]?$"
+| where InitiatingProcessFileName in~ ("w3wp.exe", "php.exe", "php-cgi.exe", "php-cgi", "httpd.exe", "httpd", "apache2") or InitiatingProcessFileName startswith "php-fpm"
+| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, InitiatingProcessFileName, SHA256
+| order by TimeGenerated desc

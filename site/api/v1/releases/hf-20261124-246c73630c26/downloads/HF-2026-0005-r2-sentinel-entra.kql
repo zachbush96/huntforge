@@ -1,0 +1,5 @@
+AADServicePrincipalSignInLogs
+| where TimeGenerated > ago(7d)
+| where ResultType == "0" and IPAddress in ("199.19.77.84")
+| project TimeGenerated, ServicePrincipalName, ServicePrincipalId, IPAddress, ResourceDisplayName, ResultType
+| order by TimeGenerated desc

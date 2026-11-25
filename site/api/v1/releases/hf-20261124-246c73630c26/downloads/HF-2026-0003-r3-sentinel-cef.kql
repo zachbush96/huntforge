@@ -1,0 +1,6 @@
+CommonSecurityLog
+| where TimeGenerated > ago(7d)
+| extend HuntDestinationHost = tolower(trim_end(@"\.+", coalesce(iff(DestinationHostName contains "://", tostring(parse_url(DestinationHostName).Host), DestinationHostName), tostring(parse_url(RequestURL).Host))))
+| where HuntDestinationHost in ("reallifeaccounting.com", "outagefixed.sbs", "outagerestored.sbs")
+| project TimeGenerated, SourceIP, DestinationIP, RequestURL, DeviceAction, HuntDestinationHost
+| order by TimeGenerated desc

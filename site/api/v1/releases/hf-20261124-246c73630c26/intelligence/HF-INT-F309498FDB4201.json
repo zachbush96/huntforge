@@ -1,0 +1,51 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-132165"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-24",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-132165",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-132165"
+    }
+  ],
+  "exploitation_hunts": [
+    "HF-2026-0036"
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-F309498FDB4201",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "Core",
+  "published": "2026-11-24",
+  "ransomware_use": "unknown",
+  "related": [
+    "HF-INT-165729C3CBFBB2",
+    "HF-INT-30B425716EEE85"
+  ],
+  "release_id": "hf-20261124-246c73630c26",
+  "remediation_due": "2026-11-27",
+  "retrieved": "2026-11-25T03:15:40Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "ca5a1fd3d55a5b8d8da3bea87104398e648ef0ec412020fdaf4de120fc3e04b9",
+  "source": "cisa-kev",
+  "source_id": "CVE-2026-132165",
+  "status": "active",
+  "summary": "CISA added CVE-2026-132165 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-27.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Drupal Core Remote Code Execution Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "Drupal"
+}

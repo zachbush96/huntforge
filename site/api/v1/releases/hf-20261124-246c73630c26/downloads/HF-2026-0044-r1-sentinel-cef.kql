@@ -1,0 +1,9 @@
+CommonSecurityLog
+| where TimeGenerated > ago(30d)
+| where DeviceProduct contains "Expressway" or (DeviceVendor =~ "Cisco" and Activity contains "Expressway")
+| extend EventText = strcat(Activity, " ", Message)
+| extend MatchedArtifact = extract(@"(/dev/shm/pylibs|/mnt/harddisk/i[0-9]{4})(?:[^a-zA-Z0-9._-]|$)", 1, EventText)
+| where isnotempty(MatchedArtifact)
+| extend ArtifactType = iff(MatchedArtifact == "/dev/shm/pylibs", "Shared-memory package staging", "Numbered working directory")
+| project TimeGenerated, MatchedArtifact, ArtifactType, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message
+| order by TimeGenerated desc

@@ -1,0 +1,106 @@
+{
+  "actors": [],
+  "confidence": "Source-backed behavioral hypothesis",
+  "considerations": [
+    "Scope results to known Drupal hosts and established sites. New installations, deployments and configuration management can write this file legitimately.",
+    "Compare its change time and content to the deployment record. Corroborate unexpected database-setting or administrator changes with web and application audit logs.",
+    "This covers a subset of CVE-2026-132165 behavior. The publisher does not report settings.php modifications in the live cases cited by the advisory."
+  ],
+  "cves": [
+    "CVE-2026-132165"
+  ],
+  "description": "Find a web or PHP worker writing Drupal's per-site settings file, a lead for the installer abuse described in CVE-2026-132165.",
+  "evidence": [
+    {
+      "claim": "The Drupal Security Team received a report of live exploitation starting November 19. The team identifies settings.php writability by the web server as a condition for some exploitation paths. The hunt infers a file-write signal from this condition.",
+      "location": "Description and exploitation update",
+      "modified": null,
+      "observation_date": "2026-11-19",
+      "published": "2026-11-18",
+      "source": "drupal",
+      "source_id": "https://www.drupal.org/sa-core-2026-017",
+      "url": "https://www.drupal.org/sa-core-2026-017"
+    }
+  ],
+  "expected_output": "One row per matching file operation, with the host, path, process and file hash when collected.",
+  "history": [
+    {
+      "change": "Created",
+      "date": "2026-11-25T03:12:33Z",
+      "revision": 1,
+      "summary": "Created evidence-backed hunt and validated all supported variants."
+    }
+  ],
+  "hypothesis": "A web worker unexpectedly writing an existing site's settings.php may indicate attempted reinstallation or configuration tampering.",
+  "id": "HF-2026-0036",
+  "indicator_ids": [],
+  "lookback": 30,
+  "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+  "primary_table": "DeviceFileEvents",
+  "profiles": [
+    "sentinel-endpoint"
+  ],
+  "published": "2026-11-25T03:12:33Z",
+  "release_id": "hf-20261124-246c73630c26",
+  "research": "drupal-core-cve-2026-132165",
+  "revision": 1,
+  "schema_version": 1,
+  "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+  "signature": "aaf8918a99b201aab4b43ea7b09cc2af020c4ed26c5ecd2066e32a9a5d31649d",
+  "source_ids": [
+    "HF-INT-30B425716EEE85"
+  ],
+  "source_published": "2026-11-18",
+  "status": "partially_validated",
+  "tactic": "Initial Access",
+  "tags": [
+    "Exploitation",
+    "Web Applications"
+  ],
+  "technique": "T1190",
+  "title": "Drupal Web Workers Writing Site Settings",
+  "updated": "2026-11-25T03:12:33Z",
+  "validation": {
+    "date": "2026-11-25T03:12:33Z",
+    "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+    "variants_checked": 10
+  },
+  "variants": {
+    "sentinel-endpoint": {
+      "profile_revision": 2,
+      "queries": {
+        "1": {
+          "json": "DeviceFileEvents\n| where TimeGenerated > ago(1d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"settings.php\"\n| where FolderPath matches regex @\"(?i)(?:^|[/\\\\])sites[/\\\\][^/\\\\]+(?:[/\\\\]settings[.]php)?[/\\\\]?$\"\n| where InitiatingProcessFileName in~ (\"w3wp.exe\", \"php.exe\", \"php-cgi.exe\", \"php-cgi\", \"httpd.exe\", \"httpd\", \"apache2\") or InitiatingProcessFileName startswith \"php-fpm\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, InitiatingProcessFileName, SHA256\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceFileEvents\n| where TimeGenerated > ago(1d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"settings.php\"\n| where FolderPath matches regex @\"(?i)(?:^|[/\\\\])sites[/\\\\][^/\\\\]+(?:[/\\\\]settings[.]php)?[/\\\\]?$\"\n| where InitiatingProcessFileName in~ (\"w3wp.exe\", \"php.exe\", \"php-cgi.exe\", \"php-cgi\", \"httpd.exe\", \"httpd\", \"apache2\") or InitiatingProcessFileName startswith \"php-fpm\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, InitiatingProcessFileName, SHA256\n| order by TimeGenerated desc\n"
+        },
+        "14": {
+          "json": "DeviceFileEvents\n| where TimeGenerated > ago(14d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"settings.php\"\n| where FolderPath matches regex @\"(?i)(?:^|[/\\\\])sites[/\\\\][^/\\\\]+(?:[/\\\\]settings[.]php)?[/\\\\]?$\"\n| where InitiatingProcessFileName in~ (\"w3wp.exe\", \"php.exe\", \"php-cgi.exe\", \"php-cgi\", \"httpd.exe\", \"httpd\", \"apache2\") or InitiatingProcessFileName startswith \"php-fpm\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, InitiatingProcessFileName, SHA256\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceFileEvents\n| where TimeGenerated > ago(14d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"settings.php\"\n| where FolderPath matches regex @\"(?i)(?:^|[/\\\\])sites[/\\\\][^/\\\\]+(?:[/\\\\]settings[.]php)?[/\\\\]?$\"\n| where InitiatingProcessFileName in~ (\"w3wp.exe\", \"php.exe\", \"php-cgi.exe\", \"php-cgi\", \"httpd.exe\", \"httpd\", \"apache2\") or InitiatingProcessFileName startswith \"php-fpm\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, InitiatingProcessFileName, SHA256\n| order by TimeGenerated desc\n"
+        },
+        "3": {
+          "json": "DeviceFileEvents\n| where TimeGenerated > ago(3d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"settings.php\"\n| where FolderPath matches regex @\"(?i)(?:^|[/\\\\])sites[/\\\\][^/\\\\]+(?:[/\\\\]settings[.]php)?[/\\\\]?$\"\n| where InitiatingProcessFileName in~ (\"w3wp.exe\", \"php.exe\", \"php-cgi.exe\", \"php-cgi\", \"httpd.exe\", \"httpd\", \"apache2\") or InitiatingProcessFileName startswith \"php-fpm\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, InitiatingProcessFileName, SHA256\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceFileEvents\n| where TimeGenerated > ago(3d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"settings.php\"\n| where FolderPath matches regex @\"(?i)(?:^|[/\\\\])sites[/\\\\][^/\\\\]+(?:[/\\\\]settings[.]php)?[/\\\\]?$\"\n| where InitiatingProcessFileName in~ (\"w3wp.exe\", \"php.exe\", \"php-cgi.exe\", \"php-cgi\", \"httpd.exe\", \"httpd\", \"apache2\") or InitiatingProcessFileName startswith \"php-fpm\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, InitiatingProcessFileName, SHA256\n| order by TimeGenerated desc\n"
+        },
+        "30": {
+          "json": "DeviceFileEvents\n| where TimeGenerated > ago(30d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"settings.php\"\n| where FolderPath matches regex @\"(?i)(?:^|[/\\\\])sites[/\\\\][^/\\\\]+(?:[/\\\\]settings[.]php)?[/\\\\]?$\"\n| where InitiatingProcessFileName in~ (\"w3wp.exe\", \"php.exe\", \"php-cgi.exe\", \"php-cgi\", \"httpd.exe\", \"httpd\", \"apache2\") or InitiatingProcessFileName startswith \"php-fpm\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, InitiatingProcessFileName, SHA256\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceFileEvents\n| where TimeGenerated > ago(30d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"settings.php\"\n| where FolderPath matches regex @\"(?i)(?:^|[/\\\\])sites[/\\\\][^/\\\\]+(?:[/\\\\]settings[.]php)?[/\\\\]?$\"\n| where InitiatingProcessFileName in~ (\"w3wp.exe\", \"php.exe\", \"php-cgi.exe\", \"php-cgi\", \"httpd.exe\", \"httpd\", \"apache2\") or InitiatingProcessFileName startswith \"php-fpm\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, InitiatingProcessFileName, SHA256\n| order by TimeGenerated desc\n"
+        },
+        "7": {
+          "json": "DeviceFileEvents\n| where TimeGenerated > ago(7d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"settings.php\"\n| where FolderPath matches regex @\"(?i)(?:^|[/\\\\])sites[/\\\\][^/\\\\]+(?:[/\\\\]settings[.]php)?[/\\\\]?$\"\n| where InitiatingProcessFileName in~ (\"w3wp.exe\", \"php.exe\", \"php-cgi.exe\", \"php-cgi\", \"httpd.exe\", \"httpd\", \"apache2\") or InitiatingProcessFileName startswith \"php-fpm\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, InitiatingProcessFileName, SHA256\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceFileEvents\n| where TimeGenerated > ago(7d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"settings.php\"\n| where FolderPath matches regex @\"(?i)(?:^|[/\\\\])sites[/\\\\][^/\\\\]+(?:[/\\\\]settings[.]php)?[/\\\\]?$\"\n| where InitiatingProcessFileName in~ (\"w3wp.exe\", \"php.exe\", \"php-cgi.exe\", \"php-cgi\", \"httpd.exe\", \"httpd\", \"apache2\") or InitiatingProcessFileName startswith \"php-fpm\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, InitiatingProcessFileName, SHA256\n| order by TimeGenerated desc\n"
+        }
+      },
+      "table": "DeviceFileEvents",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    }
+  }
+}

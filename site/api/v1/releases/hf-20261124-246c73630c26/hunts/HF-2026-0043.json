@@ -1,0 +1,111 @@
+{
+  "actors": [],
+  "confidence": "Vendor-confirmed campaign indicators",
+  "considerations": [
+    "Review November 16, 2026 UTC first and verify the user had a page or project in scope at that time. Some infrastructure is reused, so outside-window matches can be unrelated.",
+    "Compare endpoint browsing, CSP reports and application access logs. Distinguish blocked attempts, successful browser access, and any validated exposure using proxy action and corroborating records.",
+    "A connection to the reported collection endpoint is a higher-priority lead. Destination contact alone does not establish which site initiated it or whether information was transmitted."
+  ],
+  "cves": [
+    "CVE-2026-132224"
+  ],
+  "description": "Match proxy or firewall destinations against the exact domains confirmed in Optimizely's incident report and identify the reported role of each destination.",
+  "evidence": [
+    {
+      "claim": "Optimizely reports edits to customer Project JavaScript following exploitation of a signup flaw. Its forensic investigation identified separate skimmer hosting and collection domains.",
+      "location": "How the attack worked and section 10, Indicators of compromise",
+      "modified": null,
+      "observation_date": "2026-11-16",
+      "published": "2026-11-17",
+      "source": "optimizely",
+      "source_id": "https://pages.optimizely.com/rs/947-RKE-048/images/Security%20Incident%20Report%20-%20Optimizely%20Web%20Experimentation%20-%20Nov%2017%202026.pdf",
+      "url": "https://pages.optimizely.com/rs/947-RKE-048/images/Security%20Incident%20Report%20-%20Optimizely%20Web%20Experimentation%20-%20Nov%2017%202026.pdf"
+    }
+  ],
+  "expected_output": "One row per matching proxied or logged connection, with the exact domain, campaign role, client, and connector action.",
+  "history": [
+    {
+      "change": "Created",
+      "date": "2026-11-25T03:12:33Z",
+      "revision": 1,
+      "summary": "Created evidence-backed hunt and validated all supported variants."
+    }
+  ],
+  "hypothesis": "Contact with Optimizely's confirmed skimmer infrastructure around November 16 is a lead for downstream browser exposure associated with CVE-2026-132224.",
+  "id": "HF-2026-0043",
+  "indicator_ids": [
+    "HF-IOC-211C8303EC6F63",
+    "HF-IOC-1303BA9583EE28",
+    "HF-IOC-B4554E88E61AED"
+  ],
+  "lookback": 30,
+  "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+  "primary_table": "CommonSecurityLog",
+  "profiles": [
+    "sentinel-cef"
+  ],
+  "published": "2026-11-25T03:12:33Z",
+  "release_id": "hf-20261124-246c73630c26",
+  "research": "optimizely-cve-2026-132224",
+  "revision": 1,
+  "schema_version": 1,
+  "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+  "signature": "f2847d31e8ef7e5e78da184dd23de41631e099416a61d916ffd4bb0ef51921b2",
+  "source_ids": [
+    "HF-INT-B4C56F8C95F7AE"
+  ],
+  "source_published": "2026-11-17",
+  "status": "partially_validated",
+  "tactic": "Initial Access",
+  "tags": [
+    "Exploitation",
+    "Supply Chain",
+    "Web Applications"
+  ],
+  "technique": "T1195.002",
+  "title": "Optimizely Web Experimentation Skimmer Connections",
+  "updated": "2026-11-25T03:12:33Z",
+  "validation": {
+    "date": "2026-11-25T03:12:33Z",
+    "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+    "variants_checked": 10
+  },
+  "variants": {
+    "sentinel-cef": {
+      "profile_revision": 2,
+      "queries": {
+        "1": {
+          "json": "CommonSecurityLog\n| where TimeGenerated > ago(1d)\n| extend RequestHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(RequestURL).Host), RequestURL)))\n| extend ConnectionHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(DestinationHostName).Host), DestinationHostName)))\n| extend MatchedDomain = case(RequestHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), RequestHost, ConnectionHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), ConnectionHost, \"\")\n| where isnotempty(MatchedDomain)\n| extend IndicatorRole = iff(MatchedDomain == \"pay-relay.wordpressadmin001.workers.dev\", \"Reported collection endpoint\", \"Reported skimmer infrastructure\")\n| project TimeGenerated, MatchedDomain, IndicatorRole, SourceIP, DestinationIP, DeviceAction, DeviceProduct, RequestURL\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CommonSecurityLog\n| where TimeGenerated > ago(1d)\n| extend RequestHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(RequestURL).Host), RequestURL)))\n| extend ConnectionHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(DestinationHostName).Host), DestinationHostName)))\n| extend MatchedDomain = case(RequestHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), RequestHost, ConnectionHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), ConnectionHost, \"\")\n| where isnotempty(MatchedDomain)\n| extend IndicatorRole = iff(MatchedDomain == \"pay-relay.wordpressadmin001.workers.dev\", \"Reported collection endpoint\", \"Reported skimmer infrastructure\")\n| project TimeGenerated, MatchedDomain, IndicatorRole, SourceIP, DestinationIP, DeviceAction, DeviceProduct, RequestURL\n| order by TimeGenerated desc\n"
+        },
+        "14": {
+          "json": "CommonSecurityLog\n| where TimeGenerated > ago(14d)\n| extend RequestHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(RequestURL).Host), RequestURL)))\n| extend ConnectionHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(DestinationHostName).Host), DestinationHostName)))\n| extend MatchedDomain = case(RequestHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), RequestHost, ConnectionHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), ConnectionHost, \"\")\n| where isnotempty(MatchedDomain)\n| extend IndicatorRole = iff(MatchedDomain == \"pay-relay.wordpressadmin001.workers.dev\", \"Reported collection endpoint\", \"Reported skimmer infrastructure\")\n| project TimeGenerated, MatchedDomain, IndicatorRole, SourceIP, DestinationIP, DeviceAction, DeviceProduct, RequestURL\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CommonSecurityLog\n| where TimeGenerated > ago(14d)\n| extend RequestHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(RequestURL).Host), RequestURL)))\n| extend ConnectionHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(DestinationHostName).Host), DestinationHostName)))\n| extend MatchedDomain = case(RequestHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), RequestHost, ConnectionHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), ConnectionHost, \"\")\n| where isnotempty(MatchedDomain)\n| extend IndicatorRole = iff(MatchedDomain == \"pay-relay.wordpressadmin001.workers.dev\", \"Reported collection endpoint\", \"Reported skimmer infrastructure\")\n| project TimeGenerated, MatchedDomain, IndicatorRole, SourceIP, DestinationIP, DeviceAction, DeviceProduct, RequestURL\n| order by TimeGenerated desc\n"
+        },
+        "3": {
+          "json": "CommonSecurityLog\n| where TimeGenerated > ago(3d)\n| extend RequestHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(RequestURL).Host), RequestURL)))\n| extend ConnectionHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(DestinationHostName).Host), DestinationHostName)))\n| extend MatchedDomain = case(RequestHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), RequestHost, ConnectionHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), ConnectionHost, \"\")\n| where isnotempty(MatchedDomain)\n| extend IndicatorRole = iff(MatchedDomain == \"pay-relay.wordpressadmin001.workers.dev\", \"Reported collection endpoint\", \"Reported skimmer infrastructure\")\n| project TimeGenerated, MatchedDomain, IndicatorRole, SourceIP, DestinationIP, DeviceAction, DeviceProduct, RequestURL\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CommonSecurityLog\n| where TimeGenerated > ago(3d)\n| extend RequestHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(RequestURL).Host), RequestURL)))\n| extend ConnectionHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(DestinationHostName).Host), DestinationHostName)))\n| extend MatchedDomain = case(RequestHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), RequestHost, ConnectionHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), ConnectionHost, \"\")\n| where isnotempty(MatchedDomain)\n| extend IndicatorRole = iff(MatchedDomain == \"pay-relay.wordpressadmin001.workers.dev\", \"Reported collection endpoint\", \"Reported skimmer infrastructure\")\n| project TimeGenerated, MatchedDomain, IndicatorRole, SourceIP, DestinationIP, DeviceAction, DeviceProduct, RequestURL\n| order by TimeGenerated desc\n"
+        },
+        "30": {
+          "json": "CommonSecurityLog\n| where TimeGenerated > ago(30d)\n| extend RequestHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(RequestURL).Host), RequestURL)))\n| extend ConnectionHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(DestinationHostName).Host), DestinationHostName)))\n| extend MatchedDomain = case(RequestHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), RequestHost, ConnectionHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), ConnectionHost, \"\")\n| where isnotempty(MatchedDomain)\n| extend IndicatorRole = iff(MatchedDomain == \"pay-relay.wordpressadmin001.workers.dev\", \"Reported collection endpoint\", \"Reported skimmer infrastructure\")\n| project TimeGenerated, MatchedDomain, IndicatorRole, SourceIP, DestinationIP, DeviceAction, DeviceProduct, RequestURL\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CommonSecurityLog\n| where TimeGenerated > ago(30d)\n| extend RequestHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(RequestURL).Host), RequestURL)))\n| extend ConnectionHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(DestinationHostName).Host), DestinationHostName)))\n| extend MatchedDomain = case(RequestHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), RequestHost, ConnectionHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), ConnectionHost, \"\")\n| where isnotempty(MatchedDomain)\n| extend IndicatorRole = iff(MatchedDomain == \"pay-relay.wordpressadmin001.workers.dev\", \"Reported collection endpoint\", \"Reported skimmer infrastructure\")\n| project TimeGenerated, MatchedDomain, IndicatorRole, SourceIP, DestinationIP, DeviceAction, DeviceProduct, RequestURL\n| order by TimeGenerated desc\n"
+        },
+        "7": {
+          "json": "CommonSecurityLog\n| where TimeGenerated > ago(7d)\n| extend RequestHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(RequestURL).Host), RequestURL)))\n| extend ConnectionHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(DestinationHostName).Host), DestinationHostName)))\n| extend MatchedDomain = case(RequestHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), RequestHost, ConnectionHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), ConnectionHost, \"\")\n| where isnotempty(MatchedDomain)\n| extend IndicatorRole = iff(MatchedDomain == \"pay-relay.wordpressadmin001.workers.dev\", \"Reported collection endpoint\", \"Reported skimmer infrastructure\")\n| project TimeGenerated, MatchedDomain, IndicatorRole, SourceIP, DestinationIP, DeviceAction, DeviceProduct, RequestURL\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CommonSecurityLog\n| where TimeGenerated > ago(7d)\n| extend RequestHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(RequestURL).Host), RequestURL)))\n| extend ConnectionHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(DestinationHostName).Host), DestinationHostName)))\n| extend MatchedDomain = case(RequestHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), RequestHost, ConnectionHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), ConnectionHost, \"\")\n| where isnotempty(MatchedDomain)\n| extend IndicatorRole = iff(MatchedDomain == \"pay-relay.wordpressadmin001.workers.dev\", \"Reported collection endpoint\", \"Reported skimmer infrastructure\")\n| project TimeGenerated, MatchedDomain, IndicatorRole, SourceIP, DestinationIP, DeviceAction, DeviceProduct, RequestURL\n| order by TimeGenerated desc\n"
+        }
+      },
+      "table": "CommonSecurityLog",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    }
+  }
+}

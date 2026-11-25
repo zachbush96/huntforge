@@ -1,0 +1,6 @@
+AuditLogs
+| where TimeGenerated > ago(14d)
+| where Category =~ "ApplicationManagement"
+| where OperationName =~ "Add service principal credentials" or OperationName has_all ("certificates", "secrets", "application")
+| project TimeGenerated, OperationName, Category, Result, InitiatedBy, TargetResources, CorrelationId
+| order by TimeGenerated desc

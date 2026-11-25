@@ -1,0 +1,7 @@
+DeviceRegistryEvents
+| where TimeGenerated > ago(7d)
+| where ActionType == "RegistryValueSet"
+| where RegistryKey contains @"\Windows Defender\Exclusions\Paths"
+| where RegistryValueName contains "ConnectWiseControl" or RegistryValueName contains "CWInstall" or RegistryValueName contains "RelayTrap" or RegistryValueData contains "RelayTrap"
+| project TimeGenerated, DeviceName, RegistryKey, RegistryValueName, RegistryValueData, InitiatingProcessFileName
+| order by TimeGenerated desc

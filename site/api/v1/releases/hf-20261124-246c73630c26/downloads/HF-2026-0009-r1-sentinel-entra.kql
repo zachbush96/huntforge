@@ -1,0 +1,6 @@
+SigninLogs
+| where TimeGenerated > ago(7d)
+| where ResultType == "50126" and isnotempty(UserPrincipalName) and isnotempty(IPAddress)
+| summarize Failures = count(), Accounts = dcount(UserPrincipalName), SampleAccounts = make_set(UserPrincipalName, 12), Apps = make_set(AppDisplayName, 8) by IPAddress, Window = bin(TimeGenerated, 15m)
+| where Failures >= 25 and Accounts >= 10
+| order by Accounts desc, Failures desc

@@ -1,0 +1,202 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2024-27834"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-24",
+      "epss": "0.015580000",
+      "percentile": "0.757240000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.01558000",
+      "percentile": "0.75857000"
+    },
+    {
+      "date": "2026-11-22",
+      "epss": "0.01558000",
+      "percentile": "0.75850000"
+    },
+    {
+      "date": "2026-11-21",
+      "epss": "0.01558000",
+      "percentile": "0.75833000"
+    },
+    {
+      "date": "2026-11-20",
+      "epss": "0.01502000",
+      "percentile": "0.74932000"
+    },
+    {
+      "date": "2026-11-19",
+      "epss": "0.01502000",
+      "percentile": "0.74853000"
+    },
+    {
+      "date": "2026-11-18",
+      "epss": "0.01502000",
+      "percentile": "0.74818000"
+    },
+    {
+      "date": "2026-11-17",
+      "epss": "0.01502000",
+      "percentile": "0.74749000"
+    },
+    {
+      "date": "2026-11-16",
+      "epss": "0.01502000",
+      "percentile": "0.74730000"
+    },
+    {
+      "date": "2026-11-15",
+      "epss": "0.01502000",
+      "percentile": "0.74723000"
+    },
+    {
+      "date": "2026-11-14",
+      "epss": "0.01502000",
+      "percentile": "0.74724000"
+    },
+    {
+      "date": "2026-11-13",
+      "epss": "0.01502000",
+      "percentile": "0.74706000"
+    },
+    {
+      "date": "2026-11-12",
+      "epss": "0.01502000",
+      "percentile": "0.74671000"
+    },
+    {
+      "date": "2026-11-11",
+      "epss": "0.01502000",
+      "percentile": "0.74640000"
+    },
+    {
+      "date": "2026-11-10",
+      "epss": "0.01502000",
+      "percentile": "0.74519000"
+    },
+    {
+      "date": "2026-11-09",
+      "epss": "0.01502000",
+      "percentile": "0.74487000"
+    },
+    {
+      "date": "2026-11-08",
+      "epss": "0.01502000",
+      "percentile": "0.74475000"
+    },
+    {
+      "date": "2026-11-07",
+      "epss": "0.01502000",
+      "percentile": "0.74457000"
+    },
+    {
+      "date": "2026-11-06",
+      "epss": "0.01502000",
+      "percentile": "0.74415000"
+    },
+    {
+      "date": "2026-11-05",
+      "epss": "0.01414000",
+      "percentile": "0.72829000"
+    },
+    {
+      "date": "2026-11-04",
+      "epss": "0.00598000",
+      "percentile": "0.48750000"
+    },
+    {
+      "date": "2026-11-03",
+      "epss": "0.00598000",
+      "percentile": "0.48678000"
+    },
+    {
+      "date": "2026-11-02",
+      "epss": "0.00598000",
+      "percentile": "0.48626000"
+    },
+    {
+      "date": "2026-11-01",
+      "epss": "0.00598000",
+      "percentile": "0.48636000"
+    },
+    {
+      "date": "2026-10-31",
+      "epss": "0.00598000",
+      "percentile": "0.48641000"
+    },
+    {
+      "date": "2026-10-30",
+      "epss": "0.00598000",
+      "percentile": "0.48601000"
+    },
+    {
+      "date": "2026-10-29",
+      "epss": "0.00598000",
+      "percentile": "0.48536000"
+    },
+    {
+      "date": "2026-10-28",
+      "epss": "0.00598000",
+      "percentile": "0.48482000"
+    },
+    {
+      "date": "2026-10-27",
+      "epss": "0.00598000",
+      "percentile": "0.48415000"
+    },
+    {
+      "date": "2026-10-26",
+      "epss": "0.00598000",
+      "percentile": "0.48340000"
+    },
+    {
+      "date": "2026-10-25",
+      "epss": "0.00598000",
+      "percentile": "0.48324000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-04",
+      "source": "cisa-kev",
+      "source_id": "CVE-2024-27834",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2024-27834"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-C0CCCBCF96F0F5",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "Multiple Products",
+  "published": "2026-11-04",
+  "ransomware_use": "unknown",
+  "related": [],
+  "release_id": "hf-20261124-246c73630c26",
+  "remediation_due": "2026-11-18",
+  "retrieved": "2026-11-25T03:15:40Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "79e58a9f6cd60e287841b7449e68a0704766de4021b1f6bb0cb21aef51315875",
+  "source": "cisa-kev",
+  "source_id": "CVE-2024-27834",
+  "status": "active",
+  "summary": "CISA added CVE-2024-27834 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-18.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Apple Multiple Products Improper Authentication Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "Apple"
+}

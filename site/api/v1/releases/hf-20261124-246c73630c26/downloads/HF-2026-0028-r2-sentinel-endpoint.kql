@@ -1,0 +1,6 @@
+DeviceNetworkEvents
+| where TimeGenerated > ago(14d)
+| extend DestinationHost = tolower(iff(RemoteUrl contains "://", tostring(parse_url(RemoteUrl).Host), RemoteUrl))
+| where DestinationHost in ("gsocket.io", "gsgg.b-cdn.net")
+| project TimeGenerated, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine, DestinationHost, RemoteIP, ActionType
+| order by TimeGenerated desc

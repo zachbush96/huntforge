@@ -1,0 +1,109 @@
+{
+  "actors": [],
+  "confidence": "Publisher-observed artifacts",
+  "considerations": [
+    "Review registration context, trigger and referenced file.",
+    "Correlate with ScreenConnect sessions and nearby registry changes."
+  ],
+  "description": "Find scheduled task events containing two markers Microsoft identified in SCKit activity.",
+  "evidence": [
+    {
+      "claim": "Microsoft documented unauthorized ScreenConnect sessions, scripting, scheduled tasks, Run keys and changes to Defender exclusions while investigating SCKit.",
+      "location": "Investigation guidance and advanced hunting examples",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-13",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/13/sckit-abuses-screenconnect-deploy-remote-access-target-technician-sessions/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/13/sckit-abuses-screenconnect-deploy-remote-access-target-technician-sessions/"
+    }
+  ],
+  "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+  "history": [
+    {
+      "change": "Created",
+      "date": "2026-11-25T02:32:19Z",
+      "revision": 1,
+      "summary": "Created evidence-backed hunt and validated all supported variants."
+    },
+    {
+      "change": "Updated",
+      "date": "2026-11-25T03:12:33Z",
+      "revision": 2,
+      "summary": "Revalidated after changes to variants."
+    }
+  ],
+  "hypothesis": "Find scheduled task events containing two markers Microsoft identified in SCKit activity.",
+  "id": "HF-2026-0025",
+  "indicator_ids": [],
+  "lookback": 14,
+  "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+  "primary_table": "DeviceEvents",
+  "profiles": [
+    "sentinel-endpoint"
+  ],
+  "published": "2026-11-25T02:32:19Z",
+  "release_id": "hf-20261124-246c73630c26",
+  "research": "sckit",
+  "revision": 2,
+  "schema_version": 1,
+  "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+  "signature": "d16e63c4f50b27e0d73b4f372040e14cf737ac907fc08112613f96d3cb0486af",
+  "source_ids": [
+    "HF-INT-36ECE2AA75663D"
+  ],
+  "source_published": "2026-11-13",
+  "status": "partially_validated",
+  "tactic": "Persistence",
+  "tags": [
+    "Supply Chain",
+    "Remote Access",
+    "LOLBins"
+  ],
+  "technique": "T1053.005",
+  "title": "RelayTrap Scheduled Task Activity",
+  "updated": "2026-11-25T03:12:33Z",
+  "validation": {
+    "date": "2026-11-25T03:12:33Z",
+    "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+    "variants_checked": 10
+  },
+  "variants": {
+    "sentinel-endpoint": {
+      "profile_revision": 2,
+      "queries": {
+        "1": {
+          "json": "DeviceEvents\n| where TimeGenerated > ago(1d)\n| where ActionType contains \"ScheduledTask\" and (tostring(AdditionalFields) contains \"RelayTrap\" or tostring(AdditionalFields) contains \"TrapWatch\")\n| project TimeGenerated, DeviceName, ActionType, InitiatingProcessFileName, AdditionalFields\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceEvents\n| where TimeGenerated > ago(1d)\n| where ActionType contains \"ScheduledTask\" and (tostring(AdditionalFields) contains \"RelayTrap\" or tostring(AdditionalFields) contains \"TrapWatch\")\n| project TimeGenerated, DeviceName, ActionType, InitiatingProcessFileName, AdditionalFields\n| order by TimeGenerated desc\n"
+        },
+        "14": {
+          "json": "DeviceEvents\n| where TimeGenerated > ago(14d)\n| where ActionType contains \"ScheduledTask\" and (tostring(AdditionalFields) contains \"RelayTrap\" or tostring(AdditionalFields) contains \"TrapWatch\")\n| project TimeGenerated, DeviceName, ActionType, InitiatingProcessFileName, AdditionalFields\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceEvents\n| where TimeGenerated > ago(14d)\n| where ActionType contains \"ScheduledTask\" and (tostring(AdditionalFields) contains \"RelayTrap\" or tostring(AdditionalFields) contains \"TrapWatch\")\n| project TimeGenerated, DeviceName, ActionType, InitiatingProcessFileName, AdditionalFields\n| order by TimeGenerated desc\n"
+        },
+        "3": {
+          "json": "DeviceEvents\n| where TimeGenerated > ago(3d)\n| where ActionType contains \"ScheduledTask\" and (tostring(AdditionalFields) contains \"RelayTrap\" or tostring(AdditionalFields) contains \"TrapWatch\")\n| project TimeGenerated, DeviceName, ActionType, InitiatingProcessFileName, AdditionalFields\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceEvents\n| where TimeGenerated > ago(3d)\n| where ActionType contains \"ScheduledTask\" and (tostring(AdditionalFields) contains \"RelayTrap\" or tostring(AdditionalFields) contains \"TrapWatch\")\n| project TimeGenerated, DeviceName, ActionType, InitiatingProcessFileName, AdditionalFields\n| order by TimeGenerated desc\n"
+        },
+        "30": {
+          "json": "DeviceEvents\n| where TimeGenerated > ago(30d)\n| where ActionType contains \"ScheduledTask\" and (tostring(AdditionalFields) contains \"RelayTrap\" or tostring(AdditionalFields) contains \"TrapWatch\")\n| project TimeGenerated, DeviceName, ActionType, InitiatingProcessFileName, AdditionalFields\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceEvents\n| where TimeGenerated > ago(30d)\n| where ActionType contains \"ScheduledTask\" and (tostring(AdditionalFields) contains \"RelayTrap\" or tostring(AdditionalFields) contains \"TrapWatch\")\n| project TimeGenerated, DeviceName, ActionType, InitiatingProcessFileName, AdditionalFields\n| order by TimeGenerated desc\n"
+        },
+        "7": {
+          "json": "DeviceEvents\n| where TimeGenerated > ago(7d)\n| where ActionType contains \"ScheduledTask\" and (tostring(AdditionalFields) contains \"RelayTrap\" or tostring(AdditionalFields) contains \"TrapWatch\")\n| project TimeGenerated, DeviceName, ActionType, InitiatingProcessFileName, AdditionalFields\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceEvents\n| where TimeGenerated > ago(7d)\n| where ActionType contains \"ScheduledTask\" and (tostring(AdditionalFields) contains \"RelayTrap\" or tostring(AdditionalFields) contains \"TrapWatch\")\n| project TimeGenerated, DeviceName, ActionType, InitiatingProcessFileName, AdditionalFields\n| order by TimeGenerated desc\n"
+        }
+      },
+      "table": "DeviceEvents",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    }
+  }
+}

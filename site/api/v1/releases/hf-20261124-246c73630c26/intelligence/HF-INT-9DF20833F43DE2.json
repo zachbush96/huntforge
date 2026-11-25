@@ -1,0 +1,41 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "The CISO’s evolving role: Protecting and defending in the agentic era",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-10-28",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/28/the-cisos-evolving-role-protecting-and-defending-in-the-agentic-era/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/10/28/the-cisos-evolving-role-protecting-and-defending-in-the-agentic-era/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-9DF20833F43DE2",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-10-28",
+  "related": [],
+  "release_id": "hf-20261124-246c73630c26",
+  "retrieved": "2026-11-25T03:15:40Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "f7893475c3ac35cb57c91f28d39c309c67084e9522a4f72220530ade0a8a1179",
+  "source": "microsoft",
+  "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/28/the-cisos-evolving-role-protecting-and-defending-in-the-agentic-era/",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include identity, agentic ai.",
+  "tags": [
+    "Identity",
+    "Agentic AI"
+  ],
+  "title": "The CISO’s evolving role: Protecting and defending in the agentic era",
+  "updated": "2026-11-25T01:48:50Z"
+}

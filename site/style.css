@@ -40,7 +40,7 @@ button:hover, .button:hover { background: #e7e7e7; }
 .brand { display: inline-flex; text-decoration: none; align-items: center; letter-spacing: -.055em; gap: 9px; font: 950 42px/.95 var(--heavy); white-space: nowrap; }
 .brand .anvil { width: 52px; height: 30px; }
 .brand-slash { font: 300 40px/.8 var(--mono); transform: rotate(-7deg); }
-.tagline { font: 600 13px/1.06 var(--mono); letter-spacing: -.035em; text-transform: uppercase; }
+.tagline { min-width: 0; font: 600 13px/1.06 var(--mono); letter-spacing: -.035em; text-transform: uppercase; }
 .top-end { margin-left: auto; display: flex; align-items: center; gap: 14px; font: 600 13px var(--mono); white-space: nowrap; }
 .top-end a { text-decoration: none; }
 .top-end a:hover { text-decoration: underline; }
@@ -53,10 +53,11 @@ button:hover, .button:hover { background: #e7e7e7; }
 .search-button { font: 650 .79rem Arial, sans-serif; text-align: left; width: clamp(230px, 29vw, 470px); height: 35px; padding: 5px 8px 5px 10px; justify-content: flex-start; background: #101010; color: #fff; border-color: #fff; border-radius: 3px; }
 .search-button:hover { background: #2d2d2d; }
 .search-button .icon { width: 19px; height: 19px; }
+.search-button span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .search-button kbd { margin-left: auto; border: 1px solid white; border-radius: 2px; padding: 2px 6px; }
 .compact-header { height: 54px; padding-inline: 15px; gap: 19px; background: #0b0b0b; }
 .compact-header .brand { font-size: 35px; }
-.compact-header .tagline { white-space: nowrap; }
+.compact-header .tagline { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .brief-search { display: inline-flex; }
 .layout { display: grid; min-height: calc(100vh - 62px); grid-template-columns: minmax(186px, 14.15%) minmax(0, 1fr) minmax(335px, 29.2%); }
 .layout.compact { grid-template-columns: minmax(165px, 12.15%) minmax(0, 1fr); min-height: calc(100vh - 54px); }
@@ -323,6 +324,11 @@ dialog textarea { min-height: 200px; resize: vertical; font: .77rem/1.5 var(--mo
   .compact-header .tagline { font-size: .66rem; }
   .top-end .header-date { display: none; }
   .hunt-hero { grid-template-columns: 125px minmax(0,1fr); }
+}
+@media (max-width: 860px) {
+  .topbar .tagline, .topbar .brand-slash { display: none; }
+  .search-button { width: 250px; }
+  .brief-aside { grid-template-columns: 1fr; }
 }
 @media (max-width: 740px) {
   .topbar, .compact-header { height: 53px; padding: 0 10px; gap: 8px; }

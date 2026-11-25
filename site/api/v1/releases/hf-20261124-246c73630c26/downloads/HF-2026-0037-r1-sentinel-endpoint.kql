@@ -1,0 +1,12 @@
+DeviceNetworkEvents
+| where TimeGenerated > ago(30d)
+| where isnotempty(DeviceName)
+| extend IsOutlook = InitiatingProcessFileName =~ "outlook.exe", IsPublicSmb = Protocol =~ "TCP" and RemoteIPType =~ "Public" and RemotePort in (139, 445) and isnotempty(RemoteIP)
+| where IsOutlook or (IsPublicSmb and (InitiatingProcessFileName =~ "System" or isempty(InitiatingProcessFileName)))
+| summarize OutlookNetworkEvents = countif(IsOutlook), SmbConnections = make_list_if(bag_pack("EventTime", TimeGenerated, "Action", ActionType, "Process", InitiatingProcessFileName, "IP", RemoteIP, "Port", RemotePort, "URL", RemoteUrl), IsPublicSmb, 256) by DeviceName, Window = bin(TimeGenerated, 5m)
+| where OutlookNetworkEvents > 0
+| mv-expand Connection = SmbConnections
+| extend Process = tostring(Connection.Process)
+| extend Attribution = iff(Process =~ "outlook.exe", "Outlook process", "System or unknown process with nearby Outlook activity")
+| project TimeGenerated = todatetime(Connection.EventTime), DeviceName, Attribution, Process, RemoteIP = tostring(Connection.IP), RemotePort = toint(Connection.Port), RemoteUrl = tostring(Connection.URL), ActionType = tostring(Connection.Action), OutlookNetworkEvents
+| order by TimeGenerated desc

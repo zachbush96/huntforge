@@ -1,0 +1,105 @@
+{
+  "actors": [],
+  "confidence": "Publisher-observed indicators",
+  "considerations": [
+    "Compare operation outcomes and caller identity.",
+    "Correlate addresses and timestamps with Entra service principal sign-ins."
+  ],
+  "description": "Review secret requests from the address Microsoft associated with exposed application credentials.",
+  "evidence": [
+    {
+      "claim": "Microsoft observed ARTEX-associated use of exposed cloud credentials, service-principal sign-ins from a reported IP, rapid cloud discovery and attempted access to Azure Key Vault and other resources.",
+      "location": "Credential abuse via Entra ID and indicators sections",
+      "modified": null,
+      "observation_date": "2026-10-28",
+      "published": "2026-11-05",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/"
+    }
+  ],
+  "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+  "history": [
+    {
+      "change": "Created",
+      "date": "2026-11-25T02:32:19Z",
+      "revision": 1,
+      "summary": "Created evidence-backed hunt and validated all supported variants."
+    }
+  ],
+  "hypothesis": "Review secret requests from the address Microsoft associated with exposed application credentials.",
+  "id": "HF-2026-0011",
+  "indicator_ids": [
+    "HF-IOC-334489FDDAC4E4"
+  ],
+  "lookback": 14,
+  "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+  "primary_table": "AZKVAuditLogs",
+  "profiles": [
+    "sentinel-azure"
+  ],
+  "published": "2026-11-25T02:32:19Z",
+  "release_id": "hf-20261124-246c73630c26",
+  "research": "service-principal",
+  "revision": 1,
+  "schema_version": 1,
+  "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+  "signature": "a1aae7e8eb7e17d9b9451c29eb3617a04ca29b2c97c78c0a1def52e298a88f1b",
+  "source_ids": [
+    "HF-INT-4B6ABBDBB70347"
+  ],
+  "source_published": "2026-11-05",
+  "status": "partially_validated",
+  "tactic": "Credential Access",
+  "tags": [
+    "Agentic AI",
+    "Identity",
+    "Supply Chain"
+  ],
+  "technique": "T1555.006",
+  "title": "Key Vault Activity From the Reported ARTEX Address",
+  "updated": "2026-11-25T02:32:19Z",
+  "validation": {
+    "date": "2026-11-25T02:32:19Z",
+    "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+    "variants_checked": 10
+  },
+  "variants": {
+    "sentinel-azure": {
+      "profile_revision": 1,
+      "queries": {
+        "1": {
+          "json": "AZKVAuditLogs\n| where TimeGenerated > ago(1d)\n| where CallerIpAddress in (\"199.19.77.84\") and OperationName startswith \"Secret\"\n| project TimeGenerated, CallerIpAddress, OperationName, ResultType, _ResourceId\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "AZKVAuditLogs\n| where TimeGenerated > ago(1d)\n| where CallerIpAddress in (\"199.19.77.84\") and OperationName startswith \"Secret\"\n| project TimeGenerated, CallerIpAddress, OperationName, ResultType, _ResourceId\n| order by TimeGenerated desc\n"
+        },
+        "14": {
+          "json": "AZKVAuditLogs\n| where TimeGenerated > ago(14d)\n| where CallerIpAddress in (\"199.19.77.84\") and OperationName startswith \"Secret\"\n| project TimeGenerated, CallerIpAddress, OperationName, ResultType, _ResourceId\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "AZKVAuditLogs\n| where TimeGenerated > ago(14d)\n| where CallerIpAddress in (\"199.19.77.84\") and OperationName startswith \"Secret\"\n| project TimeGenerated, CallerIpAddress, OperationName, ResultType, _ResourceId\n| order by TimeGenerated desc\n"
+        },
+        "3": {
+          "json": "AZKVAuditLogs\n| where TimeGenerated > ago(3d)\n| where CallerIpAddress in (\"199.19.77.84\") and OperationName startswith \"Secret\"\n| project TimeGenerated, CallerIpAddress, OperationName, ResultType, _ResourceId\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "AZKVAuditLogs\n| where TimeGenerated > ago(3d)\n| where CallerIpAddress in (\"199.19.77.84\") and OperationName startswith \"Secret\"\n| project TimeGenerated, CallerIpAddress, OperationName, ResultType, _ResourceId\n| order by TimeGenerated desc\n"
+        },
+        "30": {
+          "json": "AZKVAuditLogs\n| where TimeGenerated > ago(30d)\n| where CallerIpAddress in (\"199.19.77.84\") and OperationName startswith \"Secret\"\n| project TimeGenerated, CallerIpAddress, OperationName, ResultType, _ResourceId\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "AZKVAuditLogs\n| where TimeGenerated > ago(30d)\n| where CallerIpAddress in (\"199.19.77.84\") and OperationName startswith \"Secret\"\n| project TimeGenerated, CallerIpAddress, OperationName, ResultType, _ResourceId\n| order by TimeGenerated desc\n"
+        },
+        "7": {
+          "json": "AZKVAuditLogs\n| where TimeGenerated > ago(7d)\n| where CallerIpAddress in (\"199.19.77.84\") and OperationName startswith \"Secret\"\n| project TimeGenerated, CallerIpAddress, OperationName, ResultType, _ResourceId\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "AZKVAuditLogs\n| where TimeGenerated > ago(7d)\n| where CallerIpAddress in (\"199.19.77.84\") and OperationName startswith \"Secret\"\n| project TimeGenerated, CallerIpAddress, OperationName, ResultType, _ResourceId\n| order by TimeGenerated desc\n"
+        }
+      },
+      "table": "AZKVAuditLogs",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    }
+  }
+}

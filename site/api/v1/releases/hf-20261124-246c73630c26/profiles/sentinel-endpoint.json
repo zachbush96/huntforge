@@ -1,0 +1,121 @@
+{
+  "assumptions": "In the Microsoft Defender XDR connector, enable raw event streaming into the Sentinel Log Analytics workspace for the table used by this query.",
+  "id": "sentinel-endpoint",
+  "name": "Sentinel · Endpoint events",
+  "release_id": "hf-20261124-246c73630c26",
+  "revision": 2,
+  "schema_version": 1,
+  "short": "Sentinel Endpoint",
+  "source": "Defender XDR raw event streaming",
+  "synthetic": false,
+  "tables": {
+    "DeviceEvents": {
+      "capability": "endpoint-events",
+      "columns": {
+        "ActionType": "string",
+        "AdditionalFields": "dynamic",
+        "DeviceName": "string",
+        "InitiatingProcessFileName": "string",
+        "TimeGenerated": "datetime"
+      },
+      "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/deviceevents",
+      "mappings": {
+        "Timestamp": "TimeGenerated"
+      },
+      "semantics": "TimeGenerated is the timestamp exposed by the workspace table.",
+      "timestamp": "TimeGenerated"
+    },
+    "DeviceFileEvents": {
+      "capability": "files",
+      "columns": {
+        "ActionType": "string",
+        "DeviceName": "string",
+        "FileName": "string",
+        "FolderPath": "string",
+        "InitiatingProcessCommandLine": "string",
+        "InitiatingProcessFileName": "string",
+        "SHA256": "string",
+        "TimeGenerated": "datetime"
+      },
+      "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/devicefileevents",
+      "mappings": {
+        "Timestamp": "TimeGenerated"
+      },
+      "semantics": "TimeGenerated is the timestamp exposed by the workspace table.",
+      "timestamp": "TimeGenerated"
+    },
+    "DeviceNetworkEvents": {
+      "capability": "network-process",
+      "columns": {
+        "ActionType": "string",
+        "DeviceName": "string",
+        "InitiatingProcessCommandLine": "string",
+        "InitiatingProcessFileName": "string",
+        "LocalIP": "string",
+        "LocalPort": "int",
+        "Protocol": "string",
+        "RemoteIP": "string",
+        "RemoteIPType": "string",
+        "RemotePort": "int",
+        "RemoteUrl": "string",
+        "TimeGenerated": "datetime"
+      },
+      "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/devicenetworkevents",
+      "mappings": {
+        "Action": "ActionType",
+        "CommandLine": "InitiatingProcessCommandLine",
+        "Destination IP": "RemoteIP",
+        "Destination Port": "RemotePort",
+        "Destination URL": "RemoteUrl",
+        "Device": "DeviceName",
+        "Process": "InitiatingProcessFileName",
+        "Timestamp": "TimeGenerated"
+      },
+      "semantics": "TimeGenerated is the timestamp exposed by the workspace table.",
+      "timestamp": "TimeGenerated"
+    },
+    "DeviceProcessEvents": {
+      "capability": "process",
+      "columns": {
+        "AccountName": "string",
+        "DeviceName": "string",
+        "FileName": "string",
+        "FolderPath": "string",
+        "InitiatingProcessFileName": "string",
+        "ProcessCommandLine": "string",
+        "TimeGenerated": "datetime"
+      },
+      "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/deviceprocessevents",
+      "mappings": {
+        "CommandLine": "ProcessCommandLine",
+        "Device": "DeviceName",
+        "Parent": "InitiatingProcessFileName",
+        "Path": "FolderPath",
+        "Process": "FileName",
+        "Timestamp": "TimeGenerated",
+        "User": "AccountName"
+      },
+      "semantics": "TimeGenerated is the timestamp exposed by the workspace table.",
+      "timestamp": "TimeGenerated"
+    },
+    "DeviceRegistryEvents": {
+      "capability": "registry",
+      "columns": {
+        "ActionType": "string",
+        "DeviceName": "string",
+        "InitiatingProcessFileName": "string",
+        "RegistryKey": "string",
+        "RegistryValueData": "string",
+        "RegistryValueName": "string",
+        "TimeGenerated": "datetime"
+      },
+      "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/deviceregistryevents",
+      "mappings": {
+        "Timestamp": "TimeGenerated"
+      },
+      "semantics": "TimeGenerated is the timestamp exposed by the workspace table.",
+      "timestamp": "TimeGenerated"
+    }
+  },
+  "target": "Microsoft Sentinel Logs"
+}

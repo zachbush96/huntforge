@@ -1,6 +1,10 @@
 {
-  "count": 6,
+  "count": 7,
   "items": [
+    {
+      "created": "2026-11-25T03:15:44Z",
+      "release_id": "hf-20261124-246c73630c26"
+    },
     {
       "created": "2026-11-25T03:12:38Z",
       "release_id": "hf-20261124-99b0217c01c0"
@@ -26,6 +30,6 @@
       "release_id": "hf-20261124-215a7f8f5dc5"
     }
   ],
-  "release_id": "hf-20261124-99b0217c01c0",
+  "release_id": "hf-20261124-246c73630c26",
   "schema_version": 1
 }
