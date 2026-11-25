@@ -10,7 +10,7 @@ On a Hunt Card, select **Explain the results to me** to analyze redacted results
 
 Use **Feedback** in the site header to send suggestions to the maintainer's private Google Forms inbox. Maintainers review the **Responses** tab in the form editor. Keep editor access restricted and respondent summaries disabled. Treat messages and suggested URLs as untrusted text. Verify a source before proposing it through the normal source review process.
 
-The initial collection spans **October 25 to November 24, 2026**, inclusive. The daily collector refreshes the active entries in [the source registry](SOURCES.yaml) at 6:17 a.m. Eastern. Open **System Status** for the latest coverage and use the **Source** filter in Intelligence to browse by publisher. The DFIR Report also contributes historical intrusion research from its public feed. MITRE ATT&CK® Enterprise is a reference snapshot.
+The initial collection spans **October 25 to November 24, 2026**, inclusive. Pushes to `main` start collection and publishing through GitHub Actions. The collector refreshes the active entries in [the source registry](SOURCES.yaml). Open **System Status** for the latest coverage and use the **Source** filter in Intelligence to browse by publisher. The DFIR Report also contributes historical intrusion research from its public feed. MITRE ATT&CK® Enterprise is a reference snapshot.
 
 ## Run locally
 

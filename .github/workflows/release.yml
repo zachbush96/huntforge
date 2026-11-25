@@ -1,9 +1,8 @@
 name: Publish HuntForge
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
-  schedule:
-    - cron: '17 6 * * *'
-      timezone: America/New_York
 
 concurrency:
   group: huntforge-publication

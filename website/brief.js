@@ -113,7 +113,7 @@ export function briefAside(data) {
         [data.hunts.length ? "<strong>100%</strong>" : "—",link("Schema checked",validation)],
         ["<strong>—</strong>",link("Engine execution",validation)],[`<strong>${data.report.quarantined.length}</strong>`,link("Quarantined",validation)]])}</div>
     </section>
-    <section>${bars("COLLECTION ENGINE", "<span>● DAILY / 06:17 ET</span>")}
+    <section>${bars("COLLECTION ENGINE", "<span>● ON PUSH / MANUAL</span>")}
       <div class="panel-body">${table([],[
         ["<b>Last run</b>",link(utc(created),route("status"))], ["<b>Duration</b>", `${runtime}s`],
         ["<b>Generation</b>", "Reviewed KQL rules"], ["<b>Hunts accepted</b>",link(data.hunts.length,route("hunts"))],
