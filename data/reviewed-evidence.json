@@ -1,0 +1,114 @@
+[
+  {
+    "key": "powershell-download",
+    "url": "https://www.microsoft.com/en-us/security/blog/2026/09/02/impersonating-it-support-threat-actors-turn-remote-session-into-enterprise-wide-access/",
+    "date": "2026-09-02",
+    "title": "Impersonating IT support: how threat actors turn a remote session into enterprise-wide access",
+    "tags": [
+      "LOLBins",
+      "Phishing"
+    ],
+    "claim": "Microsoft observed PowerShell downloading an MSI after fraudulent remote support access.",
+    "location": "Execution and MITRE ATT&CK sections",
+    "techniques": [
+      "T1059.001",
+      "T1105"
+    ]
+  },
+  {
+    "key": "gsocket",
+    "url": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/",
+    "date": "2026-11-11",
+    "title": "The global socket: how threat actors are weaponizing GSocket for stealthy C2",
+    "tags": [
+      "APT Activity",
+      "Exploitation"
+    ],
+    "claim": "Microsoft observed GSocket and gs-netcat process activity on compromised Linux hosts, sometimes with renamed binaries.",
+    "location": "Advanced hunting queries and indicators sections",
+    "techniques": [
+      "T1090.002"
+    ],
+    "software": [
+      "GSocket"
+    ]
+  },
+  {
+    "key": "outage-phishing",
+    "url": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/",
+    "date": "2026-11-16",
+    "title": "High volume phishing campaign uses Microsoft 365 outage lures to target multiple industry sectors",
+    "tags": [
+      "Phishing",
+      "Identity"
+    ],
+    "claim": "Microsoft reported downstream destinations and a redirect path in deceptive Microsoft 365 service-health messages. The report did not confirm credential submission.",
+    "location": "Lure and redirect flow, MITRE ATT&CK, and indicators sections",
+    "techniques": [
+      "T1566.002",
+      "T1204.001",
+      "T1036"
+    ],
+    "indicators": [
+      [
+        "domain",
+        "reallifeaccounting[.]com",
+        "Principal downstream destination."
+      ],
+      [
+        "domain",
+        "outagefixed[.]sbs",
+        "Downstream destination in some messages."
+      ],
+      [
+        "domain",
+        "outagerestored[.]sbs",
+        "Downstream destination in some messages."
+      ],
+      [
+        "url",
+        "hxxps://reallifeaccounting[.]com/themelist0[.]html",
+        "Reported downstream destination path."
+      ]
+    ]
+  },
+  {
+    "key": "quick-assist",
+    "url": "https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/",
+    "date": "2026-10-30",
+    "title": "From help desk impersonation to AD CS abuse: Investigating ESC1 and ESC8 intrusion paths",
+    "tags": [
+      "Phishing",
+      "Identity"
+    ],
+    "claim": "Microsoft observed fraudulent IT support sessions conducted primarily through Quick Assist before staging additional tools.",
+    "location": "Intrusion case studies and initial access sections",
+    "techniques": [
+      "T1219.002"
+    ]
+  },
+  {
+    "key": "service-principal",
+    "url": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/",
+    "date": "2026-11-05",
+    "title": "Threat actors use agentic AI tooling to find and abuse exposed secrets",
+    "tags": [
+      "Agentic AI",
+      "Identity",
+      "Supply Chain"
+    ],
+    "claim": "Microsoft reported successful service-principal sign-ins from a campaign-associated address across multiple application IDs. The date below is the earliest activity Microsoft describes.",
+    "observation_date": "2026-10-28",
+    "location": "Credential abuse via Entra ID and indicators sections",
+    "techniques": [
+      "T1078.004"
+    ],
+    "indicators": [
+      [
+        "ipv4",
+        "199.19.77[.]84",
+        "IP observed in successful service principal sign-ins across multiple applications."
+      ]
+    ]
+  }
+]

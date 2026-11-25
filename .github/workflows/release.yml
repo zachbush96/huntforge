@@ -1,0 +1,187 @@
+name: Publish HuntForge
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 6 * * *'
+      timezone: America/New_York
+
+concurrency:
+  group: huntforge-publication
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    outputs:
+      release: ${{ steps.prepare.outputs.release }}
+      previous: ${{ steps.prepare.outputs.previous }}
+      publish: ${{ steps.prepare.outputs.publish }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '9.0.x'
+      - run: python -m pip install -r requirements-dev.txt
+      - run: dotnet restore validator --locked-mode
+      - run: dotnet build validator --configuration Release --no-restore
+      - id: prepare
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git ls-remote --exit-code --heads origin refs/heads/codex/publications > /dev/null; then
+            git fetch --no-tags origin refs/heads/codex/publications
+            git worktree add --detach .archive/prior FETCH_HEAD
+            cp .archive/prior/data/catalog.json data/catalog.json
+            cp .archive/prior/hunts/catalog.json hunts/catalog.json
+            previous=$(jq -r .release_id .archive/prior/site/api/v1/latest.json)
+            echo "previous=$previous" >> "$GITHUB_OUTPUT"
+          else
+            previous=
+          fi
+          if [[ -n "$previous" ]]; then
+            python -m pipeline.collect
+          else
+            python -m pipeline.collect --initial-release
+          fi
+          python -m unittest discover -s tests -v
+          python -m pipeline.build --archive .archive/prior/site/api/v1/releases
+          python -m pipeline.verify
+          release=$(jq -r .release_id dist/api/v1/latest.json)
+          echo "release=$release" >> "$GITHUB_OUTPUT"
+          if [[ -n "$previous" ]] && python -m pipeline.duplicate .archive/prior/site dist; then
+            echo 'publish=false' >> "$GITHUB_OUTPUT"
+            echo "No material change; retained $previous" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo 'publish=true' >> "$GITHUB_OUTPUT"
+          fi
+          {
+            echo '## Collection'
+            jq -r '"Window: \(.window.from) through \(.window.through) | Changes: \(.changes) | Hunts: \(.accepted)"' reports/latest.json
+            jq -r '.sources[] | "- \(.name) — \(.state), \(.coverage), \(.count // 0) records"' reports/latest.json
+          } >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-pages-artifact@v4
+        if: steps.prepare.outputs.publish == 'true'
+        with:
+          path: dist
+      - uses: actions/upload-pages-artifact@v4
+        if: steps.prepare.outputs.publish == 'true' && steps.prepare.outputs.previous != ''
+        with:
+          path: .archive/prior/site
+          name: github-pages-rollback
+      - if: steps.prepare.outputs.publish == 'true'
+        run: |
+          mkdir -p .archive/bundle/data .archive/bundle/hunts .archive/bundle/reports
+          cp data/catalog.json .archive/bundle/data/
+          cp hunts/catalog.json .archive/bundle/hunts/
+          cp -r hunts/queries .archive/bundle/hunts/
+          cp reports/latest.json .archive/bundle/reports/
+          cp -r dist .archive/bundle/site
+      - uses: actions/upload-artifact@v4
+        if: steps.prepare.outputs.publish == 'true'
+        with:
+          name: tested-release
+          path: .archive/bundle
+          include-hidden-files: true
+          retention-days: 2
+
+  deploy:
+    needs: prepare
+    if: needs.prepare.outputs.publish == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    outputs:
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment
+
+  smoke:
+    needs: [prepare, deploy]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - env:
+          SITE_URL: ${{ needs.deploy.outputs.url }}
+          RELEASE_ID: ${{ needs.prepare.outputs.release }}
+        run: |
+          for attempt in 1 2 3 4 5 6; do
+            if python -m pipeline.verify --url "$SITE_URL" --release "$RELEASE_ID"; then
+              echo "Verified $RELEASE_ID on $SITE_URL" >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            sleep 10
+          done
+          exit 1
+
+  archive:
+    needs: [prepare, smoke]
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - uses: actions/download-artifact@v4
+        with:
+          name: tested-release
+          path: .archive/accepted
+      - env:
+          EXPECTED_RELEASE: ${{ needs.prepare.outputs.release }}
+        run: |
+          set -euo pipefail
+          python -m pipeline.verify --dist .archive/accepted/site
+          test "$(jq -r .release_id .archive/accepted/site/api/v1/latest.json)" = "$EXPECTED_RELEASE"
+          if git ls-remote --exit-code --heads origin refs/heads/codex/publications > /dev/null; then
+            git fetch --no-tags origin refs/heads/codex/publications
+            git worktree add --detach .archive/published FETCH_HEAD
+          else
+            git worktree add --detach .archive/published HEAD
+            git -C .archive/published switch --orphan huntforge-archive-seed
+          fi
+          for directory in data hunts reports site; do
+            mkdir -p ".archive/published/$directory"
+            rsync -a --delete ".archive/accepted/$directory/" ".archive/published/$directory/"
+          done
+          git -C .archive/published add -A -- data hunts reports site
+          git -C .archive/published +            -c 'user.name=github-actions[bot]' -c 'user.email=41898282+github-actions[bot]@users.noreply.github.com' +            commit -m "Archive $EXPECTED_RELEASE"
+          git -C .archive/published push origin HEAD:refs/heads/codex/publications
+          echo "Archived $EXPECTED_RELEASE in codex/publications" >> "$GITHUB_STEP_SUMMARY"
+
+  rollback:
+    needs: [prepare, deploy, smoke]
+    if: always() && needs.deploy.result == 'success' && needs.smoke.result == 'failure' && needs.prepare.outputs.previous != ''
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment: github-pages
+    steps:
+      - uses: actions/deploy-pages@v4
+        with:
+          artifact_name: github-pages-rollback
+      - run: echo "Redeployed the previous release after a smoke failure." >> "$GITHUB_STEP_SUMMARY"

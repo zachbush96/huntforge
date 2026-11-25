@@ -1,0 +1,9 @@
+name: Website issue
+description: Report an interface or export problem.
+body:
+  - type: textarea
+    id: report
+    attributes:
+      label: Browser, page and steps
+    validations:
+      required: true

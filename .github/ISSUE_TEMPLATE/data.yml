@@ -1,0 +1,16 @@
+name: Public data or Hunt Card correction
+description: Report a public evidence, mapping or query issue.
+body:
+  - type: input
+    id: identifier
+    attributes:
+      label: HuntForge ID and revision
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Public evidence and proposed correction
+      description: Include a public publisher link. Exclude workspace data and private schemas.
+    validations:
+      required: true

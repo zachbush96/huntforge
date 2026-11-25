@@ -1,0 +1,89 @@
+schema_version: 1
+policy:
+  network: HTTPS requests to the exact registered endpoints. Reject redirects and non-public DNS answers.
+  authentication: No credentials for active sources.
+  retries: Three attempts for transient failures with a 15-second request timeout and exponential backoff.
+  conditional_requests: Send ETag and Last-Modified validators when the local cache supplies them.
+  retention: Raw payloads remain untracked. Accepted normalized records and archived snapshots remain in Git.
+  freshness: A successful retrieval is fresh for 48 hours. Failed sources preserve their last accepted records.
+sources:
+  - id: cisa-kev
+    status: active
+    trust: government catalog
+    publisher: https://www.cisa.gov/known-exploited-vulnerabilities-catalog
+    endpoint: https://raw.githubusercontent.com/cisagov/kev-data/develop/known_exploited_vulnerabilities.json
+    adapter: pipeline.sources.kev
+    dates: dateAdded and dateReleased
+    access: Public official GitHub mirror. One conditional request per run.
+    rights: CC0 with source attribution.
+    coverage: Catalog additions within the window and rechecks for previously accepted CVEs.
+  - id: first-epss
+    status: active
+    trust: published probability model
+    publisher: https://www.first.org/epss/data
+    endpoint: https://api.first.org/data/v1/epss
+    adapter: pipeline.sources.epss
+    dates: date in score and time-series fields
+    access: Public API. At most 35 CVEs per request with one-second pacing.
+    rights: Publish a scoped subset of numerical data with attribution.
+    coverage: Score time series for CISA KEV entries in the collection window, where FIRST returns scores.
+  - id: cisa-advisories
+    status: active
+    trust: government advisory
+    publisher: https://www.cisa.gov/news-events/cybersecurity-advisories
+    endpoint: https://www.cisa.gov/cybersecurity-advisories/all.xml
+    historical_listing: https://www.cisa.gov/news-events/cybersecurity-advisories?page=0
+    adapter: pipeline.sources.advisory
+    dates: RSS pubDate and advisory listing Release Date
+    access: Public RSS and up to five archive pages.
+    rights: Attribute title/date metadata and link to the publisher.
+    coverage: Publisher advisories and alerts visible in the RSS and archive.
+  - id: microsoft
+    status: active
+    trust: primary vendor research
+    publisher: https://www.microsoft.com/en-us/security/blog/
+    endpoint: https://www.microsoft.com/en-us/security/blog/feed/
+    adapter: pipeline.sources.advisory
+    dates: RSS pubDate or reviewed original publication date
+    access: Public WordPress feed. Up to six pages.
+    rights: Attribution, source links and independently written summaries. No full posts.
+    coverage: Security-tagged articles plus reviewed evidence attached to accepted hunts.
+  - id: ncsc
+    status: active
+    trust: government advisory
+    publisher: https://www.ncsc.gov.uk/information/rss-feeds
+    endpoint: https://www.ncsc.gov.uk/api/1/services/v1/all-rss-feed.xml
+    adapter: pipeline.sources.advisory
+    dates: RSS pubDate
+    access: Public single-page feed.
+    rights: Attribute metadata and link to the publisher.
+    coverage: Publisher buffer. Partial when the oldest entry postdates the window start.
+  - id: mitre
+    status: active
+    trust: curated reference
+    publisher: https://attack.mitre.org/resources/attack-data-and-tools/
+    endpoint: https://raw.githubusercontent.com/mitre-attack/attack-stix-data/master/enterprise-attack/enterprise-attack.json
+    adapter: pipeline.sources.attack
+    dates: STIX collection and object modified values
+    access: Public GitHub STIX and license. One request each.
+    rights: Reproduce original MITRE license and attribution alongside the index.
+    coverage: Current Enterprise reference snapshot.
+evaluated_inactive:
+  - id: fbi-flash
+    publisher: https://www.ic3.gov/CSA
+    reason: Direct ingestion deferred. CISA joint advisories are covered by the CISA adapter.
+  - id: threatfox
+    publisher: https://threatfox.abuse.ch/api/
+    reason: Auth-Key required for the community API. Historical and redistribution scope pending.
+  - id: urlhaus
+    publisher: https://urlhaus.abuse.ch/api/
+    reason: Auth-Key and feed reuse terms need review. Never retrieve URLs listed as indicators.
+  - id: malwarebazaar
+    publisher: https://bazaar.abuse.ch/api/
+    reason: Auth-Key and metadata reuse terms need review. Samples are excluded.
+  - id: microsoft-sentinel-repository
+    publisher: https://github.com/Azure/Azure-Sentinel
+    reason: Use Microsoft documentation for table semantics. Source-code imports require individual review.
+  - id: sigmahq
+    publisher: https://github.com/SigmaHQ/sigma
+    reason: Keep candidate evidence separate until rule attribution, reuse terms and support are reviewed.

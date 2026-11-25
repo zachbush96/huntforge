@@ -1,0 +1,102 @@
+[
+  {
+    "id": "HF-2025-0001",
+    "title": "Suspicious PowerShell Network Activity",
+    "research": "powershell-download",
+    "description": "Scope outbound PowerShell connections on monitored devices and correlate them with published behavior and local incident evidence.",
+    "hypothesis": "PowerShell used to retrieve a payload may leave a process-attributed network event.",
+    "confidence": "Contextual behavioral hypothesis",
+    "profiles": [
+      "defender-xdr"
+    ],
+    "technique": "T1059.001",
+    "tactic": "Execution",
+    "considerations": [
+      "Filter known administrative scripts and managed automation.",
+      "Review the full command line and initiating process ancestry.",
+      "Correlate destinations with internal DNS, proxy logs and approved intelligence.",
+      "Review the surrounding device timeline before broadening the lookback."
+    ],
+    "lookback": 7
+  },
+  {
+    "id": "HF-2026-0002",
+    "title": "GSocket Process Activity",
+    "research": "gsocket",
+    "description": "Find GSocket tooling in Linux endpoint process telemetry for review.",
+    "hypothesis": "Known GSocket executable names or command-line references may identify investigated relay tooling.",
+    "confidence": "Publisher-observed tooling",
+    "profiles": [
+      "defender-xdr"
+    ],
+    "technique": "T1090.002",
+    "tactic": "Command and Control",
+    "considerations": [
+      "Review the parent process, account and working path.",
+      "Confirm whether the activity was approved. GSocket is dual-use.",
+      "Review network events separately. Process execution alone cannot establish a relay session."
+    ],
+    "lookback": 7
+  },
+  {
+    "id": "HF-2026-0003",
+    "title": "Microsoft 365 Outage Phishing Destinations",
+    "research": "outage-phishing",
+    "description": "Review network or proxy events for the exact downstream domains Microsoft reported.",
+    "hypothesis": "Exact destination host matches can identify traffic associated with the documented phishing campaign.",
+    "confidence": "Publisher-observed indicators",
+    "profiles": [
+      "defender-xdr",
+      "sentinel-cef",
+      "custom-menlo",
+      "custom-proxy"
+    ],
+    "technique": "T1566.002",
+    "tactic": "Initial Access",
+    "considerations": [
+      "Correlate matches with mail delivery and user click telemetry.",
+      "Use the action field to distinguish blocks from permitted requests.",
+      "Review URL paths and Entra sign-ins before inferring credential exposure.",
+      "Security scanners and automated previews can generate matches."
+    ],
+    "lookback": 7
+  },
+  {
+    "id": "HF-2026-0004",
+    "title": "Quick Assist Process Activity",
+    "research": "quick-assist",
+    "description": "Find Quick Assist executions for triage alongside help desk records.",
+    "hypothesis": "Fraudulent remote support sessions can start with Quick Assist process activity.",
+    "confidence": "Contextual behavioral hypothesis",
+    "profiles": [
+      "defender-xdr"
+    ],
+    "technique": "T1219.002",
+    "tactic": "Command and Control",
+    "considerations": [
+      "Check for an authorized support ticket and verify who initiated the session.",
+      "Review nearby process and network events for activity after the support session.",
+      "A process match cannot establish that a session connected."
+    ],
+    "lookback": 7
+  },
+  {
+    "id": "HF-2026-0005",
+    "title": "Service Principal Sign-ins From a Reported IP",
+    "research": "service-principal",
+    "description": "Review successful Entra service-principal sign-ins from a campaign-associated IP Microsoft reported.",
+    "hypothesis": "A successful sign-in from the published address warrants correlation with app ownership and expected egress.",
+    "confidence": "Publisher-observed indicators",
+    "profiles": [
+      "sentinel-entra"
+    ],
+    "technique": "T1078.004",
+    "tactic": "Persistence",
+    "considerations": [
+      "Review the service principal, credential changes and resource access.",
+      "Compare the source IP with known egress and require independent evidence before escalation.",
+      "Check Azure activity and resource audit logs for follow-on actions."
+    ],
+    "lookback": 7
+  }
+]
