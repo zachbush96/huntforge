@@ -1,0 +1,40 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Vulnérabilité dans Laravel (23 novembre 2026)",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-23",
+      "source": "cert-fr",
+      "source_id": "cert-fr:CERTFR-2026-AVI-1601",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1601/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T03:51:30Z",
+  "hunts": [],
+  "id": "HF-INT-9F88B9F705C1A5",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-23",
+  "related": [],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "034d4239ab1afb42bcb71accc60ee5462f6b7e1217fc73d18036bc9aaf00036e",
+  "source": "cert-fr",
+  "source_id": "cert-fr:CERTFR-2026-AVI-1601",
+  "status": "active",
+  "summary": "CERT-FR security advisory. The publisher lists affected products and mitigations.",
+  "tags": [
+    "Vulnerability management"
+  ],
+  "title": "Vulnérabilité dans Laravel (23 novembre 2026)",
+  "updated": "2026-11-25T17:59:44Z"
+}

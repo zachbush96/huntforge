@@ -1,0 +1,40 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "The Rise of LLMJacking: How Threat Actors Monetize Compromised Cloud and Model Resources",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-02",
+      "source": "google-threat-intelligence",
+      "source_id": "https://cloud.google.com/blog/topics/threat-intelligence/llmjacking-monetizing-compromised-cloud-models/",
+      "url": "https://cloud.google.com/blog/topics/threat-intelligence/llmjacking-monetizing-compromised-cloud-models/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-098EE6DDBE901D",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-02",
+  "related": [],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "6dea415ec02b3396c07c5dfb3243307d0d48db2ee5f8f2b9dddfb2b44d82dbb9",
+  "source": "google-threat-intelligence",
+  "source_id": "https://cloud.google.com/blog/topics/threat-intelligence/llmjacking-monetizing-compromised-cloud-models/",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include apt activity.",
+  "tags": [
+    "APT Activity"
+  ],
+  "title": "The Rise of LLMJacking: How Threat Actors Monetize Compromised Cloud and Model Resources",
+  "updated": "2026-11-25T17:59:44Z"
+}

@@ -1,0 +1,6 @@
+DeviceNetworkEvents
+| where TimeGenerated > ago(7d)
+| extend HuntDestinationHost = tolower(trim_end(@"\.+", coalesce(iff(RemoteUrl contains "://", tostring(parse_url(RemoteUrl).Host), RemoteUrl), tostring(parse_url(RemoteUrl).Host))))
+| where HuntDestinationHost in ("reallifeaccounting.com", "outagefixed.sbs", "outagerestored.sbs")
+| project TimeGenerated, DeviceName, RemoteIP, RemoteUrl, ActionType, HuntDestinationHost
+| order by TimeGenerated desc

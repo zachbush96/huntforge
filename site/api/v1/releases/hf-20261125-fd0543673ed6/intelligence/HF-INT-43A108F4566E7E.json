@@ -1,0 +1,205 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2024-10441"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-25",
+      "epss": "0.027600000",
+      "percentile": "0.869850000"
+    },
+    {
+      "date": "2026-11-24",
+      "epss": "0.03129000",
+      "percentile": "0.88097000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.03129000",
+      "percentile": "0.88191000"
+    },
+    {
+      "date": "2026-11-22",
+      "epss": "0.03129000",
+      "percentile": "0.88188000"
+    },
+    {
+      "date": "2026-11-21",
+      "epss": "0.03129000",
+      "percentile": "0.88180000"
+    },
+    {
+      "date": "2026-11-20",
+      "epss": "0.02415000",
+      "percentile": "0.84535000"
+    },
+    {
+      "date": "2026-11-19",
+      "epss": "0.02150000",
+      "percentile": "0.82512000"
+    },
+    {
+      "date": "2026-11-18",
+      "epss": "0.01251000",
+      "percentile": "0.70014000"
+    },
+    {
+      "date": "2026-11-17",
+      "epss": "0.01251000",
+      "percentile": "0.69933000"
+    },
+    {
+      "date": "2026-11-16",
+      "epss": "0.01251000",
+      "percentile": "0.69911000"
+    },
+    {
+      "date": "2026-11-15",
+      "epss": "0.01251000",
+      "percentile": "0.69908000"
+    },
+    {
+      "date": "2026-11-14",
+      "epss": "0.01251000",
+      "percentile": "0.69905000"
+    },
+    {
+      "date": "2026-11-13",
+      "epss": "0.01251000",
+      "percentile": "0.69886000"
+    },
+    {
+      "date": "2026-11-12",
+      "epss": "0.01251000",
+      "percentile": "0.69843000"
+    },
+    {
+      "date": "2026-11-11",
+      "epss": "0.01251000",
+      "percentile": "0.69806000"
+    },
+    {
+      "date": "2026-11-10",
+      "epss": "0.01251000",
+      "percentile": "0.69665000"
+    },
+    {
+      "date": "2026-11-09",
+      "epss": "0.01251000",
+      "percentile": "0.69630000"
+    },
+    {
+      "date": "2026-11-08",
+      "epss": "0.01251000",
+      "percentile": "0.69615000"
+    },
+    {
+      "date": "2026-11-07",
+      "epss": "0.01251000",
+      "percentile": "0.69596000"
+    },
+    {
+      "date": "2026-11-06",
+      "epss": "0.01251000",
+      "percentile": "0.69551000"
+    },
+    {
+      "date": "2026-11-05",
+      "epss": "0.01251000",
+      "percentile": "0.69527000"
+    },
+    {
+      "date": "2026-11-04",
+      "epss": "0.01251000",
+      "percentile": "0.69507000"
+    },
+    {
+      "date": "2026-11-03",
+      "epss": "0.01251000",
+      "percentile": "0.69460000"
+    },
+    {
+      "date": "2026-11-02",
+      "epss": "0.01251000",
+      "percentile": "0.69427000"
+    },
+    {
+      "date": "2026-11-01",
+      "epss": "0.01251000",
+      "percentile": "0.69432000"
+    },
+    {
+      "date": "2026-10-31",
+      "epss": "0.01251000",
+      "percentile": "0.69432000"
+    },
+    {
+      "date": "2026-10-30",
+      "epss": "0.01251000",
+      "percentile": "0.69395000"
+    },
+    {
+      "date": "2026-10-29",
+      "epss": "0.01251000",
+      "percentile": "0.69353000"
+    },
+    {
+      "date": "2026-10-28",
+      "epss": "0.01251000",
+      "percentile": "0.69321000"
+    },
+    {
+      "date": "2026-10-27",
+      "epss": "0.01251000",
+      "percentile": "0.69274000"
+    },
+    {
+      "date": "2026-10-26",
+      "epss": "0.01251000",
+      "percentile": "0.69229000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-18",
+      "source": "cisa-kev",
+      "source_id": "CVE-2024-10441",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2024-10441"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-43A108F4566E7E",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "DiskStation Manager (DSM)",
+  "published": "2026-11-18",
+  "ransomware_use": "known",
+  "related": [
+    "HF-INT-2BF6E3B53184CD"
+  ],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "remediation_due": "2026-11-21",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "6f46f2af8a321b91ea85675bfb6dbf154cbab5a97926ee6459f0f3035616c4cf",
+  "source": "cisa-kev",
+  "source_id": "CVE-2024-10441",
+  "status": "active",
+  "summary": "CISA added CVE-2024-10441 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-21.",
+  "tags": [
+    "Exploitation",
+    "Ransomware"
+  ],
+  "title": "Synology DiskStation Manager (DSM) Improper Encoding or Escaping of Output Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "Synology"
+}

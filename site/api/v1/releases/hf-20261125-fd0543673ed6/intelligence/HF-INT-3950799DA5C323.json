@@ -1,0 +1,49 @@
+{
+  "actors": [
+    "BengalSEO"
+  ],
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "The DFIR Report identified an SEO poisoning campaign in March 2026 that steered users toward tech support scams and malware. The researchers track the operation as BengalSEO and named its custom malware MayaBot.",
+      "location": "Key Takeaways and Case Summary",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-08-24",
+      "source": "dfir-report",
+      "source_id": "dfir-report:50572",
+      "url": "https://thedfirreport.com/2026/08/24/bengalseo-part-1-anatomy-of-the-operation/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-3950799DA5C323",
+  "in_window": false,
+  "indicators": [],
+  "kind": "Research",
+  "published": "2026-08-24",
+  "related": [],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "941b067d7fda4563a4bbc717bf606bafc27e85e5a6a3b91129aefbafdd77c047",
+  "software": [
+    "MayaBot"
+  ],
+  "source": "dfir-report",
+  "source_id": "dfir-report:50572",
+  "status": "active",
+  "summary": "The DFIR Report identified an SEO poisoning campaign in March 2026 that steered users toward tech support scams and malware. The researchers track the operation as BengalSEO and named its custom malware MayaBot.",
+  "tags": [
+    "Malware",
+    "Phishing"
+  ],
+  "techniques": [],
+  "title": "BengalSEO Part 1: Anatomy of the Operation",
+  "updated": "2026-11-25T17:59:44Z"
+}

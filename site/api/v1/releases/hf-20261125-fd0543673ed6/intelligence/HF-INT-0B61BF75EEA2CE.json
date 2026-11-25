@@ -1,0 +1,40 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "IT threat evolution in Q3 2026. Mobile statistics",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-10",
+      "source": "securelist",
+      "source_id": "securelist:121844",
+      "url": "https://securelist.com/malware-report-q3-2026-mobile-statistics/121844/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-0B61BF75EEA2CE",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-10",
+  "related": [],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "90e466e96de791aa9619c8ea18d625a65322098cdc854208803fc07884d0ed6d",
+  "source": "securelist",
+  "source_id": "securelist:121844",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include malware.",
+  "tags": [
+    "Malware"
+  ],
+  "title": "IT threat evolution in Q3 2026. Mobile statistics",
+  "updated": "2026-11-25T17:59:44Z"
+}

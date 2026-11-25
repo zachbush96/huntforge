@@ -1,0 +1,40 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Appraisal by AI: Model-driven victim prioritization in the VOLTA infostealer",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-10-31",
+      "source": "cisco-talos",
+      "source_id": "cisco-talos:6ae49fc11bed380001492138",
+      "url": "https://blog.talosintelligence.com/appraisal-by-ai-model-driven-victim-prioritization-in-the-volta-infostealer/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-982DB6F8FB2D69",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-10-31",
+  "related": [],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "40f61f6c64f8d4dec3ba56e2012c27692dc42547da94a31a0bada8efa1dd1e9a",
+  "source": "cisco-talos",
+  "source_id": "cisco-talos:6ae49fc11bed380001492138",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include identity.",
+  "tags": [
+    "Identity"
+  ],
+  "title": "Appraisal by AI: Model-driven victim prioritization in the VOLTA infostealer",
+  "updated": "2026-11-25T17:59:44Z"
+}

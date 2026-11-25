@@ -1,0 +1,109 @@
+{
+  "actors": [],
+  "confidence": "Behavioral hypothesis",
+  "considerations": [
+    "Confirm the technician, session and change ticket.",
+    "Investigate unexpected commands on downstream managed endpoints."
+  ],
+  "description": "Look for shell process launches parented by ScreenConnect.",
+  "evidence": [
+    {
+      "claim": "Microsoft documented unauthorized ScreenConnect sessions, scripting, scheduled tasks, Run keys and changes to Defender exclusions while investigating SCKit.",
+      "location": "Investigation guidance and advanced hunting examples",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-13",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/13/sckit-abuses-screenconnect-deploy-remote-access-target-technician-sessions/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/13/sckit-abuses-screenconnect-deploy-remote-access-target-technician-sessions/"
+    }
+  ],
+  "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+  "history": [
+    {
+      "change": "Created",
+      "date": "2026-11-25T02:32:19Z",
+      "revision": 1,
+      "summary": "Created evidence-backed hunt and validated all supported variants."
+    },
+    {
+      "change": "Updated",
+      "date": "2026-11-25T03:12:33Z",
+      "revision": 2,
+      "summary": "Revalidated after changes to variants."
+    }
+  ],
+  "hypothesis": "Look for shell process launches parented by ScreenConnect.",
+  "id": "HF-2026-0024",
+  "indicator_ids": [],
+  "lookback": 7,
+  "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+  "primary_table": "DeviceProcessEvents",
+  "profiles": [
+    "sentinel-endpoint"
+  ],
+  "published": "2026-11-25T02:32:19Z",
+  "release_id": "hf-20261125-fd0543673ed6",
+  "research": "sckit",
+  "revision": 2,
+  "schema_version": 1,
+  "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+  "signature": "6d43ab7983de739ea34da6e80a1b868cdd54470ed5a6fab03e3a3bbad468ecea",
+  "source_ids": [
+    "HF-INT-36ECE2AA75663D"
+  ],
+  "source_published": "2026-11-13",
+  "status": "partially_validated",
+  "tactic": "Command and Control",
+  "tags": [
+    "Supply Chain",
+    "Remote Access",
+    "LOLBins"
+  ],
+  "technique": "T1219.002",
+  "title": "ScreenConnect Spawning a Command Shell",
+  "updated": "2026-11-25T03:12:33Z",
+  "validation": {
+    "date": "2026-11-25T03:12:33Z",
+    "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+    "variants_checked": 10
+  },
+  "variants": {
+    "sentinel-endpoint": {
+      "profile_revision": 2,
+      "queries": {
+        "1": {
+          "json": "DeviceProcessEvents\n| where TimeGenerated > ago(1d)\n| where InitiatingProcessFileName startswith \"ScreenConnect\"\n| where FileName in~ (\"cmd.exe\", \"powershell.exe\", \"pwsh.exe\")\n| project TimeGenerated, DeviceName, AccountName, InitiatingProcessFileName, FileName, ProcessCommandLine\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceProcessEvents\n| where TimeGenerated > ago(1d)\n| where InitiatingProcessFileName startswith \"ScreenConnect\"\n| where FileName in~ (\"cmd.exe\", \"powershell.exe\", \"pwsh.exe\")\n| project TimeGenerated, DeviceName, AccountName, InitiatingProcessFileName, FileName, ProcessCommandLine\n| order by TimeGenerated desc\n"
+        },
+        "14": {
+          "json": "DeviceProcessEvents\n| where TimeGenerated > ago(14d)\n| where InitiatingProcessFileName startswith \"ScreenConnect\"\n| where FileName in~ (\"cmd.exe\", \"powershell.exe\", \"pwsh.exe\")\n| project TimeGenerated, DeviceName, AccountName, InitiatingProcessFileName, FileName, ProcessCommandLine\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceProcessEvents\n| where TimeGenerated > ago(14d)\n| where InitiatingProcessFileName startswith \"ScreenConnect\"\n| where FileName in~ (\"cmd.exe\", \"powershell.exe\", \"pwsh.exe\")\n| project TimeGenerated, DeviceName, AccountName, InitiatingProcessFileName, FileName, ProcessCommandLine\n| order by TimeGenerated desc\n"
+        },
+        "3": {
+          "json": "DeviceProcessEvents\n| where TimeGenerated > ago(3d)\n| where InitiatingProcessFileName startswith \"ScreenConnect\"\n| where FileName in~ (\"cmd.exe\", \"powershell.exe\", \"pwsh.exe\")\n| project TimeGenerated, DeviceName, AccountName, InitiatingProcessFileName, FileName, ProcessCommandLine\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceProcessEvents\n| where TimeGenerated > ago(3d)\n| where InitiatingProcessFileName startswith \"ScreenConnect\"\n| where FileName in~ (\"cmd.exe\", \"powershell.exe\", \"pwsh.exe\")\n| project TimeGenerated, DeviceName, AccountName, InitiatingProcessFileName, FileName, ProcessCommandLine\n| order by TimeGenerated desc\n"
+        },
+        "30": {
+          "json": "DeviceProcessEvents\n| where TimeGenerated > ago(30d)\n| where InitiatingProcessFileName startswith \"ScreenConnect\"\n| where FileName in~ (\"cmd.exe\", \"powershell.exe\", \"pwsh.exe\")\n| project TimeGenerated, DeviceName, AccountName, InitiatingProcessFileName, FileName, ProcessCommandLine\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceProcessEvents\n| where TimeGenerated > ago(30d)\n| where InitiatingProcessFileName startswith \"ScreenConnect\"\n| where FileName in~ (\"cmd.exe\", \"powershell.exe\", \"pwsh.exe\")\n| project TimeGenerated, DeviceName, AccountName, InitiatingProcessFileName, FileName, ProcessCommandLine\n| order by TimeGenerated desc\n"
+        },
+        "7": {
+          "json": "DeviceProcessEvents\n| where TimeGenerated > ago(7d)\n| where InitiatingProcessFileName startswith \"ScreenConnect\"\n| where FileName in~ (\"cmd.exe\", \"powershell.exe\", \"pwsh.exe\")\n| project TimeGenerated, DeviceName, AccountName, InitiatingProcessFileName, FileName, ProcessCommandLine\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceProcessEvents\n| where TimeGenerated > ago(7d)\n| where InitiatingProcessFileName startswith \"ScreenConnect\"\n| where FileName in~ (\"cmd.exe\", \"powershell.exe\", \"pwsh.exe\")\n| project TimeGenerated, DeviceName, AccountName, InitiatingProcessFileName, FileName, ProcessCommandLine\n| order by TimeGenerated desc\n"
+        }
+      },
+      "table": "DeviceProcessEvents",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Microsoft documented unauthorized ScreenConnect sessions, scripting, scheduled tasks, Run keys and changes to Defender exclusions while investigating SCKit.",
+      "location": "Investigation guidance and advanced hunting examples",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-13",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/13/sckit-abuses-screenconnect-deploy-remote-access-target-technician-sessions/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/13/sckit-abuses-screenconnect-deploy-remote-access-target-technician-sessions/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [
+    "HF-2026-0024",
+    "HF-2026-0025",
+    "HF-2026-0026",
+    "HF-2026-0027"
+  ],
+  "id": "HF-INT-36ECE2AA75663D",
+  "in_window": true,
+  "indicators": [],
+  "kind": "Research",
+  "published": "2026-11-13",
+  "related": [],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 2,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "fa9b37d6022b07904aba6c27874cba44d6591b719960bc3ecf776e6e1fa9696a",
+  "software": [
+    "SCKit",
+    "ScreenConnect",
+    "RelayTrap"
+  ],
+  "source": "microsoft",
+  "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/13/sckit-abuses-screenconnect-deploy-remote-access-target-technician-sessions/",
+  "status": "active",
+  "summary": "Microsoft documented unauthorized ScreenConnect sessions, scripting, scheduled tasks, Run keys and changes to Defender exclusions while investigating SCKit.",
+  "tags": [
+    "Supply Chain",
+    "Remote Access",
+    "LOLBins"
+  ],
+  "techniques": [
+    "T1219.002",
+    "T1059.001",
+    "T1053.005",
+    "T1547.001",
+    "T1685"
+  ],
+  "title": "SCKit abuses ScreenConnect to deploy remote access and target technician sessions",
+  "updated": "2026-11-25T02:32:19Z"
+}

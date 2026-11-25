@@ -1,0 +1,66 @@
+{
+  "actors": [
+    "Storm-3358"
+  ],
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Microsoft reported Storm-3358 using ARTEX around financial-sector intrusions, including fast network probing, password abuse and infrastructure associated with remote access tooling.",
+      "location": "Behavioral signals and indicators sections",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-06",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [
+    "HF-2026-0006",
+    "HF-2026-0007",
+    "HF-2026-0008",
+    "HF-2026-0009",
+    "HF-2026-0035"
+  ],
+  "id": "HF-INT-631279C95E3417",
+  "in_window": true,
+  "indicators": [
+    "HF-IOC-4DAAE2BF2ABDF4",
+    "HF-IOC-0A1A6CD2B306D6",
+    "HF-IOC-30A64FD1F6005C",
+    "HF-IOC-685DF4E8FA72AD",
+    "HF-IOC-E3625A0D95A20C",
+    "HF-IOC-57C3F78D071AB1"
+  ],
+  "kind": "Research",
+  "published": "2026-11-06",
+  "related": [],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 2,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "f46f1673b63a3be1ea090eeebc43436b7080f212a002e1ee946b1d937411e818",
+  "software": [],
+  "source": "microsoft",
+  "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/",
+  "status": "active",
+  "summary": "Microsoft reported Storm-3358 using ARTEX around financial-sector intrusions, including fast network probing, password abuse and infrastructure associated with remote access tooling.",
+  "tags": [
+    "Agentic AI",
+    "Initial Access",
+    "Network"
+  ],
+  "techniques": [
+    "T1595",
+    "T1110.003",
+    "T1078.004",
+    "T1105"
+  ],
+  "title": "ARTEX abuse expands as cybercriminals target financial sector",
+  "updated": "2026-11-25T02:32:19Z"
+}

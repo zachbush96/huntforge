@@ -1,0 +1,41 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Unknown APT uses NetamLoader to attack a Win10 OS customized for governments in Asia",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-10-29",
+      "source": "securelist",
+      "source_id": "securelist:121676",
+      "url": "https://securelist.com/netamloader/121676/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-0B47675042DC3D",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-10-29",
+  "related": [],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "6e29fb2b62f529d5c2c86eaa33824adfb0fea6321b725560a860e4b87f52fabe",
+  "source": "securelist",
+  "source_id": "securelist:121676",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include apt activity, malware.",
+  "tags": [
+    "APT Activity",
+    "Malware"
+  ],
+  "title": "Unknown APT uses NetamLoader to attack a Win10 OS customized for governments in Asia",
+  "updated": "2026-11-25T17:59:44Z"
+}

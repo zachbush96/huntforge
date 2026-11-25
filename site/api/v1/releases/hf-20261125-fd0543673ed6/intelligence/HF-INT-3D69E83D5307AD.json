@@ -1,0 +1,57 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-133968"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Amazon Threat Intelligence observed a write to Python's sitecustomize.py on a compromised medical-imaging AI server and links to the Project MONAI advisory for the underlying file-write issue.",
+      "location": "Zero-day discovery and the linked Project MONAI advisory in Actions taken by AWS",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-20",
+      "source": "aws-security",
+      "source_id": "https://aws.amazon.com/blogs/security/chinese-nexus-actors-cairn-ai-agents-found-a-zero-day-on-their-own/",
+      "url": "https://aws.amazon.com/blogs/security/chinese-nexus-actors-cairn-ai-agents-found-a-zero-day-on-their-own/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T03:12:33Z",
+  "hunts": [
+    "HF-2026-0042"
+  ],
+  "id": "HF-INT-3D69E83D5307AD",
+  "in_window": true,
+  "indicators": [],
+  "kind": "Research",
+  "published": "2026-11-20",
+  "related": [
+    "HF-INT-64DD7100DDA787",
+    "HF-INT-75EA09EA3E752E"
+  ],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T03:12:33Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "d86c8ace6192e1b0be66e831555fccd701eb67495d4898f80d8ae47768b77eaf",
+  "software": [
+    "MONAI Label",
+    "Cairn"
+  ],
+  "source": "aws-security",
+  "source_id": "https://aws.amazon.com/blogs/security/chinese-nexus-actors-cairn-ai-agents-found-a-zero-day-on-their-own/",
+  "status": "active",
+  "summary": "Amazon Threat Intelligence observed a write to Python's sitecustomize.py on a compromised medical-imaging AI server and links to the Project MONAI advisory for the underlying file-write issue.",
+  "tags": [
+    "Exploitation",
+    "Agentic AI"
+  ],
+  "techniques": [
+    "T1546.018",
+    "T1190"
+  ],
+  "title": "Amazon Threat Intelligence investigation of a Cairn AI agent campaign",
+  "updated": "2026-11-25T03:12:33Z"
+}

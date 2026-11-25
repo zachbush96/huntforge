@@ -1,0 +1,40 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Vulnérabilité dans Google Chrome (24 novembre 2026)",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-24",
+      "source": "cert-fr",
+      "source_id": "cert-fr:CERTFR-2026-AVI-1608",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1608/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T03:51:30Z",
+  "hunts": [],
+  "id": "HF-INT-402254197E1011",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-24",
+  "related": [],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "bf9414704b118731ce73768118c0517216af20ebacef7401558a8a14caabc6d2",
+  "source": "cert-fr",
+  "source_id": "cert-fr:CERTFR-2026-AVI-1608",
+  "status": "active",
+  "summary": "CERT-FR security advisory. The publisher lists affected products and mitigations.",
+  "tags": [
+    "Vulnerability management"
+  ],
+  "title": "Vulnérabilité dans Google Chrome (24 novembre 2026)",
+  "updated": "2026-11-25T17:59:44Z"
+}

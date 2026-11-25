@@ -1,0 +1,15 @@
+{
+  "count": 1,
+  "items": [
+    {
+      "action": "created",
+      "id": "HF-INT-318243FD3323F2",
+      "revision": 1,
+      "title": "What defenders need to know about ARTEX, the agentic AI framework threat actors abuse",
+      "type": "intelligence"
+    }
+  ],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "schema_version": 1,
+  "tombstones": []
+}

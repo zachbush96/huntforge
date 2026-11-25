@@ -1,0 +1,9 @@
+CommonSecurityLog
+| where TimeGenerated > ago(30d)
+| extend RequestHost = tolower(trim_end(@"[.]+", coalesce(tostring(parse_url(RequestURL).Host), RequestURL)))
+| extend ConnectionHost = tolower(trim_end(@"[.]+", coalesce(tostring(parse_url(DestinationHostName).Host), DestinationHostName)))
+| extend MatchedDomain = case(RequestHost in ("pay-cloud.online", "pay.pay-cloud.online", "pay-relay.wordpressadmin001.workers.dev"), RequestHost, ConnectionHost in ("pay-cloud.online", "pay.pay-cloud.online", "pay-relay.wordpressadmin001.workers.dev"), ConnectionHost, "")
+| where isnotempty(MatchedDomain)
+| extend IndicatorRole = iff(MatchedDomain == "pay-relay.wordpressadmin001.workers.dev", "Reported collection endpoint", "Reported skimmer infrastructure")
+| project TimeGenerated, MatchedDomain, IndicatorRole, SourceIP, DestinationIP, DeviceAction, DeviceProduct, RequestURL
+| order by TimeGenerated desc

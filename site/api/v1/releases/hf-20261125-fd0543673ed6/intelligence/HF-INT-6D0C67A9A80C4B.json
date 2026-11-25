@@ -1,0 +1,44 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2025-55182"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Flash Alert: EtherRat and TukTuk C2 End in The Gentleman Ransomware",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-05-11",
+      "source": "dfir-report",
+      "source_id": "dfir-report:50191",
+      "url": "https://thedfirreport.com/2026/05/11/flash-alert-etherrat-and-tuktuk-c2-end-in-the-gentleman-ransomware/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-6D0C67A9A80C4B",
+  "in_window": false,
+  "kind": "Research",
+  "published": "2026-05-11",
+  "related": [],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "4b43d443fa35fcb865e9c001896bba4bc1da0d2d76a109a04b9e9db287806a65",
+  "source": "dfir-report",
+  "source_id": "dfir-report:50191",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include ransomware, exploitation, malware. References CVE-2025-55182.",
+  "tags": [
+    "Ransomware",
+    "Exploitation",
+    "Malware"
+  ],
+  "title": "Flash Alert: EtherRat and TukTuk C2 End in The Gentleman Ransomware",
+  "updated": "2026-11-25T17:59:44Z"
+}

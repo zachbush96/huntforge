@@ -1,0 +1,40 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Multiples vulnérabilités dans le noyau Linux de Red Hat (20 novembre 2026)",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-20",
+      "source": "cert-fr",
+      "source_id": "cert-fr:CERTFR-2026-AVI-1592",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1592/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T03:51:30Z",
+  "hunts": [],
+  "id": "HF-INT-18C624E47DAE90",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-20",
+  "related": [],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "45f382598286a9d8c0b8f48828d3b1e01a49dccbba11eb50e92596b0ddaacf06",
+  "source": "cert-fr",
+  "source_id": "cert-fr:CERTFR-2026-AVI-1592",
+  "status": "active",
+  "summary": "CERT-FR security advisory. The publisher lists affected products and mitigations.",
+  "tags": [
+    "Vulnerability management"
+  ],
+  "title": "Multiples vulnérabilités dans le noyau Linux de Red Hat (20 novembre 2026)",
+  "updated": "2026-11-25T17:59:44Z"
+}

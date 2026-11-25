@@ -172,9 +172,8 @@ function render(preserve = null, keepScroll = true) {
   cancelExplanation(app.querySelector("#explain-results"));
   const navScroll = app.querySelector(".sidebar nav")?.scrollLeft || 0;
   const sidebarScroll = app.querySelector(".sidebar")?.scrollTop || 0;
-  const paneSelector = ".page-content, .brief-main, .brief-aside";
-  const panePositions = keepScroll ? [...app.querySelectorAll(paneSelector)]
-    .map(pane => pane.scrollTop) : [];
+  const pageScroll = keepScroll ? window.scrollY : 0;
+  const summaryScroll = keepScroll ? app.querySelector(".brief-aside")?.scrollTop || 0 : 0;
   const brief = state.section === "brief";
   let main;
   let aside = "";
@@ -193,14 +192,21 @@ function render(preserve = null, keepScroll = true) {
   else main = missing(data,state);
   app.innerHTML = header(data,brief) + `<div class="layout${brief ? "" : " compact"}${state.hunt ? " hunt" : ""}">
     ${sidebar(state,data,brief)}<div class="page-content">${main}${aside}</div></div>`;
-  app.querySelectorAll(paneSelector).forEach((pane, index) => {
-    pane.scrollTop = panePositions[index] ?? 0;
-  });
+  window.scrollTo(0,pageScroll);
+  const summary = app.querySelector(".brief-aside");
+  if (summary) summary.scrollTop = summaryScroll;
   const menu = app.querySelector(".sidebar");
   menu.scrollTop = sidebarScroll;
   const nav = menu.querySelector("nav");
   nav.scrollLeft = navScroll;
-  nav.querySelector('[aria-current="page"]')?.scrollIntoView({block:"nearest",inline:"nearest"});
+  const current = '[aria-current="page"]';
+  revealHorizontal(nav, current);
+  const selected = nav.querySelector(current)?.getBoundingClientRect();
+  if (selected) {
+    const rail = menu.getBoundingClientRect();
+    if (selected.top < rail.top) menu.scrollTop += selected.top - rail.top;
+    else if (selected.bottom > rail.bottom) menu.scrollTop += selected.bottom - rail.bottom;
+  }
   revealHorizontal(app.querySelector(".tabs"), '[aria-selected="true"]');
   document.title = `HuntForge — ${app.querySelector("h1")?.textContent || "Threat Intelligence"}`;
   if (preserve) {

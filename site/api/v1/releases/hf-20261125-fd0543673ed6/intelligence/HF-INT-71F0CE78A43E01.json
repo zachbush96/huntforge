@@ -1,0 +1,43 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "IT threat evolution in Q3 2026. Non-mobile statistics",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-10",
+      "source": "securelist",
+      "source_id": "securelist:121843",
+      "url": "https://securelist.com/malware-report-q3-2026-pc-iot-statistics/121843/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-71F0CE78A43E01",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-10",
+  "related": [],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "f8fa210a6e4b097a7d0e4e2472f603d81a9b248bbaf420dba88bd99fbdf7d6e1",
+  "source": "securelist",
+  "source_id": "securelist:121843",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include ransomware, supply chain, exploitation, malware.",
+  "tags": [
+    "Ransomware",
+    "Supply Chain",
+    "Exploitation",
+    "Malware"
+  ],
+  "title": "IT threat evolution in Q3 2026. Non-mobile statistics",
+  "updated": "2026-11-25T17:59:44Z"
+}

@@ -1,0 +1,40 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Multiples vulnérabilités dans les produits Synology (23 novembre 2026)",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-23",
+      "source": "cert-fr",
+      "source_id": "cert-fr:CERTFR-2026-AVI-1607",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1607/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T03:51:30Z",
+  "hunts": [],
+  "id": "HF-INT-7814ABCC65BD5A",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-23",
+  "related": [],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "a071eda0782c1ceaf98f5ecbcc096d7f9e33f9bba8be1f5cb885ca0483583f89",
+  "source": "cert-fr",
+  "source_id": "cert-fr:CERTFR-2026-AVI-1607",
+  "status": "active",
+  "summary": "CERT-FR security advisory. The publisher lists affected products and mitigations.",
+  "tags": [
+    "Vulnerability management"
+  ],
+  "title": "Multiples vulnérabilités dans les produits Synology (23 novembre 2026)",
+  "updated": "2026-11-25T17:59:44Z"
+}

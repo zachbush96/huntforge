@@ -1,0 +1,5 @@
+AZKVAuditLogs
+| where TimeGenerated > ago(14d)
+| where CallerIpAddress in ("199.19.77.84") and OperationName startswith "Secret"
+| project TimeGenerated, CallerIpAddress, OperationName, ResultType, _ResourceId
+| order by TimeGenerated desc

@@ -1,0 +1,110 @@
+{
+  "actors": [],
+  "confidence": "Behavioral hypothesis",
+  "considerations": [
+    "Map vendor-specific action values before using the threshold.",
+    "Exclude approved scanners and confirm that targets are part of your intended perimeter."
+  ],
+  "description": "Find bursts of firewall denies across many ports on one destination.",
+  "evidence": [
+    {
+      "claim": "Microsoft reported Storm-3358 using ARTEX around financial-sector intrusions, including fast network probing, password abuse and infrastructure associated with remote access tooling.",
+      "location": "Behavioral signals and indicators sections",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-06",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/"
+    }
+  ],
+  "expected_output": "One row per source, destination and five-minute window.",
+  "history": [
+    {
+      "change": "Created",
+      "date": "2026-11-25T02:32:19Z",
+      "revision": 1,
+      "summary": "Created evidence-backed hunt and validated all supported variants."
+    }
+  ],
+  "hypothesis": "Find bursts of firewall denies across many ports on one destination.",
+  "id": "HF-2026-0035",
+  "indicator_ids": [
+    "HF-IOC-4DAAE2BF2ABDF4",
+    "HF-IOC-0A1A6CD2B306D6",
+    "HF-IOC-30A64FD1F6005C",
+    "HF-IOC-685DF4E8FA72AD",
+    "HF-IOC-E3625A0D95A20C",
+    "HF-IOC-57C3F78D071AB1"
+  ],
+  "lookback": 7,
+  "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+  "primary_table": "CommonSecurityLog",
+  "profiles": [
+    "sentinel-cef"
+  ],
+  "published": "2026-11-25T02:32:19Z",
+  "release_id": "hf-20261125-fd0543673ed6",
+  "research": "artex-finance",
+  "revision": 1,
+  "schema_version": 1,
+  "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+  "signature": "4ad59d60265d51aabf953360121d38d2d455284af7db28b770f306a3b73203bb",
+  "source_ids": [
+    "HF-INT-631279C95E3417"
+  ],
+  "source_published": "2026-11-06",
+  "status": "partially_validated",
+  "tactic": "Reconnaissance",
+  "tags": [
+    "Agentic AI",
+    "Initial Access",
+    "Network"
+  ],
+  "technique": "T1595",
+  "title": "Rapid Denied Probes Against a Single Network Edge",
+  "updated": "2026-11-25T02:32:19Z",
+  "validation": {
+    "date": "2026-11-25T02:32:19Z",
+    "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+    "variants_checked": 10
+  },
+  "variants": {
+    "sentinel-cef": {
+      "profile_revision": 2,
+      "queries": {
+        "1": {
+          "json": "CommonSecurityLog\n| where TimeGenerated > ago(1d)\n| where DeviceAction in~ (\"deny\", \"denied\", \"drop\", \"dropped\", \"block\", \"blocked\")\n| where isnotempty(SourceIP) and isnotempty(DestinationIP) and DestinationPort > 0\n| summarize Denies = count(), Ports = dcount(DestinationPort), SamplePorts = make_set(DestinationPort, 20) by SourceIP, DestinationIP, Window = bin(TimeGenerated, 5m)\n| where Denies >= 40 and Ports >= 12\n| order by Ports desc, Denies desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CommonSecurityLog\n| where TimeGenerated > ago(1d)\n| where DeviceAction in~ (\"deny\", \"denied\", \"drop\", \"dropped\", \"block\", \"blocked\")\n| where isnotempty(SourceIP) and isnotempty(DestinationIP) and DestinationPort > 0\n| summarize Denies = count(), Ports = dcount(DestinationPort), SamplePorts = make_set(DestinationPort, 20) by SourceIP, DestinationIP, Window = bin(TimeGenerated, 5m)\n| where Denies >= 40 and Ports >= 12\n| order by Ports desc, Denies desc\n"
+        },
+        "14": {
+          "json": "CommonSecurityLog\n| where TimeGenerated > ago(14d)\n| where DeviceAction in~ (\"deny\", \"denied\", \"drop\", \"dropped\", \"block\", \"blocked\")\n| where isnotempty(SourceIP) and isnotempty(DestinationIP) and DestinationPort > 0\n| summarize Denies = count(), Ports = dcount(DestinationPort), SamplePorts = make_set(DestinationPort, 20) by SourceIP, DestinationIP, Window = bin(TimeGenerated, 5m)\n| where Denies >= 40 and Ports >= 12\n| order by Ports desc, Denies desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CommonSecurityLog\n| where TimeGenerated > ago(14d)\n| where DeviceAction in~ (\"deny\", \"denied\", \"drop\", \"dropped\", \"block\", \"blocked\")\n| where isnotempty(SourceIP) and isnotempty(DestinationIP) and DestinationPort > 0\n| summarize Denies = count(), Ports = dcount(DestinationPort), SamplePorts = make_set(DestinationPort, 20) by SourceIP, DestinationIP, Window = bin(TimeGenerated, 5m)\n| where Denies >= 40 and Ports >= 12\n| order by Ports desc, Denies desc\n"
+        },
+        "3": {
+          "json": "CommonSecurityLog\n| where TimeGenerated > ago(3d)\n| where DeviceAction in~ (\"deny\", \"denied\", \"drop\", \"dropped\", \"block\", \"blocked\")\n| where isnotempty(SourceIP) and isnotempty(DestinationIP) and DestinationPort > 0\n| summarize Denies = count(), Ports = dcount(DestinationPort), SamplePorts = make_set(DestinationPort, 20) by SourceIP, DestinationIP, Window = bin(TimeGenerated, 5m)\n| where Denies >= 40 and Ports >= 12\n| order by Ports desc, Denies desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CommonSecurityLog\n| where TimeGenerated > ago(3d)\n| where DeviceAction in~ (\"deny\", \"denied\", \"drop\", \"dropped\", \"block\", \"blocked\")\n| where isnotempty(SourceIP) and isnotempty(DestinationIP) and DestinationPort > 0\n| summarize Denies = count(), Ports = dcount(DestinationPort), SamplePorts = make_set(DestinationPort, 20) by SourceIP, DestinationIP, Window = bin(TimeGenerated, 5m)\n| where Denies >= 40 and Ports >= 12\n| order by Ports desc, Denies desc\n"
+        },
+        "30": {
+          "json": "CommonSecurityLog\n| where TimeGenerated > ago(30d)\n| where DeviceAction in~ (\"deny\", \"denied\", \"drop\", \"dropped\", \"block\", \"blocked\")\n| where isnotempty(SourceIP) and isnotempty(DestinationIP) and DestinationPort > 0\n| summarize Denies = count(), Ports = dcount(DestinationPort), SamplePorts = make_set(DestinationPort, 20) by SourceIP, DestinationIP, Window = bin(TimeGenerated, 5m)\n| where Denies >= 40 and Ports >= 12\n| order by Ports desc, Denies desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CommonSecurityLog\n| where TimeGenerated > ago(30d)\n| where DeviceAction in~ (\"deny\", \"denied\", \"drop\", \"dropped\", \"block\", \"blocked\")\n| where isnotempty(SourceIP) and isnotempty(DestinationIP) and DestinationPort > 0\n| summarize Denies = count(), Ports = dcount(DestinationPort), SamplePorts = make_set(DestinationPort, 20) by SourceIP, DestinationIP, Window = bin(TimeGenerated, 5m)\n| where Denies >= 40 and Ports >= 12\n| order by Ports desc, Denies desc\n"
+        },
+        "7": {
+          "json": "CommonSecurityLog\n| where TimeGenerated > ago(7d)\n| where DeviceAction in~ (\"deny\", \"denied\", \"drop\", \"dropped\", \"block\", \"blocked\")\n| where isnotempty(SourceIP) and isnotempty(DestinationIP) and DestinationPort > 0\n| summarize Denies = count(), Ports = dcount(DestinationPort), SamplePorts = make_set(DestinationPort, 20) by SourceIP, DestinationIP, Window = bin(TimeGenerated, 5m)\n| where Denies >= 40 and Ports >= 12\n| order by Ports desc, Denies desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CommonSecurityLog\n| where TimeGenerated > ago(7d)\n| where DeviceAction in~ (\"deny\", \"denied\", \"drop\", \"dropped\", \"block\", \"blocked\")\n| where isnotempty(SourceIP) and isnotempty(DestinationIP) and DestinationPort > 0\n| summarize Denies = count(), Ports = dcount(DestinationPort), SamplePorts = make_set(DestinationPort, 20) by SourceIP, DestinationIP, Window = bin(TimeGenerated, 5m)\n| where Denies >= 40 and Ports >= 12\n| order by Ports desc, Denies desc\n"
+        }
+      },
+      "table": "CommonSecurityLog",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "ARTEX and Friends: Enter Agentic Offensive Frameworks",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-10-30",
+      "source": "google-threat-intelligence",
+      "source_id": "https://cloud.google.com/blog/topics/threat-intelligence/artex-and-friends-enter-agentic-offensive-frameworks/",
+      "url": "https://cloud.google.com/blog/topics/threat-intelligence/artex-and-friends-enter-agentic-offensive-frameworks/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-36CEFACC2F9F6C",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-10-30",
+  "related": [],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "df6fddf33babae02a2c942e4d3e138064b179e01647c8d910b0514aba8da7b7d",
+  "source": "google-threat-intelligence",
+  "source_id": "https://cloud.google.com/blog/topics/threat-intelligence/artex-and-friends-enter-agentic-offensive-frameworks/",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include agentic ai, apt activity.",
+  "tags": [
+    "Agentic AI",
+    "APT Activity"
+  ],
+  "title": "ARTEX and Friends: Enter Agentic Offensive Frameworks",
+  "updated": "2026-11-25T17:59:44Z"
+}

@@ -1,0 +1,40 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Vulnérabilité dans les produits F5 (24 novembre 2026)",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-24",
+      "source": "cert-fr",
+      "source_id": "cert-fr:CERTFR-2026-AVI-1612",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1612/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T03:51:30Z",
+  "hunts": [],
+  "id": "HF-INT-C1F65625AABB64",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-24",
+  "related": [],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "01f05fafebc0adb1495a0def9dc847d5fffb3d915b0d169b592812b3a6aec210",
+  "source": "cert-fr",
+  "source_id": "cert-fr:CERTFR-2026-AVI-1612",
+  "status": "active",
+  "summary": "CERT-FR security advisory. The publisher lists affected products and mitigations.",
+  "tags": [
+    "Vulnerability management"
+  ],
+  "title": "Vulnérabilité dans les produits F5 (24 novembre 2026)",
+  "updated": "2026-11-25T17:59:44Z"
+}

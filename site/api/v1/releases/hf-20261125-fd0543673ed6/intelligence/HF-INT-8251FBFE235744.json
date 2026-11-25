@@ -1,0 +1,44 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-20127"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Inside KeyDrift: Analyzing historical UAT-11473 activity on Cisco SD-WAN",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-10-28",
+      "source": "cisco-talos",
+      "source_id": "cisco-talos:6ae0e55693b063000154870f",
+      "url": "https://blog.talosintelligence.com/uat-11473-keydrift/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T03:51:30Z",
+  "hunts": [],
+  "id": "HF-INT-8251FBFE235744",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-10-28",
+  "related": [],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "30081ce1664ead48050a4d0ebeb53cf7048744ff8417a815bc48e2bcb2ae9f78",
+  "source": "cisco-talos",
+  "source_id": "cisco-talos:6ae0e55693b063000154870f",
+  "status": "active",
+  "summary": "Publisher security advisory. Topics include identity, apt activity, exploitation. References CVE-2026-20127.",
+  "tags": [
+    "Identity",
+    "APT Activity",
+    "Exploitation"
+  ],
+  "title": "Inside KeyDrift: Analyzing historical UAT-11473 activity on Cisco SD-WAN",
+  "updated": "2026-11-25T17:59:44Z"
+}

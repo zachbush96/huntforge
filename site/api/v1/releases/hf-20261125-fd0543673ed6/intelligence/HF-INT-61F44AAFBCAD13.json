@@ -1,0 +1,40 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Dialing for Data: Inside the Com’s High-Profile Heists",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-20",
+      "source": "unit-42",
+      "source_id": "unit-42:189953",
+      "url": "https://unit42.paloaltonetworks.com/com-affiliate-vishing-attacks/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T03:51:30Z",
+  "hunts": [],
+  "id": "HF-INT-61F44AAFBCAD13",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-20",
+  "related": [],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "f95238935114919daeebc9b55157da693fab2fbd2a97ecc8e5b49b46469f0dc5",
+  "source": "unit-42",
+  "source_id": "unit-42:189953",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include phishing.",
+  "tags": [
+    "Phishing"
+  ],
+  "title": "Dialing for Data: Inside the Com’s High-Profile Heists",
+  "updated": "2026-11-25T17:59:44Z"
+}

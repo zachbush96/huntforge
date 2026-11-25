@@ -1,0 +1,40 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Deploying AI agents securely: how Kaspersky products mitigate AI threats",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-10-26",
+      "source": "securelist",
+      "source_id": "securelist:121444",
+      "url": "https://securelist.com/tr/how-to-secure-ai-agents/121444/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-1F55CBA15BA1B1",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-10-26",
+  "related": [],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "833d202812a9a88a90f5033f00223bcdd5e87206ead662d6c6eaf744e74bc28f",
+  "source": "securelist",
+  "source_id": "securelist:121444",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include agentic ai.",
+  "tags": [
+    "Agentic AI"
+  ],
+  "title": "Deploying AI agents securely: how Kaspersky products mitigate AI threats",
+  "updated": "2026-11-25T17:59:44Z"
+}

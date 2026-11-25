@@ -1,0 +1,43 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Citrus Ransomware: VLESS for traffic, Sn00py for encryption, and LLMs lending a hand",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-11",
+      "source": "securelist",
+      "source_id": "securelist:121879",
+      "url": "https://securelist.com/citrus-ransomware/121879/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-C627408D32940B",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-11",
+  "related": [],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "1c1e39e21d04fdf5da20221c2408fafd4c9335a7bda904feaedf5c26456ad0db",
+  "source": "securelist",
+  "source_id": "securelist:121879",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include ransomware, lolbins, exploitation, malware.",
+  "tags": [
+    "Ransomware",
+    "LOLBins",
+    "Exploitation",
+    "Malware"
+  ],
+  "title": "Citrus Ransomware: VLESS for traffic, Sn00py for encryption, and LLMs lending a hand",
+  "updated": "2026-11-25T17:59:44Z"
+}

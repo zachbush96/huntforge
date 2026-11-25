@@ -1,0 +1,40 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Multiples vulnérabilités dans Roundcube Webmail (23 novembre 2026)",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-23",
+      "source": "cert-fr",
+      "source_id": "cert-fr:CERTFR-2026-AVI-1602",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1602/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T03:51:30Z",
+  "hunts": [],
+  "id": "HF-INT-6B7B6C8DF83EB3",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-23",
+  "related": [],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "46e3cf4fe0c7e27a927d87f991b80596110474fa71cf9c77d889663a976b755c",
+  "source": "cert-fr",
+  "source_id": "cert-fr:CERTFR-2026-AVI-1602",
+  "status": "active",
+  "summary": "CERT-FR security advisory. The publisher lists affected products and mitigations.",
+  "tags": [
+    "Vulnerability management"
+  ],
+  "title": "Multiples vulnérabilités dans Roundcube Webmail (23 novembre 2026)",
+  "updated": "2026-11-25T17:59:44Z"
+}

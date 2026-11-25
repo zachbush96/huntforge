@@ -1,0 +1,40 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Multiples vulnérabilités dans le noyau Linux de Debian (20 novembre 2026)",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-20",
+      "source": "cert-fr",
+      "source_id": "cert-fr:CERTFR-2026-AVI-1594",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1594/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T03:51:30Z",
+  "hunts": [],
+  "id": "HF-INT-ACF20DF8A1CF14",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-20",
+  "related": [],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "f1f60ba9b7e3372ff4776e8f7d3148d808701bc8275c915b98b90f42befb1c63",
+  "source": "cert-fr",
+  "source_id": "cert-fr:CERTFR-2026-AVI-1594",
+  "status": "active",
+  "summary": "CERT-FR security advisory. The publisher lists affected products and mitigations.",
+  "tags": [
+    "Vulnerability management"
+  ],
+  "title": "Multiples vulnérabilités dans le noyau Linux de Debian (20 novembre 2026)",
+  "updated": "2026-11-25T17:59:44Z"
+}

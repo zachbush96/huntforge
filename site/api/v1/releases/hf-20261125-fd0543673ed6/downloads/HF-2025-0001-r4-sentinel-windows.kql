@@ -1,0 +1,9 @@
+WindowsEvent
+| where TimeGenerated > ago(7d)
+| where Channel == "Microsoft-Windows-Sysmon/Operational" and EventID == 3
+| extend Image = tostring(EventData.Image), DestinationIP = tostring(EventData.DestinationIp)
+| where Image endswith @"\powershell.exe" or Image endswith @"\pwsh.exe"
+| where isnotempty(DestinationIP)
+| project TimeGenerated, Computer, Image, DestinationIP, DestinationPort = tostring(EventData.DestinationPort),
+          ProcessGuid = tostring(EventData.ProcessGuid), User = tostring(EventData.User)
+| order by TimeGenerated desc

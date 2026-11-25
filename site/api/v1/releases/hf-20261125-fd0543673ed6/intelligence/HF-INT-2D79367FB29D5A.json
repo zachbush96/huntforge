@@ -1,0 +1,40 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Vulnérabilité dans Microsoft Office (25 novembre 2026)",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-25",
+      "source": "cert-fr",
+      "source_id": "cert-fr:CERTFR-2026-AVI-1620",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1620/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-2D79367FB29D5A",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-25",
+  "related": [],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "cb680fc85ec45afc9c0f2ab9e77a81ce2f422b1b001a1e4131b91afaeed8e2ba",
+  "source": "cert-fr",
+  "source_id": "cert-fr:CERTFR-2026-AVI-1620",
+  "status": "active",
+  "summary": "CERT-FR security advisory. The publisher lists affected products and mitigations.",
+  "tags": [
+    "Vulnerability management"
+  ],
+  "title": "Vulnérabilité dans Microsoft Office (25 novembre 2026)",
+  "updated": "2026-11-25T17:59:44Z"
+}

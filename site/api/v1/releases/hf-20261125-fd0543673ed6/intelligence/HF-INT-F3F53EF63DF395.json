@@ -1,0 +1,59 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Microsoft observed GSocket tooling on compromised Linux servers, including renamed relay binaries, cron persistence and connections to GSocket distribution infrastructure.",
+      "location": "Advanced hunting queries and indicators sections",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-11",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [
+    "HF-2026-0002",
+    "HF-2026-0028",
+    "HF-2026-0029",
+    "HF-2026-0030"
+  ],
+  "id": "HF-INT-F3F53EF63DF395",
+  "in_window": true,
+  "indicators": [
+    "HF-IOC-93EEECFDCFE129",
+    "HF-IOC-69DD14AE2022D2"
+  ],
+  "kind": "Research",
+  "published": "2026-11-11",
+  "related": [],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 2,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "a8ff941eb06d4f88dce2e873eea6af9efb05154d87f45bcc52eb0b91de9747de",
+  "software": [
+    "GSocket"
+  ],
+  "source": "microsoft",
+  "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/",
+  "status": "active",
+  "summary": "Microsoft observed GSocket tooling on compromised Linux servers, including renamed relay binaries, cron persistence and connections to GSocket distribution infrastructure.",
+  "tags": [
+    "APT Activity",
+    "Exploitation"
+  ],
+  "techniques": [
+    "T1090.002",
+    "T1053.003",
+    "T1105",
+    "T1036"
+  ],
+  "title": "The global socket: how threat actors are weaponizing GSocket for stealthy C2",
+  "updated": "2026-11-25T02:32:19Z"
+}

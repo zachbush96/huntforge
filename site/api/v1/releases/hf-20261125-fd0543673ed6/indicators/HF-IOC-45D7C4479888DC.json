@@ -1,0 +1,29 @@
+{
+  "aging_review": "2026-12-05",
+  "context": "Included in the publisher's Sentinel pivots.",
+  "display": "144[.]172[.]64[.]128",
+  "evidence": [
+    {
+      "claim": "Microsoft attributed application abuse, password spraying and cloud role or credential changes to Storm-0940, a China-state-aligned actor, in activity that included the ConnectWise Cloud Backup compromise.",
+      "location": "Observed attack patterns, Sentinel queries and ATT&CK mapping",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-10-21",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/"
+    }
+  ],
+  "first_observed": null,
+  "id": "HF-IOC-45D7C4479888DC",
+  "last_observed": null,
+  "original": "144.172.64[.]128",
+  "record_id": "HF-INT-F111D392DD54D8",
+  "release_id": "hf-20261125-fd0543673ed6",
+  "reported": "2026-10-21",
+  "revision": 1,
+  "schema_version": 1,
+  "source_expires": null,
+  "type": "ipv4",
+  "value": "144.172.64.128"
+}

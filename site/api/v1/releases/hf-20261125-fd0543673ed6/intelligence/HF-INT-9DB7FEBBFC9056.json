@@ -1,0 +1,41 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Agentic AI Attack Frameworks in the Wild: What Our Scans and Honeypots Show",
+      "location": "Shadowserver public News & Insights listing",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-25",
+      "source": "shadowserver",
+      "source_id": "https://www.shadowserver.org/news/agentic-ai-attack-frameworks-in-the-wild-what-our-scans-and-honeypots-show/",
+      "url": "https://www.shadowserver.org/news/agentic-ai-attack-frameworks-in-the-wild-what-our-scans-and-honeypots-show/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-9DB7FEBBFC9056",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-25",
+  "related": [],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "fa2f69eb9b25f6584557433046dcd41944d8173895f0ca553354033e8e018df2",
+  "source": "shadowserver",
+  "source_id": "https://www.shadowserver.org/news/agentic-ai-attack-frameworks-in-the-wild-what-our-scans-and-honeypots-show/",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include agentic ai, exposure.",
+  "tags": [
+    "Agentic AI",
+    "Exposure"
+  ],
+  "title": "Agentic AI Attack Frameworks in the Wild: What Our Scans and Honeypots Show",
+  "updated": "2026-11-25T17:59:44Z"
+}

@@ -1,0 +1,42 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "What defenders need to know about ARTEX, the agentic AI framework threat actors abuse",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-25",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/25/what-defenders-need-to-know-artex-agentic-ai-framework-threat-actors-abuse/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/25/what-defenders-need-to-know-artex-agentic-ai-framework-threat-actors-abuse/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T19:59:36Z",
+  "hunts": [],
+  "id": "HF-INT-318243FD3323F2",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-25",
+  "related": [],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "f08cf8f43a31df4d6a298f83f5157161951beae39a2e746fec4891b79a5fd4ad",
+  "source": "microsoft",
+  "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/25/what-defenders-need-to-know-artex-agentic-ai-framework-threat-actors-abuse/",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include identity, agentic ai, exploitation.",
+  "tags": [
+    "Identity",
+    "Agentic AI",
+    "Exploitation"
+  ],
+  "title": "What defenders need to know about ARTEX, the agentic AI framework threat actors abuse",
+  "updated": "2026-11-25T19:59:36Z"
+}

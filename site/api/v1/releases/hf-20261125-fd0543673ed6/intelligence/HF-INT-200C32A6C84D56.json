@@ -1,0 +1,40 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "A USB worm’s second life: Retadup spreading CoffeeLoader",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-16",
+      "source": "securelist",
+      "source_id": "securelist:121908",
+      "url": "https://securelist.com/retadup-delivers-coffeeloader/121908/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-200C32A6C84D56",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-16",
+  "related": [],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "b1a4dc635af71062e1b5b50cd2dc02f698c472e032c260d876908fe3ae4a9c1f",
+  "source": "securelist",
+  "source_id": "securelist:121908",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include malware.",
+  "tags": [
+    "Malware"
+  ],
+  "title": "A USB worm’s second life: Retadup spreading CoffeeLoader",
+  "updated": "2026-11-25T17:59:44Z"
+}

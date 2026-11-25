@@ -1,0 +1,43 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2023-46604"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Apache ActiveMQ Exploit Leads to LockBit Ransomware",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-02-23",
+      "source": "dfir-report",
+      "source_id": "dfir-report:49832",
+      "url": "https://thedfirreport.com/2026/02/23/apache-activemq-exploit-leads-to-lockbit-ransomware/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-6EC58D6BA182F1",
+  "in_window": false,
+  "kind": "Research",
+  "published": "2026-02-23",
+  "related": [],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "441a668105976ea11e7e0c0f996b7d502fa2cd1450469940377832205cae4cc7",
+  "source": "dfir-report",
+  "source_id": "dfir-report:49832",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include ransomware, exploitation. References CVE-2023-46604.",
+  "tags": [
+    "Ransomware",
+    "Exploitation"
+  ],
+  "title": "Apache ActiveMQ Exploit Leads to LockBit Ransomware",
+  "updated": "2026-11-25T17:59:44Z"
+}

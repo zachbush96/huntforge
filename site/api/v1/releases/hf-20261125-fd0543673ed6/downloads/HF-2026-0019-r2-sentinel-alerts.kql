@@ -1,0 +1,5 @@
+SecurityAlert
+| where TimeGenerated > ago(30d)
+| where AlertName has_all ("Jasper", "Sleet") and (AlertName contains "sign-in" or AlertName has "signin")
+| project TimeGenerated, AlertName, AlertSeverity, ProductName, CompromisedEntity, SystemAlertId
+| order by TimeGenerated desc

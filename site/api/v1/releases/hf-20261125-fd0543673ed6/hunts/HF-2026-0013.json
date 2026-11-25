@@ -1,0 +1,105 @@
+{
+  "actors": [],
+  "confidence": "Publisher-observed indicators",
+  "considerations": [
+    "Compare application and principal IDs with observed sign-ins.",
+    "Check response codes and positions in the tenant baseline."
+  ],
+  "description": "Pivot from the reported cloud credential abuse address to Graph activity.",
+  "evidence": [
+    {
+      "claim": "Microsoft observed ARTEX-associated use of exposed cloud credentials, service-principal sign-ins from a reported IP, rapid cloud discovery and attempted access to Azure Key Vault and other resources.",
+      "location": "Credential abuse via Entra ID and indicators sections",
+      "modified": null,
+      "observation_date": "2026-10-28",
+      "published": "2026-11-05",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/"
+    }
+  ],
+  "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+  "history": [
+    {
+      "change": "Created",
+      "date": "2026-11-25T02:32:19Z",
+      "revision": 1,
+      "summary": "Created evidence-backed hunt and validated all supported variants."
+    }
+  ],
+  "hypothesis": "Pivot from the reported cloud credential abuse address to Graph activity.",
+  "id": "HF-2026-0013",
+  "indicator_ids": [
+    "HF-IOC-334489FDDAC4E4"
+  ],
+  "lookback": 14,
+  "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+  "primary_table": "MicrosoftGraphActivityLogs",
+  "profiles": [
+    "sentinel-azure"
+  ],
+  "published": "2026-11-25T02:32:19Z",
+  "release_id": "hf-20261125-fd0543673ed6",
+  "research": "service-principal",
+  "revision": 1,
+  "schema_version": 1,
+  "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+  "signature": "d8bb42f780cac6db860a789d5d61c5404da194d65964c5332b6441521b083776",
+  "source_ids": [
+    "HF-INT-4B6ABBDBB70347"
+  ],
+  "source_published": "2026-11-05",
+  "status": "partially_validated",
+  "tactic": "Initial Access",
+  "tags": [
+    "Agentic AI",
+    "Identity",
+    "Supply Chain"
+  ],
+  "technique": "T1078.004",
+  "title": "ARTEX-Associated Microsoft Graph Activity",
+  "updated": "2026-11-25T02:32:19Z",
+  "validation": {
+    "date": "2026-11-25T02:32:19Z",
+    "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+    "variants_checked": 10
+  },
+  "variants": {
+    "sentinel-azure": {
+      "profile_revision": 1,
+      "queries": {
+        "1": {
+          "json": "MicrosoftGraphActivityLogs\n| where TimeGenerated > ago(1d)\n| where IPAddress in (\"199.19.77.84\")\n| project TimeGenerated, IPAddress, AppId, ServicePrincipalId, RequestMethod, RequestUri, ResponseStatusCode\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "MicrosoftGraphActivityLogs\n| where TimeGenerated > ago(1d)\n| where IPAddress in (\"199.19.77.84\")\n| project TimeGenerated, IPAddress, AppId, ServicePrincipalId, RequestMethod, RequestUri, ResponseStatusCode\n| order by TimeGenerated desc\n"
+        },
+        "14": {
+          "json": "MicrosoftGraphActivityLogs\n| where TimeGenerated > ago(14d)\n| where IPAddress in (\"199.19.77.84\")\n| project TimeGenerated, IPAddress, AppId, ServicePrincipalId, RequestMethod, RequestUri, ResponseStatusCode\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "MicrosoftGraphActivityLogs\n| where TimeGenerated > ago(14d)\n| where IPAddress in (\"199.19.77.84\")\n| project TimeGenerated, IPAddress, AppId, ServicePrincipalId, RequestMethod, RequestUri, ResponseStatusCode\n| order by TimeGenerated desc\n"
+        },
+        "3": {
+          "json": "MicrosoftGraphActivityLogs\n| where TimeGenerated > ago(3d)\n| where IPAddress in (\"199.19.77.84\")\n| project TimeGenerated, IPAddress, AppId, ServicePrincipalId, RequestMethod, RequestUri, ResponseStatusCode\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "MicrosoftGraphActivityLogs\n| where TimeGenerated > ago(3d)\n| where IPAddress in (\"199.19.77.84\")\n| project TimeGenerated, IPAddress, AppId, ServicePrincipalId, RequestMethod, RequestUri, ResponseStatusCode\n| order by TimeGenerated desc\n"
+        },
+        "30": {
+          "json": "MicrosoftGraphActivityLogs\n| where TimeGenerated > ago(30d)\n| where IPAddress in (\"199.19.77.84\")\n| project TimeGenerated, IPAddress, AppId, ServicePrincipalId, RequestMethod, RequestUri, ResponseStatusCode\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "MicrosoftGraphActivityLogs\n| where TimeGenerated > ago(30d)\n| where IPAddress in (\"199.19.77.84\")\n| project TimeGenerated, IPAddress, AppId, ServicePrincipalId, RequestMethod, RequestUri, ResponseStatusCode\n| order by TimeGenerated desc\n"
+        },
+        "7": {
+          "json": "MicrosoftGraphActivityLogs\n| where TimeGenerated > ago(7d)\n| where IPAddress in (\"199.19.77.84\")\n| project TimeGenerated, IPAddress, AppId, ServicePrincipalId, RequestMethod, RequestUri, ResponseStatusCode\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "MicrosoftGraphActivityLogs\n| where TimeGenerated > ago(7d)\n| where IPAddress in (\"199.19.77.84\")\n| project TimeGenerated, IPAddress, AppId, ServicePrincipalId, RequestMethod, RequestUri, ResponseStatusCode\n| order by TimeGenerated desc\n"
+        }
+      },
+      "table": "MicrosoftGraphActivityLogs",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    }
+  }
+}

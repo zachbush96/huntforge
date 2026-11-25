@@ -1,0 +1,40 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "An insecure neighbor: how a vulnerability chain led to an isolation bypass in cloud infrastructure",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-10-27",
+      "source": "securelist",
+      "source_id": "securelist:121609",
+      "url": "https://securelist.com/cloud-infrastructure-isolation-bypass/121609/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-C6EA139044AEA3",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-10-27",
+  "related": [],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "73555e7552c571201e5d312251be5468f88cad5bb1ea5a3e322a986b659b282b",
+  "source": "securelist",
+  "source_id": "securelist:121609",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include exploitation.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "An insecure neighbor: how a vulnerability chain led to an isolation bypass in cloud infrastructure",
+  "updated": "2026-11-25T17:59:44Z"
+}

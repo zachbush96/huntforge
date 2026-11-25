@@ -1,0 +1,42 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Recent Trends and Tactics of Agentic AI Attacks",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-24",
+      "source": "unit-42",
+      "source_id": "unit-42:190007",
+      "url": "https://unit42.paloaltonetworks.com/autonomous-ai-agent-threat-campaigns/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T03:51:30Z",
+  "hunts": [],
+  "id": "HF-INT-19E1D88F9BAD4B",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-24",
+  "related": [],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "3c4ceb95d97b841a985ddb2b1e89b335fad2cce4f4ba87a1ced45f6dfcec383a",
+  "source": "unit-42",
+  "source_id": "unit-42:190007",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include identity, agentic ai, apt activity.",
+  "tags": [
+    "Identity",
+    "Agentic AI",
+    "APT Activity"
+  ],
+  "title": "Recent Trends and Tactics of Agentic AI Attacks",
+  "updated": "2026-11-25T17:59:44Z"
+}

@@ -1,0 +1,41 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "IR trends Q3 2026: Actors impersonate IT help desks in vishing attacks as ransomware activity increases",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-10-29",
+      "source": "cisco-talos",
+      "source_id": "cisco-talos:6ae0b3e793b06300015486c2",
+      "url": "https://blog.talosintelligence.com/ir-trends-q3-2026/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-0F62BCF48E995E",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-10-29",
+  "related": [],
+  "release_id": "hf-20261125-fd0543673ed6",
+  "retrieved": "2026-11-25T19:59:36Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "b4a64fa802cca979b886b705a44f4b84a401bd4b2a33dd851cbd93cca99e881d",
+  "source": "cisco-talos",
+  "source_id": "cisco-talos:6ae0b3e793b06300015486c2",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include ransomware, phishing.",
+  "tags": [
+    "Ransomware",
+    "Phishing"
+  ],
+  "title": "IR trends Q3 2026: Actors impersonate IT help desks in vishing attacks as ransomware activity increases",
+  "updated": "2026-11-25T17:59:44Z"
+}
