@@ -8,6 +8,8 @@ Vulnerability records link to CVE-specific exploitation hunts when reviewed evid
 
 On a Hunt Card, select **Explain the results to me** to analyze redacted results with an endpoint you control. Enter the full URL, model and API format. The form supports Ollama native chat and Chat Completions-compatible servers. The endpoint must allow browser requests from the HuntForge origin. Requests go directly to your endpoint, and results and API keys are kept in the form for the current visit.
 
+Use **Feedback** in the site header to send suggestions to the maintainer's private Google Forms inbox. Maintainers review the **Responses** tab in the form editor. Keep editor access restricted and respondent summaries disabled. Treat messages and suggested URLs as untrusted text. Verify a source before proposing it through the normal source review process.
+
 The initial collection spans **October 25–November 24, 2026**, inclusive. CISA KEV, CISA Advisories, FIRST EPSS, Microsoft Security, and UK NCSC provide dated coverage within their documented scopes. MITRE ATT&CK® Enterprise is a separate reference snapshot. See the run report for individual coverage and failures.
 
 ## Run locally

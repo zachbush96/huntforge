@@ -18,6 +18,7 @@ const glyphs = {
   copy:'<rect x="8" y="7" width="12" height="15" rx="1"/><path d="M16 4V2H4v16h2"/>',
   download:'<path d="M12 2v13m-5-5 5 5 5-5M3 15v6h18v-6"/>',
   link:'<path d="m9 15 6-6m-5 9-2 2a4 4 0 0 1-6-6l5-5a4 4 0 0 1 5-.6m2-2 2-2a4 4 0 0 1 6 6l-5 5a4 4 0 0 1-5 .6"/>',
+  message:'<path d="M4 3h16a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm3 6h10M7 13h6"/>',
   external:'<path d="M12 4H4v16h16v-8M14 3h7v7m0-7L10 14"/>',
   check:'<path d="m4 12 5 5 11-11"/>',
   checked:'<path d="M3 3h18v18H3zm4 9 3 4 7-8"/>',
@@ -140,6 +141,7 @@ export function header(data, brief) {
         <button type="button" class="top-icon brief-search" aria-label="Search" data-action="search">${icon("search")}</button>` :
         `<button type="button" class="btn search-button" data-action="search" aria-label="Search hunts, actors, CVEs, indicators, techniques">${icon("search")}<span>Search Hunts, Actors, CVEs, Indicators, Techniques...</span><kbd>/</kbd></button><span class="top-divider"></span>`}
       <a class="top-link" href="${repo}" aria-label="GitHub repository">${icon("github")}${brief ? "<span>GitHub</span>" : ""}</a>
+      <a class="top-link feedback-link" href="feedback.html" aria-label="Feedback" title="Feedback">${icon("message")}<span>Feedback</span></a>
       ${brief ? `<span class="top-divider"></span>${link("Last Update: " + utc(data.manifest.created), route("changelog"), "header-date")}` :
         '<a class="top-box api-link" href="#/developers">API</a><button type="button" class="top-icon" aria-label="Settings" data-action="settings">' + icon("settings") + "</button>"}
     </div>

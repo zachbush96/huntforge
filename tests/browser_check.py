@@ -308,6 +308,26 @@ def defender_queries(page, base):
     assert "RemoteIP" in endpoint_query and "RemoteUrl" in endpoint_query
 
 
+def feedback_entry(page, base, screenshots):
+    page.goto(base + "#/changelog")
+    feedback = page.get_by_role("link", name="Feedback", exact=True)
+    expect(feedback).to_be_visible()
+    feedback.click()
+    expect(page).to_have_url(base + "feedback.html")
+    expect(page.get_by_role("heading", name="Feedback", exact=True)).to_be_visible()
+    expect(page.get_by_role("heading", name="Where your feedback goes")).to_be_visible()
+    form = page.get_by_role("link", name="Open feedback form on Google")
+    target = urlsplit(form.get_attribute("href"))
+    assert target.scheme == "https" and target.netloc == "docs.google.com"
+    assert re.fullmatch(r"/forms/d/e/[\w-]+/viewform", target.path)
+    expect(form).to_have_attribute("rel", "noreferrer")
+    assert page.locator("iframe, form").count() == 0
+    if screenshots:
+        page.screenshot(path=str(screenshots / "feedback.png"), full_page=True)
+    page.get_by_role("link", name="HuntForge home").click()
+    expect(page.get_by_role("heading", name="Daily Threat Brief")).to_be_visible()
+
+
 def check(base, channel, screenshots):
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(channel=channel, headless=True)
@@ -327,6 +347,7 @@ def check(base, channel, screenshots):
         sentinel_catalog(page,base)
         results_explanation(page,base)
         defender_queries(page,base)
+        feedback_entry(page,base,screenshots)
         page.goto(base)
         expect(page.get_by_role("heading", name="Daily Threat Brief")).to_be_visible()
         if screenshots:
@@ -423,11 +444,12 @@ def check(base, channel, screenshots):
             if screenshots:
                 page.screenshot(path=str(screenshots / (name+".png")), full_page=True)
         catalog_controls(page,base)
-        for width in (741, 1024):
+        for width in (320, 741, 1024):
             page.set_viewport_size({"width":width,"height":844})
             for path, heading in [("#/brief","Daily Threat Brief"),("#/indicators","Indicators")]:
                 page.goto(base+path)
                 expect(page.get_by_role("heading",name=heading,exact=True)).to_be_visible()
+                expect(page.get_by_role("link",name="Feedback",exact=True)).to_be_visible()
                 assert page.evaluate("document.documentElement.scrollWidth") == width
         assert not errors,errors
         context.close()
