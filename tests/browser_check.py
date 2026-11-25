@@ -423,10 +423,16 @@ def check(base, channel, screenshots):
             if screenshots:
                 page.screenshot(path=str(screenshots / (name+".png")), full_page=True)
         catalog_controls(page,base)
+        for width in (741, 1024):
+            page.set_viewport_size({"width":width,"height":844})
+            for path, heading in [("#/brief","Daily Threat Brief"),("#/indicators","Indicators")]:
+                page.goto(base+path)
+                expect(page.get_by_role("heading",name=heading,exact=True)).to_be_visible()
+                assert page.evaluate("document.documentElement.scrollWidth") == width
         assert not errors,errors
         context.close()
         browser.close()
-        print("Browser QA passed at 1586×992 and 390×844.")
+        print("Browser QA passed at desktop, tablet, and mobile sizes.")
 
 
 def main():
