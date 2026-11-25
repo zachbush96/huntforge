@@ -1,0 +1,50 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2025-42884",
+    "CVE-2026-123890",
+    "CVE-2026-129448",
+    "CVE-2026-76466"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "CISA Adds Four Known Exploited Vulnerabilities to Catalog",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-20",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/20/cisa-adds-four-known-exploited-vulnerabilities-catalog",
+      "url": "https://www.cisa.gov/news-events/alerts/2026/11/20/cisa-adds-four-known-exploited-vulnerabilities-catalog"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-B22EEC5809CE5C",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-20",
+  "related": [
+    "HF-INT-1F8C268356351F",
+    "HF-INT-5F8CF9D21A09A9",
+    "HF-INT-9AA23ACE9EE456",
+    "HF-INT-FEC7D273C1F64A"
+  ],
+  "release_id": "hf-20261124-5a6141bcbc8d",
+  "retrieved": "2026-11-25T01:56:27Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "2b61d5712faa89c57e89bace1727d509b711ce273df4791970108cd4c97d0f7b",
+  "source": "cisa-advisories",
+  "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/20/cisa-adds-four-known-exploited-vulnerabilities-catalog",
+  "status": "active",
+  "summary": "Publisher security advisory. Topics include identity, exploitation. References CVE-2025-42884, CVE-2026-123890, CVE-2026-129448, CVE-2026-76466.",
+  "tags": [
+    "Identity",
+    "Exploitation"
+  ],
+  "title": "CISA Adds Four Known Exploited Vulnerabilities to Catalog",
+  "updated": "2026-11-25T01:48:50Z"
+}

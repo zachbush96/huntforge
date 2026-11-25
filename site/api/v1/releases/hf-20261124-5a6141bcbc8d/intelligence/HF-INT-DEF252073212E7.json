@@ -1,0 +1,201 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-41709"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-24",
+      "epss": "0.009010000",
+      "percentile": "0.604190000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.00901000",
+      "percentile": "0.60589000"
+    },
+    {
+      "date": "2026-11-22",
+      "epss": "0.00901000",
+      "percentile": "0.60580000"
+    },
+    {
+      "date": "2026-11-21",
+      "epss": "0.00901000",
+      "percentile": "0.60557000"
+    },
+    {
+      "date": "2026-11-20",
+      "epss": "0.00689000",
+      "percentile": "0.53663000"
+    },
+    {
+      "date": "2026-11-19",
+      "epss": "0.00689000",
+      "percentile": "0.53521000"
+    },
+    {
+      "date": "2026-11-18",
+      "epss": "0.00689000",
+      "percentile": "0.53464000"
+    },
+    {
+      "date": "2026-11-17",
+      "epss": "0.00689000",
+      "percentile": "0.53345000"
+    },
+    {
+      "date": "2026-11-16",
+      "epss": "0.00689000",
+      "percentile": "0.53314000"
+    },
+    {
+      "date": "2026-11-15",
+      "epss": "0.00689000",
+      "percentile": "0.53304000"
+    },
+    {
+      "date": "2026-11-14",
+      "epss": "0.00689000",
+      "percentile": "0.53319000"
+    },
+    {
+      "date": "2026-11-13",
+      "epss": "0.00689000",
+      "percentile": "0.53293000"
+    },
+    {
+      "date": "2026-11-12",
+      "epss": "0.00689000",
+      "percentile": "0.53230000"
+    },
+    {
+      "date": "2026-11-11",
+      "epss": "0.00689000",
+      "percentile": "0.53182000"
+    },
+    {
+      "date": "2026-11-10",
+      "epss": "0.00689000",
+      "percentile": "0.53064000"
+    },
+    {
+      "date": "2026-11-09",
+      "epss": "0.00689000",
+      "percentile": "0.53014000"
+    },
+    {
+      "date": "2026-11-08",
+      "epss": "0.00689000",
+      "percentile": "0.52994000"
+    },
+    {
+      "date": "2026-11-07",
+      "epss": "0.00689000",
+      "percentile": "0.52976000"
+    },
+    {
+      "date": "2026-11-06",
+      "epss": "0.00689000",
+      "percentile": "0.52913000"
+    },
+    {
+      "date": "2026-11-05",
+      "epss": "0.00689000",
+      "percentile": "0.52881000"
+    },
+    {
+      "date": "2026-11-04",
+      "epss": "0.00689000",
+      "percentile": "0.52851000"
+    },
+    {
+      "date": "2026-11-03",
+      "epss": "0.00689000",
+      "percentile": "0.52783000"
+    },
+    {
+      "date": "2026-11-02",
+      "epss": "0.00689000",
+      "percentile": "0.52738000"
+    },
+    {
+      "date": "2026-11-01",
+      "epss": "0.00689000",
+      "percentile": "0.52750000"
+    },
+    {
+      "date": "2026-10-31",
+      "epss": "0.00689000",
+      "percentile": "0.52756000"
+    },
+    {
+      "date": "2026-10-30",
+      "epss": "0.00689000",
+      "percentile": "0.52718000"
+    },
+    {
+      "date": "2026-10-29",
+      "epss": "0.00764000",
+      "percentile": "0.55307000"
+    },
+    {
+      "date": "2026-10-28",
+      "epss": "0.00297000",
+      "percentile": "0.22291000"
+    },
+    {
+      "date": "2026-10-27",
+      "epss": "0.00297000",
+      "percentile": "0.22214000"
+    },
+    {
+      "date": "2026-10-26",
+      "epss": "0.00297000",
+      "percentile": "0.22153000"
+    },
+    {
+      "date": "2026-10-25",
+      "epss": "0.00297000",
+      "percentile": "0.22137000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-10-28",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-41709",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-41709"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-DEF252073212E7",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "VMware ESX",
+  "published": "2026-10-28",
+  "ransomware_use": "unknown",
+  "related": [],
+  "release_id": "hf-20261124-5a6141bcbc8d",
+  "remediation_due": "2026-11-11",
+  "retrieved": "2026-11-25T01:56:27Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "f68df0ff6859055bcf491c77855cf044da22d1e933ea3db26816bb39c0246f10",
+  "source": "cisa-kev",
+  "source_id": "CVE-2026-41709",
+  "status": "active",
+  "summary": "CISA added CVE-2026-41709 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-11.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Broadcom VMWare ESX Insufficient Logging Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "Broadcom"
+}

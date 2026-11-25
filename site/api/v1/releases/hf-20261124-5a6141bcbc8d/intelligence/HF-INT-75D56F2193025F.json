@@ -1,0 +1,201 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-48356"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-24",
+      "epss": "0.816240000",
+      "percentile": "0.996480000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.81624000",
+      "percentile": "0.99651000"
+    },
+    {
+      "date": "2026-11-22",
+      "epss": "0.81624000",
+      "percentile": "0.99651000"
+    },
+    {
+      "date": "2026-11-21",
+      "epss": "0.81624000",
+      "percentile": "0.99650000"
+    },
+    {
+      "date": "2026-11-20",
+      "epss": "0.66390000",
+      "percentile": "0.99300000"
+    },
+    {
+      "date": "2026-11-19",
+      "epss": "0.66390000",
+      "percentile": "0.99297000"
+    },
+    {
+      "date": "2026-11-18",
+      "epss": "0.66390000",
+      "percentile": "0.99297000"
+    },
+    {
+      "date": "2026-11-17",
+      "epss": "0.47472000",
+      "percentile": "0.98864000"
+    },
+    {
+      "date": "2026-11-16",
+      "epss": "0.47472000",
+      "percentile": "0.98863000"
+    },
+    {
+      "date": "2026-11-15",
+      "epss": "0.47472000",
+      "percentile": "0.98863000"
+    },
+    {
+      "date": "2026-11-14",
+      "epss": "0.47472000",
+      "percentile": "0.98862000"
+    },
+    {
+      "date": "2026-11-13",
+      "epss": "0.47472000",
+      "percentile": "0.98862000"
+    },
+    {
+      "date": "2026-11-12",
+      "epss": "0.47472000",
+      "percentile": "0.98860000"
+    },
+    {
+      "date": "2026-11-11",
+      "epss": "0.47472000",
+      "percentile": "0.98858000"
+    },
+    {
+      "date": "2026-11-10",
+      "epss": "0.47472000",
+      "percentile": "0.98852000"
+    },
+    {
+      "date": "2026-11-09",
+      "epss": "0.47472000",
+      "percentile": "0.98850000"
+    },
+    {
+      "date": "2026-11-08",
+      "epss": "0.47472000",
+      "percentile": "0.98849000"
+    },
+    {
+      "date": "2026-11-07",
+      "epss": "0.47472000",
+      "percentile": "0.98848000"
+    },
+    {
+      "date": "2026-11-06",
+      "epss": "0.47472000",
+      "percentile": "0.98848000"
+    },
+    {
+      "date": "2026-11-05",
+      "epss": "0.47472000",
+      "percentile": "0.98846000"
+    },
+    {
+      "date": "2026-11-04",
+      "epss": "0.47472000",
+      "percentile": "0.98846000"
+    },
+    {
+      "date": "2026-11-03",
+      "epss": "0.44579000",
+      "percentile": "0.98770000"
+    },
+    {
+      "date": "2026-11-02",
+      "epss": "0.44579000",
+      "percentile": "0.98769000"
+    },
+    {
+      "date": "2026-11-01",
+      "epss": "0.44579000",
+      "percentile": "0.98769000"
+    },
+    {
+      "date": "2026-10-31",
+      "epss": "0.44579000",
+      "percentile": "0.98769000"
+    },
+    {
+      "date": "2026-10-30",
+      "epss": "0.44579000",
+      "percentile": "0.98767000"
+    },
+    {
+      "date": "2026-10-29",
+      "epss": "0.44579000",
+      "percentile": "0.98765000"
+    },
+    {
+      "date": "2026-10-28",
+      "epss": "0.59078000",
+      "percentile": "0.99110000"
+    },
+    {
+      "date": "2026-10-27",
+      "epss": "0.30582000",
+      "percentile": "0.98231000"
+    },
+    {
+      "date": "2026-10-26",
+      "epss": "0.01001000",
+      "percentile": "0.62599000"
+    },
+    {
+      "date": "2026-10-25",
+      "epss": "0.01001000",
+      "percentile": "0.62590000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-10-27",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-48356",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-48356"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-75D56F2193025F",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "Commerce and Magento",
+  "published": "2026-10-27",
+  "ransomware_use": "unknown",
+  "related": [],
+  "release_id": "hf-20261124-5a6141bcbc8d",
+  "remediation_due": "2026-11-10",
+  "retrieved": "2026-11-25T01:56:27Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "612f49ef2a6a243253f1d8e5a0ff2261f1a37429c94fb8377bdd82c59b398cd4",
+  "source": "cisa-kev",
+  "source_id": "CVE-2026-48356",
+  "status": "active",
+  "summary": "CISA added CVE-2026-48356 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-10.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Adobe Commerce and Magento Unrestricted Upload of File with Dangerous Type Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "Adobe"
+}

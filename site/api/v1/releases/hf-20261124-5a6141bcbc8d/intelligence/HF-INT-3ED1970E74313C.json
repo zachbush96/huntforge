@@ -1,0 +1,41 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-127280"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "AutomationDirect C-More EA9 Programming Software",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-24",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-328-01",
+      "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-328-01"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-3ED1970E74313C",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-24",
+  "related": [],
+  "release_id": "hf-20261124-5a6141bcbc8d",
+  "retrieved": "2026-11-25T01:56:27Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "a87d62a100319fdcf48804a49329296ba4088bf7bd0d283b04c2a68c3a267f96",
+  "source": "cisa-advisories",
+  "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-328-01",
+  "status": "active",
+  "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-127280.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "AutomationDirect C-More EA9 Programming Software",
+  "updated": "2026-11-25T01:48:50Z"
+}

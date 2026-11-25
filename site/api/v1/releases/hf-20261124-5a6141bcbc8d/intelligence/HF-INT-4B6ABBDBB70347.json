@@ -1,0 +1,50 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Microsoft reported successful service-principal sign-ins from a campaign-associated address across multiple application IDs. The date below is the earliest activity Microsoft describes.",
+      "location": "Credential abuse via Entra ID and indicators sections",
+      "modified": null,
+      "observation_date": "2026-10-28",
+      "published": "2026-11-05",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [
+    "HF-2026-0005"
+  ],
+  "id": "HF-INT-4B6ABBDBB70347",
+  "in_window": true,
+  "indicators": [
+    "HF-IOC-334489FDDAC4E4"
+  ],
+  "kind": "Research",
+  "published": "2026-11-05",
+  "related": [],
+  "release_id": "hf-20261124-5a6141bcbc8d",
+  "retrieved": "2026-11-25T01:56:27Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "adcc03b3daa4fee4f5aca55431d57226758dddcf58b375367229fe2ba83b85e7",
+  "software": [],
+  "source": "microsoft",
+  "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/",
+  "status": "active",
+  "summary": "Microsoft reported successful service-principal sign-ins from a campaign-associated address across multiple application IDs. The date below is the earliest activity Microsoft describes.",
+  "tags": [
+    "Agentic AI",
+    "Identity",
+    "Supply Chain"
+  ],
+  "techniques": [
+    "T1078.004"
+  ],
+  "title": "Threat actors use agentic AI tooling to find and abuse exposed secrets",
+  "updated": "2026-11-25T01:48:50Z"
+}

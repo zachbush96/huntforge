@@ -1,0 +1,133 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-114713"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-24",
+      "epss": "0.013510000",
+      "percentile": "0.721160000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.01148000",
+      "percentile": "0.67661000"
+    },
+    {
+      "date": "2026-11-22",
+      "epss": "0.01148000",
+      "percentile": "0.67653000"
+    },
+    {
+      "date": "2026-11-21",
+      "epss": "0.01148000",
+      "percentile": "0.67637000"
+    },
+    {
+      "date": "2026-11-20",
+      "epss": "0.00467000",
+      "percentile": "0.41335000"
+    },
+    {
+      "date": "2026-11-19",
+      "epss": "0.00467000",
+      "percentile": "0.41200000"
+    },
+    {
+      "date": "2026-11-18",
+      "epss": "0.00467000",
+      "percentile": "0.41114000"
+    },
+    {
+      "date": "2026-11-17",
+      "epss": "0.00467000",
+      "percentile": "0.41010000"
+    },
+    {
+      "date": "2026-11-16",
+      "epss": "0.00508000",
+      "percentile": "0.43872000"
+    },
+    {
+      "date": "2026-11-15",
+      "epss": "0.00508000",
+      "percentile": "0.43875000"
+    },
+    {
+      "date": "2026-11-14",
+      "epss": "0.00508000",
+      "percentile": "0.43896000"
+    },
+    {
+      "date": "2026-11-13",
+      "epss": "0.00302000",
+      "percentile": "0.23297000"
+    },
+    {
+      "date": "2026-11-12",
+      "epss": "0.00302000",
+      "percentile": "0.23299000"
+    },
+    {
+      "date": "2026-11-11",
+      "epss": "0.00302000",
+      "percentile": "0.23275000"
+    },
+    {
+      "date": "2026-11-10",
+      "epss": "0.00302000",
+      "percentile": "0.23217000"
+    },
+    {
+      "date": "2026-11-09",
+      "epss": "0.00302000",
+      "percentile": "0.23170000"
+    },
+    {
+      "date": "2026-11-08",
+      "epss": "0.00293000",
+      "percentile": "0.21991000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-13",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-114713",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-114713"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-D3C2E84C25AC92",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "UnrealIRCd",
+  "published": "2026-11-13",
+  "ransomware_use": "unknown",
+  "related": [
+    "HF-INT-7B5DACBA886B8D"
+  ],
+  "release_id": "hf-20261124-5a6141bcbc8d",
+  "remediation_due": "2026-11-16",
+  "retrieved": "2026-11-25T01:56:27Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "67ad2622ba1726b8e7be74eb34d0232facdd6ecc9dbed3e2d680cf2014f1bb2c",
+  "source": "cisa-kev",
+  "source_id": "CVE-2026-114713",
+  "status": "active",
+  "summary": "CISA added CVE-2026-114713 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-16.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "UnrealIRCd Improper Neutralization of Delimiters Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "UnrealIRCd"
+}

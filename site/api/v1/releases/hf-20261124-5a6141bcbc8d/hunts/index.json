@@ -1,0 +1,310 @@
+{
+  "count": 5,
+  "items": [
+    {
+      "confidence": "Behavioral hypothesis",
+      "considerations": [
+        "Filter known administrative scripts and managed automation.",
+        "Review the full command line and initiating process ancestry.",
+        "Correlate destinations with internal DNS, proxy logs and approved intelligence.",
+        "Review the surrounding device timeline before broadening the lookback."
+      ],
+      "description": "Scope outbound PowerShell connections on monitored devices and correlate them with published behavior and local incident evidence.",
+      "evidence": [
+        {
+          "claim": "Microsoft observed PowerShell downloading an MSI after fraudulent remote support access.",
+          "location": "Execution and MITRE ATT&CK sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-09-02",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/09/02/impersonating-it-support-threat-actors-turn-remote-session-into-enterprise-wide-access/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/09/02/impersonating-it-support-threat-actors-turn-remote-session-into-enterprise-wide-access/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T01:48:50Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        },
+        {
+          "change": "Updated",
+          "date": "2026-11-25T01:56:27Z",
+          "revision": 2,
+          "summary": "Revalidated after changes to confidence."
+        }
+      ],
+      "hypothesis": "PowerShell used to retrieve a payload may leave a process-attributed network event.",
+      "id": "HF-2025-0001",
+      "indicator_ids": [],
+      "lookback": 7,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "profiles": [
+        "defender-xdr"
+      ],
+      "published": "2026-11-25T01:48:50Z",
+      "research": "powershell-download",
+      "revision": 2,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "321dae73d6935794252276c525fcc4ed9b6aa7d2e418fc0c61af21b1edf365f6",
+      "source_ids": [
+        "HF-INT-3906A981456D92"
+      ],
+      "status": "partially_validated",
+      "tactic": "Execution",
+      "technique": "T1059.001",
+      "title": "Suspicious PowerShell Network Activity",
+      "updated": "2026-11-25T01:56:27Z",
+      "validation": {
+        "date": "2026-11-25T01:56:27Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "confidence": "Publisher-observed tooling",
+      "considerations": [
+        "Review the parent process, account and working path.",
+        "Confirm whether the activity was approved. GSocket is dual-use.",
+        "Review network events separately. Process execution alone cannot establish a relay session."
+      ],
+      "description": "Find GSocket tooling in Linux endpoint process telemetry for review.",
+      "evidence": [
+        {
+          "claim": "Microsoft observed GSocket and gs-netcat process activity on compromised Linux hosts, sometimes with renamed binaries.",
+          "location": "Advanced hunting queries and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-11",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T01:48:50Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "Known GSocket executable names or command-line references may identify investigated relay tooling.",
+      "id": "HF-2026-0002",
+      "indicator_ids": [],
+      "lookback": 7,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "profiles": [
+        "defender-xdr"
+      ],
+      "published": "2026-11-25T01:48:50Z",
+      "research": "gsocket",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "803ffc1c1145f83be79e423cf6ab1c587d317249fb3947b3e7fd2a8961865c84",
+      "source_ids": [
+        "HF-INT-F3F53EF63DF395"
+      ],
+      "status": "partially_validated",
+      "tactic": "Command and Control",
+      "technique": "T1090.002",
+      "title": "GSocket Process Activity",
+      "updated": "2026-11-25T01:48:50Z",
+      "validation": {
+        "date": "2026-11-25T01:48:50Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "confidence": "Publisher-observed indicators",
+      "considerations": [
+        "Correlate matches with mail delivery and user click telemetry.",
+        "Use the action field to distinguish blocks from permitted requests.",
+        "Review URL paths and Entra sign-ins before inferring credential exposure.",
+        "Security scanners and automated previews can generate matches."
+      ],
+      "description": "Review network or proxy events for the exact downstream domains Microsoft reported.",
+      "evidence": [
+        {
+          "claim": "Microsoft reported downstream destinations and a redirect path in deceptive Microsoft 365 service-health messages. The report did not confirm credential submission.",
+          "location": "Lure and redirect flow, MITRE ATT&CK, and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-16",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T01:48:50Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "Exact destination host matches can identify traffic associated with the documented phishing campaign.",
+      "id": "HF-2026-0003",
+      "indicator_ids": [
+        "HF-IOC-67384D48D4FE0E",
+        "HF-IOC-643EC22834E642",
+        "HF-IOC-4BDFC7D2DF496E",
+        "HF-IOC-A6CE6D434B06E6"
+      ],
+      "lookback": 7,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "profiles": [
+        "defender-xdr",
+        "sentinel-cef",
+        "custom-menlo",
+        "custom-proxy"
+      ],
+      "published": "2026-11-25T01:48:50Z",
+      "research": "outage-phishing",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "a92faaae78423f532b5ca32c00967962cf71f3edae8b7623b36969347ec6bbcf",
+      "source_ids": [
+        "HF-INT-A08614C0DEBC42"
+      ],
+      "status": "partially_validated",
+      "tactic": "Initial Access",
+      "technique": "T1566.002",
+      "title": "Microsoft 365 Outage Phishing Destinations",
+      "updated": "2026-11-25T01:48:50Z",
+      "validation": {
+        "date": "2026-11-25T01:48:50Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 40
+      }
+    },
+    {
+      "confidence": "Contextual behavioral hypothesis",
+      "considerations": [
+        "Check for an authorized support ticket and verify who initiated the session.",
+        "Review nearby process and network events for activity after the support session.",
+        "A process match cannot establish that a session connected."
+      ],
+      "description": "Find Quick Assist executions for triage alongside help desk records.",
+      "evidence": [
+        {
+          "claim": "Microsoft observed fraudulent IT support sessions conducted primarily through Quick Assist before staging additional tools.",
+          "location": "Intrusion case studies and initial access sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-30",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T01:48:50Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "Fraudulent remote support sessions can start with Quick Assist process activity.",
+      "id": "HF-2026-0004",
+      "indicator_ids": [],
+      "lookback": 7,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "profiles": [
+        "defender-xdr"
+      ],
+      "published": "2026-11-25T01:48:50Z",
+      "research": "quick-assist",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "b0fb739087b149db788b347ee2aeae1c7f082604871cdfff36e11b1105f601b5",
+      "source_ids": [
+        "HF-INT-E26238C5B4C5C7"
+      ],
+      "status": "partially_validated",
+      "tactic": "Command and Control",
+      "technique": "T1219.002",
+      "title": "Quick Assist Process Activity",
+      "updated": "2026-11-25T01:48:50Z",
+      "validation": {
+        "date": "2026-11-25T01:48:50Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "confidence": "Publisher-observed indicators",
+      "considerations": [
+        "Review the service principal, credential changes and resource access.",
+        "Compare the source IP with known egress and require independent evidence before escalation.",
+        "Check Azure activity and resource audit logs for follow-on actions."
+      ],
+      "description": "Review successful Entra service-principal sign-ins from a campaign-associated IP Microsoft reported.",
+      "evidence": [
+        {
+          "claim": "Microsoft reported successful service-principal sign-ins from a campaign-associated address across multiple application IDs. The date below is the earliest activity Microsoft describes.",
+          "location": "Credential abuse via Entra ID and indicators sections",
+          "modified": null,
+          "observation_date": "2026-10-28",
+          "published": "2026-11-05",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T01:48:50Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "A successful sign-in from the published address warrants correlation with app ownership and expected egress.",
+      "id": "HF-2026-0005",
+      "indicator_ids": [
+        "HF-IOC-334489FDDAC4E4"
+      ],
+      "lookback": 7,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "profiles": [
+        "sentinel-entra"
+      ],
+      "published": "2026-11-25T01:48:50Z",
+      "research": "service-principal",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "e44806f4664d29c6f1465b406657e157a05d5488903739ee50611b1d52da4ee0",
+      "source_ids": [
+        "HF-INT-4B6ABBDBB70347"
+      ],
+      "status": "partially_validated",
+      "tactic": "Persistence",
+      "technique": "T1078.004",
+      "title": "Service Principal Sign-ins From a Reported IP",
+      "updated": "2026-11-25T01:48:50Z",
+      "validation": {
+        "date": "2026-11-25T01:48:50Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    }
+  ],
+  "release_id": "hf-20261124-5a6141bcbc8d",
+  "schema_version": 1
+}

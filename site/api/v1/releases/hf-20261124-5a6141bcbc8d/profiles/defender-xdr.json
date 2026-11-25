@@ -1,0 +1,64 @@
+{
+  "assumptions": "Microsoft Defender for Endpoint must populate the table. Advanced hunting and device data access are required.",
+  "id": "defender-xdr",
+  "name": "Defender XDR (default)",
+  "release_id": "hf-20261124-5a6141bcbc8d",
+  "revision": 1,
+  "schema_version": 1,
+  "short": "Defender XDR",
+  "source": "Microsoft Defender for Endpoint",
+  "synthetic": false,
+  "tables": {
+    "DeviceNetworkEvents": {
+      "capability": "network-process",
+      "columns": {
+        "ActionType": "string",
+        "DeviceName": "string",
+        "InitiatingProcessCommandLine": "string",
+        "InitiatingProcessFileName": "string",
+        "RemoteIP": "string",
+        "RemotePort": "int",
+        "RemoteUrl": "string",
+        "Timestamp": "datetime"
+      },
+      "documentation": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-devicenetworkevents-table",
+      "mappings": {
+        "Action": "ActionType",
+        "CommandLine": "InitiatingProcessCommandLine",
+        "Destination IP": "RemoteIP",
+        "Destination Port": "RemotePort",
+        "Destination URL": "RemoteUrl",
+        "Device": "DeviceName",
+        "Process": "InitiatingProcessFileName",
+        "Timestamp": "Timestamp"
+      },
+      "semantics": "Timestamp is the documented event time field for this profile.",
+      "timestamp": "Timestamp"
+    },
+    "DeviceProcessEvents": {
+      "capability": "process",
+      "columns": {
+        "AccountName": "string",
+        "DeviceName": "string",
+        "FileName": "string",
+        "FolderPath": "string",
+        "InitiatingProcessFileName": "string",
+        "ProcessCommandLine": "string",
+        "Timestamp": "datetime"
+      },
+      "documentation": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-deviceprocessevents-table",
+      "mappings": {
+        "CommandLine": "ProcessCommandLine",
+        "Device": "DeviceName",
+        "Parent": "InitiatingProcessFileName",
+        "Path": "FolderPath",
+        "Process": "FileName",
+        "Timestamp": "Timestamp",
+        "User": "AccountName"
+      },
+      "semantics": "Timestamp is the documented event time field for this profile.",
+      "timestamp": "Timestamp"
+    }
+  },
+  "target": "Microsoft Defender advanced hunting"
+}

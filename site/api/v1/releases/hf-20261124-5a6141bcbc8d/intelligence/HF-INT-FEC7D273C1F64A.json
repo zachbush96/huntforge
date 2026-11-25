@@ -1,0 +1,203 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-76466"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-24",
+      "epss": "0.021870000",
+      "percentile": "0.827620000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.02187000",
+      "percentile": "0.82879000"
+    },
+    {
+      "date": "2026-11-22",
+      "epss": "0.02187000",
+      "percentile": "0.82875000"
+    },
+    {
+      "date": "2026-11-21",
+      "epss": "0.02187000",
+      "percentile": "0.82863000"
+    },
+    {
+      "date": "2026-11-20",
+      "epss": "0.00417000",
+      "percentile": "0.36836000"
+    },
+    {
+      "date": "2026-11-19",
+      "epss": "0.00417000",
+      "percentile": "0.36701000"
+    },
+    {
+      "date": "2026-11-18",
+      "epss": "0.00417000",
+      "percentile": "0.36616000"
+    },
+    {
+      "date": "2026-11-17",
+      "epss": "0.00417000",
+      "percentile": "0.36516000"
+    },
+    {
+      "date": "2026-11-16",
+      "epss": "0.00417000",
+      "percentile": "0.36492000"
+    },
+    {
+      "date": "2026-11-15",
+      "epss": "0.00417000",
+      "percentile": "0.36487000"
+    },
+    {
+      "date": "2026-11-14",
+      "epss": "0.00417000",
+      "percentile": "0.36509000"
+    },
+    {
+      "date": "2026-11-13",
+      "epss": "0.00417000",
+      "percentile": "0.36480000"
+    },
+    {
+      "date": "2026-11-12",
+      "epss": "0.00417000",
+      "percentile": "0.36445000"
+    },
+    {
+      "date": "2026-11-11",
+      "epss": "0.00417000",
+      "percentile": "0.36411000"
+    },
+    {
+      "date": "2026-11-10",
+      "epss": "0.00417000",
+      "percentile": "0.36286000"
+    },
+    {
+      "date": "2026-11-09",
+      "epss": "0.00417000",
+      "percentile": "0.36242000"
+    },
+    {
+      "date": "2026-11-08",
+      "epss": "0.00417000",
+      "percentile": "0.36229000"
+    },
+    {
+      "date": "2026-11-07",
+      "epss": "0.00417000",
+      "percentile": "0.36214000"
+    },
+    {
+      "date": "2026-11-06",
+      "epss": "0.00417000",
+      "percentile": "0.36167000"
+    },
+    {
+      "date": "2026-11-05",
+      "epss": "0.00417000",
+      "percentile": "0.36147000"
+    },
+    {
+      "date": "2026-11-04",
+      "epss": "0.00417000",
+      "percentile": "0.36129000"
+    },
+    {
+      "date": "2026-11-03",
+      "epss": "0.00417000",
+      "percentile": "0.36010000"
+    },
+    {
+      "date": "2026-11-02",
+      "epss": "0.00417000",
+      "percentile": "0.35964000"
+    },
+    {
+      "date": "2026-11-01",
+      "epss": "0.00417000",
+      "percentile": "0.35974000"
+    },
+    {
+      "date": "2026-10-31",
+      "epss": "0.00417000",
+      "percentile": "0.35983000"
+    },
+    {
+      "date": "2026-10-30",
+      "epss": "0.00417000",
+      "percentile": "0.35956000"
+    },
+    {
+      "date": "2026-10-29",
+      "epss": "0.00417000",
+      "percentile": "0.35905000"
+    },
+    {
+      "date": "2026-10-28",
+      "epss": "0.00417000",
+      "percentile": "0.35840000"
+    },
+    {
+      "date": "2026-10-27",
+      "epss": "0.00417000",
+      "percentile": "0.35766000"
+    },
+    {
+      "date": "2026-10-26",
+      "epss": "0.00417000",
+      "percentile": "0.35694000"
+    },
+    {
+      "date": "2026-10-25",
+      "epss": "0.00417000",
+      "percentile": "0.35663000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-20",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-76466",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-76466"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-FEC7D273C1F64A",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "Expressway Series",
+  "published": "2026-11-20",
+  "ransomware_use": "unknown",
+  "related": [
+    "HF-INT-B22EEC5809CE5C"
+  ],
+  "release_id": "hf-20261124-5a6141bcbc8d",
+  "remediation_due": "2026-11-23",
+  "retrieved": "2026-11-25T01:56:27Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "8ac3af93786e76543986cd3eec415d13ed2e7b7ac993974273b88315086af02f",
+  "source": "cisa-kev",
+  "source_id": "CVE-2026-76466",
+  "status": "active",
+  "summary": "CISA added CVE-2026-76466 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-23.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Cisco Expressway Series Use of Hard-coded Credentials Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "Cisco"
+}

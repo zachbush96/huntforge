@@ -80,7 +80,7 @@ button:hover, .button:hover { background: #e7e7e7; }
 .side-update a { display: block; margin-top: 9px; font: 700 .75rem Arial, sans-serif; }
 .side-art { position: absolute; z-index: 0; bottom: 0; width: 100%; height: clamp(245px, 38vh, 370px); left: 0; overflow: hidden; pointer-events: none; background: #080808; }
 .side-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(#080808 0%, transparent 30%); }
-.side-art i { display: block; width: 100%; height: 100%; background: url("assets/halftone.png") 0 100% / 307% auto no-repeat; }
+.side-art i { display: block; width: 100%; height: 100%; background: url("assets/halftone.webp") 0 100% / 307% auto no-repeat; }
 .compact .side-art { height: clamp(190px, 31vh, 305px); }
 .compact .side-art i { background-position: 100% 100%; }
 main { min-width: 0; }
@@ -88,7 +88,7 @@ main { min-width: 0; }
 .brief-hero { position: relative; border-top: 1px solid #444; border-bottom: 1px solid #151515; margin-top: 10px; padding: 13px 15px 13px 19px; overflow: hidden; isolation: isolate; }
 .brief-hero::before { content: ""; z-index: -1; position: absolute; inset: 0 0 auto; height: 159px; opacity: .6; background-image: radial-gradient(#646464 .55px, transparent .8px); background-size: 4px 4px; mask-image: linear-gradient(105deg, transparent 35%, black 85%); }
 .globe-art { position: absolute; right: 0; top: 0; z-index: -1; height: 160px; width: 36%; overflow: hidden; }
-.globe-art::before { content: ""; display: block; width: 100%; height: 100%; background: url("assets/halftone.png") 50% 22% / 305% auto no-repeat; filter: contrast(1.2); }
+.globe-art::before { content: ""; display: block; width: 100%; height: 100%; background: url("assets/halftone.webp") 50% 22% / 305% auto no-repeat; filter: contrast(1.2); }
 .globe-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(105deg, var(--paper) 0%, transparent 36%); }
 .eyebrow { margin: 0 0 10px; font: 750 .81rem var(--mono); letter-spacing: .005em; text-transform: uppercase; }
 h1, h2, h3, p { margin-top: 0; }
@@ -196,7 +196,7 @@ select, input[type=search], input[type=date] { background: #fff; color: #141414;
 input[type=checkbox] { accent-color: #0b0b0b; }
 .query-note { margin: 5px 0 0; font: 650 .72rem/1.4 var(--mono); }
 .code-surface { background: #0a0a0a; color: #f5f5f5; border: 1px solid #161616; border-radius: 3px; margin: 8px 0 8px; min-height: 156px; padding: 7px 12px 6px; overflow: auto; }
-.code-surface pre { margin: 0; font: 650 .78rem/1.25 var(--mono); }
+.code-surface pre { margin: 0; font: 650 .78rem/1.17 var(--mono); }
 .code-line { display: block; }
 .code-line::before { content: attr(data-line); display: inline-block; width: 2.2em; margin-right: 1.8em; text-align: right; color: #dedede; user-select: none; }
 .code-line code { font: inherit; }
@@ -273,7 +273,7 @@ dialog textarea { min-height: 200px; resize: vertical; font: .77rem/1.5 var(--mo
 @media (min-width: 1081px) {
   .developments .finding { min-height: 130px; grid-template-rows: 1fr auto; }
   .developments .finding-body h3, .developments .finding-body p { display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
-  .developments .finding-body h3 { -webkit-line-clamp: 1; }
+  .developments .finding-body h3 { -webkit-line-clamp: 2; }
   .developments .finding-body p { -webkit-line-clamp: 2; }
   .side-art { height: clamp(290px, 39vh, 395px); }
   .compact .side-art { height: clamp(250px, 34vh, 350px); }

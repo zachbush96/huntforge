@@ -1,0 +1,98 @@
+{
+  "confidence": "Publisher-observed indicators",
+  "considerations": [
+    "Review the service principal, credential changes and resource access.",
+    "Compare the source IP with known egress and require independent evidence before escalation.",
+    "Check Azure activity and resource audit logs for follow-on actions."
+  ],
+  "description": "Review successful Entra service-principal sign-ins from a campaign-associated IP Microsoft reported.",
+  "evidence": [
+    {
+      "claim": "Microsoft reported successful service-principal sign-ins from a campaign-associated address across multiple application IDs. The date below is the earliest activity Microsoft describes.",
+      "location": "Credential abuse via Entra ID and indicators sections",
+      "modified": null,
+      "observation_date": "2026-10-28",
+      "published": "2026-11-05",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/"
+    }
+  ],
+  "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+  "history": [
+    {
+      "change": "Created",
+      "date": "2026-11-25T01:48:50Z",
+      "revision": 1,
+      "summary": "Created evidence-backed hunt and validated all supported variants."
+    }
+  ],
+  "hypothesis": "A successful sign-in from the published address warrants correlation with app ownership and expected egress.",
+  "id": "HF-2026-0005",
+  "indicator_ids": [
+    "HF-IOC-334489FDDAC4E4"
+  ],
+  "lookback": 7,
+  "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+  "profiles": [
+    "sentinel-entra"
+  ],
+  "published": "2026-11-25T01:48:50Z",
+  "release_id": "hf-20261124-5a6141bcbc8d",
+  "research": "service-principal",
+  "revision": 1,
+  "schema_version": 1,
+  "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+  "signature": "e44806f4664d29c6f1465b406657e157a05d5488903739ee50611b1d52da4ee0",
+  "source_ids": [
+    "HF-INT-4B6ABBDBB70347"
+  ],
+  "status": "partially_validated",
+  "tactic": "Persistence",
+  "technique": "T1078.004",
+  "title": "Service Principal Sign-ins From a Reported IP",
+  "updated": "2026-11-25T01:48:50Z",
+  "validation": {
+    "date": "2026-11-25T01:48:50Z",
+    "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+    "variants_checked": 10
+  },
+  "variants": {
+    "sentinel-entra": {
+      "profile_revision": 1,
+      "queries": {
+        "1": {
+          "json": "AADServicePrincipalSignInLogs\n| where TimeGenerated > ago(1d)\n| where ResultType == \"0\" and IPAddress in (\"199.19.77.84\")\n| project TimeGenerated, ServicePrincipalName, ServicePrincipalId, IPAddress, ResourceDisplayName, ResultType\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "AADServicePrincipalSignInLogs\n| where TimeGenerated > ago(1d)\n| where ResultType == \"0\" and IPAddress in (\"199.19.77.84\")\n| project TimeGenerated, ServicePrincipalName, ServicePrincipalId, IPAddress, ResourceDisplayName, ResultType\n| order by TimeGenerated desc\n"
+        },
+        "14": {
+          "json": "AADServicePrincipalSignInLogs\n| where TimeGenerated > ago(14d)\n| where ResultType == \"0\" and IPAddress in (\"199.19.77.84\")\n| project TimeGenerated, ServicePrincipalName, ServicePrincipalId, IPAddress, ResourceDisplayName, ResultType\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "AADServicePrincipalSignInLogs\n| where TimeGenerated > ago(14d)\n| where ResultType == \"0\" and IPAddress in (\"199.19.77.84\")\n| project TimeGenerated, ServicePrincipalName, ServicePrincipalId, IPAddress, ResourceDisplayName, ResultType\n| order by TimeGenerated desc\n"
+        },
+        "3": {
+          "json": "AADServicePrincipalSignInLogs\n| where TimeGenerated > ago(3d)\n| where ResultType == \"0\" and IPAddress in (\"199.19.77.84\")\n| project TimeGenerated, ServicePrincipalName, ServicePrincipalId, IPAddress, ResourceDisplayName, ResultType\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "AADServicePrincipalSignInLogs\n| where TimeGenerated > ago(3d)\n| where ResultType == \"0\" and IPAddress in (\"199.19.77.84\")\n| project TimeGenerated, ServicePrincipalName, ServicePrincipalId, IPAddress, ResourceDisplayName, ResultType\n| order by TimeGenerated desc\n"
+        },
+        "30": {
+          "json": "AADServicePrincipalSignInLogs\n| where TimeGenerated > ago(30d)\n| where ResultType == \"0\" and IPAddress in (\"199.19.77.84\")\n| project TimeGenerated, ServicePrincipalName, ServicePrincipalId, IPAddress, ResourceDisplayName, ResultType\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "AADServicePrincipalSignInLogs\n| where TimeGenerated > ago(30d)\n| where ResultType == \"0\" and IPAddress in (\"199.19.77.84\")\n| project TimeGenerated, ServicePrincipalName, ServicePrincipalId, IPAddress, ResourceDisplayName, ResultType\n| order by TimeGenerated desc\n"
+        },
+        "7": {
+          "json": "AADServicePrincipalSignInLogs\n| where TimeGenerated > ago(7d)\n| where ResultType == \"0\" and IPAddress in (\"199.19.77.84\")\n| project TimeGenerated, ServicePrincipalName, ServicePrincipalId, IPAddress, ResourceDisplayName, ResultType\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "AADServicePrincipalSignInLogs\n| where TimeGenerated > ago(7d)\n| where ResultType == \"0\" and IPAddress in (\"199.19.77.84\")\n| project TimeGenerated, ServicePrincipalName, ServicePrincipalId, IPAddress, ResourceDisplayName, ResultType\n| order by TimeGenerated desc\n"
+        }
+      },
+      "table": "AADServicePrincipalSignInLogs",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    }
+  }
+}

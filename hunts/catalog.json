@@ -1,6 +1,6 @@
 [
   {
-    "confidence": "Contextual behavioral hypothesis",
+    "confidence": "Behavioral hypothesis",
     "considerations": [
       "Filter known administrative scripts and managed automation.",
       "Review the full command line and initiating process ancestry.",
@@ -27,6 +27,12 @@
         "date": "2026-11-25T01:48:50Z",
         "revision": 1,
         "summary": "Created evidence-backed hunt and validated all supported variants."
+      },
+      {
+        "change": "Updated",
+        "date": "2026-11-25T01:56:27Z",
+        "revision": 2,
+        "summary": "Revalidated after changes to confidence."
       }
     ],
     "hypothesis": "PowerShell used to retrieve a payload may leave a process-attributed network event.",
@@ -39,10 +45,10 @@
     ],
     "published": "2026-11-25T01:48:50Z",
     "research": "powershell-download",
-    "revision": 1,
+    "revision": 2,
     "schema_version": 1,
     "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
-    "signature": "1af4c9c6d57b45e661072b45257ebf08038f756d303b15a8f63138a5afec551b",
+    "signature": "321dae73d6935794252276c525fcc4ed9b6aa7d2e418fc0c61af21b1edf365f6",
     "source_ids": [
       "HF-INT-3906A981456D92"
     ],
@@ -50,9 +56,9 @@
     "tactic": "Execution",
     "technique": "T1059.001",
     "title": "Suspicious PowerShell Network Activity",
-    "updated": "2026-11-25T01:48:50Z",
+    "updated": "2026-11-25T01:56:27Z",
     "validation": {
-      "date": "2026-11-25T01:48:50Z",
+      "date": "2026-11-25T01:56:27Z",
       "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
       "variants_checked": 10
     },

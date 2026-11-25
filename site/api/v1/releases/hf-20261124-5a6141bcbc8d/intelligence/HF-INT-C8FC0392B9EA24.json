@@ -1,0 +1,39 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Security for the agentic era, powered by Microsoft Perception",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-17",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/17/security-for-the-agentic-era-powered-by-microsoft-perception/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/17/security-for-the-agentic-era-powered-by-microsoft-perception/"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-C8FC0392B9EA24",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-17",
+  "related": [],
+  "release_id": "hf-20261124-5a6141bcbc8d",
+  "retrieved": "2026-11-25T01:56:27Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "33524cc8e7cd125b4ccd80859856b943cb935c0366791c6ca6d53d1b9e5e61fd",
+  "source": "microsoft",
+  "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/17/security-for-the-agentic-era-powered-by-microsoft-perception/",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include agentic ai.",
+  "tags": [
+    "Agentic AI"
+  ],
+  "title": "Security for the agentic era, powered by Microsoft Perception",
+  "updated": "2026-11-25T01:48:50Z"
+}
