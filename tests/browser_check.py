@@ -309,50 +309,76 @@ def defender_queries(page, base):
 
 
 def persistent_navigation(page, base):
-    page.set_viewport_size({"width": 1586, "height": 800})
     nav = page.get_by_role("navigation", name="Main navigation")
+    header = page.get_by_role("banner")
     main = page.get_by_role("main")
     summary = page.get_by_role("complementary", name="Operational summary")
 
-    page.goto(base + "#/brief")
-    expect(summary).to_be_visible()
-    nav_top = nav.bounding_box()["y"]
-    summary_top = summary.bounding_box()["y"]
-    page.mouse.move(550, 430)
-    page.mouse.wheel(0, 160)
-    page.wait_for_function("document.querySelector('#main').scrollTop > 0")
-    assert nav.bounding_box()["y"] == nav_top
-    assert summary.bounding_box()["y"] == summary_top
-    assert page.evaluate("window.scrollY") == 0
+    def open_view(path):
+        page.goto(base + path)
+        expect(main.get_by_role("heading", level=1)).to_be_visible()
+        if path.startswith("#/"):
+            section = path.split("/")[1]
+            expect(nav.locator("[aria-current=page]")).to_have_attribute("href", "#/" + section)
+        page.wait_for_function("window.scrollY === 0")
+        assert page.evaluate("document.documentElement.scrollWidth === document.documentElement.clientWidth")
 
-    page_size = page.get_by_label("Results per page", exact=True)
-    before = main.evaluate("element => element.scrollTop")
-    page_size.select_option("8")
-    position, limit = main.evaluate("element => [element.scrollTop, element.scrollHeight - element.clientHeight]")
-    assert position == min(before, limit)
-    page_size.select_option("4")
-    nav.get_by_role("link", name="Hunts", exact=True).click()
-    expect(page.get_by_role("heading", name="Hunts", exact=True)).to_be_visible()
-    pane = page.locator(".page-content")
-    assert pane.evaluate("element => element.scrollTop") == 0
-    nav_top = nav.bounding_box()["y"]
-    page.mouse.move(550, 430)
-    page.mouse.wheel(0, 350)
-    page.wait_for_function("document.querySelector('.page-content').scrollTop >= 100")
-    assert nav.bounding_box()["y"] == nav_top
-
-    page.set_viewport_size({"width": 390, "height": 600})
-    try:
-        page.goto(base + "#/brief")
-        expect(summary).to_be_visible()
+    def scroll_with_menu_visible(target, distance=180):
         nav_top = nav.bounding_box()["y"]
-        page.mouse.move(200, 350)
-        page.mouse.wheel(0, 400)
-        page.wait_for_function("document.querySelector('.page-content').scrollTop >= 100")
-        assert nav.bounding_box()["y"] == nav_top
-        summary.get_by_role("link").last.scroll_into_view_if_needed()
-        assert nav.bounding_box()["y"] == nav_top
+        header_top = header.bounding_box()["y"]
+        box = target.bounding_box()
+        before = page.evaluate("window.scrollY")
+        page.mouse.move(box["x"] + box["width"] / 2, box["y"] + min(20, box["height"] / 2))
+        page.mouse.wheel(0, distance)
+        page.wait_for_function("before => window.scrollY > before", arg=before)
+        assert abs(nav.bounding_box()["y"] - nav_top) < 1
+        assert abs(header.bounding_box()["y"] - header_top) < 1
+
+    try:
+        page.set_viewport_size({"width": 1280, "height": 740})
+        open_view("#/brief")
+        expect(summary).to_be_visible()
+        summary_top = summary.bounding_box()["y"]
+        scroll_with_menu_visible(main, distance=60)
+        scroll_with_menu_visible(nav)
+        assert abs(summary.bounding_box()["y"] - summary_top) < 1
+
+        page_size = page.get_by_label("Results per page", exact=True)
+        before = page.evaluate("window.scrollY")
+        page_size.select_option("8")
+        assert page.evaluate("window.scrollY") == before
+        page_size.select_option("4")
+
+        # Navigate from a scrolled page before testing each section from its own URL.
+        nav.get_by_role("link", name="Adversaries", exact=True).click()
+        expect(main.get_by_role("heading", name="Adversaries", exact=True)).to_be_visible()
         assert page.evaluate("window.scrollY") == 0
+
+        routes = (
+            "intelligence", "hunts", "adversaries", "vulnerabilities", "indicators",
+            "techniques", "research", "changelog", "developers", "status",
+            "hunts/HF-2025-0001", "techniques/T1059.001",
+        )
+        for width, height in ((1280, 740), (390, 600)):
+            page.set_viewport_size({"width": width, "height": height})
+            for route in routes:
+                open_view("#/" + route)
+                scrollable = page.evaluate("document.documentElement.scrollHeight > window.innerHeight")
+                if route in {"adversaries", "vulnerabilities", "techniques"}:
+                    assert scrollable, route
+                if scrollable:
+                    scroll_with_menu_visible(nav)
+
+        page.set_viewport_size({"width": 1024, "height": 720})
+        open_view("#/brief")
+        scroll_with_menu_visible(nav)
+        summary.get_by_role("link").last.scroll_into_view_if_needed()
+        assert abs(nav.bounding_box()["y"] - header.bounding_box()["height"]) < 1
+
+        page.set_viewport_size({"width": 390, "height": 420})
+        open_view("feedback.html")
+        expect(nav.get_by_role("link", name="The Brief")).to_be_visible()
+        scroll_with_menu_visible(nav)
     finally:
         page.set_viewport_size({"width": 1586, "height": 992})
 

@@ -2,6 +2,9 @@
   color: #101010;
   background: #fafafa;
   font-family: Arial, Helvetica, sans-serif;
+  --header-height: 62px;
+  --mobile-nav-height: 0px;
+  scroll-padding-top: calc(var(--header-height) + var(--mobile-nav-height));
   --paper: #fafafa;
   --ink: #080808;
   --line: #222;
@@ -10,6 +13,7 @@
   --mono: "Cascadia Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   --heavy: "Arial Black", "Segoe UI", Arial, sans-serif;
 }
+:root:has(.compact-header) { --header-height: 54px; }
 * { box-sizing: border-box; }
 body { margin: 0; }
 a { color: inherit; }
@@ -32,7 +36,8 @@ button:hover, .button:hover { background: #e7e7e7; }
 .loading { padding: 30px; }
 .loading strong { font: 900 2.5rem var(--heavy); }
 .topbar {
-  align-items: center; display: flex; height: 62px; padding: 0 20px 0 23px; gap: 20px;
+  position: sticky; top: 0; z-index: 4;
+  align-items: center; display: flex; height: var(--header-height); padding: 0 20px 0 23px; gap: 20px;
   color: #fff; background-color: var(--ink); border-bottom: 1px solid #fff;
   background-image: radial-gradient(#2a2a2a 0.55px, transparent 0.65px);
   background-size: 5px 5px;
@@ -56,23 +61,27 @@ button:hover, .button:hover { background: #e7e7e7; }
 .search-button .icon { width: 19px; height: 19px; }
 .search-button span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .search-button kbd { margin-left: auto; border: 1px solid white; border-radius: 2px; padding: 2px 6px; }
-.compact-header { height: 54px; padding-inline: 15px; gap: 19px; background: #0b0b0b; }
+.compact-header { padding-inline: 15px; gap: 19px; background: #0b0b0b; }
 .compact-header .brand { font-size: 35px; }
 .compact-header .tagline { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .brief-search { display: inline-flex; }
-#app:has(> .layout) {
-  display: grid; grid-template-rows: auto minmax(0, 1fr);
-  height: 100vh; height: 100dvh; overflow: clip;
+.layout {
+  display: grid; min-height: calc(100dvh - var(--header-height)); grid-template-columns: minmax(186px, 14.15%) minmax(0, 1fr) minmax(335px, 29.2%);
 }
-.layout { display: grid; grid-template-rows: minmax(0, 1fr); grid-template-columns: minmax(186px, 14.15%) minmax(0, 1fr) minmax(335px, 29.2%); }
 .layout.compact { grid-template-columns: minmax(165px, 12.15%) minmax(0, 1fr); }
 .layout.hunt main { width: 100%; max-width: 1370px; margin-inline: auto; }
-.sidebar { min-width: 0; color: white; background: var(--ink); position: relative; isolation: isolate; border-right: 1px solid var(--line); overflow-y: auto; }
+.sidebar, .brief-aside {
+  position: sticky; top: var(--header-height); align-self: start;
+  max-height: calc(100dvh - var(--header-height)); overflow: auto; scrollbar-width: thin;
+}
+.sidebar {
+  z-index: 2; min-width: 0; height: calc(100dvh - var(--header-height));
+  color: white; background: var(--ink); border-right: 1px solid var(--line);
+}
 .sidebar nav { display: grid; gap: 4px; padding: 35px 8px 0; position: relative; z-index: 1; }
 .sidebar nav a { display: flex; align-items: center; min-height: 41px; gap: 15px; padding: 4px 11px; text-decoration: none; font: 600 clamp(14px, 1.07vw, 17px) var(--mono); letter-spacing: -.045em; white-space: nowrap; }
-.page-content { min-width: 0; min-height: 0; }
-.page-content, .brief-main, .brief-aside, .sidebar, .sidebar nav { overscroll-behavior: contain; scrollbar-width: thin; }
-.layout.compact .page-content { grid-column: 2; overflow: auto; }
+.page-content { min-width: 0; }
+.layout.compact .page-content { grid-column: 2; }
 .sidebar nav a:focus-visible { outline-offset: -3px; }
 .sidebar nav a:hover { background: #2a2a2a; }
 .sidebar nav a[aria-current="page"] { background: #fff; color: #000; font-weight: 900; }
@@ -311,11 +320,9 @@ dialog textarea { min-height: 200px; resize: vertical; font: .77rem/1.5 var(--mo
 .feedback-main .notice { margin-block: 24px; padding: 14px; }
 .feedback-main .notice h2 { font-weight: 850; font-size: 1rem; margin-bottom: 6px; }
 .feedback-main .notice p:last-child { margin-bottom: 0; }
-.feedback-layout:not(.compact) { grid-template: minmax(0, 1fr) / minmax(0, 1fr); }
-.feedback-layout:not(.compact) .page-content { grid-area: 1 / 1; overflow: auto; }
+.feedback-layout:not(.compact) { grid-template-columns: minmax(0, 1fr); }
 @media (width > 1080px) {
   .layout:not(.compact, .feedback-layout) .page-content { display: contents; }
-  .brief-main, .brief-aside { overflow: auto; }
 }
 @media (min-width: 1081px) {
   .developments .finding { min-height: 130px; grid-template-rows: 1fr auto; }
@@ -338,9 +345,10 @@ dialog textarea { min-height: 200px; resize: vertical; font: .77rem/1.5 var(--mo
 }
 @media (max-width: 1080px) {
   .layout { grid-template-columns: 158px minmax(0, 1fr); }
-  .page-content { overflow: auto; }
-  .brief-aside { border: 0; padding: 12px 10px; }
-  .brief-aside { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .brief-aside {
+    position: static; max-height: none; overflow: visible;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px; border: 0; padding: 12px 10px;
+  }
   .search-button { width: auto; }
   .compact-header .tagline { font-size: .66rem; }
   .top-end .header-date { display: none; }
@@ -353,7 +361,8 @@ dialog textarea { min-height: 200px; resize: vertical; font: .77rem/1.5 var(--mo
   .brief-aside { grid-template-columns: 1fr; }
 }
 @media (max-width: 740px) {
-  .topbar, .compact-header { height: 53px; padding: 0 10px; gap: 8px; }
+  :root, :root:has(.compact-header) { --header-height: 53px; --mobile-nav-height: 48px; }
+  .topbar, .compact-header { padding: 0 10px; gap: 8px; }
   .brand, .compact-header .brand { font-size: 29px; }
   .brand .anvil { width: 33px; height: 23px; }
   .topbar .brand-slash, .topbar .tagline, .top-end .top-box, .top-end .top-divider, .top-end .public, .top-end .top-link span, .top-end .api-link { display: none; }
@@ -362,10 +371,12 @@ dialog textarea { min-height: 200px; resize: vertical; font: .77rem/1.5 var(--mo
   .top-end { gap: 9px; }
   .search-button { border: 0; width: auto; padding: 0 2px; }
   .search-button span, .search-button kbd { display: none; }
-  .layout, .layout.compact { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
-  .page-content, .layout.compact .page-content { grid-area: 2 / 1; }
-  .sidebar { overflow: clip; }
-  .sidebar nav, .compact .sidebar nav { padding: 4px; display: flex; gap: 3px; overflow-x: auto; }
+  .layout, .layout.compact { display: block; }
+  .sidebar { height: var(--mobile-nav-height); max-height: none; overflow: clip; border-right: 0; }
+  .sidebar nav, .compact .sidebar nav {
+    height: 100%; padding: 4px; display: flex; align-items: center; gap: 3px;
+    overflow-x: auto; scrollbar-width: thin;
+  }
   .sidebar nav a, .compact .sidebar nav a { min-height: 32px; gap: 5px; padding: 5px 8px; font: 750 .79rem Arial, sans-serif; }
   .sidebar nav .icon, .compact .sidebar nav .icon { width: 15px; height: 15px; }
   .side-art, .side-rule, .side-update, .sidebar .menu-badge { display: none; }
