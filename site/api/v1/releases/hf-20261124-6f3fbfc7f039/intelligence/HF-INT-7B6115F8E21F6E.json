@@ -1,0 +1,39 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Schneider Electric EcoStruxure Power Build Rapsody software",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-24",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-328-02",
+      "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-328-02"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-7B6115F8E21F6E",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-24",
+  "related": [],
+  "release_id": "hf-20261124-6f3fbfc7f039",
+  "retrieved": "2026-11-25T02:35:14Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "803366c613a0af50aaadeea0d5e73865ed1d2acb1ab6a01ebe8cb1e449b06945",
+  "source": "cisa-advisories",
+  "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-328-02",
+  "status": "active",
+  "summary": "Publisher security advisory. Topics include exploitation.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Schneider Electric EcoStruxure Power Build Rapsody software",
+  "updated": "2026-11-25T01:48:50Z"
+}

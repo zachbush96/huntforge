@@ -1,0 +1,136 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-123218"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-24",
+      "epss": "0.010130000",
+      "percentile": "0.639240000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.01013000",
+      "percentile": "0.64094000"
+    },
+    {
+      "date": "2026-11-22",
+      "epss": "0.01013000",
+      "percentile": "0.64086000"
+    },
+    {
+      "date": "2026-11-21",
+      "epss": "0.01013000",
+      "percentile": "0.64065000"
+    },
+    {
+      "date": "2026-11-20",
+      "epss": "0.00535000",
+      "percentile": "0.46062000"
+    },
+    {
+      "date": "2026-11-19",
+      "epss": "0.00535000",
+      "percentile": "0.45924000"
+    },
+    {
+      "date": "2026-11-18",
+      "epss": "0.00535000",
+      "percentile": "0.45852000"
+    },
+    {
+      "date": "2026-11-17",
+      "epss": "0.00535000",
+      "percentile": "0.45728000"
+    },
+    {
+      "date": "2026-11-16",
+      "epss": "0.00535000",
+      "percentile": "0.45697000"
+    },
+    {
+      "date": "2026-11-15",
+      "epss": "0.00535000",
+      "percentile": "0.45691000"
+    },
+    {
+      "date": "2026-11-14",
+      "epss": "0.00535000",
+      "percentile": "0.45707000"
+    },
+    {
+      "date": "2026-11-13",
+      "epss": "0.00535000",
+      "percentile": "0.45678000"
+    },
+    {
+      "date": "2026-11-12",
+      "epss": "0.00535000",
+      "percentile": "0.45625000"
+    },
+    {
+      "date": "2026-11-11",
+      "epss": "0.00535000",
+      "percentile": "0.45584000"
+    },
+    {
+      "date": "2026-11-10",
+      "epss": "0.00705000",
+      "percentile": "0.53668000"
+    },
+    {
+      "date": "2026-11-09",
+      "epss": "0.00396000",
+      "percentile": "0.34123000"
+    },
+    {
+      "date": "2026-11-08",
+      "epss": "0.00396000",
+      "percentile": "0.34109000"
+    },
+    {
+      "date": "2026-11-07",
+      "epss": "0.00396000",
+      "percentile": "0.34089000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-09",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-123218",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-123218"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-E2CC7379D5F60C",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "Aspera Faspex",
+  "published": "2026-11-09",
+  "ransomware_use": "unknown",
+  "related": [],
+  "release_id": "hf-20261124-6f3fbfc7f039",
+  "remediation_due": "2026-11-12",
+  "retrieved": "2026-11-25T02:35:14Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "ffd560f2a718b9de9b93f43cd65db77cd7d9221e8b82c1b26c129e0707bd7bfd",
+  "source": "cisa-kev",
+  "source_id": "CVE-2026-123218",
+  "status": "active",
+  "summary": "CISA added CVE-2026-123218 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-12.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "IBM Aspera Faspex Incorrect Authorization Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "IBM"
+}

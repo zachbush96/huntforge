@@ -1,0 +1,87 @@
+{
+  "accepted": 35,
+  "changes": 2,
+  "engine": {
+    "calls": 0,
+    "cost_usd": 0,
+    "daily_budget_usd": 0,
+    "models": [],
+    "monthly_budget_usd": 0,
+    "tokens": 0,
+    "type": "deterministic reviewed rules"
+  },
+  "finished": "2026-11-25T02:35:21Z",
+  "quarantined": [],
+  "release_id": "hf-20261124-6f3fbfc7f039",
+  "schema_version": 1,
+  "sources": [
+    {
+      "count": 39,
+      "coverage": "full",
+      "first_available": "2021-11-03",
+      "id": "cisa-kev",
+      "name": "CISA KEV",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "snapshot": "2026-11-24T17:47:46.199Z",
+      "state": "live"
+    },
+    {
+      "count": 38,
+      "coverage": "full",
+      "coverage_note": "Scoped to 38 CVEs with available KEV-linked scores.",
+      "first_available": "2026-10-25",
+      "id": "first-epss",
+      "name": "FIRST EPSS",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "score_days": 31,
+      "snapshot": "2026-11-24",
+      "state": "live"
+    },
+    {
+      "count": 39,
+      "coverage": "full",
+      "coverage_note": "Coverage reflects available publisher feed entries. Includes the paginated CISA advisory archive.",
+      "first_available": "2026-10-23",
+      "id": "cisa-advisories",
+      "name": "CISA Advisories",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "state": "live"
+    },
+    {
+      "count": 19,
+      "coverage": "full",
+      "coverage_note": "Coverage reflects available publisher feed entries.",
+      "first_available": "2026-10-07",
+      "id": "microsoft",
+      "name": "Microsoft Security",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "state": "live"
+    },
+    {
+      "count": 7,
+      "coverage": "full",
+      "coverage_note": "Coverage reflects available publisher feed entries.",
+      "first_available": "2026-09-15",
+      "id": "ncsc",
+      "name": "UK NCSC",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "state": "live"
+    },
+    {
+      "count": 1631,
+      "coverage": "reference",
+      "coverage_note": "Current Enterprise snapshot.",
+      "id": "mitre",
+      "name": "MITRE ATT&CK®",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "snapshot": "2026-11-05T15:11:27.678Z",
+      "state": "live"
+    }
+  ],
+  "started": "2026-11-25T02:35:14Z",
+  "status": "passed",
+  "window": {
+    "from": "2026-10-25",
+    "through": "2026-11-24"
+  }
+}

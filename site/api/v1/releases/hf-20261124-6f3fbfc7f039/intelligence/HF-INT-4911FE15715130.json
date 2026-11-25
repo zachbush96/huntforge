@@ -1,0 +1,108 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-123039"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-24",
+      "epss": "0.032690000",
+      "percentile": "0.886210000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.03269000",
+      "percentile": "0.88716000"
+    },
+    {
+      "date": "2026-11-22",
+      "epss": "0.03269000",
+      "percentile": "0.88715000"
+    },
+    {
+      "date": "2026-11-21",
+      "epss": "0.03269000",
+      "percentile": "0.88708000"
+    },
+    {
+      "date": "2026-11-20",
+      "epss": "0.01938000",
+      "percentile": "0.80628000"
+    },
+    {
+      "date": "2026-11-19",
+      "epss": "0.01938000",
+      "percentile": "0.80567000"
+    },
+    {
+      "date": "2026-11-18",
+      "epss": "0.01938000",
+      "percentile": "0.80540000"
+    },
+    {
+      "date": "2026-11-17",
+      "epss": "0.01938000",
+      "percentile": "0.80486000"
+    },
+    {
+      "date": "2026-11-16",
+      "epss": "0.02191000",
+      "percentile": "0.82741000"
+    },
+    {
+      "date": "2026-11-15",
+      "epss": "0.02191000",
+      "percentile": "0.82736000"
+    },
+    {
+      "date": "2026-11-14",
+      "epss": "0.02191000",
+      "percentile": "0.82739000"
+    },
+    {
+      "date": "2026-11-13",
+      "epss": "0.01274000",
+      "percentile": "0.70349000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-13",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-123039",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-123039"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-4911FE15715130",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "Multiple Products",
+  "published": "2026-11-13",
+  "ransomware_use": "unknown",
+  "related": [
+    "HF-INT-7B5DACBA886B8D"
+  ],
+  "release_id": "hf-20261124-6f3fbfc7f039",
+  "remediation_due": "2026-11-16",
+  "retrieved": "2026-11-25T02:35:14Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "e2e03fc7626e1fc82ea4c77f1a8e865cc90c640213001969767984ba57eb325f",
+  "source": "cisa-kev",
+  "source_id": "CVE-2026-123039",
+  "status": "active",
+  "summary": "CISA added CVE-2026-123039 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-16.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Check Point Multiple Products Incorrect Permission Assignment for Critical Resource Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "Check Point"
+}

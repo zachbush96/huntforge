@@ -1,0 +1,105 @@
+{
+  "actors": [],
+  "confidence": "Behavioral hypothesis",
+  "considerations": [
+    "Known provisioning and inventory apps may produce this pattern.",
+    "Inspect Graph permissions and the associated sign-in session."
+  ],
+  "description": "Look for a cloud principal querying many Graph user or group paths in quick succession.",
+  "evidence": [
+    {
+      "claim": "Microsoft observed ARTEX-associated use of exposed cloud credentials, service-principal sign-ins from a reported IP, rapid cloud discovery and attempted access to Azure Key Vault and other resources.",
+      "location": "Credential abuse via Entra ID and indicators sections",
+      "modified": null,
+      "observation_date": "2026-10-28",
+      "published": "2026-11-05",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/"
+    }
+  ],
+  "expected_output": "One row per principal, app, source IP and five-minute window.",
+  "history": [
+    {
+      "change": "Created",
+      "date": "2026-11-25T02:32:19Z",
+      "revision": 1,
+      "summary": "Created evidence-backed hunt and validated all supported variants."
+    }
+  ],
+  "hypothesis": "Look for a cloud principal querying many Graph user or group paths in quick succession.",
+  "id": "HF-2026-0014",
+  "indicator_ids": [
+    "HF-IOC-334489FDDAC4E4"
+  ],
+  "lookback": 7,
+  "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+  "primary_table": "MicrosoftGraphActivityLogs",
+  "profiles": [
+    "sentinel-azure"
+  ],
+  "published": "2026-11-25T02:32:19Z",
+  "release_id": "hf-20261124-6f3fbfc7f039",
+  "research": "service-principal",
+  "revision": 1,
+  "schema_version": 1,
+  "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+  "signature": "61c2304be26ea739ad8749f359b77f85e5a404a16f1bc391f4b86e1756b5d11b",
+  "source_ids": [
+    "HF-INT-4B6ABBDBB70347"
+  ],
+  "source_published": "2026-11-05",
+  "status": "partially_validated",
+  "tactic": "Discovery",
+  "tags": [
+    "Agentic AI",
+    "Identity",
+    "Supply Chain"
+  ],
+  "technique": "T1087.004",
+  "title": "Burst of App-Only Directory Enumeration",
+  "updated": "2026-11-25T02:32:19Z",
+  "validation": {
+    "date": "2026-11-25T02:32:19Z",
+    "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+    "variants_checked": 10
+  },
+  "variants": {
+    "sentinel-azure": {
+      "profile_revision": 1,
+      "queries": {
+        "1": {
+          "json": "MicrosoftGraphActivityLogs\n| where TimeGenerated > ago(1d)\n| where RequestMethod == \"GET\" and isnotempty(ServicePrincipalId)\n| where tostring(parse_url(RequestUri).Path) has_any (\"users\", \"groups\", \"servicePrincipals\")\n| summarize Calls = count(), Paths = dcount(tostring(parse_url(RequestUri).Path)), Successes = countif(ResponseStatusCode between (200 .. 299)) by AppId, ServicePrincipalId, IPAddress, Window = bin(TimeGenerated, 5m)\n| where Calls >= 30 and Paths >= 10\n| order by Calls desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "MicrosoftGraphActivityLogs\n| where TimeGenerated > ago(1d)\n| where RequestMethod == \"GET\" and isnotempty(ServicePrincipalId)\n| where tostring(parse_url(RequestUri).Path) has_any (\"users\", \"groups\", \"servicePrincipals\")\n| summarize Calls = count(), Paths = dcount(tostring(parse_url(RequestUri).Path)), Successes = countif(ResponseStatusCode between (200 .. 299)) by AppId, ServicePrincipalId, IPAddress, Window = bin(TimeGenerated, 5m)\n| where Calls >= 30 and Paths >= 10\n| order by Calls desc\n"
+        },
+        "14": {
+          "json": "MicrosoftGraphActivityLogs\n| where TimeGenerated > ago(14d)\n| where RequestMethod == \"GET\" and isnotempty(ServicePrincipalId)\n| where tostring(parse_url(RequestUri).Path) has_any (\"users\", \"groups\", \"servicePrincipals\")\n| summarize Calls = count(), Paths = dcount(tostring(parse_url(RequestUri).Path)), Successes = countif(ResponseStatusCode between (200 .. 299)) by AppId, ServicePrincipalId, IPAddress, Window = bin(TimeGenerated, 5m)\n| where Calls >= 30 and Paths >= 10\n| order by Calls desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "MicrosoftGraphActivityLogs\n| where TimeGenerated > ago(14d)\n| where RequestMethod == \"GET\" and isnotempty(ServicePrincipalId)\n| where tostring(parse_url(RequestUri).Path) has_any (\"users\", \"groups\", \"servicePrincipals\")\n| summarize Calls = count(), Paths = dcount(tostring(parse_url(RequestUri).Path)), Successes = countif(ResponseStatusCode between (200 .. 299)) by AppId, ServicePrincipalId, IPAddress, Window = bin(TimeGenerated, 5m)\n| where Calls >= 30 and Paths >= 10\n| order by Calls desc\n"
+        },
+        "3": {
+          "json": "MicrosoftGraphActivityLogs\n| where TimeGenerated > ago(3d)\n| where RequestMethod == \"GET\" and isnotempty(ServicePrincipalId)\n| where tostring(parse_url(RequestUri).Path) has_any (\"users\", \"groups\", \"servicePrincipals\")\n| summarize Calls = count(), Paths = dcount(tostring(parse_url(RequestUri).Path)), Successes = countif(ResponseStatusCode between (200 .. 299)) by AppId, ServicePrincipalId, IPAddress, Window = bin(TimeGenerated, 5m)\n| where Calls >= 30 and Paths >= 10\n| order by Calls desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "MicrosoftGraphActivityLogs\n| where TimeGenerated > ago(3d)\n| where RequestMethod == \"GET\" and isnotempty(ServicePrincipalId)\n| where tostring(parse_url(RequestUri).Path) has_any (\"users\", \"groups\", \"servicePrincipals\")\n| summarize Calls = count(), Paths = dcount(tostring(parse_url(RequestUri).Path)), Successes = countif(ResponseStatusCode between (200 .. 299)) by AppId, ServicePrincipalId, IPAddress, Window = bin(TimeGenerated, 5m)\n| where Calls >= 30 and Paths >= 10\n| order by Calls desc\n"
+        },
+        "30": {
+          "json": "MicrosoftGraphActivityLogs\n| where TimeGenerated > ago(30d)\n| where RequestMethod == \"GET\" and isnotempty(ServicePrincipalId)\n| where tostring(parse_url(RequestUri).Path) has_any (\"users\", \"groups\", \"servicePrincipals\")\n| summarize Calls = count(), Paths = dcount(tostring(parse_url(RequestUri).Path)), Successes = countif(ResponseStatusCode between (200 .. 299)) by AppId, ServicePrincipalId, IPAddress, Window = bin(TimeGenerated, 5m)\n| where Calls >= 30 and Paths >= 10\n| order by Calls desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "MicrosoftGraphActivityLogs\n| where TimeGenerated > ago(30d)\n| where RequestMethod == \"GET\" and isnotempty(ServicePrincipalId)\n| where tostring(parse_url(RequestUri).Path) has_any (\"users\", \"groups\", \"servicePrincipals\")\n| summarize Calls = count(), Paths = dcount(tostring(parse_url(RequestUri).Path)), Successes = countif(ResponseStatusCode between (200 .. 299)) by AppId, ServicePrincipalId, IPAddress, Window = bin(TimeGenerated, 5m)\n| where Calls >= 30 and Paths >= 10\n| order by Calls desc\n"
+        },
+        "7": {
+          "json": "MicrosoftGraphActivityLogs\n| where TimeGenerated > ago(7d)\n| where RequestMethod == \"GET\" and isnotempty(ServicePrincipalId)\n| where tostring(parse_url(RequestUri).Path) has_any (\"users\", \"groups\", \"servicePrincipals\")\n| summarize Calls = count(), Paths = dcount(tostring(parse_url(RequestUri).Path)), Successes = countif(ResponseStatusCode between (200 .. 299)) by AppId, ServicePrincipalId, IPAddress, Window = bin(TimeGenerated, 5m)\n| where Calls >= 30 and Paths >= 10\n| order by Calls desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "MicrosoftGraphActivityLogs\n| where TimeGenerated > ago(7d)\n| where RequestMethod == \"GET\" and isnotempty(ServicePrincipalId)\n| where tostring(parse_url(RequestUri).Path) has_any (\"users\", \"groups\", \"servicePrincipals\")\n| summarize Calls = count(), Paths = dcount(tostring(parse_url(RequestUri).Path)), Successes = countif(ResponseStatusCode between (200 .. 299)) by AppId, ServicePrincipalId, IPAddress, Window = bin(TimeGenerated, 5m)\n| where Calls >= 30 and Paths >= 10\n| order by Calls desc\n"
+        }
+      },
+      "table": "MicrosoftGraphActivityLogs",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    }
+  }
+}

@@ -1,0 +1,4523 @@
+{
+  "count": 106,
+  "items": [
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "Introducing CORNERSTONE: delivering external services for the NCSC",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-24",
+          "source": "ncsc",
+          "source_id": "https://www.ncsc.gov.uk/blogs/introducing-cornerstone-delivering-external-services-for-the-ncsc",
+          "url": "https://www.ncsc.gov.uk/blogs/introducing-cornerstone-delivering-external-services-for-the-ncsc"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-C44A1E00DA7E34",
+      "in_window": true,
+      "kind": "Research",
+      "published": "2026-11-24",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "115f4916fcf1b49773f9133907f15c28efdcea55b46010fcd8345c64946d9fd4",
+      "source": "ncsc",
+      "source_id": "https://www.ncsc.gov.uk/blogs/introducing-cornerstone-delivering-external-services-for-the-ncsc",
+      "status": "active",
+      "summary": "Publisher research and guidance.",
+      "tags": [],
+      "title": "Introducing CORNERSTONE: delivering external services for the NCSC",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "Familiar weaknesses, exploited faster: defending against agentic cyber attacks",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-24",
+          "source": "ncsc",
+          "source_id": "https://www.ncsc.gov.uk/blogs/familiar-weaknesses-exploited-faster-defending-against-agentic-cyber-attacks",
+          "url": "https://www.ncsc.gov.uk/blogs/familiar-weaknesses-exploited-faster-defending-against-agentic-cyber-attacks"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-5D4B7756FF34B0",
+      "in_window": true,
+      "kind": "Research",
+      "published": "2026-11-24",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "6e5dae8147d1936f0f744f5b3fa48f576cafb3ff2cbd61d3a223e76eb6c4fd85",
+      "source": "ncsc",
+      "source_id": "https://www.ncsc.gov.uk/blogs/familiar-weaknesses-exploited-faster-defending-against-agentic-cyber-attacks",
+      "status": "active",
+      "summary": "Publisher research and guidance. Topics include agentic ai.",
+      "tags": [
+        "Agentic AI"
+      ],
+      "title": "Familiar weaknesses, exploited faster: defending against agentic cyber attacks",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-132165"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-24",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-132165",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-132165"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-F309498FDB4201",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "Core",
+      "published": "2026-11-24",
+      "ransomware_use": "unknown",
+      "related": [
+        "HF-INT-165729C3CBFBB2"
+      ],
+      "remediation_due": "2026-11-27",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "ca5a1fd3d55a5b8d8da3bea87104398e648ef0ec412020fdaf4de120fc3e04b9",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-132165",
+      "status": "active",
+      "summary": "CISA added CVE-2026-132165 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-27.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Drupal Core Remote Code Execution Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "Drupal"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-131914"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-24",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-131914",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-131914"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-814ED5C7C0B10D",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "AntiCsrf",
+      "published": "2026-11-24",
+      "ransomware_use": "unknown",
+      "related": [
+        "HF-INT-165729C3CBFBB2"
+      ],
+      "remediation_due": "2026-11-27",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "42ec16e2b78a88957ecef22579f321ad7f8c0f717e517d2fd1e63cc2923e773f",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-131914",
+      "status": "active",
+      "summary": "CISA added CVE-2026-131914 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-27.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Idunno AntiCsrf Deserialization of Untrusted Data Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "Idunno"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-132224"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-24",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-132224",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-132224"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-2F28B8DACDF26A",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "Web Experimentation",
+      "published": "2026-11-24",
+      "ransomware_use": "unknown",
+      "related": [
+        "HF-INT-165729C3CBFBB2"
+      ],
+      "remediation_due": "2026-11-27",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "07b67b53cfc1b8b1fcce048637eeb09ab117fbb1c09c74a988d41a60e592974c",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-132224",
+      "status": "active",
+      "summary": "CISA added CVE-2026-132224 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-27.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Optimizely Web Experimentation External Control of Critical State Data Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "Optimizely"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "Schneider Electric EcoStruxure Power Build Rapsody software",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-24",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-328-02",
+          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-328-02"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-7B6115F8E21F6E",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-24",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "803366c613a0af50aaadeea0d5e73865ed1d2acb1ab6a01ebe8cb1e449b06945",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-328-02",
+      "status": "active",
+      "summary": "Publisher security advisory. Topics include exploitation.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Schneider Electric EcoStruxure Power Build Rapsody software",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-127280"
+      ],
+      "evidence": [
+        {
+          "claim": "AutomationDirect C-More EA9 Programming Software",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-24",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-328-01",
+          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-328-01"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-3ED1970E74313C",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-24",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "a87d62a100319fdcf48804a49329296ba4088bf7bd0d283b04c2a68c3a267f96",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-328-01",
+      "status": "active",
+      "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-127280.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "AutomationDirect C-More EA9 Programming Software",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-129713"
+      ],
+      "evidence": [
+        {
+          "claim": "Danfoss AK-SM 8xxA Series",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-24",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-328-03",
+          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-328-03"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-3A8AD132BBB8C2",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-24",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "f22095819e26a27a89ba10d3f62d8bf30df554e5f735745df122e76f8967de60",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-328-03",
+      "status": "active",
+      "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-129713.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Danfoss AK-SM 8xxA Series",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-131914",
+        "CVE-2026-132165",
+        "CVE-2026-132224"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA Adds Three Known Exploited Vulnerabilities to Catalog",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-24",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/24/cisa-adds-three-known-exploited-vulnerabilities-catalog",
+          "url": "https://www.cisa.gov/news-events/alerts/2026/11/24/cisa-adds-three-known-exploited-vulnerabilities-catalog"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-165729C3CBFBB2",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-24",
+      "related": [
+        "HF-INT-2F28B8DACDF26A",
+        "HF-INT-814ED5C7C0B10D",
+        "HF-INT-F309498FDB4201"
+      ],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "673cc862f7df734545d954247918dca0bd3d7949d6ac385b02bbf98d851f5230",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/24/cisa-adds-three-known-exploited-vulnerabilities-catalog",
+      "status": "active",
+      "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-131914, CVE-2026-132165, CVE-2026-132224.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "CISA Adds Three Known Exploited Vulnerabilities to Catalog",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-133968"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-23",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-133968",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-133968"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-64DD7100DDA787",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "MONAI Label",
+      "published": "2026-11-23",
+      "ransomware_use": "unknown",
+      "related": [
+        "HF-INT-75EA09EA3E752E"
+      ],
+      "remediation_due": "2026-11-26",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "aecb9abdbc9ee0cada140f5816c1b2a2937a8be10ecb28a41d856f887afaf122",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-133968",
+      "status": "active",
+      "summary": "CISA added CVE-2026-133968 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-26.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Project MONAI MONAI Label Path Traversal Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "Project MONAI"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-134624"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-23",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-134624",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-134624"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-61701B0DAE9579",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "MailAssure",
+      "published": "2026-11-23",
+      "ransomware_use": "unknown",
+      "related": [
+        "HF-INT-75EA09EA3E752E"
+      ],
+      "remediation_due": "2026-11-26",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "1f7d35bb2061502eb5dbff76e786d22ad609b5e6d48cdc31f4402d6395fea170",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-134624",
+      "status": "active",
+      "summary": "CISA added CVE-2026-134624 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-26.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "N-able MailAssure (SpamExperts) Server-Side Request Forgery (SSRF) Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "N-able"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-133968",
+        "CVE-2026-134624"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-23",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/23/cisa-adds-two-known-exploited-vulnerabilities-catalog",
+          "url": "https://www.cisa.gov/news-events/alerts/2026/11/23/cisa-adds-two-known-exploited-vulnerabilities-catalog"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-75EA09EA3E752E",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-23",
+      "related": [
+        "HF-INT-61701B0DAE9579",
+        "HF-INT-64DD7100DDA787"
+      ],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "a2eef53f63ef3cd48bd764862c857b53f279f98d10e2fa1b3af8cf385a5a75d3",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/23/cisa-adds-two-known-exploited-vulnerabilities-catalog",
+      "status": "active",
+      "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-133968, CVE-2026-134624.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-76466"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-20",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-76466",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-76466"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-FEC7D273C1F64A",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "Expressway Series",
+      "published": "2026-11-20",
+      "ransomware_use": "unknown",
+      "related": [
+        "HF-INT-B22EEC5809CE5C"
+      ],
+      "remediation_due": "2026-11-23",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "8ac3af93786e76543986cd3eec415d13ed2e7b7ac993974273b88315086af02f",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-76466",
+      "status": "active",
+      "summary": "CISA added CVE-2026-76466 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-23.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Cisco Expressway Series Use of Hard-coded Credentials Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "Cisco"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2025-42884"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-20",
+          "source": "cisa-kev",
+          "source_id": "CVE-2025-42884",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2025-42884"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-9AA23ACE9EE456",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "NetWeaver",
+      "published": "2026-11-20",
+      "ransomware_use": "unknown",
+      "related": [
+        "HF-INT-B22EEC5809CE5C"
+      ],
+      "remediation_due": "2026-11-23",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "ffb130f94bf92b8e0290402ce57083f95a4ea6bb88c289220b714a31087729b8",
+      "source": "cisa-kev",
+      "source_id": "CVE-2025-42884",
+      "status": "active",
+      "summary": "CISA added CVE-2025-42884 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-23.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "SAP NetWeaver Improper Neutralization of Special Elements in Data Query Logic Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "SAP"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-123890"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-20",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-123890",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-123890"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-5F8CF9D21A09A9",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "VMware vCenter",
+      "published": "2026-11-20",
+      "ransomware_use": "unknown",
+      "related": [
+        "HF-INT-B22EEC5809CE5C"
+      ],
+      "remediation_due": "2026-11-23",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "0c3ca90d0a58deae7b8b6afe29403097cab8fb7880a553a127752ed76f3654d3",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-123890",
+      "status": "active",
+      "summary": "CISA added CVE-2026-123890 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-23.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "VMWare vCenter Authentication Bypass Using an Alternate Path or Channel Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "Broadcom"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-129448"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-20",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-129448",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-129448"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-1F8C268356351F",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "Roller",
+      "published": "2026-11-20",
+      "ransomware_use": "unknown",
+      "related": [
+        "HF-INT-B22EEC5809CE5C"
+      ],
+      "remediation_due": "2026-11-23",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "333f25b0f89b6d75879c4c60fc68e94299a41e5c5e40672e200ff80b9a5b0646",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-129448",
+      "status": "active",
+      "summary": "CISA added CVE-2026-129448 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-23.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Apache Roller Deserialization of Untrusted Data Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "Apache"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2025-42884",
+        "CVE-2026-123890",
+        "CVE-2026-129448",
+        "CVE-2026-76466"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA Adds Four Known Exploited Vulnerabilities to Catalog",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-20",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/20/cisa-adds-four-known-exploited-vulnerabilities-catalog",
+          "url": "https://www.cisa.gov/news-events/alerts/2026/11/20/cisa-adds-four-known-exploited-vulnerabilities-catalog"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-B22EEC5809CE5C",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-20",
+      "related": [
+        "HF-INT-1F8C268356351F",
+        "HF-INT-5F8CF9D21A09A9",
+        "HF-INT-9AA23ACE9EE456",
+        "HF-INT-FEC7D273C1F64A"
+      ],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "2b61d5712faa89c57e89bace1727d509b711ce273df4791970108cd4c97d0f7b",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/20/cisa-adds-four-known-exploited-vulnerabilities-catalog",
+      "status": "active",
+      "summary": "Publisher security advisory. Topics include identity, exploitation. References CVE-2025-42884, CVE-2026-123890, CVE-2026-129448, CVE-2026-76466.",
+      "tags": [
+        "Identity",
+        "Exploitation"
+      ],
+      "title": "CISA Adds Four Known Exploited Vulnerabilities to Catalog",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-125132"
+      ],
+      "evidence": [
+        {
+          "claim": "libumqtt",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-19",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-323-03",
+          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-323-03"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-BF2611689A6FA7",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-19",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "164537aef1822379824735fc765611dc3683bcdfd56fb79aaba0826d242efb98",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-323-03",
+      "status": "active",
+      "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-125132.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "libumqtt",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-126088"
+      ],
+      "evidence": [
+        {
+          "claim": "Autonomy Logic OpenPLC Runtime",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-19",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-323-01",
+          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-323-01"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-AD267EAA2B1154",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-19",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "e13f91cba1dce77d95a01806d38702262e665941961b7f63438ca82e3cdae161",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-323-01",
+      "status": "active",
+      "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-126088.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Autonomy Logic OpenPLC Runtime",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-124281",
+        "CVE-2026-125273",
+        "CVE-2026-96805"
+      ],
+      "evidence": [
+        {
+          "claim": "Elecbrakes EB2, VM1, ELBC2000",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-19",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-323-02",
+          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-323-02"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-31C4BB63CFFD59",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-19",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "fb73166f532458ad3bade860668435b95b43a84f96857d39934d3788e88a486a",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-323-02",
+      "status": "active",
+      "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-124281, CVE-2026-125273, CVE-2026-96805.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Elecbrakes EB2, VM1, ELBC2000",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-40217"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-18",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-40217",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-40217"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-C6D4CF5FA050A6",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "LiteLLM",
+      "published": "2026-11-18",
+      "ransomware_use": "unknown",
+      "related": [
+        "HF-INT-2BF6E3B53184CD"
+      ],
+      "remediation_due": "2026-12-02",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "0e37c9e2e41f9238f466c05c93426f8630b2adb831446dd5da166d0648aaff1a",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-40217",
+      "status": "active",
+      "summary": "CISA added CVE-2026-40217 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-12-02.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "BerriAI LiteLLM Unprotected Alternate Channel Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "BerriAI"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2024-10441"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-18",
+          "source": "cisa-kev",
+          "source_id": "CVE-2024-10441",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2024-10441"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-43A108F4566E7E",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "DiskStation Manager (DSM)",
+      "published": "2026-11-18",
+      "ransomware_use": "known",
+      "related": [
+        "HF-INT-2BF6E3B53184CD"
+      ],
+      "remediation_due": "2026-11-21",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "6f46f2af8a321b91ea85675bfb6dbf154cbab5a97926ee6459f0f3035616c4cf",
+      "source": "cisa-kev",
+      "source_id": "CVE-2024-10441",
+      "status": "active",
+      "summary": "CISA added CVE-2024-10441 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-21.",
+      "tags": [
+        "Exploitation",
+        "Ransomware"
+      ],
+      "title": "Synology DiskStation Manager (DSM) Improper Encoding or Escaping of Output Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "Synology"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-90436"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-18",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-90436",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-90436"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-3D0466478FCBC3",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "Axis",
+      "published": "2026-11-18",
+      "ransomware_use": "unknown",
+      "related": [
+        "HF-INT-2BF6E3B53184CD"
+      ],
+      "remediation_due": "2026-11-21",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "11a0cc6807eb8755722005749921aecddfb6b549c781440d600811f7965eff1f",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-90436",
+      "status": "active",
+      "summary": "CISA added CVE-2026-90436 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-21.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Apache Axis Unsafe Reflection Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "Apache"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-90817"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-18",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-90817",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-90817"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-1B0EA03D6E0F5F",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "Research Electronic Data Capture (REDCap)",
+      "published": "2026-11-18",
+      "ransomware_use": "unknown",
+      "related": [
+        "HF-INT-2BF6E3B53184CD"
+      ],
+      "remediation_due": "2026-11-21",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "f3555abc7ab3399875a4f276757ab348debfa59dbd4184569335058d3290b449",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-90817",
+      "status": "active",
+      "summary": "CISA added CVE-2026-90817 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-21.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Vanderbilt University Research Electronic Data Capture (REDCap) Code Injection Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "Vanderbilt University"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2024-10441",
+        "CVE-2026-40217",
+        "CVE-2026-90436",
+        "CVE-2026-90817"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA Adds Four Known Exploited Vulnerabilities to Catalog",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-18",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/18/cisa-adds-four-known-exploited-vulnerabilities-catalog",
+          "url": "https://www.cisa.gov/news-events/alerts/2026/11/18/cisa-adds-four-known-exploited-vulnerabilities-catalog"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-2BF6E3B53184CD",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-18",
+      "related": [
+        "HF-INT-1B0EA03D6E0F5F",
+        "HF-INT-3D0466478FCBC3",
+        "HF-INT-43A108F4566E7E",
+        "HF-INT-C6D4CF5FA050A6"
+      ],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "714ca1aa6100bc4ffbda962dadc7643a0658d1230a0a08e25585e26d8056dd55",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/18/cisa-adds-four-known-exploited-vulnerabilities-catalog",
+      "status": "active",
+      "summary": "Publisher security advisory. Topics include exploitation. References CVE-2024-10441, CVE-2026-40217, CVE-2026-90436, CVE-2026-90817.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "CISA Adds Four Known Exploited Vulnerabilities to Catalog",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "Why threat hunting should matter to every board",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-17",
+          "source": "ncsc",
+          "source_id": "https://www.ncsc.gov.uk/blogs/why-threat-hunting-should-matter-to-every-board",
+          "url": "https://www.ncsc.gov.uk/blogs/why-threat-hunting-should-matter-to-every-board"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-A6652E59EBD5F8",
+      "in_window": true,
+      "kind": "Research",
+      "published": "2026-11-17",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "4f06b5854aed3d357b51feaad417bfda9dcc3a8f929279dc3f081bd948b7fdbb",
+      "source": "ncsc",
+      "source_id": "https://www.ncsc.gov.uk/blogs/why-threat-hunting-should-matter-to-every-board",
+      "status": "active",
+      "summary": "Publisher research and guidance.",
+      "tags": [],
+      "title": "Why threat hunting should matter to every board",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "Security for the agentic era, powered by Microsoft Perception",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-17",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/17/security-for-the-agentic-era-powered-by-microsoft-perception/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/17/security-for-the-agentic-era-powered-by-microsoft-perception/"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-C8FC0392B9EA24",
+      "in_window": true,
+      "kind": "Research",
+      "published": "2026-11-17",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "33524cc8e7cd125b4ccd80859856b943cb935c0366791c6ca6d53d1b9e5e61fd",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/17/security-for-the-agentic-era-powered-by-microsoft-perception/",
+      "status": "active",
+      "summary": "Publisher research and guidance. Topics include agentic ai.",
+      "tags": [
+        "Agentic AI"
+      ],
+      "title": "Security for the agentic era, powered by Microsoft Perception",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "Microsoft demonstrated in a lab that device code phishing can expose sessions used by coding agents, and noted earlier device-code phishing campaigns. The demonstration is distinct from observed incidents.",
+          "location": "Research scope and mitigation guidance",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-17",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/17/the-risks-of-device-code-authentication-for-ai-coding-agents/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/17/the-risks-of-device-code-authentication-for-ai-coding-agents/"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [
+        "HF-2026-0021",
+        "HF-2026-0022",
+        "HF-2026-0023"
+      ],
+      "id": "HF-INT-636ABB4FBA14B1",
+      "in_window": true,
+      "indicators": [],
+      "kind": "Research",
+      "published": "2026-11-17",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 2,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "49adc816be34f15e24a90e11e9b4e7b1e0093406c5fef0490f077cea481552bf",
+      "software": [],
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/17/the-risks-of-device-code-authentication-for-ai-coding-agents/",
+      "status": "active",
+      "summary": "Microsoft demonstrated in a lab that device code phishing can expose sessions used by coding agents, and noted earlier device-code phishing campaigns. The demonstration is distinct from observed incidents.",
+      "tags": [
+        "Agentic AI",
+        "Phishing",
+        "Identity"
+      ],
+      "techniques": [
+        "T1528",
+        "T1566.002"
+      ],
+      "title": "The risks of device code authentication for AI coding agents",
+      "updated": "2026-11-25T02:32:19Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-115731"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-17",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-115731",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-115731"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-EFF252F4FD2D10",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "Puppet Enterprise",
+      "published": "2026-11-17",
+      "ransomware_use": "unknown",
+      "related": [
+        "HF-INT-37902359FB183E"
+      ],
+      "remediation_due": "2026-12-01",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "bba2fc90a09221809320c50b8d12a7cab61e955e80578b7d84721470c865dc71",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-115731",
+      "status": "active",
+      "summary": "CISA added CVE-2026-115731 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-12-01.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Perforce Puppet Enterprise Deserialization of Untrusted Data Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "Perforce"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-109830"
+      ],
+      "evidence": [
+        {
+          "claim": "Siemens meta-iot2050",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-17",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-11",
+          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-11"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-FAE4EC42780A6B",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-17",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "6f47d3283eb8007d7721a1bf94d74bbaeb352c40f9c4e2190cdd6366b425fea3",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-11",
+      "status": "active",
+      "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-109830.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Siemens meta-iot2050",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-112136",
+        "CVE-2026-112137"
+      ],
+      "evidence": [
+        {
+          "claim": "Siemens Mendix Studio Pro",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-17",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-05",
+          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-05"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-F61EFCA8F592B8",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-17",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "e8aadf899e818b6b71182cc2e2261ff35590b7df4230e4c6ce85f96e58ca6520",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-05",
+      "status": "active",
+      "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-112136, CVE-2026-112137.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Siemens Mendix Studio Pro",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-106175"
+      ],
+      "evidence": [
+        {
+          "claim": "Siemens RUGGEDCOM APE1808",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-17",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-07",
+          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-07"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-B408794A3196E1",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-17",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "d97b647f2b954086ff9abbfea1035fbe424e7e442cbe39d5d18aa5556b048a54",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-07",
+      "status": "active",
+      "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-106175.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Siemens RUGGEDCOM APE1808",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-117659",
+        "CVE-2026-120157",
+        "CVE-2026-120255",
+        "CVE-2026-120260",
+        "CVE-2026-120271",
+        "CVE-2026-120298"
+      ],
+      "evidence": [
+        {
+          "claim": "Dorsett Controls InfoScan",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-17",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-01",
+          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-01"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-986D782997068F",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-17",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "5f8e47b73fd927cd7c9a702ee306b92d1b02fa3bff8e5d219da456abee53167a",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-01",
+      "status": "active",
+      "summary": "Publisher security advisory. Topics include identity, exploitation. References CVE-2026-117659, CVE-2026-120157, CVE-2026-120255, CVE-2026-120260, CVE-2026-120271.",
+      "tags": [
+        "Identity",
+        "Exploitation"
+      ],
+      "title": "Dorsett Controls InfoScan",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-111497"
+      ],
+      "evidence": [
+        {
+          "claim": "Siemens Industrial Software Products",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-17",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-04",
+          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-04"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-91475641F52FB3",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-17",
+      "related": [
+        "HF-INT-10996733474B42",
+        "HF-INT-3B573666DE1648",
+        "HF-INT-652C8F30B0994D",
+        "HF-INT-F45D3069B40C90",
+        "HF-INT-FF020DED0D3324"
+      ],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "a08dbdee3e181b0a8165154de8fe4cadfa46997ada1ab8c5ed10d56392a06139",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-04",
+      "status": "active",
+      "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-111497.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Siemens Industrial Software Products",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-85114",
+        "CVE-2026-85115"
+      ],
+      "evidence": [
+        {
+          "claim": "Siemens .NET Client Library for SIMATIC S7 Webserver API",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-17",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-02",
+          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-02"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-639FAC0F8727E0",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-17",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "1aa5860ded28bed07828258ef87d3e4f525418b4601b26bb3508f4e2ad9a14e1",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-02",
+      "status": "active",
+      "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-85114, CVE-2026-85115.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Siemens .NET Client Library for SIMATIC S7 Webserver API",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-58114"
+      ],
+      "evidence": [
+        {
+          "claim": "Siemens SIMATIC",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-17",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-08",
+          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-08"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-5B5CF4F017DBAB",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-17",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "df3408c68a134586bff4edc7d65081820cb7248e4445400d351f5b3743f3715d",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-08",
+      "status": "active",
+      "summary": "Publisher security advisory. Topics include identity, exploitation. References CVE-2026-58114.",
+      "tags": [
+        "Identity",
+        "Exploitation"
+      ],
+      "title": "Siemens SIMATIC",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-109097"
+      ],
+      "evidence": [
+        {
+          "claim": "Siemens ROS#",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-17",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-06",
+          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-06"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-4A756643B0596F",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-17",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "1269c91de2bb688412e61577733354b93318805af5a8ba15a81b3fa4bf6963f9",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-06",
+      "status": "active",
+      "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-109097.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Siemens ROS#",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-111497"
+      ],
+      "evidence": [
+        {
+          "claim": "Siemens Industrial Automation Software Products",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-17",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-03",
+          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-03"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-3B573666DE1648",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-17",
+      "related": [
+        "HF-INT-10996733474B42",
+        "HF-INT-652C8F30B0994D",
+        "HF-INT-91475641F52FB3",
+        "HF-INT-F45D3069B40C90",
+        "HF-INT-FF020DED0D3324"
+      ],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "08f5155ac19d27d21cc6b48f6f86099a6f17af32f101224fa30fbaa851c862eb",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-03",
+      "status": "active",
+      "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-111497.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Siemens Industrial Automation Software Products",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-64629"
+      ],
+      "evidence": [
+        {
+          "claim": "Siemens Simcenter Femap",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-17",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-10",
+          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-10"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-3989B95C68B62C",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-17",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "ea56545826e2f12d742c3b7714bb442435261fabf185e04689fa9b953951c84f",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-10",
+      "status": "active",
+      "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-64629.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Siemens Simcenter Femap",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-115731"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA Adds One Known Exploited Vulnerability to Catalog",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-17",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/17/cisa-adds-one-known-exploited-vulnerability-catalog",
+          "url": "https://www.cisa.gov/news-events/alerts/2026/11/17/cisa-adds-one-known-exploited-vulnerability-catalog"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-37902359FB183E",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-17",
+      "related": [
+        "HF-INT-EFF252F4FD2D10"
+      ],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "247f05b282ad1ea216a71eafcb97bcaebc3f316d638a2d60aa6ecff4a288e0ec",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/17/cisa-adds-one-known-exploited-vulnerability-catalog",
+      "status": "active",
+      "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-115731.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-114938"
+      ],
+      "evidence": [
+        {
+          "claim": "Critical Java Vulnerability Requires Immediate Patching",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-17",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/17/critical-java-vulnerability-requires-immediate-patching",
+          "url": "https://www.cisa.gov/news-events/alerts/2026/11/17/critical-java-vulnerability-requires-immediate-patching"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-2B90EF71FB0880",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-17",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "29321156bf05cee500cb149be862a6217d14e81f0565eab72919924960637c6b",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/17/critical-java-vulnerability-requires-immediate-patching",
+      "status": "active",
+      "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-114938.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Critical Java Vulnerability Requires Immediate Patching",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-59082"
+      ],
+      "evidence": [
+        {
+          "claim": "Siemens SIMATIC WinCC",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-17",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-09",
+          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-09"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-1E3A8A0A7E3CD0",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-17",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "f89db2f90dbab9cad6d08d3e99ee91cbe6cb8c8fe8aec83175131350be706936",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-09",
+      "status": "active",
+      "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-59082.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Siemens SIMATIC WinCC",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "Microsoft reported downstream destinations and a redirect path in deceptive Microsoft 365 service-health messages. The report did not confirm credential submission.",
+          "location": "Lure and redirect flow, MITRE ATT&CK, and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-16",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [
+        "HF-2026-0003",
+        "HF-2026-0031",
+        "HF-2026-0032"
+      ],
+      "id": "HF-INT-A08614C0DEBC42",
+      "in_window": true,
+      "indicators": [
+        "HF-IOC-67384D48D4FE0E",
+        "HF-IOC-643EC22834E642",
+        "HF-IOC-4BDFC7D2DF496E",
+        "HF-IOC-A6CE6D434B06E6"
+      ],
+      "kind": "Research",
+      "published": "2026-11-16",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "b79d40c26ef44aaf7c8c1d1f355a0de3722565e529a5392c12252883b9bc2c05",
+      "software": [],
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/",
+      "status": "active",
+      "summary": "Microsoft reported downstream destinations and a redirect path in deceptive Microsoft 365 service-health messages. The report did not confirm credential submission.",
+      "tags": [
+        "Phishing",
+        "Identity"
+      ],
+      "techniques": [
+        "T1566.002",
+        "T1204.001",
+        "T1036"
+      ],
+      "title": "High volume phishing campaign uses Microsoft 365 outage lures to target multiple industry sectors",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "Microsoft documented unauthorized ScreenConnect sessions, scripting, scheduled tasks, Run keys and changes to Defender exclusions while investigating SCKit.",
+          "location": "Investigation guidance and advanced hunting examples",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-13",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/13/sckit-abuses-screenconnect-deploy-remote-access-target-technician-sessions/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/13/sckit-abuses-screenconnect-deploy-remote-access-target-technician-sessions/"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [
+        "HF-2026-0024",
+        "HF-2026-0025",
+        "HF-2026-0026",
+        "HF-2026-0027"
+      ],
+      "id": "HF-INT-36ECE2AA75663D",
+      "in_window": true,
+      "indicators": [],
+      "kind": "Research",
+      "published": "2026-11-13",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 2,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "fa9b37d6022b07904aba6c27874cba44d6591b719960bc3ecf776e6e1fa9696a",
+      "software": [
+        "SCKit",
+        "ScreenConnect",
+        "RelayTrap"
+      ],
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/13/sckit-abuses-screenconnect-deploy-remote-access-target-technician-sessions/",
+      "status": "active",
+      "summary": "Microsoft documented unauthorized ScreenConnect sessions, scripting, scheduled tasks, Run keys and changes to Defender exclusions while investigating SCKit.",
+      "tags": [
+        "Supply Chain",
+        "Remote Access",
+        "LOLBins"
+      ],
+      "techniques": [
+        "T1219.002",
+        "T1059.001",
+        "T1053.005",
+        "T1547.001",
+        "T1685"
+      ],
+      "title": "SCKit abuses ScreenConnect to deploy remote access and target technician sessions",
+      "updated": "2026-11-25T02:32:19Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-114713"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-13",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-114713",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-114713"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-D3C2E84C25AC92",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "UnrealIRCd",
+      "published": "2026-11-13",
+      "ransomware_use": "unknown",
+      "related": [
+        "HF-INT-7B5DACBA886B8D"
+      ],
+      "remediation_due": "2026-11-16",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "67ad2622ba1726b8e7be74eb34d0232facdd6ecc9dbed3e2d680cf2014f1bb2c",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-114713",
+      "status": "active",
+      "summary": "CISA added CVE-2026-114713 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-16.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "UnrealIRCd Improper Neutralization of Delimiters Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "UnrealIRCd"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-123039"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-13",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-123039",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-123039"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-4911FE15715130",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "Multiple Products",
+      "published": "2026-11-13",
+      "ransomware_use": "unknown",
+      "related": [
+        "HF-INT-7B5DACBA886B8D"
+      ],
+      "remediation_due": "2026-11-16",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "e2e03fc7626e1fc82ea4c77f1a8e865cc90c640213001969767984ba57eb325f",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-123039",
+      "status": "active",
+      "summary": "CISA added CVE-2026-123039 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-16.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Check Point Multiple Products Incorrect Permission Assignment for Critical Resource Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "Check Point"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-114713",
+        "CVE-2026-123039"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-13",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/13/cisa-adds-two-known-exploited-vulnerabilities-catalog",
+          "url": "https://www.cisa.gov/news-events/alerts/2026/11/13/cisa-adds-two-known-exploited-vulnerabilities-catalog"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-7B5DACBA886B8D",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-13",
+      "related": [
+        "HF-INT-4911FE15715130",
+        "HF-INT-D3C2E84C25AC92"
+      ],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "a6ee49efe4f0276f699774965bc68f0b3e5bec3c294f3552d2f722e5473f164e",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/13/cisa-adds-two-known-exploited-vulnerabilities-catalog",
+      "status": "active",
+      "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-114713, CVE-2026-123039.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "Trained to betray: How post-training supply chain attacks hijack coding agents",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-12",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/12/trained-to-betray-how-post-training-supply-chain-attacks-hijack-coding-agents/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/12/trained-to-betray-how-post-training-supply-chain-attacks-hijack-coding-agents/"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-F426B022768C15",
+      "in_window": true,
+      "kind": "Research",
+      "published": "2026-11-12",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "f5fb8b10e63dc4dd7245c9ebee1fc31ae232573f4b75a20c6e2b1a10f120bf20",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/12/trained-to-betray-how-post-training-supply-chain-attacks-hijack-coding-agents/",
+      "status": "active",
+      "summary": "Publisher research and guidance. Topics include supply chain, agentic ai.",
+      "tags": [
+        "Supply Chain",
+        "Agentic AI"
+      ],
+      "title": "Trained to betray: How post-training supply chain attacks hijack coding agents",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-111497"
+      ],
+      "evidence": [
+        {
+          "claim": "Siemens Industrial Edge Management",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-12",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-316-03",
+          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-316-03"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-FF020DED0D3324",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-12",
+      "related": [
+        "HF-INT-10996733474B42",
+        "HF-INT-3B573666DE1648",
+        "HF-INT-652C8F30B0994D",
+        "HF-INT-91475641F52FB3",
+        "HF-INT-F45D3069B40C90"
+      ],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "4f347c0c24ce3f7a70ef003fbaa2e30016885996d27910e5f17427556b2bd6ff",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-316-03",
+      "status": "active",
+      "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-111497.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Siemens Industrial Edge Management",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-111497"
+      ],
+      "evidence": [
+        {
+          "claim": "Siemens Desigo, Gridscale",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-12",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-316-02",
+          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-316-02"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-F45D3069B40C90",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-12",
+      "related": [
+        "HF-INT-10996733474B42",
+        "HF-INT-3B573666DE1648",
+        "HF-INT-652C8F30B0994D",
+        "HF-INT-91475641F52FB3",
+        "HF-INT-FF020DED0D3324"
+      ],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "c3a7c60e426fe3bebb4aacfb9b246fcb050916b455d17b6db78aed2eeb2eabad",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-316-02",
+      "status": "active",
+      "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-111497.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Siemens Desigo, Gridscale",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-109618",
+        "CVE-2026-109619"
+      ],
+      "evidence": [
+        {
+          "claim": "Siemens Building Automation and Energy Products",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-12",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-316-01",
+          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-316-01"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-89146FF5418730",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-12",
+      "related": [
+        "HF-INT-057C02B04CC39C",
+        "HF-INT-1CB9F463F8DAF5",
+        "HF-INT-3B6E9E7F34FEAC"
+      ],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "d2387266d9cdc4746ce3613c1288f2e57b21fc99d15f9a495a8918c951689098",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-316-01",
+      "status": "active",
+      "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-109618, CVE-2026-109619.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Siemens Building Automation and Energy Products",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-111497"
+      ],
+      "evidence": [
+        {
+          "claim": "Siemens RUGGEDCOM APE1808",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-12",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-316-04",
+          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-316-04"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-652C8F30B0994D",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-12",
+      "related": [
+        "HF-INT-10996733474B42",
+        "HF-INT-3B573666DE1648",
+        "HF-INT-91475641F52FB3",
+        "HF-INT-F45D3069B40C90",
+        "HF-INT-FF020DED0D3324"
+      ],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "34643b7a8758de1d67fba8a619327efc0dc64eb4ee1b3eb7c12ba8656a9a6456",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-316-04",
+      "status": "active",
+      "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-111497.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Siemens RUGGEDCOM APE1808",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-109618",
+        "CVE-2026-109619"
+      ],
+      "evidence": [
+        {
+          "claim": "Siemens RUGGEDCOM APE1808",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-12",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-316-05",
+          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-316-05"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-057C02B04CC39C",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-12",
+      "related": [
+        "HF-INT-1CB9F463F8DAF5",
+        "HF-INT-3B6E9E7F34FEAC",
+        "HF-INT-89146FF5418730"
+      ],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "19763ad8f322ebfce013d319cb2371aa84d95ba62e56a8aee7667bf3e9eb8470",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-316-05",
+      "status": "active",
+      "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-109618, CVE-2026-109619.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Siemens RUGGEDCOM APE1808",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "NCSC scheme will help critical organisations test their cyber defences",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-11",
+          "source": "ncsc",
+          "source_id": "https://www.ncsc.gov.uk/news/ncsc-scheme-help-critical-organisations-test-their-cyber-defences",
+          "url": "https://www.ncsc.gov.uk/news/ncsc-scheme-help-critical-organisations-test-their-cyber-defences"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-6DF26830D7A11A",
+      "in_window": true,
+      "kind": "Research",
+      "published": "2026-11-11",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "64206476e324080fdf3dd1e7fb1fd5edd44eb391c8614fdecff26a3c6de6cece",
+      "source": "ncsc",
+      "source_id": "https://www.ncsc.gov.uk/news/ncsc-scheme-help-critical-organisations-test-their-cyber-defences",
+      "status": "active",
+      "summary": "Publisher research and guidance.",
+      "tags": [],
+      "title": "NCSC scheme will help critical organisations test their cyber defences",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "Microsoft observed GSocket tooling on compromised Linux servers, including renamed relay binaries, cron persistence and connections to GSocket distribution infrastructure.",
+          "location": "Advanced hunting queries and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-11",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [
+        "HF-2026-0002",
+        "HF-2026-0028",
+        "HF-2026-0029",
+        "HF-2026-0030"
+      ],
+      "id": "HF-INT-F3F53EF63DF395",
+      "in_window": true,
+      "indicators": [
+        "HF-IOC-93EEECFDCFE129",
+        "HF-IOC-69DD14AE2022D2"
+      ],
+      "kind": "Research",
+      "published": "2026-11-11",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 2,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "a8ff941eb06d4f88dce2e873eea6af9efb05154d87f45bcc52eb0b91de9747de",
+      "software": [
+        "GSocket"
+      ],
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/",
+      "status": "active",
+      "summary": "Microsoft observed GSocket tooling on compromised Linux servers, including renamed relay binaries, cron persistence and connections to GSocket distribution infrastructure.",
+      "tags": [
+        "APT Activity",
+        "Exploitation"
+      ],
+      "techniques": [
+        "T1090.002",
+        "T1053.003",
+        "T1105",
+        "T1036"
+      ],
+      "title": "The global socket: how threat actors are weaponizing GSocket for stealthy C2",
+      "updated": "2026-11-25T02:32:19Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "Lessons from 59 Linux Kernel Bug Reports",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-11",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/11/lessons-from-59-linux-kernel-bug-reports/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/11/lessons-from-59-linux-kernel-bug-reports/"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-37D27702F36416",
+      "in_window": true,
+      "kind": "Research",
+      "published": "2026-11-11",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "2a35bf621a352372c109f43a699e7d4d5e0124523576118d818c3ea86f244945",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/11/lessons-from-59-linux-kernel-bug-reports/",
+      "status": "active",
+      "summary": "Publisher research and guidance. Topics include exploitation.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Lessons from 59 Linux Kernel Bug Reports",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-111560"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-10",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-111560",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-111560"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-BB5BC5C5E453D1",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "Multiple Products",
+      "published": "2026-11-10",
+      "ransomware_use": "unknown",
+      "related": [
+        "HF-INT-F4B34728A6F8E3"
+      ],
+      "remediation_due": "2026-11-13",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "aa35891ada41ce13872dffc2d3cbed54e9ecb79fe2c2fbf32b27f46bb3db710c",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-111560",
+      "status": "active",
+      "summary": "CISA added CVE-2026-111560 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-13.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Barracuda Networks Multiple Products OS Command Injection Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "Barracuda Networks"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-111793"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-10",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-111793",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-111793"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-BB45CD26141525",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "Webtop Media Transcoder",
+      "published": "2026-11-10",
+      "ransomware_use": "unknown",
+      "related": [
+        "HF-INT-F4B34728A6F8E3"
+      ],
+      "remediation_due": "2026-11-24",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "5186306eccfff5bbda74e59a3ffa559f13d805b6cfb5f263e93da8cfb3d38a58",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-111793",
+      "status": "active",
+      "summary": "CISA added CVE-2026-111793 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-24.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Openwave Messaging Limited Webtop Media Transcoder Incorrect Resource Transfer Between Spheres Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "Openwave Messaging Limited"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-20320"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-10",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-20320",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-20320"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-B0B8542C7EF0F2",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "BroadWorks",
+      "published": "2026-11-10",
+      "ransomware_use": "unknown",
+      "related": [
+        "HF-INT-F4B34728A6F8E3"
+      ],
+      "remediation_due": "2026-11-24",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "74f39502eb8873d8e203b6b3a26f1521f4d1c0803b7563518b3fb8660ca95c80",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-20320",
+      "status": "active",
+      "summary": "CISA added CVE-2026-20320 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-24.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Cisco BroadWorks Improper Restriction of XML External Entity Reference Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "Cisco"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-125350"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-10",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-125350",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-125350"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-46388C4519FFC1",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "Chromium",
+      "published": "2026-11-10",
+      "ransomware_use": "unknown",
+      "related": [],
+      "remediation_due": "2026-11-24",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "f724943fd0b49e88766ca8061c943300dc46de584d0e7ae07ea0bede6cc42b06",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-125350",
+      "status": "active",
+      "summary": "CISA added CVE-2026-125350 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-24.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Google Chromium Use-After-Free Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "Google"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-124194"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-10",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-124194",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-124194"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-319DE574E6A282",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "Office",
+      "published": "2026-11-10",
+      "ransomware_use": "unknown",
+      "related": [
+        "HF-INT-F4B34728A6F8E3"
+      ],
+      "remediation_due": "2026-11-24",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "8541be567ea338e0c2bb3bb543e9ade2a1064028736f2bd0714633a3bf58abb6",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-124194",
+      "status": "active",
+      "summary": "CISA added CVE-2026-124194 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-24.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Microsoft Office Outlook Missing User Interaction for Potentially Unsafe Action Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "Microsoft"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-116606"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-10",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-116606",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-116606"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-240DEE846EA1A3",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "Barracuda Email Security Gateway (ESG)",
+      "published": "2026-11-10",
+      "ransomware_use": "unknown",
+      "related": [
+        "HF-INT-F4B34728A6F8E3"
+      ],
+      "remediation_due": "2026-11-13",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "ebffb08b0a4cb89a633c7b49aed65f283f91c43c02cd45b3b8bc86d56fd4c7cc",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-116606",
+      "status": "active",
+      "summary": "CISA added CVE-2026-116606 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-13.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Barracuda Networks Email Security Gateway (ESG) Authentication Bypass Using an Alternate Path or Channel Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "Barracuda Networks"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-111560",
+        "CVE-2026-111793",
+        "CVE-2026-116606",
+        "CVE-2026-124194",
+        "CVE-2026-20320"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA Adds Six Known Exploited Vulnerabilities to Catalog",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-10",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/10/cisa-adds-six-known-exploited-vulnerabilities-catalog",
+          "url": "https://www.cisa.gov/news-events/alerts/2026/11/10/cisa-adds-six-known-exploited-vulnerabilities-catalog"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-F4B34728A6F8E3",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-10",
+      "related": [
+        "HF-INT-240DEE846EA1A3",
+        "HF-INT-319DE574E6A282",
+        "HF-INT-B0B8542C7EF0F2",
+        "HF-INT-BB45CD26141525",
+        "HF-INT-BB5BC5C5E453D1"
+      ],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "db55ce277c7fa19c1403e0605d523a960da77bbe32c9a803f5adce0efa29f2ca",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/10/cisa-adds-six-known-exploited-vulnerabilities-catalog",
+      "status": "active",
+      "summary": "Publisher security advisory. Topics include identity, exploitation. References CVE-2026-111560, CVE-2026-111793, CVE-2026-116606, CVE-2026-124194, CVE-2026-20320.",
+      "tags": [
+        "Identity",
+        "Exploitation"
+      ],
+      "title": "CISA Adds Six Known Exploited Vulnerabilities to Catalog",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "FORGE Lab uses agentic tools to identify memory safety issues in Rust",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-09",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/09/forge-lab-uses-agentic-tools-to-identify-memory-safety-issues-in-rust/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/09/forge-lab-uses-agentic-tools-to-identify-memory-safety-issues-in-rust/"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-D719BA69ED956B",
+      "in_window": true,
+      "kind": "Research",
+      "published": "2026-11-09",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "277cf5fb4a17f3459cc44044987cd49222d59f4016bf928cdadf53a1307837dd",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/09/forge-lab-uses-agentic-tools-to-identify-memory-safety-issues-in-rust/",
+      "status": "active",
+      "summary": "Publisher research and guidance. Topics include agentic ai.",
+      "tags": [
+        "Agentic AI"
+      ],
+      "title": "FORGE Lab uses agentic tools to identify memory safety issues in Rust",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-123158"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-09",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-123158",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-123158"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-FC8AD0E0978633",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "OpenSSH",
+      "published": "2026-11-09",
+      "ransomware_use": "unknown",
+      "related": [],
+      "remediation_due": "2026-11-12",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "b9ced5e8bbc8617c3e094efbaddca527e3415a01148539f0532c4e7082e1287d",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-123158",
+      "status": "active",
+      "summary": "CISA added CVE-2026-123158 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-12.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "OpenBSD OpenSSH Unexpected Status Code or Return Value Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "OpenBSD"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-123218"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-09",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-123218",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-123218"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-E2CC7379D5F60C",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "Aspera Faspex",
+      "published": "2026-11-09",
+      "ransomware_use": "unknown",
+      "related": [],
+      "remediation_due": "2026-11-12",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "ffd560f2a718b9de9b93f43cd65db77cd7d9221e8b82c1b26c129e0707bd7bfd",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-123218",
+      "status": "active",
+      "summary": "CISA added CVE-2026-123218 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-12.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "IBM Aspera Faspex Incorrect Authorization Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "IBM"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-102895"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-09",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-102895",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-102895"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-BAE39A1E08171F",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "GPUStack",
+      "published": "2026-11-09",
+      "ransomware_use": "unknown",
+      "related": [],
+      "remediation_due": "2026-11-12",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "737a144cf09dbdea255b5f2dedff416663c7679dfa70be182133e2cf7105d778",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-102895",
+      "status": "active",
+      "summary": "CISA added CVE-2026-102895 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-12.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "GPUStack Improper Authentication Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "GPUStack"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-116779"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-09",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-116779",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-116779"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-3FAD49CA923D89",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "FreeSwitch",
+      "published": "2026-11-09",
+      "ransomware_use": "unknown",
+      "related": [],
+      "remediation_due": "2026-11-12",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "d898f9b80238f3020101d1af2ce55e9d7a40f553371e687aca6915f24cbf5db9",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-116779",
+      "status": "active",
+      "summary": "CISA added CVE-2026-116779 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-12.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "SignalWire FreeSwitch Code Injection Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "SignalWire"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "CISA Adds Four Known Exploited Vulnerabilities to Catalog",
+          "location": "CISA advisory archive",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-09",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/09/cisa-adds-four-known-exploited-vulnerabilities-catalog",
+          "url": "https://www.cisa.gov/news-events/alerts/2026/11/09/cisa-adds-four-known-exploited-vulnerabilities-catalog"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-B13D0E78EDD1A3",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-09",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "48a3328a8d44f5240ed87c09398595c7948b601f2c9102f2d08492766bab02b0",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/09/cisa-adds-four-known-exploited-vulnerabilities-catalog",
+      "status": "active",
+      "summary": "Publisher security advisory indexed in the CISA advisory archive.",
+      "tags": [],
+      "title": "CISA Adds Four Known Exploited Vulnerabilities to Catalog",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "actors": [
+        "Storm-3358"
+      ],
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "Microsoft reported Storm-3358 using ARTEX around financial-sector intrusions, including fast network probing, password abuse and infrastructure associated with remote access tooling.",
+          "location": "Behavioral signals and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-06",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [
+        "HF-2026-0006",
+        "HF-2026-0007",
+        "HF-2026-0008",
+        "HF-2026-0009",
+        "HF-2026-0035"
+      ],
+      "id": "HF-INT-631279C95E3417",
+      "in_window": true,
+      "indicators": [
+        "HF-IOC-4DAAE2BF2ABDF4",
+        "HF-IOC-0A1A6CD2B306D6",
+        "HF-IOC-30A64FD1F6005C",
+        "HF-IOC-685DF4E8FA72AD",
+        "HF-IOC-E3625A0D95A20C",
+        "HF-IOC-57C3F78D071AB1"
+      ],
+      "kind": "Research",
+      "published": "2026-11-06",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 2,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "f46f1673b63a3be1ea090eeebc43436b7080f212a002e1ee946b1d937411e818",
+      "software": [],
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/",
+      "status": "active",
+      "summary": "Microsoft reported Storm-3358 using ARTEX around financial-sector intrusions, including fast network probing, password abuse and infrastructure associated with remote access tooling.",
+      "tags": [
+        "Agentic AI",
+        "Initial Access",
+        "Network"
+      ],
+      "techniques": [
+        "T1595",
+        "T1110.003",
+        "T1078.004",
+        "T1105"
+      ],
+      "title": "ARTEX abuse expands as cybercriminals target financial sector",
+      "updated": "2026-11-25T02:32:19Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-19868"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-06",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-19868",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-19868"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-5AB971E73989B9",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "SonicOS SSLVPN",
+      "published": "2026-11-06",
+      "ransomware_use": "unknown",
+      "related": [],
+      "remediation_due": "2026-11-20",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "19c7d1875c5b8011960788d3743bf33346173ecdb03d26473151b2ff40db35b6",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-19868",
+      "status": "active",
+      "summary": "CISA added CVE-2026-19868 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-20.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "SonicWall SonicOS SSLVPN Use of Single-factor Authentication Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "SonicWall"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "CISA Adds One Known Exploited Vulnerability to Catalog",
+          "location": "CISA advisory archive",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-06",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/06/cisa-adds-one-known-exploited-vulnerability-catalog",
+          "url": "https://www.cisa.gov/news-events/alerts/2026/11/06/cisa-adds-one-known-exploited-vulnerability-catalog"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-2E68C496915460",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-06",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "85a10286cf1eaab9ad097f61baf8386342f54a3664f25604007511d188f160bb",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/06/cisa-adds-one-known-exploited-vulnerability-catalog",
+      "status": "active",
+      "summary": "Publisher security advisory indexed in the CISA advisory archive.",
+      "tags": [],
+      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "What’s new in Microsoft Security: November 2026",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-05",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/05/whats-new-in-microsoft-security-november-2026/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/05/whats-new-in-microsoft-security-november-2026/"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-D97887A156F724",
+      "in_window": true,
+      "kind": "Research",
+      "published": "2026-11-05",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "234d1430bec6a6d0296aa33cc3238f7099f9a8f66ecf659a4137ce658e5ef8f5",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/05/whats-new-in-microsoft-security-november-2026/",
+      "status": "active",
+      "summary": "Publisher research and guidance. Topics include agentic ai.",
+      "tags": [
+        "Agentic AI"
+      ],
+      "title": "What’s new in Microsoft Security: November 2026",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "Microsoft observed ARTEX-associated use of exposed cloud credentials, service-principal sign-ins from a reported IP, rapid cloud discovery and attempted access to Azure Key Vault and other resources.",
+          "location": "Credential abuse via Entra ID and indicators sections",
+          "modified": null,
+          "observation_date": "2026-10-28",
+          "published": "2026-11-05",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [
+        "HF-2026-0005",
+        "HF-2026-0010",
+        "HF-2026-0011",
+        "HF-2026-0012",
+        "HF-2026-0013",
+        "HF-2026-0014"
+      ],
+      "id": "HF-INT-4B6ABBDBB70347",
+      "in_window": true,
+      "indicators": [
+        "HF-IOC-334489FDDAC4E4"
+      ],
+      "kind": "Research",
+      "published": "2026-11-05",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 2,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "842c48215173fa2eee5ec796dd63123d962cd1cd680fa70351987f071c83d3ee",
+      "software": [],
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/",
+      "status": "active",
+      "summary": "Microsoft observed ARTEX-associated use of exposed cloud credentials, service-principal sign-ins from a reported IP, rapid cloud discovery and attempted access to Azure Key Vault and other resources.",
+      "tags": [
+        "Agentic AI",
+        "Identity",
+        "Supply Chain"
+      ],
+      "techniques": [
+        "T1078.004",
+        "T1555.006",
+        "T1580",
+        "T1087.004",
+        "T1110.003",
+        "T1528"
+      ],
+      "title": "Threat actors use agentic AI tooling to find and abuse exposed secrets",
+      "updated": "2026-11-25T02:32:19Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "Email threat landscape: Q3 2026 trends and insights",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-05",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/05/email-threat-landscape-q3-2026-trends-and-insights/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/05/email-threat-landscape-q3-2026-trends-and-insights/"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-42DCCC485F1F6E",
+      "in_window": true,
+      "kind": "Research",
+      "published": "2026-11-05",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "bddd412f81cb1fd2f7d0b6503b267e43263dbda7681e3821fd662c3245de8a52",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/05/email-threat-landscape-q3-2026-trends-and-insights/",
+      "status": "active",
+      "summary": "Publisher research and guidance. Topics include phishing.",
+      "tags": [
+        "Phishing"
+      ],
+      "title": "Email threat landscape: Q3 2026 trends and insights",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2024-27834"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-04",
+          "source": "cisa-kev",
+          "source_id": "CVE-2024-27834",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2024-27834"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-C0CCCBCF96F0F5",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "Multiple Products",
+      "published": "2026-11-04",
+      "ransomware_use": "unknown",
+      "related": [],
+      "remediation_due": "2026-11-18",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "79e58a9f6cd60e287841b7449e68a0704766de4021b1f6bb0cb21aef51315875",
+      "source": "cisa-kev",
+      "source_id": "CVE-2024-27834",
+      "status": "active",
+      "summary": "CISA added CVE-2024-27834 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-18.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Apple Multiple Products Improper Authentication Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "Apple"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "CISA Adds One Known Exploited Vulnerability to Catalog",
+          "location": "CISA advisory archive",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-04",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/04/cisa-adds-one-known-exploited-vulnerability-catalog",
+          "url": "https://www.cisa.gov/news-events/alerts/2026/11/04/cisa-adds-one-known-exploited-vulnerability-catalog"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-C5BFEEDC9F8814",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-04",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "cd21e099219502ce6658f9fe34485d47a0e7957cfb59f7594794615c6bbe4cf9",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/04/cisa-adds-one-known-exploited-vulnerability-catalog",
+      "status": "active",
+      "summary": "Publisher security advisory indexed in the CISA advisory archive.",
+      "tags": [],
+      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "Artificial intelligence and cyber intrusion",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-03",
+          "source": "ncsc",
+          "source_id": "https://www.ncsc.gov.uk/report/artificial-intelligence-and-cyber-intrusion",
+          "url": "https://www.ncsc.gov.uk/report/artificial-intelligence-and-cyber-intrusion"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-AA724A9A8E5DAB",
+      "in_window": true,
+      "kind": "Research",
+      "published": "2026-11-03",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "4fd0ea3ffef23299884fd8d9af2cf19db5c8f8319ae1ada7376ae2429fd979ce",
+      "source": "ncsc",
+      "source_id": "https://www.ncsc.gov.uk/report/artificial-intelligence-and-cyber-intrusion",
+      "status": "active",
+      "summary": "Publisher research and guidance.",
+      "tags": [],
+      "title": "Artificial intelligence and cyber intrusion",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "Cyber chief: UK facing AI-powered attacks on critical infrastructure within two years",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-03",
+          "source": "ncsc",
+          "source_id": "https://www.ncsc.gov.uk/news/cyber-chief-uk-facing-ai-powered-attacks-on-critical-infrastructure-in-two-years",
+          "url": "https://www.ncsc.gov.uk/news/cyber-chief-uk-facing-ai-powered-attacks-on-critical-infrastructure-in-two-years"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-4B940FE58ECF41",
+      "in_window": true,
+      "kind": "Research",
+      "published": "2026-11-03",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "fac37100e2c81548dc5c7528118f740d3ff06ef1c16b683eb4b842bc72edf41b",
+      "source": "ncsc",
+      "source_id": "https://www.ncsc.gov.uk/news/cyber-chief-uk-facing-ai-powered-attacks-on-critical-infrastructure-in-two-years",
+      "status": "active",
+      "summary": "Publisher research and guidance.",
+      "tags": [],
+      "title": "Cyber chief: UK facing AI-powered attacks on critical infrastructure within two years",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "Microsoft named a Leader in the 2026 Gartner® Magic Quadrant™ for AI Agent Management Platforms",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-03",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/03/microsoft-named-a-leader-in-the-2026-gartner-magic-quadrant-for-ai-agent-management-platforms/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/03/microsoft-named-a-leader-in-the-2026-gartner-magic-quadrant-for-ai-agent-management-platforms/"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-C252AAF10AAB00",
+      "in_window": true,
+      "kind": "Research",
+      "published": "2026-11-03",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "5f19f0bf6d8266fdd3f3a668abe02b685e92c06848aa4e2505ccc3b10b8a8ae4",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/03/microsoft-named-a-leader-in-the-2026-gartner-magic-quadrant-for-ai-agent-management-platforms/",
+      "status": "active",
+      "summary": "Publisher research and guidance. Topics include agentic ai.",
+      "tags": [
+        "Agentic AI"
+      ],
+      "title": "Microsoft named a Leader in the 2026 Gartner® Magic Quadrant™ for AI Agent Management Platforms",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "Fake-download campaign uses trojanized installers to deliver monetization payloads",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-03",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/03/fake-download-campaign-uses-trojanized-installers-deliver-monetization-payloads/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/03/fake-download-campaign-uses-trojanized-installers-deliver-monetization-payloads/"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-A455DB3A91159D",
+      "in_window": true,
+      "kind": "Research",
+      "published": "2026-11-03",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "5382aafd36f3f513aaeac3743c10fd86cc3b9cef7fe2c13d9ba06c7f5f534fd4",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/03/fake-download-campaign-uses-trojanized-installers-deliver-monetization-payloads/",
+      "status": "active",
+      "summary": "Publisher research and guidance.",
+      "tags": [],
+      "title": "Fake-download campaign uses trojanized installers to deliver monetization payloads",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-119977"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-03",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-119977",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-119977"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-62012AA58D1725",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "WordPress Core",
+      "published": "2026-11-03",
+      "ransomware_use": "unknown",
+      "related": [],
+      "remediation_due": "2026-11-06",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "f1d6094b5a957d174a98458b0cfbd23a1b74c4eae7607fcce5cde3ac5040bd55",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-119977",
+      "status": "active",
+      "summary": "CISA added CVE-2026-119977 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-06.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "WordPress WordPress Core Time-of-check Time-of-use (TOCTOU) Race Condition Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "WordPress"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "CISA Adds One Known Exploited Vulnerability to Catalog",
+          "location": "CISA advisory archive",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-03",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/03/cisa-adds-one-known-exploited-vulnerability-catalog",
+          "url": "https://www.cisa.gov/news-events/alerts/2026/11/03/cisa-adds-one-known-exploited-vulnerability-catalog"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-53CA9309F14B04",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-11-03",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "c07eec098c4e13272671739903e290b22c295a080fa1f5e528a79bd51f44236b",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/03/cisa-adds-one-known-exploited-vulnerability-catalog",
+      "status": "active",
+      "summary": "Publisher security advisory indexed in the CISA advisory archive.",
+      "tags": [],
+      "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "What exploited vulnerabilities have in common: A data-driven analysis of real-world attacks",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-02",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/02/exploited-vulnerabilities-common-data-driven-analysis-real-world-attacks/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/02/exploited-vulnerabilities-common-data-driven-analysis-real-world-attacks/"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-D4A79711CC128F",
+      "in_window": true,
+      "kind": "Research",
+      "published": "2026-11-02",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "a8564c23247b554c37edae8107597f096e18ae172bae5fc08de29cc73cb9118d",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/02/exploited-vulnerabilities-common-data-driven-analysis-real-world-attacks/",
+      "status": "active",
+      "summary": "Publisher research and guidance. Topics include exploitation.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "What exploited vulnerabilities have in common: A data-driven analysis of real-world attacks",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "Inside a malicious Claude Code-branded extension and its persistent SSH backdoor",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-31",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/30/inside-malicious-claude-code-branded-cursor-extension-persistent-ssh-backdoor/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/10/30/inside-malicious-claude-code-branded-cursor-extension-persistent-ssh-backdoor/"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-C81162A6037296",
+      "in_window": true,
+      "kind": "Research",
+      "published": "2026-10-31",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "6baf3525c8b3fc5c698d206bd4b16a8d5d5830046990c630e2def36101058617",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/30/inside-malicious-claude-code-branded-cursor-extension-persistent-ssh-backdoor/",
+      "status": "active",
+      "summary": "Publisher research and guidance.",
+      "tags": [],
+      "title": "Inside a malicious Claude Code-branded extension and its persistent SSH backdoor",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "Microsoft observed fraudulent Quick Assist support sessions followed by scripting and certificate-services abuse during the investigated intrusions.",
+          "location": "Intrusion case studies and initial access sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-30",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [
+        "HF-2026-0004",
+        "HF-2026-0033",
+        "HF-2026-0034"
+      ],
+      "id": "HF-INT-E26238C5B4C5C7",
+      "in_window": true,
+      "indicators": [],
+      "kind": "Research",
+      "published": "2026-10-30",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 2,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "f86b6c37cbf67db3769c51f9fc864d48065f2f5bc4737f69c856332d21cad1ee",
+      "software": [],
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/",
+      "status": "active",
+      "summary": "Microsoft observed fraudulent Quick Assist support sessions followed by scripting and certificate-services abuse during the investigated intrusions.",
+      "tags": [
+        "Phishing",
+        "Identity"
+      ],
+      "techniques": [
+        "T1219.002",
+        "T1649",
+        "T1059.001"
+      ],
+      "title": "From help desk impersonation to AD CS abuse: Investigating ESC1 and ESC8 intrusion paths",
+      "updated": "2026-11-25T02:32:19Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-118527"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-30",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-118527",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-118527"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-EE50F77006152E",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "Connect Secure",
+      "published": "2026-10-30",
+      "ransomware_use": "unknown",
+      "related": [],
+      "remediation_due": "2026-11-13",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "2112d9bbd6e7fd355109fb73081f5621089d3db2d311f254440c4ef601572cef",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-118527",
+      "status": "active",
+      "summary": "CISA added CVE-2026-118527 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-13.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Ivanti Connect Secure Generation of Predictable Numbers or Identifiers Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "Ivanti"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-111357"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-30",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-111357",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-111357"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-4064E54574251D",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "Connect Secure",
+      "published": "2026-10-30",
+      "ransomware_use": "unknown",
+      "related": [],
+      "remediation_due": "2026-11-02",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "31b30b7fb6a9fda561ae89dae072296d7004d7f26e53a6dac95e1905e8cb8ff1",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-111357",
+      "status": "active",
+      "summary": "CISA added CVE-2026-111357 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-02.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Ivanti Connect Secure Missing Authentication for Critical Function Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "Ivanti"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
+          "location": "CISA advisory archive",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-30",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/alerts/2026/10/30/cisa-adds-two-known-exploited-vulnerabilities-catalog",
+          "url": "https://www.cisa.gov/news-events/alerts/2026/10/30/cisa-adds-two-known-exploited-vulnerabilities-catalog"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-F635E51B469926",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-10-30",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "e62d4a02c82c595900623ae3bec7c5a51c585e36ba50c064645b2a36512cde2d",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/alerts/2026/10/30/cisa-adds-two-known-exploited-vulnerabilities-catalog",
+      "status": "active",
+      "summary": "Publisher security advisory indexed in the CISA advisory archive.",
+      "tags": [],
+      "title": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "actors": [
+        "Onyx Sleet",
+        "Pearl Sleet",
+        "Jasper Sleet",
+        "Sapphire Sleet",
+        "North Korea"
+      ],
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "Microsoft documented North Korean actors adopting AI, identified Onyx Sleet and Pearl Sleet using ARTEX, and listed Defender detections for Jasper Sleet sign-ins and Sapphire Sleet-related ProcmacSteal payloads.",
+          "location": "AI-assisted development, operational scaling and Microsoft Defender detections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-29",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/29/tracking-ai-adoption-in-north-korean-threat-actor-tradecraft/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/10/29/tracking-ai-adoption-in-north-korean-threat-actor-tradecraft/"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [
+        "HF-2026-0019",
+        "HF-2026-0020"
+      ],
+      "id": "HF-INT-ECB2698675C7A2",
+      "in_window": true,
+      "indicators": [],
+      "kind": "Research",
+      "published": "2026-10-29",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 2,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "8d82cb68b945fc86a42cf1f4e3fc60a5815ef88bac753b8efd02da3cc171e9f8",
+      "software": [
+        "ARTEX",
+        "ProcmacSteal"
+      ],
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/29/tracking-ai-adoption-in-north-korean-threat-actor-tradecraft/",
+      "status": "active",
+      "summary": "Microsoft documented North Korean actors adopting AI, identified Onyx Sleet and Pearl Sleet using ARTEX, and listed Defender detections for Jasper Sleet sign-ins and Sapphire Sleet-related ProcmacSteal payloads.",
+      "tags": [
+        "Agentic AI",
+        "Nation-State",
+        "Supply Chain",
+        "Identity"
+      ],
+      "techniques": [
+        "T1078.004",
+        "T1195.002"
+      ],
+      "title": "Tracking AI adoption in North Korean threat actor tradecraft",
+      "updated": "2026-11-25T02:32:19Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-76418"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-29",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-76418",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-76418"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-FD8AE1BA97BCAE",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "Secure Firewall ASA Software and Cisco Secure FTD Software",
+      "published": "2026-10-29",
+      "ransomware_use": "unknown",
+      "related": [],
+      "remediation_due": "2026-11-01",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "92c0c16109e4b1888fd21a7bdb07e1cb697a4eb281ad5b95a112945f0f18c183",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-76418",
+      "status": "active",
+      "summary": "CISA added CVE-2026-76418 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-01.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Cisco Secure Firewall ASA Software and Cisco Secure FTD Software Unchecked Return Value to NULL Pointer Dereference Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "Cisco"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-97229"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-29",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-97229",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-97229"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-0CE9B2BB5E966C",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "Community Edition and Enterprise Edition",
+      "published": "2026-10-29",
+      "ransomware_use": "unknown",
+      "related": [],
+      "remediation_due": "2026-11-01",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "60b29eeed798e5c630679236cd14d1f234f4e322b53967e52edaefa3de29d62a",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-97229",
+      "status": "active",
+      "summary": "CISA added CVE-2026-97229 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-01.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "GitLab Community Edition and Enterprise Edition Integer Overflow or Wraparound Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "GitLab"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
+          "location": "CISA advisory archive",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-29",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/alerts/2026/10/29/cisa-adds-two-known-exploited-vulnerabilities-catalog",
+          "url": "https://www.cisa.gov/news-events/alerts/2026/10/29/cisa-adds-two-known-exploited-vulnerabilities-catalog"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-E24342C52A0B2E",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-10-29",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "bf9f37c2e4d8e8a30977510fca02cfe7b82aaa5a1c575c730b511c7182371a6e",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/alerts/2026/10/29/cisa-adds-two-known-exploited-vulnerabilities-catalog",
+      "status": "active",
+      "summary": "Publisher security advisory indexed in the CISA advisory archive.",
+      "tags": [],
+      "title": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "The CISO’s evolving role: Protecting and defending in the agentic era",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-28",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/28/the-cisos-evolving-role-protecting-and-defending-in-the-agentic-era/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/10/28/the-cisos-evolving-role-protecting-and-defending-in-the-agentic-era/"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-9DF20833F43DE2",
+      "in_window": true,
+      "kind": "Research",
+      "published": "2026-10-28",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "f7893475c3ac35cb57c91f28d39c309c67084e9522a4f72220530ade0a8a1179",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/28/the-cisos-evolving-role-protecting-and-defending-in-the-agentic-era/",
+      "status": "active",
+      "summary": "Publisher research and guidance. Topics include identity, agentic ai.",
+      "tags": [
+        "Identity",
+        "Agentic AI"
+      ],
+      "title": "The CISO’s evolving role: Protecting and defending in the agentic era",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-41709"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-28",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-41709",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-41709"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-DEF252073212E7",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "VMware ESX",
+      "published": "2026-10-28",
+      "ransomware_use": "unknown",
+      "related": [],
+      "remediation_due": "2026-11-11",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "f68df0ff6859055bcf491c77855cf044da22d1e933ea3db26816bb39c0246f10",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-41709",
+      "status": "active",
+      "summary": "CISA added CVE-2026-41709 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-11.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Broadcom VMWare ESX Insufficient Logging Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "Broadcom"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-46300"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-28",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-46300",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-46300"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-AD833AA038C084",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "Kernel",
+      "published": "2026-10-28",
+      "ransomware_use": "unknown",
+      "related": [],
+      "remediation_due": "2026-10-31",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "bce42ec607a27f057073e9e6b0a67a93f482abcbcea9f35bd4ea1dfa219f74a1",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-46300",
+      "status": "active",
+      "summary": "CISA added CVE-2026-46300 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-10-31.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Linux Kernel Missing Initialization of a Variable Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "Linux"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
+          "location": "CISA advisory archive",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-28",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/alerts/2026/10/28/cisa-adds-two-known-exploited-vulnerabilities-catalog",
+          "url": "https://www.cisa.gov/news-events/alerts/2026/10/28/cisa-adds-two-known-exploited-vulnerabilities-catalog"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-22D2CCD5354388",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-10-28",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "5fa8f3c8c55174540c37edd3acbd8043c966f55904c7bfc311083b40dbdbe197",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/alerts/2026/10/28/cisa-adds-two-known-exploited-vulnerabilities-catalog",
+      "status": "active",
+      "summary": "Publisher security advisory indexed in the CISA advisory archive.",
+      "tags": [],
+      "title": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "From industry concern to practical action: the value of working with regulators",
+          "location": "Publisher feed entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-27",
+          "source": "ncsc",
+          "source_id": "https://www.ncsc.gov.uk/blogs/industry-concern-practical-action-value-working-regulators",
+          "url": "https://www.ncsc.gov.uk/blogs/industry-concern-practical-action-value-working-regulators"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-DC5C27B683BCF6",
+      "in_window": true,
+      "kind": "Research",
+      "published": "2026-10-27",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "b8b8b97cc6a4c1786095d852a4955809db92949c4b0599d7b50af228ae2624c6",
+      "source": "ncsc",
+      "source_id": "https://www.ncsc.gov.uk/blogs/industry-concern-practical-action-value-working-regulators",
+      "status": "active",
+      "summary": "Publisher research and guidance.",
+      "tags": [],
+      "title": "From industry concern to practical action: the value of working with regulators",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-48356"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-27",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-48356",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-48356"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-75D56F2193025F",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "Commerce and Magento",
+      "published": "2026-10-27",
+      "ransomware_use": "unknown",
+      "related": [],
+      "remediation_due": "2026-11-10",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "612f49ef2a6a243253f1d8e5a0ff2261f1a37429c94fb8377bdd82c59b398cd4",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-48356",
+      "status": "active",
+      "summary": "CISA added CVE-2026-48356 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-10.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Adobe Commerce and Magento Unrestricted Upload of File with Dangerous Type Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "Adobe"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-111497"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-27",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-111497",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-111497"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-10996733474B42",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "Brotli",
+      "published": "2026-10-27",
+      "ransomware_use": "unknown",
+      "related": [
+        "HF-INT-3B573666DE1648",
+        "HF-INT-652C8F30B0994D",
+        "HF-INT-91475641F52FB3",
+        "HF-INT-F45D3069B40C90",
+        "HF-INT-FF020DED0D3324"
+      ],
+      "remediation_due": "2026-11-10",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "47f275a57adf059babb3d5f584045fc785a7b6f0ff320df388c2582430f1e52d",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-111497",
+      "status": "active",
+      "summary": "CISA added CVE-2026-111497 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-10.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "Google Brotli Unchecked Return Value Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "Google"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
+          "location": "CISA advisory archive",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-27",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/alerts/2026/10/27/cisa-adds-two-known-exploited-vulnerabilities-catalog",
+          "url": "https://www.cisa.gov/news-events/alerts/2026/10/27/cisa-adds-two-known-exploited-vulnerabilities-catalog"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-F7763A757C0C37",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-10-27",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "58e05f1b8a0391df513f68112cee3d993be4df1eb36cd598f271be15e5120aa1",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/alerts/2026/10/27/cisa-adds-two-known-exploited-vulnerabilities-catalog",
+      "status": "active",
+      "summary": "Publisher security advisory indexed in the CISA advisory archive.",
+      "tags": [],
+      "title": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-109618"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-26",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-109618",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-109618"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-3B6E9E7F34FEAC",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "PHP",
+      "published": "2026-10-26",
+      "ransomware_use": "unknown",
+      "related": [
+        "HF-INT-057C02B04CC39C",
+        "HF-INT-89146FF5418730"
+      ],
+      "remediation_due": "2026-10-29",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "bb81cae27cefa6d0f0562e07469801b4da25a014985a963e98040436ed77a880",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-109618",
+      "status": "active",
+      "summary": "CISA added CVE-2026-109618 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-10-29.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "PHP Memory Corruption Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "PHP Group"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [
+        "CVE-2026-109619"
+      ],
+      "evidence": [
+        {
+          "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+          "location": "KEV catalog entry",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-26",
+          "source": "cisa-kev",
+          "source_id": "CVE-2026-109619",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-109619"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-1CB9F463F8DAF5",
+      "in_window": true,
+      "kind": "Vulnerability",
+      "product": "PHP",
+      "published": "2026-10-26",
+      "ransomware_use": "unknown",
+      "related": [
+        "HF-INT-057C02B04CC39C",
+        "HF-INT-89146FF5418730"
+      ],
+      "remediation_due": "2026-10-29",
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "high",
+      "signature": "be6f2deeef16400e331c3bd43f1f8d5c24839badff3b7b126df91706f0c40660",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-109619",
+      "status": "active",
+      "summary": "CISA added CVE-2026-109619 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-10-29.",
+      "tags": [
+        "Exploitation"
+      ],
+      "title": "PHP Stale Internal Request-State Vulnerability",
+      "updated": "2026-11-25T01:48:50Z",
+      "vendor": "PHP Group"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
+          "location": "CISA advisory archive",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-26",
+          "source": "cisa-advisories",
+          "source_id": "https://www.cisa.gov/news-events/alerts/2026/10/26/cisa-adds-two-known-exploited-vulnerabilities-catalog",
+          "url": "https://www.cisa.gov/news-events/alerts/2026/10/26/cisa-adds-two-known-exploited-vulnerabilities-catalog"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [],
+      "id": "HF-INT-F6B4DC44BC2F93",
+      "in_window": true,
+      "kind": "Advisory",
+      "published": "2026-10-26",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "6d7e78bc0ea551a70794dff9b4c35d8f111c3930daf9ad60f873878adf53b5b6",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/alerts/2026/10/26/cisa-adds-two-known-exploited-vulnerabilities-catalog",
+      "status": "active",
+      "summary": "Publisher security advisory indexed in the CISA advisory archive.",
+      "tags": [],
+      "title": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
+      "updated": "2026-11-25T01:48:50Z"
+    },
+    {
+      "actors": [
+        "Storm-0940",
+        "China"
+      ],
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "Microsoft attributed application abuse, password spraying and cloud role or credential changes to Storm-0940, a China-state-aligned actor, in activity that included the ConnectWise Cloud Backup compromise.",
+          "location": "Observed attack patterns, Sentinel queries and ATT&CK mapping",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-21",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/"
+        }
+      ],
+      "first_retrieved": "2026-11-25T02:32:19Z",
+      "hunts": [
+        "HF-2026-0015",
+        "HF-2026-0016",
+        "HF-2026-0017",
+        "HF-2026-0018"
+      ],
+      "id": "HF-INT-F111D392DD54D8",
+      "in_window": false,
+      "indicators": [
+        "HF-IOC-30B83342101D2F",
+        "HF-IOC-85B8A518112C30",
+        "HF-IOC-45D7C4479888DC"
+      ],
+      "kind": "Research",
+      "published": "2026-10-21",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "bf5af6f45e04380a403bcfc86e391b6045a589eb1d2d249c3202cdbafba0781a",
+      "software": [],
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/",
+      "status": "active",
+      "summary": "Microsoft attributed application abuse, password spraying and cloud role or credential changes to Storm-0940, a China-state-aligned actor, in activity that included the ConnectWise Cloud Backup compromise.",
+      "tags": [
+        "Agentic AI",
+        "Nation-State",
+        "Supply Chain",
+        "Identity"
+      ],
+      "techniques": [
+        "T1078.004",
+        "T1098.001",
+        "T1098.003",
+        "T1114.002",
+        "T1195.002",
+        "T1199"
+      ],
+      "title": "AI-driven, large-scale nation-state campaign using ARTEX enables supply chain compromise",
+      "updated": "2026-11-25T02:32:19Z"
+    },
+    {
+      "confidence": "Publisher-reported",
+      "cves": [],
+      "evidence": [
+        {
+          "claim": "Microsoft observed PowerShell downloading an MSI after fraudulent remote support access.",
+          "location": "Execution and MITRE ATT&CK sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-09-02",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/09/02/impersonating-it-support-threat-actors-turn-remote-session-into-enterprise-wide-access/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/09/02/impersonating-it-support-threat-actors-turn-remote-session-into-enterprise-wide-access/"
+        }
+      ],
+      "first_retrieved": "2026-11-25T01:48:50Z",
+      "hunts": [
+        "HF-2025-0001"
+      ],
+      "id": "HF-INT-3906A981456D92",
+      "in_window": false,
+      "indicators": [],
+      "kind": "Research",
+      "published": "2026-09-02",
+      "related": [],
+      "retrieved": "2026-11-25T02:35:14Z",
+      "revision": 1,
+      "schema_version": 1,
+      "severity": "unrated",
+      "signature": "93b67f5e8a931ac90c8273d95071ebde8bfe255230730a557d601a32bbe47bda",
+      "software": [],
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/09/02/impersonating-it-support-threat-actors-turn-remote-session-into-enterprise-wide-access/",
+      "status": "active",
+      "summary": "Microsoft observed PowerShell downloading an MSI after fraudulent remote support access.",
+      "tags": [
+        "LOLBins",
+        "Phishing"
+      ],
+      "techniques": [
+        "T1059.001",
+        "T1105"
+      ],
+      "title": "Impersonating IT support: how threat actors turn a remote session into enterprise-wide access",
+      "updated": "2026-11-25T01:48:50Z"
+    }
+  ],
+  "release_id": "hf-20261124-6f3fbfc7f039",
+  "schema_version": 1
+}

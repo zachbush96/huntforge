@@ -1,6 +1,6 @@
 {
   "accepted": 35,
-  "changes": 43,
+  "changes": 2,
   "engine": {
     "calls": 0,
     "cost_usd": 0,
@@ -10,7 +10,7 @@
     "tokens": 0,
     "type": "deterministic reviewed rules"
   },
-  "finished": "2026-11-25T02:32:25Z",
+  "finished": "2026-11-25T02:35:21Z",
   "quarantined": [],
   "schema_version": 1,
   "sources": [
@@ -20,7 +20,7 @@
       "first_available": "2021-11-03",
       "id": "cisa-kev",
       "name": "CISA KEV",
-      "retrieved": "2026-11-25T02:32:19Z",
+      "retrieved": "2026-11-25T02:35:14Z",
       "snapshot": "2026-11-24T17:47:46.199Z",
       "state": "live"
     },
@@ -31,7 +31,7 @@
       "first_available": "2026-10-25",
       "id": "first-epss",
       "name": "FIRST EPSS",
-      "retrieved": "2026-11-25T02:32:19Z",
+      "retrieved": "2026-11-25T02:35:14Z",
       "score_days": 31,
       "snapshot": "2026-11-24",
       "state": "live"
@@ -43,7 +43,7 @@
       "first_available": "2026-10-23",
       "id": "cisa-advisories",
       "name": "CISA Advisories",
-      "retrieved": "2026-11-25T02:32:19Z",
+      "retrieved": "2026-11-25T02:35:14Z",
       "state": "live"
     },
     {
@@ -53,7 +53,7 @@
       "first_available": "2026-10-07",
       "id": "microsoft",
       "name": "Microsoft Security",
-      "retrieved": "2026-11-25T02:32:19Z",
+      "retrieved": "2026-11-25T02:35:14Z",
       "state": "live"
     },
     {
@@ -63,7 +63,7 @@
       "first_available": "2026-09-15",
       "id": "ncsc",
       "name": "UK NCSC",
-      "retrieved": "2026-11-25T02:32:19Z",
+      "retrieved": "2026-11-25T02:35:14Z",
       "state": "live"
     },
     {
@@ -72,12 +72,12 @@
       "coverage_note": "Current Enterprise snapshot.",
       "id": "mitre",
       "name": "MITRE ATT&CK®",
-      "retrieved": "2026-11-25T02:32:19Z",
+      "retrieved": "2026-11-25T02:35:14Z",
       "snapshot": "2026-11-05T15:11:27.678Z",
       "state": "live"
     }
   ],
-  "started": "2026-11-25T02:32:19Z",
+  "started": "2026-11-25T02:35:14Z",
   "status": "passed",
   "window": {
     "from": "2026-10-25",

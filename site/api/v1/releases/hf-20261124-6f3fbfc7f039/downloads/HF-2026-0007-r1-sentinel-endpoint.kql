@@ -1,0 +1,5 @@
+DeviceNetworkEvents
+| where TimeGenerated > ago(14d)
+| where RemoteIP in ("91.92.240.238", "85.11.168.45", "31.77.229.35", "199.19.95.66", "199.19.95.67", "199.19.95.68")
+| project TimeGenerated, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine, RemoteIP, RemotePort, ActionType
+| order by TimeGenerated desc

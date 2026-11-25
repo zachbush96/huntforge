@@ -1,0 +1,49 @@
+{
+  "assumptions": "Route Graph activity logs, Key Vault resource-specific diagnostics, or Azure Activity logs to the workspace as required by the selected table.",
+  "id": "sentinel-azure",
+  "name": "Sentinel · Azure and Graph audit",
+  "release_id": "hf-20261124-6f3fbfc7f039",
+  "revision": 1,
+  "schema_version": 1,
+  "short": "Sentinel Azure",
+  "source": "Azure resource or Microsoft Graph diagnostics",
+  "synthetic": false,
+  "tables": {
+    "AZKVAuditLogs": {
+      "capability": "key-vault",
+      "columns": {
+        "CallerIpAddress": "string",
+        "OperationName": "string",
+        "ResultType": "string",
+        "TimeGenerated": "datetime",
+        "_ResourceId": "string"
+      },
+      "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/azkvauditlogs",
+      "mappings": {
+        "Timestamp": "TimeGenerated"
+      },
+      "semantics": "TimeGenerated is the timestamp exposed by the workspace table.",
+      "timestamp": "TimeGenerated"
+    },
+    "MicrosoftGraphActivityLogs": {
+      "capability": "graph",
+      "columns": {
+        "AppId": "string",
+        "IPAddress": "string",
+        "RequestMethod": "string",
+        "RequestUri": "string",
+        "ResponseSizeBytes": "int",
+        "ResponseStatusCode": "int",
+        "ServicePrincipalId": "string",
+        "TimeGenerated": "datetime"
+      },
+      "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/microsoftgraphactivitylogs",
+      "mappings": {
+        "Timestamp": "TimeGenerated"
+      },
+      "semantics": "TimeGenerated is the timestamp exposed by the workspace table.",
+      "timestamp": "TimeGenerated"
+    }
+  },
+  "target": "Microsoft Sentinel Logs"
+}

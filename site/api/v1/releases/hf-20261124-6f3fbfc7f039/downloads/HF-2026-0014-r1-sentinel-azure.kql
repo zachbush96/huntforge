@@ -1,0 +1,7 @@
+MicrosoftGraphActivityLogs
+| where TimeGenerated > ago(7d)
+| where RequestMethod == "GET" and isnotempty(ServicePrincipalId)
+| where tostring(parse_url(RequestUri).Path) has_any ("users", "groups", "servicePrincipals")
+| summarize Calls = count(), Paths = dcount(tostring(parse_url(RequestUri).Path)), Successes = countif(ResponseStatusCode between (200 .. 299)) by AppId, ServicePrincipalId, IPAddress, Window = bin(TimeGenerated, 5m)
+| where Calls >= 30 and Paths >= 10
+| order by Calls desc

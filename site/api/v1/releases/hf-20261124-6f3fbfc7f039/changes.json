@@ -1,0 +1,22 @@
+{
+  "count": 2,
+  "items": [
+    {
+      "action": "updated",
+      "id": "HF-2026-0019",
+      "revision": 2,
+      "title": "North Korea · Jasper Sleet Sign-in Alerts",
+      "type": "hunt"
+    },
+    {
+      "action": "updated",
+      "id": "HF-2026-0020",
+      "revision": 2,
+      "title": "North Korea · Sapphire Sleet ProcmacSteal Alerts",
+      "type": "hunt"
+    }
+  ],
+  "release_id": "hf-20261124-6f3fbfc7f039",
+  "schema_version": 1,
+  "tombstones": []
+}

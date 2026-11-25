@@ -1,0 +1,146 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-102895"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-24",
+      "epss": "0.187870000",
+      "percentile": "0.973340000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.18787000",
+      "percentile": "0.97351000"
+    },
+    {
+      "date": "2026-11-22",
+      "epss": "0.18787000",
+      "percentile": "0.97351000"
+    },
+    {
+      "date": "2026-11-21",
+      "epss": "0.18787000",
+      "percentile": "0.97349000"
+    },
+    {
+      "date": "2026-11-20",
+      "epss": "0.05730000",
+      "percentile": "0.93229000"
+    },
+    {
+      "date": "2026-11-19",
+      "epss": "0.05730000",
+      "percentile": "0.93208000"
+    },
+    {
+      "date": "2026-11-18",
+      "epss": "0.05730000",
+      "percentile": "0.93197000"
+    },
+    {
+      "date": "2026-11-17",
+      "epss": "0.00517000",
+      "percentile": "0.44574000"
+    },
+    {
+      "date": "2026-11-16",
+      "epss": "0.00517000",
+      "percentile": "0.44543000"
+    },
+    {
+      "date": "2026-11-15",
+      "epss": "0.00517000",
+      "percentile": "0.44547000"
+    },
+    {
+      "date": "2026-11-14",
+      "epss": "0.00517000",
+      "percentile": "0.44564000"
+    },
+    {
+      "date": "2026-11-13",
+      "epss": "0.00517000",
+      "percentile": "0.44535000"
+    },
+    {
+      "date": "2026-11-12",
+      "epss": "0.00517000",
+      "percentile": "0.44486000"
+    },
+    {
+      "date": "2026-11-11",
+      "epss": "0.00517000",
+      "percentile": "0.44442000"
+    },
+    {
+      "date": "2026-11-10",
+      "epss": "0.00555000",
+      "percentile": "0.46664000"
+    },
+    {
+      "date": "2026-11-09",
+      "epss": "0.00331000",
+      "percentile": "0.26460000"
+    },
+    {
+      "date": "2026-11-08",
+      "epss": "0.00331000",
+      "percentile": "0.26445000"
+    },
+    {
+      "date": "2026-11-07",
+      "epss": "0.00331000",
+      "percentile": "0.26427000"
+    },
+    {
+      "date": "2026-11-06",
+      "epss": "0.00331000",
+      "percentile": "0.26395000"
+    },
+    {
+      "date": "2026-11-05",
+      "epss": "0.00331000",
+      "percentile": "0.26401000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-09",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-102895",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-102895"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-BAE39A1E08171F",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "GPUStack",
+  "published": "2026-11-09",
+  "ransomware_use": "unknown",
+  "related": [],
+  "release_id": "hf-20261124-6f3fbfc7f039",
+  "remediation_due": "2026-11-12",
+  "retrieved": "2026-11-25T02:35:14Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "737a144cf09dbdea255b5f2dedff416663c7679dfa70be182133e2cf7105d778",
+  "source": "cisa-kev",
+  "source_id": "CVE-2026-102895",
+  "status": "active",
+  "summary": "CISA added CVE-2026-102895 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-12.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "GPUStack Improper Authentication Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "GPUStack"
+}

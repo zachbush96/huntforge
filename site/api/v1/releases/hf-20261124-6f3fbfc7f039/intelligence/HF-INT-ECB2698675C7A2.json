@@ -1,0 +1,61 @@
+{
+  "actors": [
+    "Onyx Sleet",
+    "Pearl Sleet",
+    "Jasper Sleet",
+    "Sapphire Sleet",
+    "North Korea"
+  ],
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Microsoft documented North Korean actors adopting AI, identified Onyx Sleet and Pearl Sleet using ARTEX, and listed Defender detections for Jasper Sleet sign-ins and Sapphire Sleet-related ProcmacSteal payloads.",
+      "location": "AI-assisted development, operational scaling and Microsoft Defender detections",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-10-29",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/29/tracking-ai-adoption-in-north-korean-threat-actor-tradecraft/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/10/29/tracking-ai-adoption-in-north-korean-threat-actor-tradecraft/"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [
+    "HF-2026-0019",
+    "HF-2026-0020"
+  ],
+  "id": "HF-INT-ECB2698675C7A2",
+  "in_window": true,
+  "indicators": [],
+  "kind": "Research",
+  "published": "2026-10-29",
+  "related": [],
+  "release_id": "hf-20261124-6f3fbfc7f039",
+  "retrieved": "2026-11-25T02:35:14Z",
+  "revision": 2,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "8d82cb68b945fc86a42cf1f4e3fc60a5815ef88bac753b8efd02da3cc171e9f8",
+  "software": [
+    "ARTEX",
+    "ProcmacSteal"
+  ],
+  "source": "microsoft",
+  "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/29/tracking-ai-adoption-in-north-korean-threat-actor-tradecraft/",
+  "status": "active",
+  "summary": "Microsoft documented North Korean actors adopting AI, identified Onyx Sleet and Pearl Sleet using ARTEX, and listed Defender detections for Jasper Sleet sign-ins and Sapphire Sleet-related ProcmacSteal payloads.",
+  "tags": [
+    "Agentic AI",
+    "Nation-State",
+    "Supply Chain",
+    "Identity"
+  ],
+  "techniques": [
+    "T1078.004",
+    "T1195.002"
+  ],
+  "title": "Tracking AI adoption in North Korean threat actor tradecraft",
+  "updated": "2026-11-25T02:32:19Z"
+}

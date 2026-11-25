@@ -89,7 +89,7 @@ function filters(data,state,kind) {
       dropdown("indicatorType","Indicator type",namedValues(data.indicators.map(row=>row.type),value=>value.toUpperCase()),f.indicatorType),
       dropdown("hunt","Related hunt",data.hunts.filter(row=>row.indicator_ids?.length).map(row=>[row.id,row.title]),f.hunt),dateRange] :
     kind === "adversaries" ? [dropdown("category","Entity type",[["intrusion-set","Group"],["malware","Software"]],f.category)] :
-    kind === "techniques" ? [tactics,dropdown("coverage","Query coverage",[["sentinel","With Sentinel KQL"]],f.coverage)] : [dropdown("severity","Severity",[["high","High"],["medium","Medium"],["low","Low"],["unrated","Unrated"]],f.severity), source, dateRange, technique,
+    kind === "techniques" ? [tactics,dropdown("coverage","Query coverage",[["sentinel","With behavioral hunts"]],f.coverage)] : [dropdown("severity","Severity",[["high","High"],["medium","Medium"],["low","Low"],["unrated","Unrated"]],f.severity), source, dateRange, technique,
       dropdown("tag","Topic",namedValues(data.records.flatMap(row=>row.tags)),f.tag),
       dropdown("malware","Software",namedValues(data.records.flatMap(row=>row.software || [])),f.malware),
       `<label>CVE<input type="search" data-filter="cve" value="${escape(f.cve || "")}" placeholder="CVE identifier"></label>`];
@@ -128,7 +128,8 @@ function entityCard(data,kind,row) {
     <h2><a href="${route(kind,row.id)}">${neutral(row.title)}</a></h2>${row.aliases?.length > 1 ? `<p>${neutral(row.aliases.slice(1,6).join(", "))}</p>` : ""}
     ${row.description ? `<p class="technique-summary">${neutral(row.description)}</p>` : ""}
     <div class="chips">${(row.tactics || []).map(tactic=>link(tacticName(tactic),route("techniques",null,{tactic}),"chip")).join("")}
-    ${matches ? link(`${matches} Sentinel ${matches === 1 ? "query" : "queries"}`,route("techniques",row.id),"chip") : ""}</div></article>`;
+    ${matches ? link(`${matches} behavioral ${matches === 1 ? "hunt" : "hunts"}`,route("techniques",row.id),"chip") :
+      row.alert_query ? link("Alert pivot",route("techniques",row.id),"chip") : ""}</div></article>`;
 }
 
 export function catalog(data, state) {
@@ -232,7 +233,15 @@ export function entityDetail(data,state) {
           </div>
         </div>
       </details>`;
-    }).join("") : '<p class="empty">HuntForge does not have a validated Sentinel query for this technique yet.</p>'}</section>` : "";
+    }).join("") : '<p>Behavioral hunt coverage for this technique is pending.</p>'}
+    ${row.alert_query ? `<details class="mapping technique-query">
+      <summary>Look up alerts tagged ${escape(row.id)} · SecurityAlert</summary>
+      <div>
+        <p>This pivot finds existing Sentinel alerts tagged with this exact technique ID. It relies on connected products populating the ATT&amp;CK tags.</p>
+        <pre class="code-surface" tabindex="0"><code>${escape(row.alert_query)}</code></pre>
+        <button type="button" class="btn" data-copy-technique="alert">${icon("copy")} Copy KQL</button>
+      </div>
+    </details>` : ""}</section>` : "";
   return shell(kind,`<p>${external("Open MITRE ATT&CK reference",row.url)}</p><div class="chips">${row.tactics?.map(tactic=>
     link(tacticName(tactic),route("techniques",null,{tactic}),"chip")).join("") || ""}</div>
     <p class="mono">Modified ${day(row.modified)} · Enterprise ATT&CK ${escape(data.referenceVersion)}</p>

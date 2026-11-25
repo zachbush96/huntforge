@@ -1,0 +1,47 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-111497"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Siemens Industrial Automation Software Products",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-17",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-03",
+      "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-03"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-3B573666DE1648",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-17",
+  "related": [
+    "HF-INT-10996733474B42",
+    "HF-INT-652C8F30B0994D",
+    "HF-INT-91475641F52FB3",
+    "HF-INT-F45D3069B40C90",
+    "HF-INT-FF020DED0D3324"
+  ],
+  "release_id": "hf-20261124-6f3fbfc7f039",
+  "retrieved": "2026-11-25T02:35:14Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "08f5155ac19d27d21cc6b48f6f86099a6f17af32f101224fa30fbaa851c862eb",
+  "source": "cisa-advisories",
+  "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-03",
+  "status": "active",
+  "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-111497.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Siemens Industrial Automation Software Products",
+  "updated": "2026-11-25T01:48:50Z"
+}

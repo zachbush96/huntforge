@@ -1,0 +1,42 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-85114",
+    "CVE-2026-85115"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Siemens .NET Client Library for SIMATIC S7 Webserver API",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-17",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-02",
+      "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-02"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-639FAC0F8727E0",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-17",
+  "related": [],
+  "release_id": "hf-20261124-6f3fbfc7f039",
+  "retrieved": "2026-11-25T02:35:14Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "1aa5860ded28bed07828258ef87d3e4f525418b4601b26bb3508f4e2ad9a14e1",
+  "source": "cisa-advisories",
+  "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-02",
+  "status": "active",
+  "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-85114, CVE-2026-85115.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Siemens .NET Client Library for SIMATIC S7 Webserver API",
+  "updated": "2026-11-25T01:48:50Z"
+}

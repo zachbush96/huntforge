@@ -1,0 +1,5 @@
+DeviceFileEvents
+| where TimeGenerated > ago(7d)
+| where FolderPath startswith "/dev/shm/" and FileName contains "gs-netcat"
+| project TimeGenerated, DeviceName, FolderPath, FileName, SHA256, ActionType, InitiatingProcessFileName
+| order by TimeGenerated desc

@@ -1,0 +1,78 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-131914"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-24",
+      "epss": "0.006140000",
+      "percentile": "0.501520000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.00614000",
+      "percentile": "0.50367000"
+    },
+    {
+      "date": "2026-11-22",
+      "epss": "0.00614000",
+      "percentile": "0.50368000"
+    },
+    {
+      "date": "2026-11-21",
+      "epss": "0.00614000",
+      "percentile": "0.50345000"
+    },
+    {
+      "date": "2026-11-20",
+      "epss": "0.00614000",
+      "percentile": "0.50362000"
+    },
+    {
+      "date": "2026-11-19",
+      "epss": "0.00614000",
+      "percentile": "0.50233000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-24",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-131914",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-131914"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-814ED5C7C0B10D",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "AntiCsrf",
+  "published": "2026-11-24",
+  "ransomware_use": "unknown",
+  "related": [
+    "HF-INT-165729C3CBFBB2"
+  ],
+  "release_id": "hf-20261124-6f3fbfc7f039",
+  "remediation_due": "2026-11-27",
+  "retrieved": "2026-11-25T02:35:14Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "42ec16e2b78a88957ecef22579f321ad7f8c0f717e517d2fd1e63cc2923e773f",
+  "source": "cisa-kev",
+  "source_id": "CVE-2026-131914",
+  "status": "active",
+  "summary": "CISA added CVE-2026-131914 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-27.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Idunno AntiCsrf Deserialization of Untrusted Data Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "Idunno"
+}

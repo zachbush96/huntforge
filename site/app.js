@@ -26,10 +26,13 @@ function save(key,value) {
   catch { /* Preferences remain active for the browser session. */ }
 }
 const saved = stored("preferences", {});
+const savedProfiles = saved?.profiles && typeof saved.profiles === "object" ? saved.profiles : {};
+const preferredProfiles = saved?.profilePreferenceVersion === 2 ? savedProfiles :
+  Object.fromEntries(Object.entries(savedProfiles).filter(([,profile])=>profile !== "defender-xdr"));
 const state = {
   section:"brief", id:null, tab:"query", page:0, filters:{}, hunt:null, detail:null, error:false,
   profile:null, pack:new Set(), preferences:{json:saved?.json === true, days:[1,3,7,14,30].includes(saved?.days) ? saved.days : 7,
-    profiles:saved?.profiles && typeof saved.profiles === "object" ? saved.profiles : {}, followed:Array.isArray(saved?.followed) ? saved.followed : []},
+    profiles:preferredProfiles, profilePreferenceVersion:2, followed:Array.isArray(saved?.followed) ? saved.followed : []},
   previousVisit:stored("last-release", null)
 };
 
@@ -220,7 +223,7 @@ async function copy(value,label) {
     await navigator.clipboard.writeText(value);
     announce(`${label} copied.`);
     const focused = document.activeElement;
-    if (focused?.matches("[data-action=copy-query], [data-copy-url]") && !focused.hasAttribute("data-copied")) {
+    if (focused?.matches("[data-action=copy-query], [data-copy-url], [data-copy-technique], [data-explain=copy]") && !focused.hasAttribute("data-copied")) {
       const original = focused.innerHTML;
       focused.setAttribute("data-copied","");
       focused.innerHTML = icon("check") + " Copied";
@@ -289,8 +292,11 @@ app.addEventListener("click", event=>{
     return;
   }
   if (control.dataset.copyTechnique) {
-    const card = state.detail?.huntCards?.find(row=>row.id===control.dataset.copyTechnique);
-    if (card) copy(card.variants[card.profiles[0]].queries[card.lookback].table,"KQL");
+    if (control.dataset.copyTechnique === "alert") copy(state.detail?.alert_query,"KQL");
+    else {
+      const card = state.detail?.huntCards?.find(row=>row.id===control.dataset.copyTechnique);
+      if (card) copy(card.variants[card.profiles[0]].queries[card.lookback].table,"KQL");
+    }
     return;
   }
   if (control.dataset.explain) {

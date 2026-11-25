@@ -1,0 +1,158 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-116606"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-24",
+      "epss": "0.745200000",
+      "percentile": "0.995020000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.74520000",
+      "percentile": "0.99506000"
+    },
+    {
+      "date": "2026-11-22",
+      "epss": "0.74520000",
+      "percentile": "0.99506000"
+    },
+    {
+      "date": "2026-11-21",
+      "epss": "0.74520000",
+      "percentile": "0.99506000"
+    },
+    {
+      "date": "2026-11-20",
+      "epss": "0.10947000",
+      "percentile": "0.95991000"
+    },
+    {
+      "date": "2026-11-19",
+      "epss": "0.10947000",
+      "percentile": "0.95978000"
+    },
+    {
+      "date": "2026-11-18",
+      "epss": "0.10947000",
+      "percentile": "0.95972000"
+    },
+    {
+      "date": "2026-11-17",
+      "epss": "0.10947000",
+      "percentile": "0.95961000"
+    },
+    {
+      "date": "2026-11-16",
+      "epss": "0.10947000",
+      "percentile": "0.95957000"
+    },
+    {
+      "date": "2026-11-15",
+      "epss": "0.10947000",
+      "percentile": "0.95956000"
+    },
+    {
+      "date": "2026-11-14",
+      "epss": "0.10947000",
+      "percentile": "0.95956000"
+    },
+    {
+      "date": "2026-11-13",
+      "epss": "0.10947000",
+      "percentile": "0.95953000"
+    },
+    {
+      "date": "2026-11-12",
+      "epss": "0.08934000",
+      "percentile": "0.95313000"
+    },
+    {
+      "date": "2026-11-11",
+      "epss": "0.08934000",
+      "percentile": "0.95307000"
+    },
+    {
+      "date": "2026-11-10",
+      "epss": "0.01602000",
+      "percentile": "0.76026000"
+    },
+    {
+      "date": "2026-11-09",
+      "epss": "0.01602000",
+      "percentile": "0.75995000"
+    },
+    {
+      "date": "2026-11-08",
+      "epss": "0.00728000",
+      "percentile": "0.54449000"
+    },
+    {
+      "date": "2026-11-07",
+      "epss": "0.00728000",
+      "percentile": "0.54429000"
+    },
+    {
+      "date": "2026-11-06",
+      "epss": "0.00728000",
+      "percentile": "0.54367000"
+    },
+    {
+      "date": "2026-11-05",
+      "epss": "0.00728000",
+      "percentile": "0.54331000"
+    },
+    {
+      "date": "2026-11-04",
+      "epss": "0.00728000",
+      "percentile": "0.54301000"
+    },
+    {
+      "date": "2026-11-03",
+      "epss": "0.00728000",
+      "percentile": "0.54233000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-10",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-116606",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-116606"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-240DEE846EA1A3",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "Barracuda Email Security Gateway (ESG)",
+  "published": "2026-11-10",
+  "ransomware_use": "unknown",
+  "related": [
+    "HF-INT-F4B34728A6F8E3"
+  ],
+  "release_id": "hf-20261124-6f3fbfc7f039",
+  "remediation_due": "2026-11-13",
+  "retrieved": "2026-11-25T02:35:14Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "ebffb08b0a4cb89a633c7b49aed65f283f91c43c02cd45b3b8bc86d56fd4c7cc",
+  "source": "cisa-kev",
+  "source_id": "CVE-2026-116606",
+  "status": "active",
+  "summary": "CISA added CVE-2026-116606 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-13.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Barracuda Networks Email Security Gateway (ESG) Authentication Bypass Using an Alternate Path or Channel Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "Barracuda Networks"
+}

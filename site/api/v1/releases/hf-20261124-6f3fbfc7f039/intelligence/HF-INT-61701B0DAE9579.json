@@ -1,0 +1,58 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-134624"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-24",
+      "epss": "0.006170000",
+      "percentile": "0.502890000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.00354000",
+      "percentile": "0.29690000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-23",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-134624",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-134624"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-61701B0DAE9579",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "MailAssure",
+  "published": "2026-11-23",
+  "ransomware_use": "unknown",
+  "related": [
+    "HF-INT-75EA09EA3E752E"
+  ],
+  "release_id": "hf-20261124-6f3fbfc7f039",
+  "remediation_due": "2026-11-26",
+  "retrieved": "2026-11-25T02:35:14Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "1f7d35bb2061502eb5dbff76e786d22ad609b5e6d48cdc31f4402d6395fea170",
+  "source": "cisa-kev",
+  "source_id": "CVE-2026-134624",
+  "status": "active",
+  "summary": "CISA added CVE-2026-134624 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-26.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "N-able MailAssure (SpamExperts) Server-Side Request Forgery (SSRF) Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "N-able"
+}

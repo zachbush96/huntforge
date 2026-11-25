@@ -1,0 +1,138 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-90436"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-24",
+      "epss": "0.058740000",
+      "percentile": "0.933170000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.05874000",
+      "percentile": "0.93395000"
+    },
+    {
+      "date": "2026-11-22",
+      "epss": "0.03813000",
+      "percentile": "0.90314000"
+    },
+    {
+      "date": "2026-11-21",
+      "epss": "0.03813000",
+      "percentile": "0.90307000"
+    },
+    {
+      "date": "2026-11-20",
+      "epss": "0.01833000",
+      "percentile": "0.79426000"
+    },
+    {
+      "date": "2026-11-19",
+      "epss": "0.01773000",
+      "percentile": "0.78660000"
+    },
+    {
+      "date": "2026-11-18",
+      "epss": "0.01128000",
+      "percentile": "0.67007000"
+    },
+    {
+      "date": "2026-11-17",
+      "epss": "0.01128000",
+      "percentile": "0.66921000"
+    },
+    {
+      "date": "2026-11-16",
+      "epss": "0.01128000",
+      "percentile": "0.66895000"
+    },
+    {
+      "date": "2026-11-15",
+      "epss": "0.01128000",
+      "percentile": "0.66890000"
+    },
+    {
+      "date": "2026-11-14",
+      "epss": "0.01128000",
+      "percentile": "0.66890000"
+    },
+    {
+      "date": "2026-11-13",
+      "epss": "0.01128000",
+      "percentile": "0.66867000"
+    },
+    {
+      "date": "2026-11-12",
+      "epss": "0.01128000",
+      "percentile": "0.66820000"
+    },
+    {
+      "date": "2026-11-11",
+      "epss": "0.01128000",
+      "percentile": "0.66780000"
+    },
+    {
+      "date": "2026-11-10",
+      "epss": "0.00567000",
+      "percentile": "0.47386000"
+    },
+    {
+      "date": "2026-11-09",
+      "epss": "0.00567000",
+      "percentile": "0.47333000"
+    },
+    {
+      "date": "2026-11-08",
+      "epss": "0.00567000",
+      "percentile": "0.47314000"
+    },
+    {
+      "date": "2026-11-07",
+      "epss": "0.00567000",
+      "percentile": "0.47288000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-18",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-90436",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-90436"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-3D0466478FCBC3",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "Axis",
+  "published": "2026-11-18",
+  "ransomware_use": "unknown",
+  "related": [
+    "HF-INT-2BF6E3B53184CD"
+  ],
+  "release_id": "hf-20261124-6f3fbfc7f039",
+  "remediation_due": "2026-11-21",
+  "retrieved": "2026-11-25T02:35:14Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "11a0cc6807eb8755722005749921aecddfb6b549c781440d600811f7965eff1f",
+  "source": "cisa-kev",
+  "source_id": "CVE-2026-90436",
+  "status": "active",
+  "summary": "CISA added CVE-2026-90436 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-21.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Apache Axis Unsafe Reflection Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "Apache"
+}
