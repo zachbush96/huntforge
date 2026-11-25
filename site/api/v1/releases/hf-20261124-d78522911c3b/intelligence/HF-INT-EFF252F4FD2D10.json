@@ -1,0 +1,153 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-115731"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-24",
+      "epss": "0.128390000",
+      "percentile": "0.963650000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.12839000",
+      "percentile": "0.96392000"
+    },
+    {
+      "date": "2026-11-22",
+      "epss": "0.01231000",
+      "percentile": "0.69697000"
+    },
+    {
+      "date": "2026-11-21",
+      "epss": "0.01231000",
+      "percentile": "0.69681000"
+    },
+    {
+      "date": "2026-11-20",
+      "epss": "0.00691000",
+      "percentile": "0.53746000"
+    },
+    {
+      "date": "2026-11-19",
+      "epss": "0.00691000",
+      "percentile": "0.53604000"
+    },
+    {
+      "date": "2026-11-18",
+      "epss": "0.00691000",
+      "percentile": "0.53546000"
+    },
+    {
+      "date": "2026-11-17",
+      "epss": "0.00366000",
+      "percentile": "0.30882000"
+    },
+    {
+      "date": "2026-11-16",
+      "epss": "0.00366000",
+      "percentile": "0.30861000"
+    },
+    {
+      "date": "2026-11-15",
+      "epss": "0.00366000",
+      "percentile": "0.30850000"
+    },
+    {
+      "date": "2026-11-14",
+      "epss": "0.00366000",
+      "percentile": "0.30878000"
+    },
+    {
+      "date": "2026-11-13",
+      "epss": "0.00366000",
+      "percentile": "0.30850000"
+    },
+    {
+      "date": "2026-11-12",
+      "epss": "0.00366000",
+      "percentile": "0.30829000"
+    },
+    {
+      "date": "2026-11-11",
+      "epss": "0.00366000",
+      "percentile": "0.30790000"
+    },
+    {
+      "date": "2026-11-10",
+      "epss": "0.00366000",
+      "percentile": "0.30683000"
+    },
+    {
+      "date": "2026-11-09",
+      "epss": "0.00366000",
+      "percentile": "0.30634000"
+    },
+    {
+      "date": "2026-11-08",
+      "epss": "0.00366000",
+      "percentile": "0.30617000"
+    },
+    {
+      "date": "2026-11-07",
+      "epss": "0.00366000",
+      "percentile": "0.30593000"
+    },
+    {
+      "date": "2026-11-06",
+      "epss": "0.00366000",
+      "percentile": "0.30552000"
+    },
+    {
+      "date": "2026-11-05",
+      "epss": "0.00366000",
+      "percentile": "0.30573000"
+    },
+    {
+      "date": "2026-11-04",
+      "epss": "0.00366000",
+      "percentile": "0.30574000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-17",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-115731",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-115731"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-EFF252F4FD2D10",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "Puppet Enterprise",
+  "published": "2026-11-17",
+  "ransomware_use": "unknown",
+  "related": [
+    "HF-INT-37902359FB183E"
+  ],
+  "release_id": "hf-20261124-d78522911c3b",
+  "remediation_due": "2026-12-01",
+  "retrieved": "2026-11-25T02:32:19Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "bba2fc90a09221809320c50b8d12a7cab61e955e80578b7d84721470c865dc71",
+  "source": "cisa-kev",
+  "source_id": "CVE-2026-115731",
+  "status": "active",
+  "summary": "CISA added CVE-2026-115731 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-12-01.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Perforce Puppet Enterprise Deserialization of Untrusted Data Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "Perforce"
+}

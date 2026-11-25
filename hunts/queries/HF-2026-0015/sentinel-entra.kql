@@ -1,0 +1,6 @@
+AADServicePrincipalSignInLogs
+| where TimeGenerated > ago(30d)
+| where ResultType == "0" and AppId in ("506e08f9-6e9a-4da4-942b-a099a03644ae", "24205314-2b89-4e07-a2a4-579e898a5640", "0de14c77-b9b0-4137-9360-34878a929827")
+| extend ReportedSource = IPAddress in ("144.172.64.99", "144.172.64.60", "144.172.64.128")
+| project TimeGenerated, ServicePrincipalName, ServicePrincipalId, AppId, IPAddress, ReportedSource, ResourceDisplayName
+| order by TimeGenerated desc

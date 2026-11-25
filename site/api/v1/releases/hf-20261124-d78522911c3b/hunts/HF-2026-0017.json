@@ -1,0 +1,111 @@
+{
+  "actors": [
+    "Storm-0940",
+    "China"
+  ],
+  "confidence": "Behavioral hypothesis",
+  "considerations": [
+    "Identify the grantor, target and exact role in the audit data.",
+    "Prioritize unexpected self-grants by service principals."
+  ],
+  "description": "Review audit events granting app roles or adding directory role members.",
+  "evidence": [
+    {
+      "claim": "Microsoft attributed application abuse, password spraying and cloud role or credential changes to Storm-0940, a China-state-aligned actor, in activity that included the ConnectWise Cloud Backup compromise.",
+      "location": "Observed attack patterns, Sentinel queries and ATT&CK mapping",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-10-21",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/"
+    }
+  ],
+  "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+  "history": [
+    {
+      "change": "Created",
+      "date": "2026-11-25T02:32:19Z",
+      "revision": 1,
+      "summary": "Created evidence-backed hunt and validated all supported variants."
+    }
+  ],
+  "hypothesis": "Review audit events granting app roles or adding directory role members.",
+  "id": "HF-2026-0017",
+  "indicator_ids": [
+    "HF-IOC-30B83342101D2F",
+    "HF-IOC-85B8A518112C30",
+    "HF-IOC-45D7C4479888DC"
+  ],
+  "lookback": 14,
+  "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+  "primary_table": "AuditLogs",
+  "profiles": [
+    "sentinel-entra"
+  ],
+  "published": "2026-11-25T02:32:19Z",
+  "release_id": "hf-20261124-d78522911c3b",
+  "research": "artex-storm0940",
+  "revision": 1,
+  "schema_version": 1,
+  "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+  "signature": "5faee765ef07479428ea2d66e7f8f97f52bfe535062b768c3e6e075342680cf9",
+  "source_ids": [
+    "HF-INT-F111D392DD54D8"
+  ],
+  "source_published": "2026-10-21",
+  "status": "partially_validated",
+  "tactic": "Privilege Escalation",
+  "tags": [
+    "Agentic AI",
+    "Nation-State",
+    "Supply Chain",
+    "Identity"
+  ],
+  "technique": "T1098.003",
+  "title": "Cloud App Role Grants and Directory Role Changes",
+  "updated": "2026-11-25T02:32:19Z",
+  "validation": {
+    "date": "2026-11-25T02:32:19Z",
+    "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+    "variants_checked": 10
+  },
+  "variants": {
+    "sentinel-entra": {
+      "profile_revision": 2,
+      "queries": {
+        "1": {
+          "json": "AuditLogs\n| where TimeGenerated > ago(1d)\n| where OperationName in~ (\"Add app role assignment to service principal\", \"Add app role assignment to the service principal\", \"Add member to role\")\n| project TimeGenerated, OperationName, Category, Result, InitiatedBy, TargetResources, CorrelationId\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "AuditLogs\n| where TimeGenerated > ago(1d)\n| where OperationName in~ (\"Add app role assignment to service principal\", \"Add app role assignment to the service principal\", \"Add member to role\")\n| project TimeGenerated, OperationName, Category, Result, InitiatedBy, TargetResources, CorrelationId\n| order by TimeGenerated desc\n"
+        },
+        "14": {
+          "json": "AuditLogs\n| where TimeGenerated > ago(14d)\n| where OperationName in~ (\"Add app role assignment to service principal\", \"Add app role assignment to the service principal\", \"Add member to role\")\n| project TimeGenerated, OperationName, Category, Result, InitiatedBy, TargetResources, CorrelationId\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "AuditLogs\n| where TimeGenerated > ago(14d)\n| where OperationName in~ (\"Add app role assignment to service principal\", \"Add app role assignment to the service principal\", \"Add member to role\")\n| project TimeGenerated, OperationName, Category, Result, InitiatedBy, TargetResources, CorrelationId\n| order by TimeGenerated desc\n"
+        },
+        "3": {
+          "json": "AuditLogs\n| where TimeGenerated > ago(3d)\n| where OperationName in~ (\"Add app role assignment to service principal\", \"Add app role assignment to the service principal\", \"Add member to role\")\n| project TimeGenerated, OperationName, Category, Result, InitiatedBy, TargetResources, CorrelationId\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "AuditLogs\n| where TimeGenerated > ago(3d)\n| where OperationName in~ (\"Add app role assignment to service principal\", \"Add app role assignment to the service principal\", \"Add member to role\")\n| project TimeGenerated, OperationName, Category, Result, InitiatedBy, TargetResources, CorrelationId\n| order by TimeGenerated desc\n"
+        },
+        "30": {
+          "json": "AuditLogs\n| where TimeGenerated > ago(30d)\n| where OperationName in~ (\"Add app role assignment to service principal\", \"Add app role assignment to the service principal\", \"Add member to role\")\n| project TimeGenerated, OperationName, Category, Result, InitiatedBy, TargetResources, CorrelationId\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "AuditLogs\n| where TimeGenerated > ago(30d)\n| where OperationName in~ (\"Add app role assignment to service principal\", \"Add app role assignment to the service principal\", \"Add member to role\")\n| project TimeGenerated, OperationName, Category, Result, InitiatedBy, TargetResources, CorrelationId\n| order by TimeGenerated desc\n"
+        },
+        "7": {
+          "json": "AuditLogs\n| where TimeGenerated > ago(7d)\n| where OperationName in~ (\"Add app role assignment to service principal\", \"Add app role assignment to the service principal\", \"Add member to role\")\n| project TimeGenerated, OperationName, Category, Result, InitiatedBy, TargetResources, CorrelationId\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "AuditLogs\n| where TimeGenerated > ago(7d)\n| where OperationName in~ (\"Add app role assignment to service principal\", \"Add app role assignment to the service principal\", \"Add member to role\")\n| project TimeGenerated, OperationName, Category, Result, InitiatedBy, TargetResources, CorrelationId\n| order by TimeGenerated desc\n"
+        }
+      },
+      "table": "AuditLogs",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    }
+  }
+}

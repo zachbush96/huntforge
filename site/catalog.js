@@ -1,14 +1,14 @@
 import { finding, findingTags, isFresh, sourceState } from "./brief.js";
-import { anchor, button, day, escape, external, icon, link, neutral, options, pagination, repo, route, section,
-  sourceNames, table, tacticKey, tacticName, utc, validationNames } from "./ui.js";
+import { anchor, button, day, escape, external, icon, link, neutral, options, pagination, profileBy, repo, route,
+  section, sourceNames, table, tacticKey, tacticName, utc, validationNames } from "./ui.js";
 
 const pages = {
   intelligence:["Intelligence","Search published findings, source evidence and linked Hunt Cards."],
-  hunts:["Hunts","Choose a telemetry profile and build a self-contained KQL query for your investigation."],
+  hunts:["Hunts","Browse evidence-backed KQL for Microsoft Sentinel. Each Hunt Card lists the workspace table and connector it needs."],
   adversaries:["Adversaries","Browse groups and software from the current MITRE ATT&CK® Enterprise reference."],
   vulnerabilities:["Vulnerabilities","Explore CISA’s known-exploited vulnerabilities and associated EPSS data."],
   indicators:["Indicators","Review attributed observations and their context. Values are defanged here."],
-  techniques:["Techniques","Browse MITRE ATT&CK® techniques and their linked HuntForge hunts."],
+  techniques:["Techniques","Learn what each MITRE ATT&CK® technique means, then explore the Sentinel queries available for it."],
   research:["Research","Read reported behaviors, publisher evidence and public detection guidance."],
   changelog:["Changelog","Track new, updated and retired records across releases."],
   developers:["Developers","Read the release API, download schemas and work with versioned KQL."],
@@ -21,19 +21,25 @@ function shell(id, content, title, intro) {
     <h1>${neutral(title || name)}</h1>${intro ?? `<p class="intro">${escape(text)}</p>`}${content}</div></main>`;
 }
 
+function evidenceInWindow(data,row) {
+  const date = row.source_published || row.evidence?.[0]?.published || "";
+  return date >= data.manifest.window.from && date <= data.manifest.window.through;
+}
+
 function filtered(data, state, rows) {
   const {q, severity, source, start, through, cve, tag, technique, tactic, malware, validation, profile,
-    freshness, category, indicatorType, hunt, change, following} = state.filters;
+    freshness, category, indicatorType, hunt, change, following, evidenceRange, actor, coverage} = state.filters;
   const tokens = (q || "").toLowerCase().trim().split(/\s+/).filter(Boolean);
   const changedHunts = change ? new Set(data.changes.items.filter(row=>row.type==="hunt" && row.action===change).map(row=>row.id)) : null;
   const huntIndicators = hunt ? data.hunts.find(row=>row.id===hunt)?.indicator_ids || [] : null;
+  const mappedTechniques = coverage ? new Set(data.hunts.map(row=>row.technique)) : null;
   return rows.filter(row => {
     const blob = data.text.get(row.id) || JSON.stringify(row).toLowerCase();
     return tokens.every(token => blob.includes(token)) &&
       (!severity || row.severity === severity) &&
       (!source || row.source === source || row.evidence?.some(ref => ref.source === source)) &&
-      (!start || (row.published || row.reported || row.modified || "").slice(0,10) >= start) &&
-      (!through || (row.published || row.reported || row.modified || "").slice(0,10) <= through) &&
+      (!start || (row.source_published || row.published || row.reported || row.modified || "").slice(0,10) >= start) &&
+      (!through || (row.source_published || row.published || row.reported || row.modified || "").slice(0,10) <= through) &&
       (!cve || row.cves?.includes(cve.toUpperCase())) &&
       (!tag || row.tags?.includes(tag)) &&
       (!technique || [row.technique,...(row.techniques || [])].includes(technique)) &&
@@ -46,6 +52,9 @@ function filtered(data, state, rows) {
       (!huntIndicators || huntIndicators.includes(row.id)) &&
       (!changedHunts || changedHunts.has(row.id)) &&
       (!following || state.preferences.followed.includes(row.id)) &&
+      (!evidenceRange || evidenceInWindow(data,row) === (evidenceRange === "recent")) &&
+      (!actor || row.actors?.includes(actor)) &&
+      (!mappedTechniques || mappedTechniques.has(row.id)) &&
       (!category || row.type === category);
   });
 }
@@ -69,6 +78,9 @@ function filters(data,state,kind) {
   const tactics = dropdown("tactic","Tactic",namedValues(kind === "hunts" ? data.hunts.map(row=>tacticKey(row.tactic)) :
     data.reference.flatMap(row=>row.tactics || []),tacticName),f.tactic);
   const extras = kind === "hunts" ? [source, technique, tactics,
+    dropdown("evidenceRange","Source date",[["recent","Release window"],["older","Older reporting"]],f.evidenceRange),
+    dropdown("actor","Actor",namedValues(data.hunts.flatMap(row=>row.actors || [])),f.actor),
+    dropdown("tag","Topic",namedValues(data.hunts.flatMap(row=>row.tags || [])),f.tag),
     dropdown("profile","Profile",data.profiles.map(x=>[x.id,x.short]),f.profile),
     dropdown("validation","Validation",Object.entries(validationNames), f.validation),
     dropdown("change","Release change",changeOptions.slice(0,2),f.change),
@@ -77,7 +89,7 @@ function filters(data,state,kind) {
       dropdown("indicatorType","Indicator type",namedValues(data.indicators.map(row=>row.type),value=>value.toUpperCase()),f.indicatorType),
       dropdown("hunt","Related hunt",data.hunts.filter(row=>row.indicator_ids?.length).map(row=>[row.id,row.title]),f.hunt),dateRange] :
     kind === "adversaries" ? [dropdown("category","Entity type",[["intrusion-set","Group"],["malware","Software"]],f.category)] :
-    kind === "techniques" ? [tactics] : [dropdown("severity","Severity",[["high","High"],["medium","Medium"],["low","Low"],["unrated","Unrated"]],f.severity), source, dateRange, technique,
+    kind === "techniques" ? [tactics,dropdown("coverage","Query coverage",[["sentinel","With Sentinel KQL"]],f.coverage)] : [dropdown("severity","Severity",[["high","High"],["medium","Medium"],["low","Low"],["unrated","Unrated"]],f.severity), source, dateRange, technique,
       dropdown("tag","Topic",namedValues(data.records.flatMap(row=>row.tags)),f.tag),
       dropdown("malware","Software",namedValues(data.records.flatMap(row=>row.software || [])),f.malware),
       `<label>CVE<input type="search" data-filter="cve" value="${escape(f.cve || "")}" placeholder="CVE identifier"></label>`];
@@ -91,26 +103,32 @@ function indicatorState(row) {
   return row.aging_review <= today ? "review" : "current";
 }
 
-function huntCard(row, state) {
+function huntCard(data, row, state) {
   const following = state.preferences.followed.includes(row.id) ? link("Following",route("hunts",null,{following:"1"})) + " · " : "";
+  const primary = profileBy(data,row.profiles[0]);
   return `<article class="catalog-card">
     <div class="meta">${following}${escape(row.id)} · ${link("REV " + row.revision,route("hunts",row.id,{tab:"revisions"}))}</div>
+    <p class="meta">Source: ${day(row.source_published || row.evidence[0]?.published)} · ${escape(primary.short)}${row.primary_table ? ` · <code>${escape(row.primary_table)}</code>` : ""}</p>
     <h2><a href="${route("hunts",row.id)}">${neutral(row.title)}</a></h2><p>${neutral(row.description)}</p>
     <p class="chips">${link(row.technique,route("techniques",row.technique),"chip")}${link(row.tactic,route("hunts",null,{tactic:tacticKey(row.tactic)}),"chip")}
+    ${(row.actors || []).map(actor=>link(actor,route("hunts",null,{actor}),"chip")).join("")}
     ${link(validationNames[row.status] || row.status,route("hunts",null,{validation:row.status}),"chip")}</p>
     <label class="checkbox"><input type="checkbox" data-pack-id="${escape(row.id)}"${state.pack.has(row.id) ? " checked" : ""}> Include in ZIP pack</label>
   </article>`;
 }
 
-function entityCard(kind,row) {
+function entityCard(data,kind,row) {
   if (kind === "indicators") return `<article class="catalog-card"><div class="meta">${link(row.type.toUpperCase(),route(kind,null,{indicatorType:row.type}))} ·
     ${link(indicatorState(row),route(kind,null,{freshness:indicatorState(row)}))} · ${day(row.reported)}</div>
     <h2><a href="${route(kind,row.id)}">${escape(row.display)}</a></h2><p>${neutral(row.context)}</p></article>`;
   const type = entityTypes[row.type];
+  const matches = kind === "techniques" ? data.hunts.filter(hunt=>hunt.technique===row.id).length : 0;
   return `<article class="catalog-card"><div class="meta">${escape(row.id)} · ${kind === "adversaries" ?
     link(type.toUpperCase(),route(kind,null,{category:row.type})) : escape(type.toUpperCase())}</div>
     <h2><a href="${route(kind,row.id)}">${neutral(row.title)}</a></h2>${row.aliases?.length > 1 ? `<p>${neutral(row.aliases.slice(1,6).join(", "))}</p>` : ""}
-    ${row.tactics?.length ? `<div class="chips">${row.tactics.map(tactic=>link(tacticName(tactic),route("techniques",null,{tactic}),"chip")).join("")}</div>` : ""}</article>`;
+    ${row.description ? `<p class="technique-summary">${neutral(row.description)}</p>` : ""}
+    <div class="chips">${(row.tactics || []).map(tactic=>link(tacticName(tactic),route("techniques",null,{tactic}),"chip")).join("")}
+    ${matches ? link(`${matches} Sentinel ${matches === 1 ? "query" : "queries"}`,route("techniques",row.id),"chip") : ""}</div></article>`;
 }
 
 export function catalog(data, state) {
@@ -118,21 +136,32 @@ export function catalog(data, state) {
   const isHunts = kind === "hunts";
   const entities = ["indicators","adversaries","techniques"].includes(kind);
   const limit = isHunts || entities ? 12 : 10;
-  const source = isHunts ? data.hunts : kind === "indicators" ? data.indicators :
+  const source = isHunts ? [...data.hunts].sort((a,b)=>
+    (b.source_published || b.evidence[0]?.published || "").localeCompare(a.source_published || a.evidence[0]?.published || "")) : kind === "indicators" ? data.indicators :
     kind === "adversaries" ? data.reference.filter(x=>x.type !== "attack-pattern") :
     kind === "techniques" ? data.reference.filter(x=>x.type === "attack-pattern") :
     kind === "vulnerabilities" ? data.records.filter(x=>x.kind==="Vulnerability") :
     kind === "research" ? data.records.filter(x=>x.kind==="Research") : data.records;
   const rows = filtered(data,state,source);
   const visible = rows.slice(state.page*limit, state.page*limit+limit);
-  let contents = filters(data,state,kind);
+  let contents = "";
+  if (isHunts) {
+    const recent = data.hunts.filter(row=>evidenceInWindow(data,row)).length;
+    contents += `<nav class="detail-links" aria-label="Hunt collections">
+      ${anchor(`${recent} hunts from the latest 30-day window`,route("hunts",null,{evidenceRange:"recent"}),"history")}
+      ${anchor("ARTEX and agentic AI",route("hunts",null,{q:"ARTEX"}),"search")}
+      ${anchor("Nation-state",route("hunts",null,{tag:"Nation-State"}),"users")}
+      ${anchor("All hunts",route("hunts"),"crosshair")}
+    </nav>`;
+  }
+  contents += filters(data,state,kind);
   if (isHunts) {
     contents += `<div class="detail-links">${button(`Download selected (${state.pack.size})`, "pack-selected","download","inverted")}
       ${anchor("Default hunt pack (.zip)",data.base+"downloads/hunt-pack.zip","file")}${anchor("Followed hunts",route("hunts",null,{following:"1"}),"star")}
       ${button("Output preferences","settings","settings")}</div>`;
   }
   if (visible.length) {
-    const markup = visible.map(row => isHunts ? huntCard(row,state) : entities ? entityCard(kind,row) : finding(data,row,kind)).join("");
+    const markup = visible.map(row => isHunts ? huntCard(data,row,state) : entities ? entityCard(data,kind,row) : finding(data,row,kind)).join("");
     contents += isHunts || entities ? `<div class="catalog-grid">${markup}</div>` : markup;
   } else contents += '<p class="empty">No records match these filters.</p>';
   contents += pagination(rows.length,state.page,limit,isHunts ? "hunts" : "records");
@@ -182,12 +211,33 @@ export function entityDetail(data,state) {
   }
   const hunts = data.hunts.filter(hunt=>hunt.technique===row.id);
   const related = data.records.filter(rec=>rec.techniques?.includes(row.id));
+  const techniqueContent = kind === "techniques" ? `<section class="detail-section">
+    ${section("What this technique means","book")}
+    <p>${neutral(row.description || "Read the MITRE ATT&CK reference for the technique definition.")}</p>
+    </section><section class="detail-section">${section("How to hunt in Sentinel","crosshair")}
+    ${hunts.length ? hunts.map(summary => {
+      const card = row.huntCards?.find(hunt=>hunt.id===summary.id);
+      if (!card) return `<p>${link(summary.title,route("hunts",summary.id))}</p>`;
+      const profile = profileBy(data,card.profiles[0]);
+      const variant = card.variants[profile.id];
+      return `<details class="mapping technique-query">
+        <summary>${neutral(card.title)} · ${escape(variant.table)}</summary>
+        <div>
+          <p>${neutral(card.hypothesis)}</p>
+          <p>${escape(profile.assumptions)}</p>
+          <pre class="code-surface" tabindex="0"><code>${escape(variant.queries[card.lookback].table)}</code></pre>
+          <div class="detail-links">
+            <button type="button" class="btn" data-copy-technique="${escape(card.id)}">${icon("copy")} Copy KQL</button>
+            ${anchor("Open Hunt Card",route("hunts",card.id),"crosshair")}
+          </div>
+        </div>
+      </details>`;
+    }).join("") : '<p class="empty">HuntForge does not have a validated Sentinel query for this technique yet.</p>'}</section>` : "";
   return shell(kind,`<p>${external("Open MITRE ATT&CK reference",row.url)}</p><div class="chips">${row.tactics?.map(tactic=>
     link(tacticName(tactic),route("techniques",null,{tactic}),"chip")).join("") || ""}</div>
     <p class="mono">Modified ${day(row.modified)} · Enterprise ATT&CK ${escape(data.referenceVersion)}</p>
     ${row.aliases?.length ? `<p>Aliases ${neutral(row.aliases.join(", "))}</p>` : ""}
-    ${hunts.length ? `<section class="detail-section">${section("Related hunts","crosshair")}
-      <div class="detail-links">${hunts.map(x=>anchor(x.title,route("hunts",x.id))).join("")}</div></section>` : ""}
+    ${techniqueContent}
     ${related.length ? `<section class="detail-section">${section("Related intelligence","file")}${related.map(record=>finding(data,record)).join("")}</section>`:""}
     <p class="detail-links">${anchor("Browse " + pages[kind][0].toLowerCase(),route(kind,null,kind === "adversaries" ? {category:row.type} : {}))}
       ${anchor("Search intelligence",route("intelligence",null,kind === "techniques" ? {technique:row.id} : {q:row.title}),"search")}</p>`,row.title,

@@ -1,0 +1,5 @@
+SecurityAlert
+| where TimeGenerated > ago(30d)
+| where AlertName contains "ProcmacSteal" or Description contains "ProcmacSteal" or ExtendedProperties contains "ProcmacSteal"
+| project TimeGenerated, AlertName, AlertSeverity, ProductName, CompromisedEntity, SystemAlertId
+| order by TimeGenerated desc

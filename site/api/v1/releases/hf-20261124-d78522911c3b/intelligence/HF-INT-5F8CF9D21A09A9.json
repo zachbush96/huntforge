@@ -1,0 +1,73 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-123890"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-24",
+      "epss": "0.035260000",
+      "percentile": "0.894440000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.03526000",
+      "percentile": "0.89533000"
+    },
+    {
+      "date": "2026-11-22",
+      "epss": "0.03526000",
+      "percentile": "0.89530000"
+    },
+    {
+      "date": "2026-11-21",
+      "epss": "0.02985000",
+      "percentile": "0.87629000"
+    },
+    {
+      "date": "2026-11-20",
+      "epss": "0.00843000",
+      "percentile": "0.58845000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-20",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-123890",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-123890"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-5F8CF9D21A09A9",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "VMware vCenter",
+  "published": "2026-11-20",
+  "ransomware_use": "unknown",
+  "related": [
+    "HF-INT-B22EEC5809CE5C"
+  ],
+  "release_id": "hf-20261124-d78522911c3b",
+  "remediation_due": "2026-11-23",
+  "retrieved": "2026-11-25T02:32:19Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "0c3ca90d0a58deae7b8b6afe29403097cab8fb7880a553a127752ed76f3654d3",
+  "source": "cisa-kev",
+  "source_id": "CVE-2026-123890",
+  "status": "active",
+  "summary": "CISA added CVE-2026-123890 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-23.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "VMWare vCenter Authentication Bypass Using an Alternate Path or Channel Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "Broadcom"
+}

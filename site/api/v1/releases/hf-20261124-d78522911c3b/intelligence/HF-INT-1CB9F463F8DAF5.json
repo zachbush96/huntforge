@@ -1,0 +1,204 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-109619"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-24",
+      "epss": "0.999990000",
+      "percentile": "1.000000000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.99999000",
+      "percentile": "1.00000000"
+    },
+    {
+      "date": "2026-11-22",
+      "epss": "0.99999000",
+      "percentile": "1.00000000"
+    },
+    {
+      "date": "2026-11-21",
+      "epss": "0.99999000",
+      "percentile": "1.00000000"
+    },
+    {
+      "date": "2026-11-20",
+      "epss": "0.99999000",
+      "percentile": "0.99999000"
+    },
+    {
+      "date": "2026-11-19",
+      "epss": "0.99999000",
+      "percentile": "0.99999000"
+    },
+    {
+      "date": "2026-11-18",
+      "epss": "0.99999000",
+      "percentile": "0.99999000"
+    },
+    {
+      "date": "2026-11-17",
+      "epss": "0.99999000",
+      "percentile": "0.99999000"
+    },
+    {
+      "date": "2026-11-16",
+      "epss": "0.99999000",
+      "percentile": "0.99999000"
+    },
+    {
+      "date": "2026-11-15",
+      "epss": "0.99999000",
+      "percentile": "0.99999000"
+    },
+    {
+      "date": "2026-11-14",
+      "epss": "0.99999000",
+      "percentile": "0.99999000"
+    },
+    {
+      "date": "2026-11-13",
+      "epss": "0.99999000",
+      "percentile": "0.99999000"
+    },
+    {
+      "date": "2026-11-12",
+      "epss": "0.99999000",
+      "percentile": "0.99999000"
+    },
+    {
+      "date": "2026-11-11",
+      "epss": "0.99999000",
+      "percentile": "0.99999000"
+    },
+    {
+      "date": "2026-11-10",
+      "epss": "0.99999000",
+      "percentile": "0.99999000"
+    },
+    {
+      "date": "2026-11-09",
+      "epss": "0.99999000",
+      "percentile": "0.99999000"
+    },
+    {
+      "date": "2026-11-08",
+      "epss": "0.99999000",
+      "percentile": "0.99999000"
+    },
+    {
+      "date": "2026-11-07",
+      "epss": "0.99999000",
+      "percentile": "0.99999000"
+    },
+    {
+      "date": "2026-11-06",
+      "epss": "0.99999000",
+      "percentile": "0.99999000"
+    },
+    {
+      "date": "2026-11-05",
+      "epss": "0.99999000",
+      "percentile": "0.99999000"
+    },
+    {
+      "date": "2026-11-04",
+      "epss": "0.99999000",
+      "percentile": "0.99999000"
+    },
+    {
+      "date": "2026-11-03",
+      "epss": "0.99999000",
+      "percentile": "0.99999000"
+    },
+    {
+      "date": "2026-11-02",
+      "epss": "0.99999000",
+      "percentile": "0.99999000"
+    },
+    {
+      "date": "2026-11-01",
+      "epss": "0.99999000",
+      "percentile": "0.99999000"
+    },
+    {
+      "date": "2026-10-31",
+      "epss": "0.99999000",
+      "percentile": "0.99999000"
+    },
+    {
+      "date": "2026-10-30",
+      "epss": "0.99999000",
+      "percentile": "0.99999000"
+    },
+    {
+      "date": "2026-10-29",
+      "epss": "0.99999000",
+      "percentile": "0.99999000"
+    },
+    {
+      "date": "2026-10-28",
+      "epss": "0.99999000",
+      "percentile": "0.99999000"
+    },
+    {
+      "date": "2026-10-27",
+      "epss": "0.99999000",
+      "percentile": "0.99999000"
+    },
+    {
+      "date": "2026-10-26",
+      "epss": "0.99997000",
+      "percentile": "0.99989000"
+    },
+    {
+      "date": "2026-10-25",
+      "epss": "0.99997000",
+      "percentile": "0.99989000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-10-26",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-109619",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-109619"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-1CB9F463F8DAF5",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "PHP",
+  "published": "2026-10-26",
+  "ransomware_use": "unknown",
+  "related": [
+    "HF-INT-057C02B04CC39C",
+    "HF-INT-89146FF5418730"
+  ],
+  "release_id": "hf-20261124-d78522911c3b",
+  "remediation_due": "2026-10-29",
+  "retrieved": "2026-11-25T02:32:19Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "be6f2deeef16400e331c3bd43f1f8d5c24839badff3b7b126df91706f0c40660",
+  "source": "cisa-kev",
+  "source_id": "CVE-2026-109619",
+  "status": "active",
+  "summary": "CISA added CVE-2026-109619 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-10-29.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "PHP Stale Internal Request-State Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "PHP Group"
+}

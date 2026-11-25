@@ -1,0 +1,107 @@
+{
+  "actors": [
+    "Jasper Sleet",
+    "North Korea"
+  ],
+  "confidence": "Publisher-listed detection",
+  "considerations": [
+    "This query depends on the provider emitting and forwarding the named detection.",
+    "Review affected identity and device evidence before accepting attribution."
+  ],
+  "description": "Find ingested provider alerts for Jasper Sleet sign-in activity.",
+  "evidence": [
+    {
+      "claim": "Microsoft documented North Korean actors adopting AI, identified Onyx Sleet and Pearl Sleet using ARTEX, and listed Defender detections for Jasper Sleet sign-ins and Sapphire Sleet-related ProcmacSteal payloads.",
+      "location": "AI-assisted development, operational scaling and Microsoft Defender detections",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-10-29",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/29/tracking-ai-adoption-in-north-korean-threat-actor-tradecraft/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/10/29/tracking-ai-adoption-in-north-korean-threat-actor-tradecraft/"
+    }
+  ],
+  "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+  "history": [
+    {
+      "change": "Created",
+      "date": "2026-11-25T02:32:19Z",
+      "revision": 1,
+      "summary": "Created evidence-backed hunt and validated all supported variants."
+    }
+  ],
+  "hypothesis": "Find ingested provider alerts for Jasper Sleet sign-in activity.",
+  "id": "HF-2026-0019",
+  "indicator_ids": [],
+  "lookback": 30,
+  "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+  "primary_table": "SecurityAlert",
+  "profiles": [
+    "sentinel-alerts"
+  ],
+  "published": "2026-11-25T02:32:19Z",
+  "release_id": "hf-20261124-d78522911c3b",
+  "research": "dprk-ai",
+  "revision": 1,
+  "schema_version": 1,
+  "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+  "signature": "1793e3e33fe502f2e0186d688ad83e222c86391d119a86fb0fb61ded554369ac",
+  "source_ids": [
+    "HF-INT-ECB2698675C7A2"
+  ],
+  "source_published": "2026-10-29",
+  "status": "partially_validated",
+  "tactic": "Initial Access",
+  "tags": [
+    "Agentic AI",
+    "Nation-State",
+    "Supply Chain",
+    "Identity"
+  ],
+  "technique": "T1078.004",
+  "title": "North Korea · Jasper Sleet Sign-in Alerts",
+  "updated": "2026-11-25T02:32:19Z",
+  "validation": {
+    "date": "2026-11-25T02:32:19Z",
+    "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+    "variants_checked": 10
+  },
+  "variants": {
+    "sentinel-alerts": {
+      "profile_revision": 1,
+      "queries": {
+        "1": {
+          "json": "SecurityAlert\n| where TimeGenerated > ago(1d)\n| where AlertName has_all (\"Jasper\", \"Sleet\") and (AlertName contains \"sign-in\" or AlertName has \"signin\")\n| project TimeGenerated, AlertName, AlertSeverity, ProductName, CompromisedEntity, SystemAlertId\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "SecurityAlert\n| where TimeGenerated > ago(1d)\n| where AlertName has_all (\"Jasper\", \"Sleet\") and (AlertName contains \"sign-in\" or AlertName has \"signin\")\n| project TimeGenerated, AlertName, AlertSeverity, ProductName, CompromisedEntity, SystemAlertId\n| order by TimeGenerated desc\n"
+        },
+        "14": {
+          "json": "SecurityAlert\n| where TimeGenerated > ago(14d)\n| where AlertName has_all (\"Jasper\", \"Sleet\") and (AlertName contains \"sign-in\" or AlertName has \"signin\")\n| project TimeGenerated, AlertName, AlertSeverity, ProductName, CompromisedEntity, SystemAlertId\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "SecurityAlert\n| where TimeGenerated > ago(14d)\n| where AlertName has_all (\"Jasper\", \"Sleet\") and (AlertName contains \"sign-in\" or AlertName has \"signin\")\n| project TimeGenerated, AlertName, AlertSeverity, ProductName, CompromisedEntity, SystemAlertId\n| order by TimeGenerated desc\n"
+        },
+        "3": {
+          "json": "SecurityAlert\n| where TimeGenerated > ago(3d)\n| where AlertName has_all (\"Jasper\", \"Sleet\") and (AlertName contains \"sign-in\" or AlertName has \"signin\")\n| project TimeGenerated, AlertName, AlertSeverity, ProductName, CompromisedEntity, SystemAlertId\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "SecurityAlert\n| where TimeGenerated > ago(3d)\n| where AlertName has_all (\"Jasper\", \"Sleet\") and (AlertName contains \"sign-in\" or AlertName has \"signin\")\n| project TimeGenerated, AlertName, AlertSeverity, ProductName, CompromisedEntity, SystemAlertId\n| order by TimeGenerated desc\n"
+        },
+        "30": {
+          "json": "SecurityAlert\n| where TimeGenerated > ago(30d)\n| where AlertName has_all (\"Jasper\", \"Sleet\") and (AlertName contains \"sign-in\" or AlertName has \"signin\")\n| project TimeGenerated, AlertName, AlertSeverity, ProductName, CompromisedEntity, SystemAlertId\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "SecurityAlert\n| where TimeGenerated > ago(30d)\n| where AlertName has_all (\"Jasper\", \"Sleet\") and (AlertName contains \"sign-in\" or AlertName has \"signin\")\n| project TimeGenerated, AlertName, AlertSeverity, ProductName, CompromisedEntity, SystemAlertId\n| order by TimeGenerated desc\n"
+        },
+        "7": {
+          "json": "SecurityAlert\n| where TimeGenerated > ago(7d)\n| where AlertName has_all (\"Jasper\", \"Sleet\") and (AlertName contains \"sign-in\" or AlertName has \"signin\")\n| project TimeGenerated, AlertName, AlertSeverity, ProductName, CompromisedEntity, SystemAlertId\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "SecurityAlert\n| where TimeGenerated > ago(7d)\n| where AlertName has_all (\"Jasper\", \"Sleet\") and (AlertName contains \"sign-in\" or AlertName has \"signin\")\n| project TimeGenerated, AlertName, AlertSeverity, ProductName, CompromisedEntity, SystemAlertId\n| order by TimeGenerated desc\n"
+        }
+      },
+      "table": "SecurityAlert",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    }
+  }
+}

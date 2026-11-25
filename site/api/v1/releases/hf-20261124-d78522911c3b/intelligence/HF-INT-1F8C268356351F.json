@@ -1,0 +1,83 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-129448"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-24",
+      "epss": "0.400690000",
+      "percentile": "0.986540000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.05459000",
+      "percentile": "0.92940000"
+    },
+    {
+      "date": "2026-11-22",
+      "epss": "0.05459000",
+      "percentile": "0.92939000"
+    },
+    {
+      "date": "2026-11-21",
+      "epss": "0.05459000",
+      "percentile": "0.92934000"
+    },
+    {
+      "date": "2026-11-20",
+      "epss": "0.01191000",
+      "percentile": "0.68723000"
+    },
+    {
+      "date": "2026-11-19",
+      "epss": "0.01191000",
+      "percentile": "0.68625000"
+    },
+    {
+      "date": "2026-11-18",
+      "epss": "0.01640000",
+      "percentile": "0.76860000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-20",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-129448",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-129448"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-1F8C268356351F",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "Roller",
+  "published": "2026-11-20",
+  "ransomware_use": "unknown",
+  "related": [
+    "HF-INT-B22EEC5809CE5C"
+  ],
+  "release_id": "hf-20261124-d78522911c3b",
+  "remediation_due": "2026-11-23",
+  "retrieved": "2026-11-25T02:32:19Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "333f25b0f89b6d75879c4c60fc68e94299a41e5c5e40672e200ff80b9a5b0646",
+  "source": "cisa-kev",
+  "source_id": "CVE-2026-129448",
+  "status": "active",
+  "summary": "CISA added CVE-2026-129448 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-23.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Apache Roller Deserialization of Untrusted Data Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "Apache"
+}

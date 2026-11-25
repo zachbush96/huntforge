@@ -1,0 +1,102 @@
+{
+  "actors": [],
+  "confidence": "Behavioral hypothesis",
+  "considerations": [
+    "Forward Certification Services auditing from the CA into WindowsEvent.",
+    "Compare template, requester and time against routine issuance and incident evidence."
+  ],
+  "description": "Review AD CS certificate issuance near a suspicious support session.",
+  "evidence": [
+    {
+      "claim": "Microsoft observed fraudulent Quick Assist support sessions followed by scripting and certificate-services abuse during the investigated intrusions.",
+      "location": "Intrusion case studies and initial access sections",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-10-30",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/"
+    }
+  ],
+  "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+  "history": [
+    {
+      "change": "Created",
+      "date": "2026-11-25T02:32:19Z",
+      "revision": 1,
+      "summary": "Created evidence-backed hunt and validated all supported variants."
+    }
+  ],
+  "hypothesis": "Review AD CS certificate issuance near a suspicious support session.",
+  "id": "HF-2026-0033",
+  "indicator_ids": [],
+  "lookback": 3,
+  "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+  "primary_table": "WindowsEvent",
+  "profiles": [
+    "sentinel-windows"
+  ],
+  "published": "2026-11-25T02:32:19Z",
+  "release_id": "hf-20261124-d78522911c3b",
+  "research": "quick-assist",
+  "revision": 1,
+  "schema_version": 1,
+  "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+  "signature": "fffb142fc2d12368c395edca97fcb7eeb0fdc4bb26050a632350612cdfeaf6bb",
+  "source_ids": [
+    "HF-INT-E26238C5B4C5C7"
+  ],
+  "source_published": "2026-10-30",
+  "status": "partially_validated",
+  "tactic": "Credential Access",
+  "tags": [
+    "Phishing",
+    "Identity"
+  ],
+  "technique": "T1649",
+  "title": "Certificate Issuance After a Suspected Help Desk Intrusion",
+  "updated": "2026-11-25T02:32:19Z",
+  "validation": {
+    "date": "2026-11-25T02:32:19Z",
+    "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+    "variants_checked": 10
+  },
+  "variants": {
+    "sentinel-windows": {
+      "profile_revision": 1,
+      "queries": {
+        "1": {
+          "json": "WindowsEvent\n| where TimeGenerated > ago(1d)\n| where Channel == \"Security\" and EventID == 4887\n| project TimeGenerated, Computer, Requester = tostring(EventData.Requester), RequestId = tostring(EventData.RequestId), Attributes = tostring(EventData.Attributes)\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "WindowsEvent\n| where TimeGenerated > ago(1d)\n| where Channel == \"Security\" and EventID == 4887\n| project TimeGenerated, Computer, Requester = tostring(EventData.Requester), RequestId = tostring(EventData.RequestId), Attributes = tostring(EventData.Attributes)\n| order by TimeGenerated desc\n"
+        },
+        "14": {
+          "json": "WindowsEvent\n| where TimeGenerated > ago(14d)\n| where Channel == \"Security\" and EventID == 4887\n| project TimeGenerated, Computer, Requester = tostring(EventData.Requester), RequestId = tostring(EventData.RequestId), Attributes = tostring(EventData.Attributes)\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "WindowsEvent\n| where TimeGenerated > ago(14d)\n| where Channel == \"Security\" and EventID == 4887\n| project TimeGenerated, Computer, Requester = tostring(EventData.Requester), RequestId = tostring(EventData.RequestId), Attributes = tostring(EventData.Attributes)\n| order by TimeGenerated desc\n"
+        },
+        "3": {
+          "json": "WindowsEvent\n| where TimeGenerated > ago(3d)\n| where Channel == \"Security\" and EventID == 4887\n| project TimeGenerated, Computer, Requester = tostring(EventData.Requester), RequestId = tostring(EventData.RequestId), Attributes = tostring(EventData.Attributes)\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "WindowsEvent\n| where TimeGenerated > ago(3d)\n| where Channel == \"Security\" and EventID == 4887\n| project TimeGenerated, Computer, Requester = tostring(EventData.Requester), RequestId = tostring(EventData.RequestId), Attributes = tostring(EventData.Attributes)\n| order by TimeGenerated desc\n"
+        },
+        "30": {
+          "json": "WindowsEvent\n| where TimeGenerated > ago(30d)\n| where Channel == \"Security\" and EventID == 4887\n| project TimeGenerated, Computer, Requester = tostring(EventData.Requester), RequestId = tostring(EventData.RequestId), Attributes = tostring(EventData.Attributes)\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "WindowsEvent\n| where TimeGenerated > ago(30d)\n| where Channel == \"Security\" and EventID == 4887\n| project TimeGenerated, Computer, Requester = tostring(EventData.Requester), RequestId = tostring(EventData.RequestId), Attributes = tostring(EventData.Attributes)\n| order by TimeGenerated desc\n"
+        },
+        "7": {
+          "json": "WindowsEvent\n| where TimeGenerated > ago(7d)\n| where Channel == \"Security\" and EventID == 4887\n| project TimeGenerated, Computer, Requester = tostring(EventData.Requester), RequestId = tostring(EventData.RequestId), Attributes = tostring(EventData.Attributes)\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "WindowsEvent\n| where TimeGenerated > ago(7d)\n| where Channel == \"Security\" and EventID == 4887\n| project TimeGenerated, Computer, Requester = tostring(EventData.Requester), RequestId = tostring(EventData.RequestId), Attributes = tostring(EventData.Attributes)\n| order by TimeGenerated desc\n"
+        }
+      },
+      "table": "WindowsEvent",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    }
+  }
+}

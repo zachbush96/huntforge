@@ -1,0 +1,309 @@
+{
+  "count": 43,
+  "items": [
+    {
+      "action": "updated",
+      "id": "HF-2025-0001",
+      "revision": 3,
+      "title": "Suspicious PowerShell Network Activity",
+      "type": "hunt"
+    },
+    {
+      "action": "updated",
+      "id": "HF-2026-0002",
+      "revision": 2,
+      "title": "GSocket Process Activity",
+      "type": "hunt"
+    },
+    {
+      "action": "updated",
+      "id": "HF-2026-0003",
+      "revision": 2,
+      "title": "Microsoft 365 Outage Phishing Destinations",
+      "type": "hunt"
+    },
+    {
+      "action": "updated",
+      "id": "HF-2026-0004",
+      "revision": 2,
+      "title": "Quick Assist Process Activity",
+      "type": "hunt"
+    },
+    {
+      "action": "updated",
+      "id": "HF-2026-0005",
+      "revision": 2,
+      "title": "ARTEX Service Principal Sign-ins From a Reported IP",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0006",
+      "revision": 1,
+      "title": "ARTEX and WISP Infrastructure in CEF Logs",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0007",
+      "revision": 1,
+      "title": "ARTEX-Associated Remote Connections on Endpoints",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0008",
+      "revision": 1,
+      "title": "Rapid Network Probing Across Ports and Hosts",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0009",
+      "revision": 1,
+      "title": "Entra Password Spray Across Accounts",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0010",
+      "revision": 1,
+      "title": "One Address Signing In as Many Service Principals",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0011",
+      "revision": 1,
+      "title": "Key Vault Activity From the Reported ARTEX Address",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0012",
+      "revision": 1,
+      "title": "Rapid Secret Requests Across Key Vaults",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0013",
+      "revision": 1,
+      "title": "ARTEX-Associated Microsoft Graph Activity",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0014",
+      "revision": 1,
+      "title": "Burst of App-Only Directory Enumeration",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0015",
+      "revision": 1,
+      "title": "Storm-0940 ConnectWise Cloud App Sign-ins",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0016",
+      "revision": 1,
+      "title": "Cloud Application Credential Additions",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0017",
+      "revision": 1,
+      "title": "Cloud App Role Grants and Directory Role Changes",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0018",
+      "revision": 1,
+      "title": "Storm-0940 Cloud App Mail Access",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0019",
+      "revision": 1,
+      "title": "North Korea · Jasper Sleet Sign-in Alerts",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0020",
+      "revision": 1,
+      "title": "North Korea · Sapphire Sleet ProcmacSteal Alerts",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0021",
+      "revision": 1,
+      "title": "Successful Entra Device-Code Sign-ins",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0022",
+      "revision": 1,
+      "title": "Device-Code Attempts Blocked by Conditional Access",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0023",
+      "revision": 1,
+      "title": "Device-Code Grants From Multiple Network Origins",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0024",
+      "revision": 1,
+      "title": "ScreenConnect Spawning a Command Shell",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0025",
+      "revision": 1,
+      "title": "RelayTrap Scheduled Task Activity",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0026",
+      "revision": 1,
+      "title": "SCKit Run Key Persistence",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0027",
+      "revision": 1,
+      "title": "Defender Path Exclusions Near SCKit Activity",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0028",
+      "revision": 1,
+      "title": "GSocket Distribution Endpoint Connections",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0029",
+      "revision": 1,
+      "title": "GSocket Launch From Cron",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0030",
+      "revision": 1,
+      "title": "GSocket-Related Files in Linux Shared Memory",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0031",
+      "revision": 1,
+      "title": "Microsoft 365 Outage Phishing Messages",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0032",
+      "revision": 1,
+      "title": "Microsoft 365 Outage Phishing URLs in Mail",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0033",
+      "revision": 1,
+      "title": "Certificate Issuance After a Suspected Help Desk Intrusion",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0034",
+      "revision": 1,
+      "title": "PowerShell Launched by a Remote Support Process",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0035",
+      "revision": 1,
+      "title": "Rapid Denied Probes Against a Single Network Edge",
+      "type": "hunt"
+    },
+    {
+      "action": "updated",
+      "id": "HF-INT-36ECE2AA75663D",
+      "revision": 2,
+      "title": "SCKit abuses ScreenConnect to deploy remote access and target technician sessions",
+      "type": "intelligence"
+    },
+    {
+      "action": "updated",
+      "id": "HF-INT-4B6ABBDBB70347",
+      "revision": 2,
+      "title": "Threat actors use agentic AI tooling to find and abuse exposed secrets",
+      "type": "intelligence"
+    },
+    {
+      "action": "updated",
+      "id": "HF-INT-631279C95E3417",
+      "revision": 2,
+      "title": "ARTEX abuse expands as cybercriminals target financial sector",
+      "type": "intelligence"
+    },
+    {
+      "action": "updated",
+      "id": "HF-INT-636ABB4FBA14B1",
+      "revision": 2,
+      "title": "The risks of device code authentication for AI coding agents",
+      "type": "intelligence"
+    },
+    {
+      "action": "updated",
+      "id": "HF-INT-E26238C5B4C5C7",
+      "revision": 2,
+      "title": "From help desk impersonation to AD CS abuse: Investigating ESC1 and ESC8 intrusion paths",
+      "type": "intelligence"
+    },
+    {
+      "action": "updated",
+      "id": "HF-INT-ECB2698675C7A2",
+      "revision": 2,
+      "title": "Tracking AI adoption in North Korean threat actor tradecraft",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-F111D392DD54D8",
+      "revision": 1,
+      "title": "AI-driven, large-scale nation-state campaign using ARTEX enables supply chain compromise",
+      "type": "intelligence"
+    },
+    {
+      "action": "updated",
+      "id": "HF-INT-F3F53EF63DF395",
+      "revision": 2,
+      "title": "The global socket: how threat actors are weaponizing GSocket for stealthy C2",
+      "type": "intelligence"
+    }
+  ],
+  "release_id": "hf-20261124-d78522911c3b",
+  "schema_version": 1,
+  "tombstones": []
+}

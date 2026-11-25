@@ -1,0 +1,38 @@
+{
+  "assumptions": "Example table and field names only. Map your schema locally. Action values are retained as supplied; review the source vocabulary.",
+  "id": "custom-proxy",
+  "name": "Custom proxy (Web Proxy)",
+  "release_id": "hf-20261124-d78522911c3b",
+  "revision": 1,
+  "schema_version": 1,
+  "short": "Synthetic proxy",
+  "source": "Synthetic web proxy schema",
+  "synthetic": true,
+  "tables": {
+    "CustomWeb_CL": {
+      "capability": "web",
+      "columns": {
+        "ProxyAction": "string",
+        "RequestUrl": "string",
+        "SourceAddress": "string",
+        "TargetAddress": "string",
+        "TargetHost": "string",
+        "TimeGenerated": "datetime",
+        "UserId": "string"
+      },
+      "documentation": null,
+      "mappings": {
+        "Action": "ProxyAction",
+        "Destination IP": "TargetAddress",
+        "Destination URL": "RequestUrl",
+        "Hostname": "TargetHost",
+        "Source IP": "SourceAddress",
+        "Timestamp": "TimeGenerated",
+        "User": "UserId"
+      },
+      "semantics": "TimeGenerated is the documented event time field for this profile.",
+      "timestamp": "TimeGenerated"
+    }
+  },
+  "target": "Microsoft Sentinel Logs"
+}

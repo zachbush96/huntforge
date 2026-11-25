@@ -1,0 +1,103 @@
+{
+  "actors": [],
+  "confidence": "Lab-informed defensive lead",
+  "considerations": [
+    "Check for shared VPNs, mobile roaming and normal tool use.",
+    "Review sign-in and token activity before deciding whether it is suspicious."
+  ],
+  "description": "Look for successful device-code sign-ins from multiple addresses for one user and app in fifteen minutes.",
+  "evidence": [
+    {
+      "claim": "Microsoft demonstrated in a lab that device code phishing can expose sessions used by coding agents, and noted earlier device-code phishing campaigns. The demonstration is distinct from observed incidents.",
+      "location": "Research scope and mitigation guidance",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-17",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/17/the-risks-of-device-code-authentication-for-ai-coding-agents/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/17/the-risks-of-device-code-authentication-for-ai-coding-agents/"
+    }
+  ],
+  "expected_output": "One row per user, app and fifteen-minute window.",
+  "history": [
+    {
+      "change": "Created",
+      "date": "2026-11-25T02:32:19Z",
+      "revision": 1,
+      "summary": "Created evidence-backed hunt and validated all supported variants."
+    }
+  ],
+  "hypothesis": "Look for successful device-code sign-ins from multiple addresses for one user and app in fifteen minutes.",
+  "id": "HF-2026-0023",
+  "indicator_ids": [],
+  "lookback": 7,
+  "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+  "primary_table": "SigninLogs",
+  "profiles": [
+    "sentinel-entra"
+  ],
+  "published": "2026-11-25T02:32:19Z",
+  "release_id": "hf-20261124-d78522911c3b",
+  "research": "device-code",
+  "revision": 1,
+  "schema_version": 1,
+  "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+  "signature": "f20615d9478938a2b8ba1dd5e19d96f905ea732f3a4a4a10a78e9c2d8b33959d",
+  "source_ids": [
+    "HF-INT-636ABB4FBA14B1"
+  ],
+  "source_published": "2026-11-17",
+  "status": "partially_validated",
+  "tactic": "Credential Access",
+  "tags": [
+    "Agentic AI",
+    "Phishing",
+    "Identity"
+  ],
+  "technique": "T1528",
+  "title": "Device-Code Grants From Multiple Network Origins",
+  "updated": "2026-11-25T02:32:19Z",
+  "validation": {
+    "date": "2026-11-25T02:32:19Z",
+    "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+    "variants_checked": 10
+  },
+  "variants": {
+    "sentinel-entra": {
+      "profile_revision": 2,
+      "queries": {
+        "1": {
+          "json": "SigninLogs\n| where TimeGenerated > ago(1d)\n| where AuthenticationProtocol =~ \"deviceCode\" and ResultType == \"0\" and isnotempty(UserPrincipalName) and isnotempty(IPAddress)\n| summarize SignIns = count(), Origins = dcount(IPAddress), Locations = make_set(Location, 8), Addresses = make_set(IPAddress, 12) by UserPrincipalName, AppDisplayName, Window = bin(TimeGenerated, 15m)\n| where Origins >= 3\n| order by Origins desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "SigninLogs\n| where TimeGenerated > ago(1d)\n| where AuthenticationProtocol =~ \"deviceCode\" and ResultType == \"0\" and isnotempty(UserPrincipalName) and isnotempty(IPAddress)\n| summarize SignIns = count(), Origins = dcount(IPAddress), Locations = make_set(Location, 8), Addresses = make_set(IPAddress, 12) by UserPrincipalName, AppDisplayName, Window = bin(TimeGenerated, 15m)\n| where Origins >= 3\n| order by Origins desc\n"
+        },
+        "14": {
+          "json": "SigninLogs\n| where TimeGenerated > ago(14d)\n| where AuthenticationProtocol =~ \"deviceCode\" and ResultType == \"0\" and isnotempty(UserPrincipalName) and isnotempty(IPAddress)\n| summarize SignIns = count(), Origins = dcount(IPAddress), Locations = make_set(Location, 8), Addresses = make_set(IPAddress, 12) by UserPrincipalName, AppDisplayName, Window = bin(TimeGenerated, 15m)\n| where Origins >= 3\n| order by Origins desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "SigninLogs\n| where TimeGenerated > ago(14d)\n| where AuthenticationProtocol =~ \"deviceCode\" and ResultType == \"0\" and isnotempty(UserPrincipalName) and isnotempty(IPAddress)\n| summarize SignIns = count(), Origins = dcount(IPAddress), Locations = make_set(Location, 8), Addresses = make_set(IPAddress, 12) by UserPrincipalName, AppDisplayName, Window = bin(TimeGenerated, 15m)\n| where Origins >= 3\n| order by Origins desc\n"
+        },
+        "3": {
+          "json": "SigninLogs\n| where TimeGenerated > ago(3d)\n| where AuthenticationProtocol =~ \"deviceCode\" and ResultType == \"0\" and isnotempty(UserPrincipalName) and isnotempty(IPAddress)\n| summarize SignIns = count(), Origins = dcount(IPAddress), Locations = make_set(Location, 8), Addresses = make_set(IPAddress, 12) by UserPrincipalName, AppDisplayName, Window = bin(TimeGenerated, 15m)\n| where Origins >= 3\n| order by Origins desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "SigninLogs\n| where TimeGenerated > ago(3d)\n| where AuthenticationProtocol =~ \"deviceCode\" and ResultType == \"0\" and isnotempty(UserPrincipalName) and isnotempty(IPAddress)\n| summarize SignIns = count(), Origins = dcount(IPAddress), Locations = make_set(Location, 8), Addresses = make_set(IPAddress, 12) by UserPrincipalName, AppDisplayName, Window = bin(TimeGenerated, 15m)\n| where Origins >= 3\n| order by Origins desc\n"
+        },
+        "30": {
+          "json": "SigninLogs\n| where TimeGenerated > ago(30d)\n| where AuthenticationProtocol =~ \"deviceCode\" and ResultType == \"0\" and isnotempty(UserPrincipalName) and isnotempty(IPAddress)\n| summarize SignIns = count(), Origins = dcount(IPAddress), Locations = make_set(Location, 8), Addresses = make_set(IPAddress, 12) by UserPrincipalName, AppDisplayName, Window = bin(TimeGenerated, 15m)\n| where Origins >= 3\n| order by Origins desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "SigninLogs\n| where TimeGenerated > ago(30d)\n| where AuthenticationProtocol =~ \"deviceCode\" and ResultType == \"0\" and isnotempty(UserPrincipalName) and isnotempty(IPAddress)\n| summarize SignIns = count(), Origins = dcount(IPAddress), Locations = make_set(Location, 8), Addresses = make_set(IPAddress, 12) by UserPrincipalName, AppDisplayName, Window = bin(TimeGenerated, 15m)\n| where Origins >= 3\n| order by Origins desc\n"
+        },
+        "7": {
+          "json": "SigninLogs\n| where TimeGenerated > ago(7d)\n| where AuthenticationProtocol =~ \"deviceCode\" and ResultType == \"0\" and isnotempty(UserPrincipalName) and isnotempty(IPAddress)\n| summarize SignIns = count(), Origins = dcount(IPAddress), Locations = make_set(Location, 8), Addresses = make_set(IPAddress, 12) by UserPrincipalName, AppDisplayName, Window = bin(TimeGenerated, 15m)\n| where Origins >= 3\n| order by Origins desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "SigninLogs\n| where TimeGenerated > ago(7d)\n| where AuthenticationProtocol =~ \"deviceCode\" and ResultType == \"0\" and isnotempty(UserPrincipalName) and isnotempty(IPAddress)\n| summarize SignIns = count(), Origins = dcount(IPAddress), Locations = make_set(Location, 8), Addresses = make_set(IPAddress, 12) by UserPrincipalName, AppDisplayName, Window = bin(TimeGenerated, 15m)\n| where Origins >= 3\n| order by Origins desc\n"
+        }
+      },
+      "table": "SigninLogs",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    }
+  }
+}

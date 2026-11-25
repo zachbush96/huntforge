@@ -1,0 +1,29 @@
+{
+  "aging_review": "2026-12-26",
+  "context": "Public GSocket distribution domain. The service is dual-use.",
+  "display": "gsocket[.]io",
+  "evidence": [
+    {
+      "claim": "Microsoft observed GSocket tooling on compromised Linux servers, including renamed relay binaries, cron persistence and connections to GSocket distribution infrastructure.",
+      "location": "Advanced hunting queries and indicators sections",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-11",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/"
+    }
+  ],
+  "first_observed": null,
+  "id": "HF-IOC-93EEECFDCFE129",
+  "last_observed": null,
+  "original": "gsocket[.]io",
+  "record_id": "HF-INT-F3F53EF63DF395",
+  "release_id": "hf-20261124-d78522911c3b",
+  "reported": "2026-11-11",
+  "revision": 1,
+  "schema_version": 1,
+  "source_expires": null,
+  "type": "domain",
+  "value": "gsocket.io"
+}

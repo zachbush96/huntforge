@@ -1,0 +1,6 @@
+SigninLogs
+| where TimeGenerated > ago(7d)
+| where AuthenticationProtocol =~ "deviceCode" and ResultType == "0" and isnotempty(UserPrincipalName) and isnotempty(IPAddress)
+| summarize SignIns = count(), Origins = dcount(IPAddress), Locations = make_set(Location, 8), Addresses = make_set(IPAddress, 12) by UserPrincipalName, AppDisplayName, Window = bin(TimeGenerated, 15m)
+| where Origins >= 3
+| order by Origins desc

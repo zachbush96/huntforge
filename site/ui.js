@@ -132,7 +132,7 @@ export function header(data, brief) {
     <div class="tagline">${brief ? "Autonomous Threat Intelligence<br>&amp; Detection Engineering<br>for Microsoft Sentinel" :
       "Threat Intelligence&nbsp; / &nbsp;Detection Engineering&nbsp; / &nbsp;Microsoft Sentinel"}</div>
     <div class="top-end">
-      ${brief ? `<span class="top-box">v0.1.1-mvp</span><span class="top-divider"></span><span class="public">PUBLIC</span><span class="top-divider"></span>
+      ${brief ? `<span class="top-box">v0.2.0</span><span class="top-divider"></span><span class="public">PUBLIC</span><span class="top-divider"></span>
         <button type="button" class="top-icon brief-search" aria-label="Search" data-action="search">${icon("search")}</button>` :
         `<button type="button" class="btn search-button" data-action="search" aria-label="Search hunts, actors, CVEs, indicators, techniques">${icon("search")}<span>Search Hunts, Actors, CVEs, Indicators, Techniques...</span><kbd>/</kbd></button><span class="top-divider"></span>`}
       <a class="top-link" href="${repo}" aria-label="GitHub repository">${icon("github")}${brief ? "<span>GitHub</span>" : ""}</a>

@@ -1,0 +1,6 @@
+DeviceProcessEvents
+| where TimeGenerated > ago(7d)
+| where FileName in~ ("gs-netcat", "gsocket", "gsnetcat")
+     or ProcessCommandLine contains "gs-netcat"
+| project TimeGenerated, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine, InitiatingProcessFileName
+| order by TimeGenerated desc

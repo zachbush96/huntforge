@@ -1,0 +1,6 @@
+AZKVAuditLogs
+| where TimeGenerated > ago(7d)
+| where OperationName in~ ("SecretGet", "SecretList", "SecretListVersions") and isnotempty(CallerIpAddress)
+| summarize Requests = count(), Vaults = dcount(_ResourceId), Operations = make_set(OperationName, 8), Outcomes = make_set(ResultType, 8) by CallerIpAddress, Window = bin(TimeGenerated, 5m)
+| where Requests >= 15 and Vaults >= 3
+| order by Vaults desc, Requests desc

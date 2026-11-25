@@ -1,0 +1,41 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-64629"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Siemens Simcenter Femap",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-17",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-10",
+      "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-10"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-3989B95C68B62C",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-17",
+  "related": [],
+  "release_id": "hf-20261124-d78522911c3b",
+  "retrieved": "2026-11-25T02:32:19Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "ea56545826e2f12d742c3b7714bb442435261fabf185e04689fa9b953951c84f",
+  "source": "cisa-advisories",
+  "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-10",
+  "status": "active",
+  "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-64629.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Siemens Simcenter Femap",
+  "updated": "2026-11-25T01:48:50Z"
+}

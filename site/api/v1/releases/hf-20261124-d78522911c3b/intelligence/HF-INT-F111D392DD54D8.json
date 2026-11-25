@@ -1,0 +1,65 @@
+{
+  "actors": [
+    "Storm-0940",
+    "China"
+  ],
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Microsoft attributed application abuse, password spraying and cloud role or credential changes to Storm-0940, a China-state-aligned actor, in activity that included the ConnectWise Cloud Backup compromise.",
+      "location": "Observed attack patterns, Sentinel queries and ATT&CK mapping",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-10-21",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/"
+    }
+  ],
+  "first_retrieved": "2026-11-25T02:32:19Z",
+  "hunts": [
+    "HF-2026-0015",
+    "HF-2026-0016",
+    "HF-2026-0017",
+    "HF-2026-0018"
+  ],
+  "id": "HF-INT-F111D392DD54D8",
+  "in_window": false,
+  "indicators": [
+    "HF-IOC-30B83342101D2F",
+    "HF-IOC-85B8A518112C30",
+    "HF-IOC-45D7C4479888DC"
+  ],
+  "kind": "Research",
+  "published": "2026-10-21",
+  "related": [],
+  "release_id": "hf-20261124-d78522911c3b",
+  "retrieved": "2026-11-25T02:32:19Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "bf5af6f45e04380a403bcfc86e391b6045a589eb1d2d249c3202cdbafba0781a",
+  "software": [],
+  "source": "microsoft",
+  "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/",
+  "status": "active",
+  "summary": "Microsoft attributed application abuse, password spraying and cloud role or credential changes to Storm-0940, a China-state-aligned actor, in activity that included the ConnectWise Cloud Backup compromise.",
+  "tags": [
+    "Agentic AI",
+    "Nation-State",
+    "Supply Chain",
+    "Identity"
+  ],
+  "techniques": [
+    "T1078.004",
+    "T1098.001",
+    "T1098.003",
+    "T1114.002",
+    "T1195.002",
+    "T1199"
+  ],
+  "title": "AI-driven, large-scale nation-state campaign using ARTEX enables supply chain compromise",
+  "updated": "2026-11-25T02:32:19Z"
+}

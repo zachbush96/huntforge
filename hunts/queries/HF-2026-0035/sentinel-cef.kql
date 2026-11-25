@@ -1,0 +1,7 @@
+CommonSecurityLog
+| where TimeGenerated > ago(7d)
+| where DeviceAction in~ ("deny", "denied", "drop", "dropped", "block", "blocked")
+| where isnotempty(SourceIP) and isnotempty(DestinationIP) and DestinationPort > 0
+| summarize Denies = count(), Ports = dcount(DestinationPort), SamplePorts = make_set(DestinationPort, 20) by SourceIP, DestinationIP, Window = bin(TimeGenerated, 5m)
+| where Denies >= 40 and Ports >= 12
+| order by Ports desc, Denies desc

@@ -1,21 +1,24 @@
 import { activeQuery, anchor, badge, day, escape, external, icon, link, neutral, options, profileBy, route, section, sourceNames,
   table, tacticKey, utc, validationNames } from "./ui.js";
+import { explainer } from "./explain.js";
 
-export const huntTabs = [["query","Hunting Query"],["environment","Environment Profiles"],["investigation","Investigation"],
-  ["evidence","Intelligence"],["related","Related"],["revisions","Revision History"]];
+export const huntTabs = [["query","Hunting Query"],["environment","Data Requirements"],["investigation","Investigation"],
+  ["evidence","Intelligence"],["related","Related"],["revisions","Revision History"],["explain","Explain the Results"]];
 const lookbacks = [1, 3, 7, 14, 30];
 
 function profileOptions(data, state) {
-  return options(data.profiles.map(p => [p.id, p.name + (state.hunt.variants[p.id] ? "" : " · incompatible")]), state.profile);
+  return options(state.hunt.profiles.map(id => [id, profileBy(data,id).name]), state.profile);
 }
 
 function tabPanel(data, state, variant) {
   const {hunt, tab, preferences} = state;
   const profile = profileBy(data, state.profile);
+  const schema = profile.tables[variant.table];
+  if (tab === "explain") return explainer();
   if (tab === "environment") return `<div class="tab-body"><h3>${escape(profile.name)}</h3>
-    <p>${escape(profile.assumptions)}</p><p>${variant ? `Query target: ${escape(profile.target)}. Table: <code>${escape(variant.table)}</code>.` :
-    "This profile lacks the event capability required for this hunt."}</p><p>HuntForge supplies public and synthetic profiles. Configure workplace fields locally.</p>
-    ${anchor("Browse hunts using this profile",route("hunts",null,{profile:profile.id}),"crosshair")}</div>`;
+    <p>${escape(profile.assumptions)}</p>
+    <p>${escape(profile.target)} · ${schema.documentation ? external(variant.table,schema.documentation) : `<code>${escape(variant.table)}</code>`}</p>
+    <div class="detail-links">${anchor("Browse hunts using this profile",route("hunts",null,{profile:profile.id}),"crosshair")}</div></div>`;
   if (tab === "investigation") return `<div class="tab-body"><h3>Hunt hypothesis</h3><p>${escape(hunt.hypothesis)}</p>
     <p>${escape(hunt.expected_output)} ${escape(hunt.performance)}</p><ul>${hunt.considerations.map(x=>`<li>${escape(x)}</li>`).join("")}</ul></div>`;
   if (tab === "evidence") return `<div class="tab-body"><h3>Reviewed source evidence</h3>${hunt.evidence.map(ref =>
@@ -24,11 +27,11 @@ function tabPanel(data, state, variant) {
   if (tab === "related") return `<div class="tab-body">${related(data, hunt)}</div>`;
   if (tab === "revisions") return `<div class="tab-body">${revisionTable(hunt)}</div>`;
   const query = activeQuery(state);
-  const isDefault = state.profile === "defender-xdr" && Boolean(variant);
   return `<div class="query-top">
-      <div><h2>${isDefault ? "Microsoft Sentinel KQL" : "Kusto Query Language"}</h2><p>${variant ? `${escape(profile.target)}. Select a telemetry profile to view its query.` : "Choose a compatible profile to display the query."}</p></div>
-      <div class="query-tools"><label class="select-wrap"><span class="sr-only">Query profile</span><select data-setting="profile">${profileOptions(data, state)}</select></label>
-        <button class="btn inverted" type="button" data-action="copy-query" ${query ? "" : "disabled"}>${icon("copy")} Copy KQL</button></div></div>
+      <div><h2>${escape(profile.target)} KQL</h2><p>${escape(profile.source)} · <code>${escape(variant.table)}</code></p></div>
+      <div class="query-tools"><label class="select-wrap"><span class="sr-only">Query profile</span><select aria-label="Query profile" data-setting="profile">${profileOptions(data, state)}</select></label>
+        <button class="btn inverted" type="button" data-action="copy-query">${icon("copy")} Copy KQL</button></div></div>
+    <p class="query-requirement">${escape(profile.assumptions)} ${link("Data requirements",route("hunts",hunt.id,{tab:"environment"}))}</p>
     ${query ? `<div class="code-surface" aria-label="Complete KQL query"><pre tabindex="0">${query.trimEnd().split("\n").map((line, index) =>
       `<span class="code-line" data-line="${index+1}"><code>${escape(line)}</code></span>`).join("")}</pre></div>` :
       '<div class="empty" role="status">This profile cannot supply the required event fields. Query copy and downloads are unavailable for this selection.</div>'}
@@ -38,8 +41,7 @@ function tabPanel(data, state, variant) {
     </div>
     ${preferences.json && query ? '<p class="query-note">Aggregation shares engine memory and result-size limits. Your client may limit display of the JSON cell.</p>' : ""}
     <div class="query-bottom">
-      <div><h3>Available Environment Profiles ${icon("info")}</h3><div class="actions">${hunt.profiles.map(id =>
-        `<button class="btn" type="button" data-set-profile="${escape(id)}" aria-pressed="${id === state.profile}">${id === state.profile ? icon("check") : ""}${escape(profileBy(data,id).short)}</button>`).join("")}</div></div>
+      <div><h3>Analyze in Sentinel</h3><div class="actions">${anchor("Explain the results to me",route("hunts",hunt.id,{tab:"explain"}),"info")}</div></div>
       <div><h3>Download</h3><div class="actions">
         <button class="btn" type="button" data-action="download-query" ${query ? "" : "disabled"}>${icon("download")} KQL (.kql)</button>
         <button class="btn" type="button" data-action="pack-current" ${query ? "" : "disabled"}>${icon("file")} Hunt Pack (.zip)</button>
@@ -67,6 +69,7 @@ function revisionTable(hunt) {
 export function huntMain(data, state) {
   const {hunt} = state;
   const variant = hunt.variants[state.profile];
+  const profile = profileBy(data,state.profile);
   const position = data.hunts.findIndex(row => row.id === hunt.id);
   const following = state.preferences.followed.includes(hunt.id);
   const previous = data.hunts[position - 1];
@@ -84,11 +87,12 @@ export function huntMain(data, state) {
       </div><h1>${escape(hunt.title)}</h1><p>${neutral(hunt.description)}</p>
       <div class="chips">${link(hunt.technique,route("techniques",hunt.technique),"chip")}
         ${link(hunt.tactic,route("hunts",null,{tactic:tacticKey(hunt.tactic)}),"chip")}
-        ${link(variant?.table === "DeviceNetworkEvents" || variant?.table === "DeviceProcessEvents" ? "Microsoft Defender" : "Microsoft Sentinel",tabLink("environment"),"chip")}
+        ${link(profile.target,tabLink("environment"),"chip")}
         ${link("KQL",route("hunts",hunt.id),"chip")}</div>
     </div></header>
     <section class="hunt-facts" aria-label="Hunt summary">
-      <div><span>INTELLIGENCE CONFIDENCE</span><strong>${link(hunt.confidence,tabLink("evidence"))}</strong></div>
+      <div><span>INTELLIGENCE CONFIDENCE</span><strong>${link(hunt.confidence,tabLink("evidence"))}</strong>
+        <small>Source published ${day(hunt.source_published || hunt.evidence[0]?.published)}</small></div>
       <div><span>QUERY VALIDATION</span><strong title="${escape(hunt.scope)}"><a href="${escape(tabLink("evidence"))}">${escape(variant ? validationNames[hunt.status] || hunt.status : "Incompatible")} ${icon("info")}</a></strong></div>
       <div><span>SUGGESTED LOOKBACK</span><strong>${variant ?
         `<button type="button" class="text-button" data-action="use-lookback" aria-label="Use suggested lookback of ${hunt.lookback} days">${hunt.lookback} days</button>` : `${hunt.lookback} days`}</strong></div>
@@ -104,39 +108,4 @@ export function huntMain(data, state) {
       <section>${section("Related Intelligence","link")}${related(data,hunt)}</section></div>
     <section class="revision-block"><div class="pager-link">${section("Revision History","history")}<a class="changes-link" href="#/changelog">View full changelog&nbsp; →</a></div>
       <div class="table-scroll">${revisionTable(hunt)}</div></section></main>`;
-}
-
-function schemaTable(profile, tableName, hunt, selected) {
-  const data = profile.tables[tableName];
-  const fields = ["Timestamp","Device","User","Process","CommandLine","Parent","Path","Source IP","Destination IP","Destination Port",
-    "Hostname","Destination URL","Action","Principal ID","Outcome","Resource","Platform"];
-  const shown = Object.entries(data.mappings).filter(([field]) => hunt.research !== "powershell-download" || profile.id !== "defender-xdr" || field !== "Action");
-  shown.sort(([a],[b])=>fields.indexOf(a)-fields.indexOf(b));
-  return `<details class="mapping"${selected ? " open" : ""}><summary>${escape(profile.id === "defender-xdr" ? "Microsoft Defender (Defender XDR)" : profile.name)}</summary>
-    ${table(["Hunting Field",`Mapped Field (${tableName})`], shown.map(([field,column]) => [escape(field),escape(column)]), "map-table")}
-    ${profile.synthetic ? '<p class="notice">Synthetic fields. Action retains the source disposition.</p>' : ""}
-    </details>`;
-}
-
-export function huntAside(data, state) {
-  const {hunt} = state;
-  const profile = profileBy(data,state.profile);
-  const variant = hunt.variants[profile.id];
-  const primary = variant?.table || Object.keys(profile.tables)[0];
-  const mappingRows = [profile, ...data.profiles.filter(row => row.id !== profile.id && row.id !== "sentinel-entra")];
-  return `<aside class="schema-aside" aria-label="Environment profile and schema">
-    ${section("Environment Profile & Schema","layers")}
-    <p>Map required fields to your Microsoft Sentinel environment. Select a profile to view the expected schema and field mappings.</p>
-    <label>Environment Profile<select aria-label="Environment Profile" data-setting="profile">${profileOptions(data,state)}</select></label>
-    ${section("Schema Mappings","database")}
-    ${mappingRows.map(row=>schemaTable(row, hunt.variants[row.id]?.table || Object.keys(row.tables)[0],hunt, row.id === profile.id)).join("")}
-    <div class="details-heading">${section("Profile Details","info")}</div>
-    ${table([],[
-      ["<b>Profile ID</b>",escape(profile.id)],["<b>Data Source</b>",escape(profile.source)],
-      ["<b>Primary Table</b>",profile.tables[primary].documentation ? external(primary,profile.tables[primary].documentation) : escape(primary)],
-      ["<b>Event Type</b>",escape(profile.tables[primary].capability)],["<b>Field Coverage</b>",variant ? "✓ Profile checked" : "Incompatible"],
-      ["<b>Last Validated</b>",variant ? day(hunt.validation.date) : "—"],["<b>Version</b>",`v${profile.revision}`],
-      ["<b>Execution Scope</b>",variant ? "Static analysis" : "—"]
-    ],"details-table")}
-  </aside>`;
 }
