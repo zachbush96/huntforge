@@ -1,0 +1,204 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-40217"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-24",
+      "epss": "0.827990000",
+      "percentile": "0.996740000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.82799000",
+      "percentile": "0.99678000"
+    },
+    {
+      "date": "2026-11-22",
+      "epss": "0.78004000",
+      "percentile": "0.99581000"
+    },
+    {
+      "date": "2026-11-21",
+      "epss": "0.78004000",
+      "percentile": "0.99581000"
+    },
+    {
+      "date": "2026-11-20",
+      "epss": "0.68902000",
+      "percentile": "0.99365000"
+    },
+    {
+      "date": "2026-11-19",
+      "epss": "0.61911000",
+      "percentile": "0.99193000"
+    },
+    {
+      "date": "2026-11-18",
+      "epss": "0.17020000",
+      "percentile": "0.97134000"
+    },
+    {
+      "date": "2026-11-17",
+      "epss": "0.17020000",
+      "percentile": "0.97126000"
+    },
+    {
+      "date": "2026-11-16",
+      "epss": "0.17020000",
+      "percentile": "0.97124000"
+    },
+    {
+      "date": "2026-11-15",
+      "epss": "0.17020000",
+      "percentile": "0.97124000"
+    },
+    {
+      "date": "2026-11-14",
+      "epss": "0.17020000",
+      "percentile": "0.97124000"
+    },
+    {
+      "date": "2026-11-13",
+      "epss": "0.17020000",
+      "percentile": "0.97121000"
+    },
+    {
+      "date": "2026-11-12",
+      "epss": "0.17020000",
+      "percentile": "0.97117000"
+    },
+    {
+      "date": "2026-11-11",
+      "epss": "0.17020000",
+      "percentile": "0.97113000"
+    },
+    {
+      "date": "2026-11-10",
+      "epss": "0.17020000",
+      "percentile": "0.97099000"
+    },
+    {
+      "date": "2026-11-09",
+      "epss": "0.17020000",
+      "percentile": "0.97095000"
+    },
+    {
+      "date": "2026-11-08",
+      "epss": "0.17020000",
+      "percentile": "0.97094000"
+    },
+    {
+      "date": "2026-11-07",
+      "epss": "0.17020000",
+      "percentile": "0.97092000"
+    },
+    {
+      "date": "2026-11-06",
+      "epss": "0.17020000",
+      "percentile": "0.97087000"
+    },
+    {
+      "date": "2026-11-05",
+      "epss": "0.17020000",
+      "percentile": "0.97087000"
+    },
+    {
+      "date": "2026-11-04",
+      "epss": "0.17020000",
+      "percentile": "0.97084000"
+    },
+    {
+      "date": "2026-11-03",
+      "epss": "0.15532000",
+      "percentile": "0.96833000"
+    },
+    {
+      "date": "2026-11-02",
+      "epss": "0.15532000",
+      "percentile": "0.96829000"
+    },
+    {
+      "date": "2026-11-01",
+      "epss": "0.15532000",
+      "percentile": "0.96830000"
+    },
+    {
+      "date": "2026-10-31",
+      "epss": "0.15532000",
+      "percentile": "0.96829000"
+    },
+    {
+      "date": "2026-10-30",
+      "epss": "0.15532000",
+      "percentile": "0.96825000"
+    },
+    {
+      "date": "2026-10-29",
+      "epss": "0.15532000",
+      "percentile": "0.96820000"
+    },
+    {
+      "date": "2026-10-28",
+      "epss": "0.15532000",
+      "percentile": "0.96816000"
+    },
+    {
+      "date": "2026-10-27",
+      "epss": "0.15532000",
+      "percentile": "0.96811000"
+    },
+    {
+      "date": "2026-10-26",
+      "epss": "0.15532000",
+      "percentile": "0.96803000"
+    },
+    {
+      "date": "2026-10-25",
+      "epss": "0.15532000",
+      "percentile": "0.96802000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-18",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-40217",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-40217"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-C6D4CF5FA050A6",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "LiteLLM",
+  "published": "2026-11-18",
+  "ransomware_use": "unknown",
+  "related": [
+    "HF-INT-2BF6E3B53184CD"
+  ],
+  "release_id": "hf-20261124-99b0217c01c0",
+  "remediation_due": "2026-12-02",
+  "retrieved": "2026-11-25T03:12:33Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "0e37c9e2e41f9238f466c05c93426f8630b2adb831446dd5da166d0648aaff1a",
+  "source": "cisa-kev",
+  "source_id": "CVE-2026-40217",
+  "status": "active",
+  "summary": "CISA added CVE-2026-40217 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-12-02.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "BerriAI LiteLLM Unprotected Alternate Channel Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "BerriAI"
+}

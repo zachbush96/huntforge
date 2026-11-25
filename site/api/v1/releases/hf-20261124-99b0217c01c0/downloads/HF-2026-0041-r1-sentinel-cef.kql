@@ -1,0 +1,11 @@
+CommonSecurityLog
+| where TimeGenerated > ago(30d)
+| where DeviceVendor in~ ("AWS", "Amazon", "Amazon Web Services") or DeviceProduct =~ "AWS WAF"
+| extend WafEvent = parse_json(Message), MappedRule = iff(Activity in~ ("PHP2Shell_BODY_Extended", "PHP2Shell_BODY"), Activity, "")
+| extend Labels = iff(isnotempty(MappedRule) or coalesce(array_length(WafEvent.labels), 0) == 0, dynamic([{}]), WafEvent.labels)
+| mv-expand Label = Labels
+| extend LabelName = tostring(Label.name)
+| extend MatchedRule = case(LabelName =~ "awswaf:managed:aws:php-app:PHP2Shell_Body_Extended", "PHP2Shell_BODY_Extended", LabelName =~ "awswaf:managed:aws:php-app:PHP2Shell_Body", "PHP2Shell_BODY", MappedRule)
+| where isnotempty(MatchedRule)
+| project TimeGenerated, MatchedRule, WafAction = coalesce(tostring(WafEvent.action), DeviceAction), ClientIP = coalesce(tostring(WafEvent.httpRequest.clientIp), SourceIP), RequestId = tostring(WafEvent.httpRequest.requestId), RequestUri = coalesce(tostring(WafEvent.httpRequest.uri), RequestURL), WebAcl = tostring(WafEvent.webaclId), DestinationHostName
+| order by TimeGenerated desc

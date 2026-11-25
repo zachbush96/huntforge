@@ -30,7 +30,9 @@ const glyphs = {
 export const repo = "https://github.com/zachbush96/huntforge";
 export const sourceNames = {
   "cisa-kev":"CISA KEV", "first-epss":"FIRST EPSS", "cisa-advisories":"CISA Advisories",
-  "microsoft":"Microsoft Security", "ncsc":"UK NCSC", "mitre":"MITRE ATT&CK®"
+  "microsoft":"Microsoft Security", "ncsc":"UK NCSC", "mitre":"MITRE ATT&CK®",
+  "drupal":"Drupal Security Team", "ctir":"CTIR Gov", "gitlab":"GitLab Security", "volexity":"Volexity",
+  "aws-security":"AWS Security", "optimizely":"Optimizely", "f6":"F6"
 };
 
 export function icon(name) {
@@ -53,7 +55,8 @@ export function safeExternal(value) {
   try {
     const url = new URL(value);
     const allowed = ["cisa.gov","www.cisa.gov","www.microsoft.com","www.ncsc.gov.uk","www.first.org","attack.mitre.org",
-      "learn.microsoft.com","github.com","api.first.org"];
+      "learn.microsoft.com","github.com","api.first.org","www.drupal.org","www.gov.br","docs.gitlab.com","www.volexity.com",
+      "aws.amazon.com","pages.optimizely.com","www.f6.ru"];
     if (url.protocol === "https:" && allowed.includes(url.hostname) && !url.username && !url.password) return escape(url.href);
   } catch { /* Invalid publisher URL. */ }
   return "#";
@@ -90,8 +93,8 @@ export function link(text, href, className = "") {
   return `<a class="${className}" href="${escape(href)}">${neutral(text)}</a>`;
 }
 
-export function button(text, action, symbol, extra = "") {
-  return `<button type="button" class="btn ${extra}" data-action="${action}">${symbol ? icon(symbol) : ""}${escape(text)}</button>`;
+export function button(text, action, symbol, extra = "", disabled = false) {
+  return `<button type="button" class="btn ${extra}" data-action="${action}"${disabled ? " disabled" : ""}>${symbol ? icon(symbol) : ""}${escape(text)}</button>`;
 }
 
 export function anchor(text, href, symbol, extra = "") {
@@ -99,7 +102,8 @@ export function anchor(text, href, symbol, extra = "") {
 }
 
 export function external(text, href) {
-  return `<a href="${safeExternal(href)}" target="_blank" rel="noopener noreferrer">${neutral(text)} ${icon("external")}</a>`;
+  const target = safeExternal(href);
+  return target === "#" ? neutral(text) : `<a href="${target}" target="_blank" rel="noopener noreferrer">${neutral(text)} ${icon("external")}</a>`;
 }
 
 export function options(rows, active) {
@@ -132,7 +136,7 @@ export function header(data, brief) {
     <div class="tagline">${brief ? "Autonomous Threat Intelligence<br>&amp; Detection Engineering<br>for Microsoft Sentinel" :
       "Threat Intelligence&nbsp; / &nbsp;Detection Engineering&nbsp; / &nbsp;Microsoft Sentinel"}</div>
     <div class="top-end">
-      ${brief ? `<span class="top-box">v0.2.1</span><span class="top-divider"></span><span class="public">PUBLIC</span><span class="top-divider"></span>
+      ${brief ? `<span class="top-box">v0.3.0</span><span class="top-divider"></span><span class="public">PUBLIC</span><span class="top-divider"></span>
         <button type="button" class="top-icon brief-search" aria-label="Search" data-action="search">${icon("search")}</button>` :
         `<button type="button" class="btn search-button" data-action="search" aria-label="Search hunts, actors, CVEs, indicators, techniques">${icon("search")}<span>Search Hunts, Actors, CVEs, Indicators, Techniques...</span><kbd>/</kbd></button><span class="top-divider"></span>`}
       <a class="top-link" href="${repo}" aria-label="GitHub repository">${icon("github")}${brief ? "<span>GitHub</span>" : ""}</a>
@@ -154,6 +158,32 @@ export function sidebar(state, data, brief) {
       <dt>${link("Retired",route("changelog",null,{change:"retired"}))}</dt><dd>${items.filter(x => x.action === "retired").length}</dd></dl>
       <a href="#/changelog">View changelog&nbsp; →</a></div>`}
     <div class="side-art" aria-hidden="true"><i></i></div></aside>`;
+}
+
+export function pageSizes(section) {
+  if (section === "brief") return [4,8,12,24];
+  if (section === "changelog") return [25,50,100];
+  return ["hunts","techniques","adversaries","indicators"].includes(section) ? [12,24,48,96] : [10,25,50,100];
+}
+
+export function resultWindow(length, state) {
+  const size = state.pageSize;
+  const page = Math.min(state.page,Math.max(0,Math.ceil(length/size)-1));
+  return {page, size, start:page*size, end:(page+1)*size};
+}
+
+export function resultsToolbar(length, itemName, state, sort = false) {
+  return `<div id="results" class="results-toolbar" tabindex="-1">
+    <strong>${length.toLocaleString()} ${escape(itemName)}</strong>
+    ${sort ? `<label>Sort by <select data-filter="sort" aria-label="Sort by">${options([
+      ["","Default order"],["newest","Newest first"],["oldest","Oldest first"],["title","Name A–Z"]
+    ],state.filters.sort || "")}</select></label>` : ""}
+    <label>Results per page <select data-page-size aria-label="Results per page">${options(pageSizes(state.section).map(size=>[size,size]),state.pageSize)}</select></label>
+  </div>`;
+}
+
+export function recentHunts(hunts) {
+  return [...hunts].sort((a,b)=>(b.source_published || b.evidence[0]?.published || "").localeCompare(a.source_published || a.evidence[0]?.published || ""));
 }
 
 export function pagination(length, page, size, itemName) {

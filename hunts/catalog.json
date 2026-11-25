@@ -39,6 +39,12 @@
         "date": "2026-11-25T02:32:19Z",
         "revision": 3,
         "summary": "Revalidated after changes to profiles, source_published, tags, variants, primary_table."
+      },
+      {
+        "change": "Updated",
+        "date": "2026-11-25T03:12:33Z",
+        "revision": 4,
+        "summary": "Revalidated after changes to variants."
       }
     ],
     "hypothesis": "PowerShell used to retrieve a payload may leave a process-attributed network event.",
@@ -54,10 +60,10 @@
     ],
     "published": "2026-11-25T01:48:50Z",
     "research": "powershell-download",
-    "revision": 3,
+    "revision": 4,
     "schema_version": 1,
     "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
-    "signature": "ae4083f25e6fee8ac5a55cd90d95cb4a41177b816327400d88577e659bf26c87",
+    "signature": "d911bebdbab1118d6afc037fa4607cefe539d29c63ccb93cfed702c29bfc602d",
     "source_ids": [
       "HF-INT-3906A981456D92"
     ],
@@ -70,9 +76,9 @@
     ],
     "technique": "T1059.001",
     "title": "Suspicious PowerShell Network Activity",
-    "updated": "2026-11-25T02:32:19Z",
+    "updated": "2026-11-25T03:12:33Z",
     "validation": {
-      "date": "2026-11-25T02:32:19Z",
+      "date": "2026-11-25T03:12:33Z",
       "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
       "variants_checked": 30
     },
@@ -114,7 +120,7 @@
         }
       },
       "sentinel-endpoint": {
-        "profile_revision": 1,
+        "profile_revision": 2,
         "queries": {
           "1": {
             "json": "DeviceNetworkEvents\n| where TimeGenerated > ago(1d)\n| where InitiatingProcessFileName in~ (\n    \"powershell.exe\",\n    \"pwsh.exe\"\n)\n| where isnotempty(RemoteIP)\n| project TimeGenerated, DeviceName, RemoteIP, RemotePort, RemoteUrl,\n          InitiatingProcessCommandLine\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
@@ -220,6 +226,12 @@
         "date": "2026-11-25T02:32:19Z",
         "revision": 2,
         "summary": "Revalidated after changes to profiles, source_published, tags, evidence, indicator_ids, variants, primary_table."
+      },
+      {
+        "change": "Updated",
+        "date": "2026-11-25T03:12:33Z",
+        "revision": 3,
+        "summary": "Revalidated after changes to variants."
       }
     ],
     "hypothesis": "Known GSocket executable names or command-line references may identify investigated relay tooling.",
@@ -237,10 +249,10 @@
     ],
     "published": "2026-11-25T01:48:50Z",
     "research": "gsocket",
-    "revision": 2,
+    "revision": 3,
     "schema_version": 1,
     "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
-    "signature": "8cd0567d7dd33582bf07ac134024f9e88a37f91cf177a8fbf90963472ff6db3e",
+    "signature": "8be538b9d2bb5bbc2319e1ffe8046613465524000ca66068ec1d4954f1ba863a",
     "source_ids": [
       "HF-INT-F3F53EF63DF395"
     ],
@@ -253,9 +265,9 @@
     ],
     "technique": "T1090.002",
     "title": "GSocket Process Activity",
-    "updated": "2026-11-25T02:32:19Z",
+    "updated": "2026-11-25T03:12:33Z",
     "validation": {
-      "date": "2026-11-25T02:32:19Z",
+      "date": "2026-11-25T03:12:33Z",
       "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
       "variants_checked": 20
     },
@@ -297,7 +309,7 @@
         }
       },
       "sentinel-endpoint": {
-        "profile_revision": 1,
+        "profile_revision": 2,
         "queries": {
           "1": {
             "json": "DeviceProcessEvents\n| where TimeGenerated > ago(1d)\n| where FileName in~ (\"gs-netcat\", \"gsocket\", \"gsnetcat\")\n     or ProcessCommandLine contains \"gs-netcat\"\n| project TimeGenerated, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine, InitiatingProcessFileName\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
@@ -368,6 +380,12 @@
         "date": "2026-11-25T02:32:19Z",
         "revision": 2,
         "summary": "Revalidated after changes to profiles, source_published, tags, variants, primary_table."
+      },
+      {
+        "change": "Updated",
+        "date": "2026-11-25T03:12:33Z",
+        "revision": 3,
+        "summary": "Revalidated after changes to variants."
       }
     ],
     "hypothesis": "Exact destination host matches can identify traffic associated with the documented phishing campaign.",
@@ -389,10 +407,10 @@
     ],
     "published": "2026-11-25T01:48:50Z",
     "research": "outage-phishing",
-    "revision": 2,
+    "revision": 3,
     "schema_version": 1,
     "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
-    "signature": "787c8c238bac35da9e26688fb1be7a3be26dc04bb9ef131d8efaa25b86225af3",
+    "signature": "bfb7ee399dd8b8896aab153aca39e0fc93b1d41c49b410dc38495f2cd817e248",
     "source_ids": [
       "HF-INT-A08614C0DEBC42"
     ],
@@ -405,9 +423,9 @@
     ],
     "technique": "T1566.002",
     "title": "Microsoft 365 Outage Phishing Destinations",
-    "updated": "2026-11-25T02:32:19Z",
+    "updated": "2026-11-25T03:12:33Z",
     "validation": {
-      "date": "2026-11-25T02:32:19Z",
+      "date": "2026-11-25T03:12:33Z",
       "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
       "variants_checked": 40
     },
@@ -521,7 +539,7 @@
         }
       },
       "sentinel-endpoint": {
-        "profile_revision": 1,
+        "profile_revision": 2,
         "queries": {
           "1": {
             "json": "DeviceNetworkEvents\n| where TimeGenerated > ago(1d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(RemoteUrl contains \"://\", tostring(parse_url(RemoteUrl).Host), RemoteUrl), tostring(parse_url(RemoteUrl).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, DeviceName, RemoteIP, RemoteUrl, ActionType, HuntDestinationHost\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
@@ -591,6 +609,12 @@
         "date": "2026-11-25T02:32:19Z",
         "revision": 2,
         "summary": "Revalidated after changes to profiles, source_published, tags, evidence, variants, primary_table."
+      },
+      {
+        "change": "Updated",
+        "date": "2026-11-25T03:12:33Z",
+        "revision": 3,
+        "summary": "Revalidated after changes to variants."
       }
     ],
     "hypothesis": "Fraudulent remote support sessions can start with Quick Assist process activity.",
@@ -606,10 +630,10 @@
     ],
     "published": "2026-11-25T01:48:50Z",
     "research": "quick-assist",
-    "revision": 2,
+    "revision": 3,
     "schema_version": 1,
     "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
-    "signature": "ccd4f2587c679ddddd356dcd1494dfb54a84337b75383ece6387bc4b8206d4aa",
+    "signature": "9c40c2e09d132aaba9d9f14b4b5bc8afd0bb7e2415cf38cf6e18598a9e90257f",
     "source_ids": [
       "HF-INT-E26238C5B4C5C7"
     ],
@@ -622,9 +646,9 @@
     ],
     "technique": "T1219.002",
     "title": "Quick Assist Process Activity",
-    "updated": "2026-11-25T02:32:19Z",
+    "updated": "2026-11-25T03:12:33Z",
     "validation": {
-      "date": "2026-11-25T02:32:19Z",
+      "date": "2026-11-25T03:12:33Z",
       "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
       "variants_checked": 30
     },
@@ -666,7 +690,7 @@
         }
       },
       "sentinel-endpoint": {
-        "profile_revision": 1,
+        "profile_revision": 2,
         "queries": {
           "1": {
             "json": "DeviceProcessEvents\n| where TimeGenerated > ago(1d)\n| where FileName =~ \"QuickAssist.exe\"\n| project TimeGenerated, DeviceName, AccountName, ProcessCommandLine, InitiatingProcessFileName\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
@@ -989,6 +1013,12 @@
         "date": "2026-11-25T02:32:19Z",
         "revision": 1,
         "summary": "Created evidence-backed hunt and validated all supported variants."
+      },
+      {
+        "change": "Updated",
+        "date": "2026-11-25T03:12:33Z",
+        "revision": 2,
+        "summary": "Revalidated after changes to variants."
       }
     ],
     "hypothesis": "Review process-attributed connections to reported Storm-3358 infrastructure.",
@@ -1009,10 +1039,10 @@
     ],
     "published": "2026-11-25T02:32:19Z",
     "research": "artex-finance",
-    "revision": 1,
+    "revision": 2,
     "schema_version": 1,
     "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
-    "signature": "36e8ef2906babae8bd56d84cec64b23c61a0af0160c7e41e54885d2026eee545",
+    "signature": "a473ea0185c7b9eeafc4b8737816f9590989fc14291ce1127a1368782e600ac9",
     "source_ids": [
       "HF-INT-631279C95E3417"
     ],
@@ -1026,15 +1056,15 @@
     ],
     "technique": "T1105",
     "title": "ARTEX-Associated Remote Connections on Endpoints",
-    "updated": "2026-11-25T02:32:19Z",
+    "updated": "2026-11-25T03:12:33Z",
     "validation": {
-      "date": "2026-11-25T02:32:19Z",
+      "date": "2026-11-25T03:12:33Z",
       "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
       "variants_checked": 10
     },
     "variants": {
       "sentinel-endpoint": {
-        "profile_revision": 1,
+        "profile_revision": 2,
         "queries": {
           "1": {
             "json": "DeviceNetworkEvents\n| where TimeGenerated > ago(1d)\n| where RemoteIP in (\"91.92.240.238\", \"85.11.168.45\", \"31.77.229.35\", \"199.19.95.66\", \"199.19.95.67\", \"199.19.95.68\")\n| project TimeGenerated, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine, RemoteIP, RemotePort, ActionType\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
@@ -2808,6 +2838,12 @@
         "date": "2026-11-25T02:32:19Z",
         "revision": 1,
         "summary": "Created evidence-backed hunt and validated all supported variants."
+      },
+      {
+        "change": "Updated",
+        "date": "2026-11-25T03:12:33Z",
+        "revision": 2,
+        "summary": "Revalidated after changes to variants."
       }
     ],
     "hypothesis": "Look for shell process launches parented by ScreenConnect.",
@@ -2821,10 +2857,10 @@
     ],
     "published": "2026-11-25T02:32:19Z",
     "research": "sckit",
-    "revision": 1,
+    "revision": 2,
     "schema_version": 1,
     "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
-    "signature": "e0455eacac7123d3df0917cf67a95506e43d7fa950d96869bc34c0ee195832b0",
+    "signature": "6d43ab7983de739ea34da6e80a1b868cdd54470ed5a6fab03e3a3bbad468ecea",
     "source_ids": [
       "HF-INT-36ECE2AA75663D"
     ],
@@ -2838,15 +2874,15 @@
     ],
     "technique": "T1219.002",
     "title": "ScreenConnect Spawning a Command Shell",
-    "updated": "2026-11-25T02:32:19Z",
+    "updated": "2026-11-25T03:12:33Z",
     "validation": {
-      "date": "2026-11-25T02:32:19Z",
+      "date": "2026-11-25T03:12:33Z",
       "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
       "variants_checked": 10
     },
     "variants": {
       "sentinel-endpoint": {
-        "profile_revision": 1,
+        "profile_revision": 2,
         "queries": {
           "1": {
             "json": "DeviceProcessEvents\n| where TimeGenerated > ago(1d)\n| where InitiatingProcessFileName startswith \"ScreenConnect\"\n| where FileName in~ (\"cmd.exe\", \"powershell.exe\", \"pwsh.exe\")\n| project TimeGenerated, DeviceName, AccountName, InitiatingProcessFileName, FileName, ProcessCommandLine\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
@@ -2910,6 +2946,12 @@
         "date": "2026-11-25T02:32:19Z",
         "revision": 1,
         "summary": "Created evidence-backed hunt and validated all supported variants."
+      },
+      {
+        "change": "Updated",
+        "date": "2026-11-25T03:12:33Z",
+        "revision": 2,
+        "summary": "Revalidated after changes to variants."
       }
     ],
     "hypothesis": "Find scheduled task events containing two markers Microsoft identified in SCKit activity.",
@@ -2923,10 +2965,10 @@
     ],
     "published": "2026-11-25T02:32:19Z",
     "research": "sckit",
-    "revision": 1,
+    "revision": 2,
     "schema_version": 1,
     "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
-    "signature": "47eb1356271f8f46e9d5033c621415edeea71b91607a65bbd6a09acead36fa25",
+    "signature": "d16e63c4f50b27e0d73b4f372040e14cf737ac907fc08112613f96d3cb0486af",
     "source_ids": [
       "HF-INT-36ECE2AA75663D"
     ],
@@ -2940,15 +2982,15 @@
     ],
     "technique": "T1053.005",
     "title": "RelayTrap Scheduled Task Activity",
-    "updated": "2026-11-25T02:32:19Z",
+    "updated": "2026-11-25T03:12:33Z",
     "validation": {
-      "date": "2026-11-25T02:32:19Z",
+      "date": "2026-11-25T03:12:33Z",
       "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
       "variants_checked": 10
     },
     "variants": {
       "sentinel-endpoint": {
-        "profile_revision": 1,
+        "profile_revision": 2,
         "queries": {
           "1": {
             "json": "DeviceEvents\n| where TimeGenerated > ago(1d)\n| where ActionType contains \"ScheduledTask\" and (tostring(AdditionalFields) contains \"RelayTrap\" or tostring(AdditionalFields) contains \"TrapWatch\")\n| project TimeGenerated, DeviceName, ActionType, InitiatingProcessFileName, AdditionalFields\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
@@ -3012,6 +3054,12 @@
         "date": "2026-11-25T02:32:19Z",
         "revision": 1,
         "summary": "Created evidence-backed hunt and validated all supported variants."
+      },
+      {
+        "change": "Updated",
+        "date": "2026-11-25T03:12:33Z",
+        "revision": 2,
+        "summary": "Revalidated after changes to variants."
       }
     ],
     "hypothesis": "Review Run and RunOnce changes carrying a RelayTrap marker.",
@@ -3025,10 +3073,10 @@
     ],
     "published": "2026-11-25T02:32:19Z",
     "research": "sckit",
-    "revision": 1,
+    "revision": 2,
     "schema_version": 1,
     "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
-    "signature": "fc624af591f35e6f0300c6b9b62e60d07e8379d8351231fa74e7ab0dcb6cfadb",
+    "signature": "95151c46aca76553c115b11349d645beabc7266e6cad2d85bfd810ce61df0168",
     "source_ids": [
       "HF-INT-36ECE2AA75663D"
     ],
@@ -3042,15 +3090,15 @@
     ],
     "technique": "T1547.001",
     "title": "SCKit Run Key Persistence",
-    "updated": "2026-11-25T02:32:19Z",
+    "updated": "2026-11-25T03:12:33Z",
     "validation": {
-      "date": "2026-11-25T02:32:19Z",
+      "date": "2026-11-25T03:12:33Z",
       "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
       "variants_checked": 10
     },
     "variants": {
       "sentinel-endpoint": {
-        "profile_revision": 1,
+        "profile_revision": 2,
         "queries": {
           "1": {
             "json": "DeviceRegistryEvents\n| where TimeGenerated > ago(1d)\n| where ActionType == \"RegistryValueSet\"\n| where RegistryKey endswith @\"\\CurrentVersion\\Run\" or RegistryKey endswith @\"\\CurrentVersion\\RunOnce\"\n| where RegistryValueName contains \"RelayTrap\" or RegistryValueData contains \"RelayTrap\"\n| project TimeGenerated, DeviceName, RegistryKey, RegistryValueName, RegistryValueData, InitiatingProcessFileName\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
@@ -3114,6 +3162,12 @@
         "date": "2026-11-25T02:32:19Z",
         "revision": 1,
         "summary": "Created evidence-backed hunt and validated all supported variants."
+      },
+      {
+        "change": "Updated",
+        "date": "2026-11-25T03:12:33Z",
+        "revision": 2,
+        "summary": "Revalidated after changes to variants."
       }
     ],
     "hypothesis": "Review Defender exclusions that reference remote-support staging or RelayTrap.",
@@ -3127,10 +3181,10 @@
     ],
     "published": "2026-11-25T02:32:19Z",
     "research": "sckit",
-    "revision": 1,
+    "revision": 2,
     "schema_version": 1,
     "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
-    "signature": "285973724cbc86fef1b5b5b979c0ddfa1c4fa976237b46f1640be3aad4e21981",
+    "signature": "6803b90a89e12d12445701da896d7fac193fb5a222feb8a07975ba14f07c8a73",
     "source_ids": [
       "HF-INT-36ECE2AA75663D"
     ],
@@ -3144,15 +3198,15 @@
     ],
     "technique": "T1685",
     "title": "Defender Path Exclusions Near SCKit Activity",
-    "updated": "2026-11-25T02:32:19Z",
+    "updated": "2026-11-25T03:12:33Z",
     "validation": {
-      "date": "2026-11-25T02:32:19Z",
+      "date": "2026-11-25T03:12:33Z",
       "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
       "variants_checked": 10
     },
     "variants": {
       "sentinel-endpoint": {
-        "profile_revision": 1,
+        "profile_revision": 2,
         "queries": {
           "1": {
             "json": "DeviceRegistryEvents\n| where TimeGenerated > ago(1d)\n| where ActionType == \"RegistryValueSet\"\n| where RegistryKey contains @\"\\Windows Defender\\Exclusions\\Paths\"\n| where RegistryValueName contains \"ConnectWiseControl\" or RegistryValueName contains \"CWInstall\" or RegistryValueName contains \"RelayTrap\" or RegistryValueData contains \"RelayTrap\"\n| project TimeGenerated, DeviceName, RegistryKey, RegistryValueName, RegistryValueData, InitiatingProcessFileName\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
@@ -3216,6 +3270,12 @@
         "date": "2026-11-25T02:32:19Z",
         "revision": 1,
         "summary": "Created evidence-backed hunt and validated all supported variants."
+      },
+      {
+        "change": "Updated",
+        "date": "2026-11-25T03:12:33Z",
+        "revision": 2,
+        "summary": "Revalidated after changes to variants."
       }
     ],
     "hypothesis": "Review process-attributed connections to published GSocket distribution domains.",
@@ -3232,10 +3292,10 @@
     ],
     "published": "2026-11-25T02:32:19Z",
     "research": "gsocket",
-    "revision": 1,
+    "revision": 2,
     "schema_version": 1,
     "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
-    "signature": "97359c018295062f65b0588843708b577f67037e34662275ea5ba8c936daea01",
+    "signature": "2be39d7448bcceaec8970da479c062f2e96571542493f20fcd82cf6e746f1921",
     "source_ids": [
       "HF-INT-F3F53EF63DF395"
     ],
@@ -3248,15 +3308,15 @@
     ],
     "technique": "T1105",
     "title": "GSocket Distribution Endpoint Connections",
-    "updated": "2026-11-25T02:32:19Z",
+    "updated": "2026-11-25T03:12:33Z",
     "validation": {
-      "date": "2026-11-25T02:32:19Z",
+      "date": "2026-11-25T03:12:33Z",
       "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
       "variants_checked": 10
     },
     "variants": {
       "sentinel-endpoint": {
-        "profile_revision": 1,
+        "profile_revision": 2,
         "queries": {
           "1": {
             "json": "DeviceNetworkEvents\n| where TimeGenerated > ago(1d)\n| extend DestinationHost = tolower(iff(RemoteUrl contains \"://\", tostring(parse_url(RemoteUrl).Host), RemoteUrl))\n| where DestinationHost in (\"gsocket.io\", \"gsgg.b-cdn.net\")\n| project TimeGenerated, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine, DestinationHost, RemoteIP, ActionType\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
@@ -3320,6 +3380,12 @@
         "date": "2026-11-25T02:32:19Z",
         "revision": 1,
         "summary": "Created evidence-backed hunt and validated all supported variants."
+      },
+      {
+        "change": "Updated",
+        "date": "2026-11-25T03:12:33Z",
+        "revision": 2,
+        "summary": "Revalidated after changes to variants."
       }
     ],
     "hypothesis": "Look for cron starting a GSocket-related process on Linux.",
@@ -3336,10 +3402,10 @@
     ],
     "published": "2026-11-25T02:32:19Z",
     "research": "gsocket",
-    "revision": 1,
+    "revision": 2,
     "schema_version": 1,
     "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
-    "signature": "c67f80f23f269f5938854fe5e14142c3aa2a939f9bcf406aa6b02f53c094748a",
+    "signature": "290184984becb639abc4c28d87d059db1d94bab2fb8db64038f3d8cbc7cdf1f4",
     "source_ids": [
       "HF-INT-F3F53EF63DF395"
     ],
@@ -3352,15 +3418,15 @@
     ],
     "technique": "T1053.003",
     "title": "GSocket Launch From Cron",
-    "updated": "2026-11-25T02:32:19Z",
+    "updated": "2026-11-25T03:12:33Z",
     "validation": {
-      "date": "2026-11-25T02:32:19Z",
+      "date": "2026-11-25T03:12:33Z",
       "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
       "variants_checked": 10
     },
     "variants": {
       "sentinel-endpoint": {
-        "profile_revision": 1,
+        "profile_revision": 2,
         "queries": {
           "1": {
             "json": "DeviceProcessEvents\n| where TimeGenerated > ago(1d)\n| where InitiatingProcessFileName in~ (\"cron\", \"crond\")\n| where FileName in~ (\"gs-netcat\", \"gsocket\", \"gsnetcat\") or ProcessCommandLine contains \"gs-netcat\" or ProcessCommandLine contains \"gsocket\"\n| project TimeGenerated, DeviceName, AccountName, InitiatingProcessFileName, FileName, ProcessCommandLine\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
@@ -3424,6 +3490,12 @@
         "date": "2026-11-25T02:32:19Z",
         "revision": 1,
         "summary": "Created evidence-backed hunt and validated all supported variants."
+      },
+      {
+        "change": "Updated",
+        "date": "2026-11-25T03:12:33Z",
+        "revision": 2,
+        "summary": "Revalidated after changes to variants."
       }
     ],
     "hypothesis": "Review GSocket artifacts written to the shared-memory staging area described by Microsoft.",
@@ -3440,10 +3512,10 @@
     ],
     "published": "2026-11-25T02:32:19Z",
     "research": "gsocket",
-    "revision": 1,
+    "revision": 2,
     "schema_version": 1,
     "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
-    "signature": "9989a33726665288be01f720468775b860b53f5d0de906fd0e352127e1706ae8",
+    "signature": "d2c94a8a41c08c3f32fd2ef8329be5f38b632114cc2120d3d253a200fe9e2995",
     "source_ids": [
       "HF-INT-F3F53EF63DF395"
     ],
@@ -3456,15 +3528,15 @@
     ],
     "technique": "T1105",
     "title": "GSocket-Related Files in Linux Shared Memory",
-    "updated": "2026-11-25T02:32:19Z",
+    "updated": "2026-11-25T03:12:33Z",
     "validation": {
-      "date": "2026-11-25T02:32:19Z",
+      "date": "2026-11-25T03:12:33Z",
       "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
       "variants_checked": 10
     },
     "variants": {
       "sentinel-endpoint": {
-        "profile_revision": 1,
+        "profile_revision": 2,
         "queries": {
           "1": {
             "json": "DeviceFileEvents\n| where TimeGenerated > ago(1d)\n| where FolderPath startswith \"/dev/shm/\" and FileName contains \"gs-netcat\"\n| project TimeGenerated, DeviceName, FolderPath, FileName, SHA256, ActionType, InitiatingProcessFileName\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
@@ -3841,6 +3913,12 @@
         "date": "2026-11-25T02:32:19Z",
         "revision": 1,
         "summary": "Created evidence-backed hunt and validated all supported variants."
+      },
+      {
+        "change": "Updated",
+        "date": "2026-11-25T03:12:33Z",
+        "revision": 2,
+        "summary": "Revalidated after changes to variants."
       }
     ],
     "hypothesis": "Review observed direct PowerShell child processes of Quick Assist.",
@@ -3854,10 +3932,10 @@
     ],
     "published": "2026-11-25T02:32:19Z",
     "research": "quick-assist",
-    "revision": 1,
+    "revision": 2,
     "schema_version": 1,
     "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
-    "signature": "ec0574b9e138e25616bc7f520b50542f1a9627d9664e120d1854b0b8c49d26a3",
+    "signature": "faa21b37bdd4a60f0c5577e75b90cd47007733c58aad4c4dca980a7096c36b57",
     "source_ids": [
       "HF-INT-E26238C5B4C5C7"
     ],
@@ -3870,15 +3948,15 @@
     ],
     "technique": "T1059.001",
     "title": "PowerShell Launched by a Remote Support Process",
-    "updated": "2026-11-25T02:32:19Z",
+    "updated": "2026-11-25T03:12:33Z",
     "validation": {
-      "date": "2026-11-25T02:32:19Z",
+      "date": "2026-11-25T03:12:33Z",
       "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
       "variants_checked": 10
     },
     "variants": {
       "sentinel-endpoint": {
-        "profile_revision": 1,
+        "profile_revision": 2,
         "queries": {
           "1": {
             "json": "DeviceProcessEvents\n| where TimeGenerated > ago(1d)\n| where InitiatingProcessFileName =~ \"QuickAssist.exe\" and FileName in~ (\"powershell.exe\", \"pwsh.exe\")\n| project TimeGenerated, DeviceName, AccountName, InitiatingProcessFileName, FileName, ProcessCommandLine\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
@@ -4008,6 +4086,961 @@
           "7": {
             "json": "CommonSecurityLog\n| where TimeGenerated > ago(7d)\n| where DeviceAction in~ (\"deny\", \"denied\", \"drop\", \"dropped\", \"block\", \"blocked\")\n| where isnotempty(SourceIP) and isnotempty(DestinationIP) and DestinationPort > 0\n| summarize Denies = count(), Ports = dcount(DestinationPort), SamplePorts = make_set(DestinationPort, 20) by SourceIP, DestinationIP, Window = bin(TimeGenerated, 5m)\n| where Denies >= 40 and Ports >= 12\n| order by Ports desc, Denies desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
             "table": "CommonSecurityLog\n| where TimeGenerated > ago(7d)\n| where DeviceAction in~ (\"deny\", \"denied\", \"drop\", \"dropped\", \"block\", \"blocked\")\n| where isnotempty(SourceIP) and isnotempty(DestinationIP) and DestinationPort > 0\n| summarize Denies = count(), Ports = dcount(DestinationPort), SamplePorts = make_set(DestinationPort, 20) by SourceIP, DestinationIP, Window = bin(TimeGenerated, 5m)\n| where Denies >= 40 and Ports >= 12\n| order by Ports desc, Denies desc\n"
+          }
+        },
+        "table": "CommonSecurityLog",
+        "validation": {
+          "analyst": "not_run",
+          "engine": "not_run",
+          "evidence": "pass",
+          "schema": "pass",
+          "static": "pass",
+          "syntax": "pass",
+          "synthetic_fixture": "not_run",
+          "workspace": "not_run"
+        }
+      }
+    }
+  },
+  {
+    "actors": [],
+    "confidence": "Source-backed behavioral hypothesis",
+    "considerations": [
+      "Scope results to known Drupal hosts and established sites. New installations, deployments and configuration management can write this file legitimately.",
+      "Compare its change time and content to the deployment record. Corroborate unexpected database-setting or administrator changes with web and application audit logs.",
+      "This covers a subset of CVE-2026-132165 behavior. The publisher does not report settings.php modifications in the live cases cited by the advisory."
+    ],
+    "cves": [
+      "CVE-2026-132165"
+    ],
+    "description": "Find a web or PHP worker writing Drupal's per-site settings file, a lead for the installer abuse described in CVE-2026-132165.",
+    "evidence": [
+      {
+        "claim": "The Drupal Security Team received a report of live exploitation starting November 19. The team identifies settings.php writability by the web server as a condition for some exploitation paths. The hunt infers a file-write signal from this condition.",
+        "location": "Description and exploitation update",
+        "modified": null,
+        "observation_date": "2026-11-19",
+        "published": "2026-11-18",
+        "source": "drupal",
+        "source_id": "https://www.drupal.org/sa-core-2026-017",
+        "url": "https://www.drupal.org/sa-core-2026-017"
+      }
+    ],
+    "expected_output": "One row per matching file operation, with the host, path, process and file hash when collected.",
+    "history": [
+      {
+        "change": "Created",
+        "date": "2026-11-25T03:12:33Z",
+        "revision": 1,
+        "summary": "Created evidence-backed hunt and validated all supported variants."
+      }
+    ],
+    "hypothesis": "A web worker unexpectedly writing an existing site's settings.php may indicate attempted reinstallation or configuration tampering.",
+    "id": "HF-2026-0036",
+    "indicator_ids": [],
+    "lookback": 30,
+    "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+    "primary_table": "DeviceFileEvents",
+    "profiles": [
+      "sentinel-endpoint"
+    ],
+    "published": "2026-11-25T03:12:33Z",
+    "research": "drupal-core-cve-2026-132165",
+    "revision": 1,
+    "schema_version": 1,
+    "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+    "signature": "aaf8918a99b201aab4b43ea7b09cc2af020c4ed26c5ecd2066e32a9a5d31649d",
+    "source_ids": [
+      "HF-INT-30B425716EEE85"
+    ],
+    "source_published": "2026-11-18",
+    "status": "partially_validated",
+    "tactic": "Initial Access",
+    "tags": [
+      "Exploitation",
+      "Web Applications"
+    ],
+    "technique": "T1190",
+    "title": "Drupal Web Workers Writing Site Settings",
+    "updated": "2026-11-25T03:12:33Z",
+    "validation": {
+      "date": "2026-11-25T03:12:33Z",
+      "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+      "variants_checked": 10
+    },
+    "variants": {
+      "sentinel-endpoint": {
+        "profile_revision": 2,
+        "queries": {
+          "1": {
+            "json": "DeviceFileEvents\n| where TimeGenerated > ago(1d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"settings.php\"\n| where FolderPath matches regex @\"(?i)(?:^|[/\\\\])sites[/\\\\][^/\\\\]+(?:[/\\\\]settings[.]php)?[/\\\\]?$\"\n| where InitiatingProcessFileName in~ (\"w3wp.exe\", \"php.exe\", \"php-cgi.exe\", \"php-cgi\", \"httpd.exe\", \"httpd\", \"apache2\") or InitiatingProcessFileName startswith \"php-fpm\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, InitiatingProcessFileName, SHA256\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "DeviceFileEvents\n| where TimeGenerated > ago(1d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"settings.php\"\n| where FolderPath matches regex @\"(?i)(?:^|[/\\\\])sites[/\\\\][^/\\\\]+(?:[/\\\\]settings[.]php)?[/\\\\]?$\"\n| where InitiatingProcessFileName in~ (\"w3wp.exe\", \"php.exe\", \"php-cgi.exe\", \"php-cgi\", \"httpd.exe\", \"httpd\", \"apache2\") or InitiatingProcessFileName startswith \"php-fpm\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, InitiatingProcessFileName, SHA256\n| order by TimeGenerated desc\n"
+          },
+          "14": {
+            "json": "DeviceFileEvents\n| where TimeGenerated > ago(14d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"settings.php\"\n| where FolderPath matches regex @\"(?i)(?:^|[/\\\\])sites[/\\\\][^/\\\\]+(?:[/\\\\]settings[.]php)?[/\\\\]?$\"\n| where InitiatingProcessFileName in~ (\"w3wp.exe\", \"php.exe\", \"php-cgi.exe\", \"php-cgi\", \"httpd.exe\", \"httpd\", \"apache2\") or InitiatingProcessFileName startswith \"php-fpm\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, InitiatingProcessFileName, SHA256\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "DeviceFileEvents\n| where TimeGenerated > ago(14d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"settings.php\"\n| where FolderPath matches regex @\"(?i)(?:^|[/\\\\])sites[/\\\\][^/\\\\]+(?:[/\\\\]settings[.]php)?[/\\\\]?$\"\n| where InitiatingProcessFileName in~ (\"w3wp.exe\", \"php.exe\", \"php-cgi.exe\", \"php-cgi\", \"httpd.exe\", \"httpd\", \"apache2\") or InitiatingProcessFileName startswith \"php-fpm\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, InitiatingProcessFileName, SHA256\n| order by TimeGenerated desc\n"
+          },
+          "3": {
+            "json": "DeviceFileEvents\n| where TimeGenerated > ago(3d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"settings.php\"\n| where FolderPath matches regex @\"(?i)(?:^|[/\\\\])sites[/\\\\][^/\\\\]+(?:[/\\\\]settings[.]php)?[/\\\\]?$\"\n| where InitiatingProcessFileName in~ (\"w3wp.exe\", \"php.exe\", \"php-cgi.exe\", \"php-cgi\", \"httpd.exe\", \"httpd\", \"apache2\") or InitiatingProcessFileName startswith \"php-fpm\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, InitiatingProcessFileName, SHA256\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "DeviceFileEvents\n| where TimeGenerated > ago(3d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"settings.php\"\n| where FolderPath matches regex @\"(?i)(?:^|[/\\\\])sites[/\\\\][^/\\\\]+(?:[/\\\\]settings[.]php)?[/\\\\]?$\"\n| where InitiatingProcessFileName in~ (\"w3wp.exe\", \"php.exe\", \"php-cgi.exe\", \"php-cgi\", \"httpd.exe\", \"httpd\", \"apache2\") or InitiatingProcessFileName startswith \"php-fpm\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, InitiatingProcessFileName, SHA256\n| order by TimeGenerated desc\n"
+          },
+          "30": {
+            "json": "DeviceFileEvents\n| where TimeGenerated > ago(30d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"settings.php\"\n| where FolderPath matches regex @\"(?i)(?:^|[/\\\\])sites[/\\\\][^/\\\\]+(?:[/\\\\]settings[.]php)?[/\\\\]?$\"\n| where InitiatingProcessFileName in~ (\"w3wp.exe\", \"php.exe\", \"php-cgi.exe\", \"php-cgi\", \"httpd.exe\", \"httpd\", \"apache2\") or InitiatingProcessFileName startswith \"php-fpm\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, InitiatingProcessFileName, SHA256\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "DeviceFileEvents\n| where TimeGenerated > ago(30d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"settings.php\"\n| where FolderPath matches regex @\"(?i)(?:^|[/\\\\])sites[/\\\\][^/\\\\]+(?:[/\\\\]settings[.]php)?[/\\\\]?$\"\n| where InitiatingProcessFileName in~ (\"w3wp.exe\", \"php.exe\", \"php-cgi.exe\", \"php-cgi\", \"httpd.exe\", \"httpd\", \"apache2\") or InitiatingProcessFileName startswith \"php-fpm\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, InitiatingProcessFileName, SHA256\n| order by TimeGenerated desc\n"
+          },
+          "7": {
+            "json": "DeviceFileEvents\n| where TimeGenerated > ago(7d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"settings.php\"\n| where FolderPath matches regex @\"(?i)(?:^|[/\\\\])sites[/\\\\][^/\\\\]+(?:[/\\\\]settings[.]php)?[/\\\\]?$\"\n| where InitiatingProcessFileName in~ (\"w3wp.exe\", \"php.exe\", \"php-cgi.exe\", \"php-cgi\", \"httpd.exe\", \"httpd\", \"apache2\") or InitiatingProcessFileName startswith \"php-fpm\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, InitiatingProcessFileName, SHA256\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "DeviceFileEvents\n| where TimeGenerated > ago(7d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"settings.php\"\n| where FolderPath matches regex @\"(?i)(?:^|[/\\\\])sites[/\\\\][^/\\\\]+(?:[/\\\\]settings[.]php)?[/\\\\]?$\"\n| where InitiatingProcessFileName in~ (\"w3wp.exe\", \"php.exe\", \"php-cgi.exe\", \"php-cgi\", \"httpd.exe\", \"httpd\", \"apache2\") or InitiatingProcessFileName startswith \"php-fpm\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, InitiatingProcessFileName, SHA256\n| order by TimeGenerated desc\n"
+          }
+        },
+        "table": "DeviceFileEvents",
+        "validation": {
+          "analyst": "not_run",
+          "engine": "not_run",
+          "evidence": "pass",
+          "schema": "pass",
+          "static": "pass",
+          "syntax": "pass",
+          "synthetic_fixture": "not_run",
+          "workspace": "not_run"
+        }
+      }
+    }
+  },
+  {
+    "actors": [],
+    "confidence": "Source-backed behavioral hypothesis",
+    "considerations": [
+      "Review the attribution column first. A shared five-minute window with Outlook is a weaker lead because normal Outlook and SMB traffic can overlap.",
+      "Exclude approved external file services and validate endpoint, firewall and outbound NTLM records for direction, authentication and whether any connection was blocked.",
+      "Correlate the user and device timeline with recent message opens and check the installed Office build. A network event alone cannot establish authentication data exposure.",
+      "The query pivots on TCP ports 139 and 445 for publicly classified destinations. It does not measure HTTP or WebDAV behavior and returns up to 256 SMB events per device per five-minute window."
+    ],
+    "cves": [
+      "CVE-2026-124194"
+    ],
+    "description": "Find attempts from classic Outlook to reach public SMB destinations and check for kernel-attributed attempts on devices with nearby Outlook network activity.",
+    "evidence": [
+      {
+        "claim": "Brazil's government incident response center documents unintended external authentication from affected Outlook clients and recommends monitoring unexpected outbound SMB and other authentication-related connections.",
+        "location": "Sections 2 and 5(b–d), as updated November 16",
+        "modified": "2026-11-16",
+        "observation_date": null,
+        "published": "2026-10-22",
+        "source": "ctir",
+        "source_id": "https://www.gov.br/gsi/pt-br/assuntos/ctir/recomendacoes/2026/recomendacao-23-2026",
+        "url": "https://www.gov.br/gsi/pt-br/assuntos/ctir/recomendacoes/2026/recomendacao-23-2026"
+      }
+    ],
+    "expected_output": "One row per public SMB candidate, with attribution strength, device, destination, action and Outlook network activity count.",
+    "history": [
+      {
+        "change": "Created",
+        "date": "2026-11-25T03:12:33Z",
+        "revision": 1,
+        "summary": "Created evidence-backed hunt and validated all supported variants."
+      }
+    ],
+    "hypothesis": "Unexpected public SMB from Outlook, or SMB recorded under System close to Outlook activity, can help triage forced authentication associated with CVE-2026-124194.",
+    "id": "HF-2026-0037",
+    "indicator_ids": [],
+    "lookback": 30,
+    "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+    "primary_table": "DeviceNetworkEvents",
+    "profiles": [
+      "sentinel-endpoint"
+    ],
+    "published": "2026-11-25T03:12:33Z",
+    "research": "outlook-cve-2026-124194",
+    "revision": 1,
+    "schema_version": 1,
+    "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+    "signature": "94db0cbd471a69d81096c457ef5017f542afcd4dd6429a3be3be66350e760f37",
+    "source_ids": [
+      "HF-INT-6532E5CD2531FA"
+    ],
+    "source_published": "2026-10-22",
+    "status": "partially_validated",
+    "tactic": "Credential Access",
+    "tags": [
+      "Exploitation",
+      "Credential Access",
+      "Email"
+    ],
+    "technique": "T1187",
+    "title": "External SMB From Outlook and Nearby System Connections",
+    "updated": "2026-11-25T03:12:33Z",
+    "validation": {
+      "date": "2026-11-25T03:12:33Z",
+      "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+      "variants_checked": 10
+    },
+    "variants": {
+      "sentinel-endpoint": {
+        "profile_revision": 2,
+        "queries": {
+          "1": {
+            "json": "DeviceNetworkEvents\n| where TimeGenerated > ago(1d)\n| where isnotempty(DeviceName)\n| extend IsOutlook = InitiatingProcessFileName =~ \"outlook.exe\", IsPublicSmb = Protocol =~ \"TCP\" and RemoteIPType =~ \"Public\" and RemotePort in (139, 445) and isnotempty(RemoteIP)\n| where IsOutlook or (IsPublicSmb and (InitiatingProcessFileName =~ \"System\" or isempty(InitiatingProcessFileName)))\n| summarize OutlookNetworkEvents = countif(IsOutlook), SmbConnections = make_list_if(bag_pack(\"EventTime\", TimeGenerated, \"Action\", ActionType, \"Process\", InitiatingProcessFileName, \"IP\", RemoteIP, \"Port\", RemotePort, \"URL\", RemoteUrl), IsPublicSmb, 256) by DeviceName, Window = bin(TimeGenerated, 5m)\n| where OutlookNetworkEvents > 0\n| mv-expand Connection = SmbConnections\n| extend Process = tostring(Connection.Process)\n| extend Attribution = iff(Process =~ \"outlook.exe\", \"Outlook process\", \"System or unknown process with nearby Outlook activity\")\n| project TimeGenerated = todatetime(Connection.EventTime), DeviceName, Attribution, Process, RemoteIP = tostring(Connection.IP), RemotePort = toint(Connection.Port), RemoteUrl = tostring(Connection.URL), ActionType = tostring(Connection.Action), OutlookNetworkEvents\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "DeviceNetworkEvents\n| where TimeGenerated > ago(1d)\n| where isnotempty(DeviceName)\n| extend IsOutlook = InitiatingProcessFileName =~ \"outlook.exe\", IsPublicSmb = Protocol =~ \"TCP\" and RemoteIPType =~ \"Public\" and RemotePort in (139, 445) and isnotempty(RemoteIP)\n| where IsOutlook or (IsPublicSmb and (InitiatingProcessFileName =~ \"System\" or isempty(InitiatingProcessFileName)))\n| summarize OutlookNetworkEvents = countif(IsOutlook), SmbConnections = make_list_if(bag_pack(\"EventTime\", TimeGenerated, \"Action\", ActionType, \"Process\", InitiatingProcessFileName, \"IP\", RemoteIP, \"Port\", RemotePort, \"URL\", RemoteUrl), IsPublicSmb, 256) by DeviceName, Window = bin(TimeGenerated, 5m)\n| where OutlookNetworkEvents > 0\n| mv-expand Connection = SmbConnections\n| extend Process = tostring(Connection.Process)\n| extend Attribution = iff(Process =~ \"outlook.exe\", \"Outlook process\", \"System or unknown process with nearby Outlook activity\")\n| project TimeGenerated = todatetime(Connection.EventTime), DeviceName, Attribution, Process, RemoteIP = tostring(Connection.IP), RemotePort = toint(Connection.Port), RemoteUrl = tostring(Connection.URL), ActionType = tostring(Connection.Action), OutlookNetworkEvents\n| order by TimeGenerated desc\n"
+          },
+          "14": {
+            "json": "DeviceNetworkEvents\n| where TimeGenerated > ago(14d)\n| where isnotempty(DeviceName)\n| extend IsOutlook = InitiatingProcessFileName =~ \"outlook.exe\", IsPublicSmb = Protocol =~ \"TCP\" and RemoteIPType =~ \"Public\" and RemotePort in (139, 445) and isnotempty(RemoteIP)\n| where IsOutlook or (IsPublicSmb and (InitiatingProcessFileName =~ \"System\" or isempty(InitiatingProcessFileName)))\n| summarize OutlookNetworkEvents = countif(IsOutlook), SmbConnections = make_list_if(bag_pack(\"EventTime\", TimeGenerated, \"Action\", ActionType, \"Process\", InitiatingProcessFileName, \"IP\", RemoteIP, \"Port\", RemotePort, \"URL\", RemoteUrl), IsPublicSmb, 256) by DeviceName, Window = bin(TimeGenerated, 5m)\n| where OutlookNetworkEvents > 0\n| mv-expand Connection = SmbConnections\n| extend Process = tostring(Connection.Process)\n| extend Attribution = iff(Process =~ \"outlook.exe\", \"Outlook process\", \"System or unknown process with nearby Outlook activity\")\n| project TimeGenerated = todatetime(Connection.EventTime), DeviceName, Attribution, Process, RemoteIP = tostring(Connection.IP), RemotePort = toint(Connection.Port), RemoteUrl = tostring(Connection.URL), ActionType = tostring(Connection.Action), OutlookNetworkEvents\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "DeviceNetworkEvents\n| where TimeGenerated > ago(14d)\n| where isnotempty(DeviceName)\n| extend IsOutlook = InitiatingProcessFileName =~ \"outlook.exe\", IsPublicSmb = Protocol =~ \"TCP\" and RemoteIPType =~ \"Public\" and RemotePort in (139, 445) and isnotempty(RemoteIP)\n| where IsOutlook or (IsPublicSmb and (InitiatingProcessFileName =~ \"System\" or isempty(InitiatingProcessFileName)))\n| summarize OutlookNetworkEvents = countif(IsOutlook), SmbConnections = make_list_if(bag_pack(\"EventTime\", TimeGenerated, \"Action\", ActionType, \"Process\", InitiatingProcessFileName, \"IP\", RemoteIP, \"Port\", RemotePort, \"URL\", RemoteUrl), IsPublicSmb, 256) by DeviceName, Window = bin(TimeGenerated, 5m)\n| where OutlookNetworkEvents > 0\n| mv-expand Connection = SmbConnections\n| extend Process = tostring(Connection.Process)\n| extend Attribution = iff(Process =~ \"outlook.exe\", \"Outlook process\", \"System or unknown process with nearby Outlook activity\")\n| project TimeGenerated = todatetime(Connection.EventTime), DeviceName, Attribution, Process, RemoteIP = tostring(Connection.IP), RemotePort = toint(Connection.Port), RemoteUrl = tostring(Connection.URL), ActionType = tostring(Connection.Action), OutlookNetworkEvents\n| order by TimeGenerated desc\n"
+          },
+          "3": {
+            "json": "DeviceNetworkEvents\n| where TimeGenerated > ago(3d)\n| where isnotempty(DeviceName)\n| extend IsOutlook = InitiatingProcessFileName =~ \"outlook.exe\", IsPublicSmb = Protocol =~ \"TCP\" and RemoteIPType =~ \"Public\" and RemotePort in (139, 445) and isnotempty(RemoteIP)\n| where IsOutlook or (IsPublicSmb and (InitiatingProcessFileName =~ \"System\" or isempty(InitiatingProcessFileName)))\n| summarize OutlookNetworkEvents = countif(IsOutlook), SmbConnections = make_list_if(bag_pack(\"EventTime\", TimeGenerated, \"Action\", ActionType, \"Process\", InitiatingProcessFileName, \"IP\", RemoteIP, \"Port\", RemotePort, \"URL\", RemoteUrl), IsPublicSmb, 256) by DeviceName, Window = bin(TimeGenerated, 5m)\n| where OutlookNetworkEvents > 0\n| mv-expand Connection = SmbConnections\n| extend Process = tostring(Connection.Process)\n| extend Attribution = iff(Process =~ \"outlook.exe\", \"Outlook process\", \"System or unknown process with nearby Outlook activity\")\n| project TimeGenerated = todatetime(Connection.EventTime), DeviceName, Attribution, Process, RemoteIP = tostring(Connection.IP), RemotePort = toint(Connection.Port), RemoteUrl = tostring(Connection.URL), ActionType = tostring(Connection.Action), OutlookNetworkEvents\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "DeviceNetworkEvents\n| where TimeGenerated > ago(3d)\n| where isnotempty(DeviceName)\n| extend IsOutlook = InitiatingProcessFileName =~ \"outlook.exe\", IsPublicSmb = Protocol =~ \"TCP\" and RemoteIPType =~ \"Public\" and RemotePort in (139, 445) and isnotempty(RemoteIP)\n| where IsOutlook or (IsPublicSmb and (InitiatingProcessFileName =~ \"System\" or isempty(InitiatingProcessFileName)))\n| summarize OutlookNetworkEvents = countif(IsOutlook), SmbConnections = make_list_if(bag_pack(\"EventTime\", TimeGenerated, \"Action\", ActionType, \"Process\", InitiatingProcessFileName, \"IP\", RemoteIP, \"Port\", RemotePort, \"URL\", RemoteUrl), IsPublicSmb, 256) by DeviceName, Window = bin(TimeGenerated, 5m)\n| where OutlookNetworkEvents > 0\n| mv-expand Connection = SmbConnections\n| extend Process = tostring(Connection.Process)\n| extend Attribution = iff(Process =~ \"outlook.exe\", \"Outlook process\", \"System or unknown process with nearby Outlook activity\")\n| project TimeGenerated = todatetime(Connection.EventTime), DeviceName, Attribution, Process, RemoteIP = tostring(Connection.IP), RemotePort = toint(Connection.Port), RemoteUrl = tostring(Connection.URL), ActionType = tostring(Connection.Action), OutlookNetworkEvents\n| order by TimeGenerated desc\n"
+          },
+          "30": {
+            "json": "DeviceNetworkEvents\n| where TimeGenerated > ago(30d)\n| where isnotempty(DeviceName)\n| extend IsOutlook = InitiatingProcessFileName =~ \"outlook.exe\", IsPublicSmb = Protocol =~ \"TCP\" and RemoteIPType =~ \"Public\" and RemotePort in (139, 445) and isnotempty(RemoteIP)\n| where IsOutlook or (IsPublicSmb and (InitiatingProcessFileName =~ \"System\" or isempty(InitiatingProcessFileName)))\n| summarize OutlookNetworkEvents = countif(IsOutlook), SmbConnections = make_list_if(bag_pack(\"EventTime\", TimeGenerated, \"Action\", ActionType, \"Process\", InitiatingProcessFileName, \"IP\", RemoteIP, \"Port\", RemotePort, \"URL\", RemoteUrl), IsPublicSmb, 256) by DeviceName, Window = bin(TimeGenerated, 5m)\n| where OutlookNetworkEvents > 0\n| mv-expand Connection = SmbConnections\n| extend Process = tostring(Connection.Process)\n| extend Attribution = iff(Process =~ \"outlook.exe\", \"Outlook process\", \"System or unknown process with nearby Outlook activity\")\n| project TimeGenerated = todatetime(Connection.EventTime), DeviceName, Attribution, Process, RemoteIP = tostring(Connection.IP), RemotePort = toint(Connection.Port), RemoteUrl = tostring(Connection.URL), ActionType = tostring(Connection.Action), OutlookNetworkEvents\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "DeviceNetworkEvents\n| where TimeGenerated > ago(30d)\n| where isnotempty(DeviceName)\n| extend IsOutlook = InitiatingProcessFileName =~ \"outlook.exe\", IsPublicSmb = Protocol =~ \"TCP\" and RemoteIPType =~ \"Public\" and RemotePort in (139, 445) and isnotempty(RemoteIP)\n| where IsOutlook or (IsPublicSmb and (InitiatingProcessFileName =~ \"System\" or isempty(InitiatingProcessFileName)))\n| summarize OutlookNetworkEvents = countif(IsOutlook), SmbConnections = make_list_if(bag_pack(\"EventTime\", TimeGenerated, \"Action\", ActionType, \"Process\", InitiatingProcessFileName, \"IP\", RemoteIP, \"Port\", RemotePort, \"URL\", RemoteUrl), IsPublicSmb, 256) by DeviceName, Window = bin(TimeGenerated, 5m)\n| where OutlookNetworkEvents > 0\n| mv-expand Connection = SmbConnections\n| extend Process = tostring(Connection.Process)\n| extend Attribution = iff(Process =~ \"outlook.exe\", \"Outlook process\", \"System or unknown process with nearby Outlook activity\")\n| project TimeGenerated = todatetime(Connection.EventTime), DeviceName, Attribution, Process, RemoteIP = tostring(Connection.IP), RemotePort = toint(Connection.Port), RemoteUrl = tostring(Connection.URL), ActionType = tostring(Connection.Action), OutlookNetworkEvents\n| order by TimeGenerated desc\n"
+          },
+          "7": {
+            "json": "DeviceNetworkEvents\n| where TimeGenerated > ago(7d)\n| where isnotempty(DeviceName)\n| extend IsOutlook = InitiatingProcessFileName =~ \"outlook.exe\", IsPublicSmb = Protocol =~ \"TCP\" and RemoteIPType =~ \"Public\" and RemotePort in (139, 445) and isnotempty(RemoteIP)\n| where IsOutlook or (IsPublicSmb and (InitiatingProcessFileName =~ \"System\" or isempty(InitiatingProcessFileName)))\n| summarize OutlookNetworkEvents = countif(IsOutlook), SmbConnections = make_list_if(bag_pack(\"EventTime\", TimeGenerated, \"Action\", ActionType, \"Process\", InitiatingProcessFileName, \"IP\", RemoteIP, \"Port\", RemotePort, \"URL\", RemoteUrl), IsPublicSmb, 256) by DeviceName, Window = bin(TimeGenerated, 5m)\n| where OutlookNetworkEvents > 0\n| mv-expand Connection = SmbConnections\n| extend Process = tostring(Connection.Process)\n| extend Attribution = iff(Process =~ \"outlook.exe\", \"Outlook process\", \"System or unknown process with nearby Outlook activity\")\n| project TimeGenerated = todatetime(Connection.EventTime), DeviceName, Attribution, Process, RemoteIP = tostring(Connection.IP), RemotePort = toint(Connection.Port), RemoteUrl = tostring(Connection.URL), ActionType = tostring(Connection.Action), OutlookNetworkEvents\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "DeviceNetworkEvents\n| where TimeGenerated > ago(7d)\n| where isnotempty(DeviceName)\n| extend IsOutlook = InitiatingProcessFileName =~ \"outlook.exe\", IsPublicSmb = Protocol =~ \"TCP\" and RemoteIPType =~ \"Public\" and RemotePort in (139, 445) and isnotempty(RemoteIP)\n| where IsOutlook or (IsPublicSmb and (InitiatingProcessFileName =~ \"System\" or isempty(InitiatingProcessFileName)))\n| summarize OutlookNetworkEvents = countif(IsOutlook), SmbConnections = make_list_if(bag_pack(\"EventTime\", TimeGenerated, \"Action\", ActionType, \"Process\", InitiatingProcessFileName, \"IP\", RemoteIP, \"Port\", RemotePort, \"URL\", RemoteUrl), IsPublicSmb, 256) by DeviceName, Window = bin(TimeGenerated, 5m)\n| where OutlookNetworkEvents > 0\n| mv-expand Connection = SmbConnections\n| extend Process = tostring(Connection.Process)\n| extend Attribution = iff(Process =~ \"outlook.exe\", \"Outlook process\", \"System or unknown process with nearby Outlook activity\")\n| project TimeGenerated = todatetime(Connection.EventTime), DeviceName, Attribution, Process, RemoteIP = tostring(Connection.IP), RemotePort = toint(Connection.Port), RemoteUrl = tostring(Connection.URL), ActionType = tostring(Connection.Action), OutlookNetworkEvents\n| order by TimeGenerated desc\n"
+          }
+        },
+        "table": "DeviceNetworkEvents",
+        "validation": {
+          "analyst": "not_run",
+          "engine": "not_run",
+          "evidence": "pass",
+          "schema": "pass",
+          "static": "pass",
+          "syntax": "pass",
+          "synthetic_fixture": "not_run",
+          "workspace": "not_run"
+        }
+      }
+    }
+  },
+  {
+    "actors": [],
+    "confidence": "Vendor detection names",
+    "considerations": [
+      "This requires the GitLab detections or an equivalent alert integration to write to SecurityAlert. Match the published titles or preserve them as part of the alert title.",
+      "The generic Onigmo native crash signal also covers other GitLab/Ruby vulnerabilities. Corroborate with the CI regex compilation stack, related GitLab detections, and the GitLab and Ruby builds.",
+      "A rejection or worker crash can be consistent with an attempt. Review host process, file and network timelines independently for evidence of code execution."
+    ],
+    "cves": [
+      "CVE-2026-97229"
+    ],
+    "description": "Find Sentinel alerts named after the six exploitation-attempt detections that GitLab publishes for CVE-2026-97229.",
+    "evidence": [
+      {
+        "claim": "GitLab Security publishes exploitation-attempt detections for vulnerable self-managed GitLab CE/EE. Its linked Onigmo guidance identifies compile-time crash frames together with regexp_matcher.rb as corroborating traces of the CI path.",
+        "location": "Detecting CVE-2026-97229 Exploitation Attempts and linked Onigmo native worker crash detection",
+        "modified": null,
+        "observation_date": null,
+        "published": "2026-10-12",
+        "source": "gitlab",
+        "source_id": "https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-4-2-released/",
+        "url": "https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-4-2-released/"
+      }
+    ],
+    "expected_output": "One row per matching alert with the named detection, affected entity, alert ID and reporting product.",
+    "history": [
+      {
+        "change": "Created",
+        "date": "2026-11-25T03:12:33Z",
+        "revision": 1,
+        "summary": "Created evidence-backed hunt and validated all supported variants."
+      }
+    ],
+    "hypothesis": "A GitLab-published exploitation-attempt detection can surface requests rejected by safeguards, crash evidence or a related error burst on self-managed GitLab.",
+    "id": "HF-2026-0038",
+    "indicator_ids": [],
+    "lookback": 30,
+    "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+    "primary_table": "SecurityAlert",
+    "profiles": [
+      "sentinel-alerts"
+    ],
+    "published": "2026-11-25T03:12:33Z",
+    "research": "gitlab-ce-ee-cve-2026-97229",
+    "revision": 1,
+    "schema_version": 1,
+    "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+    "signature": "7556af13a878494e5b97a3702c89d2e08800f7e7ec85b1cfacd34becfe453281",
+    "source_ids": [
+      "HF-INT-1E237D757592BE"
+    ],
+    "source_published": "2026-10-12",
+    "status": "partially_validated",
+    "tactic": "Initial Access",
+    "tags": [
+      "Exploitation",
+      "CI/CD"
+    ],
+    "technique": "T1190",
+    "title": "GitLab CVE-2026-97229 Vendor Detection Alerts",
+    "updated": "2026-11-25T03:12:33Z",
+    "validation": {
+      "date": "2026-11-25T03:12:33Z",
+      "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+      "variants_checked": 10
+    },
+    "variants": {
+      "sentinel-alerts": {
+        "profile_revision": 2,
+        "queries": {
+          "1": {
+            "json": "SecurityAlert\n| where TimeGenerated > ago(1d)\n| extend DetectionName = replace_regex(tolower(AlertName), @\"[^a-z0-9]+\", \"_\")\n| extend MatchedDetection = extract(@\"(?:^|_)(onigmo_native_worker_crash|graphql_ci_?lint_hostile_regexp|ci_regexp_oversized_non_ascii_path|ci_regexp_guard_rejection|ci_lint_workhorse_worker_crash|ci_lint_scripted_client_error_burst)(?:_|$)\", 1, DetectionName)\n| where isnotempty(MatchedDetection)\n| project TimeGenerated, MatchedDetection, AlertName, AlertSeverity, CompromisedEntity, ProductName, SystemAlertId\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "SecurityAlert\n| where TimeGenerated > ago(1d)\n| extend DetectionName = replace_regex(tolower(AlertName), @\"[^a-z0-9]+\", \"_\")\n| extend MatchedDetection = extract(@\"(?:^|_)(onigmo_native_worker_crash|graphql_ci_?lint_hostile_regexp|ci_regexp_oversized_non_ascii_path|ci_regexp_guard_rejection|ci_lint_workhorse_worker_crash|ci_lint_scripted_client_error_burst)(?:_|$)\", 1, DetectionName)\n| where isnotempty(MatchedDetection)\n| project TimeGenerated, MatchedDetection, AlertName, AlertSeverity, CompromisedEntity, ProductName, SystemAlertId\n| order by TimeGenerated desc\n"
+          },
+          "14": {
+            "json": "SecurityAlert\n| where TimeGenerated > ago(14d)\n| extend DetectionName = replace_regex(tolower(AlertName), @\"[^a-z0-9]+\", \"_\")\n| extend MatchedDetection = extract(@\"(?:^|_)(onigmo_native_worker_crash|graphql_ci_?lint_hostile_regexp|ci_regexp_oversized_non_ascii_path|ci_regexp_guard_rejection|ci_lint_workhorse_worker_crash|ci_lint_scripted_client_error_burst)(?:_|$)\", 1, DetectionName)\n| where isnotempty(MatchedDetection)\n| project TimeGenerated, MatchedDetection, AlertName, AlertSeverity, CompromisedEntity, ProductName, SystemAlertId\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "SecurityAlert\n| where TimeGenerated > ago(14d)\n| extend DetectionName = replace_regex(tolower(AlertName), @\"[^a-z0-9]+\", \"_\")\n| extend MatchedDetection = extract(@\"(?:^|_)(onigmo_native_worker_crash|graphql_ci_?lint_hostile_regexp|ci_regexp_oversized_non_ascii_path|ci_regexp_guard_rejection|ci_lint_workhorse_worker_crash|ci_lint_scripted_client_error_burst)(?:_|$)\", 1, DetectionName)\n| where isnotempty(MatchedDetection)\n| project TimeGenerated, MatchedDetection, AlertName, AlertSeverity, CompromisedEntity, ProductName, SystemAlertId\n| order by TimeGenerated desc\n"
+          },
+          "3": {
+            "json": "SecurityAlert\n| where TimeGenerated > ago(3d)\n| extend DetectionName = replace_regex(tolower(AlertName), @\"[^a-z0-9]+\", \"_\")\n| extend MatchedDetection = extract(@\"(?:^|_)(onigmo_native_worker_crash|graphql_ci_?lint_hostile_regexp|ci_regexp_oversized_non_ascii_path|ci_regexp_guard_rejection|ci_lint_workhorse_worker_crash|ci_lint_scripted_client_error_burst)(?:_|$)\", 1, DetectionName)\n| where isnotempty(MatchedDetection)\n| project TimeGenerated, MatchedDetection, AlertName, AlertSeverity, CompromisedEntity, ProductName, SystemAlertId\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "SecurityAlert\n| where TimeGenerated > ago(3d)\n| extend DetectionName = replace_regex(tolower(AlertName), @\"[^a-z0-9]+\", \"_\")\n| extend MatchedDetection = extract(@\"(?:^|_)(onigmo_native_worker_crash|graphql_ci_?lint_hostile_regexp|ci_regexp_oversized_non_ascii_path|ci_regexp_guard_rejection|ci_lint_workhorse_worker_crash|ci_lint_scripted_client_error_burst)(?:_|$)\", 1, DetectionName)\n| where isnotempty(MatchedDetection)\n| project TimeGenerated, MatchedDetection, AlertName, AlertSeverity, CompromisedEntity, ProductName, SystemAlertId\n| order by TimeGenerated desc\n"
+          },
+          "30": {
+            "json": "SecurityAlert\n| where TimeGenerated > ago(30d)\n| extend DetectionName = replace_regex(tolower(AlertName), @\"[^a-z0-9]+\", \"_\")\n| extend MatchedDetection = extract(@\"(?:^|_)(onigmo_native_worker_crash|graphql_ci_?lint_hostile_regexp|ci_regexp_oversized_non_ascii_path|ci_regexp_guard_rejection|ci_lint_workhorse_worker_crash|ci_lint_scripted_client_error_burst)(?:_|$)\", 1, DetectionName)\n| where isnotempty(MatchedDetection)\n| project TimeGenerated, MatchedDetection, AlertName, AlertSeverity, CompromisedEntity, ProductName, SystemAlertId\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "SecurityAlert\n| where TimeGenerated > ago(30d)\n| extend DetectionName = replace_regex(tolower(AlertName), @\"[^a-z0-9]+\", \"_\")\n| extend MatchedDetection = extract(@\"(?:^|_)(onigmo_native_worker_crash|graphql_ci_?lint_hostile_regexp|ci_regexp_oversized_non_ascii_path|ci_regexp_guard_rejection|ci_lint_workhorse_worker_crash|ci_lint_scripted_client_error_burst)(?:_|$)\", 1, DetectionName)\n| where isnotempty(MatchedDetection)\n| project TimeGenerated, MatchedDetection, AlertName, AlertSeverity, CompromisedEntity, ProductName, SystemAlertId\n| order by TimeGenerated desc\n"
+          },
+          "7": {
+            "json": "SecurityAlert\n| where TimeGenerated > ago(7d)\n| extend DetectionName = replace_regex(tolower(AlertName), @\"[^a-z0-9]+\", \"_\")\n| extend MatchedDetection = extract(@\"(?:^|_)(onigmo_native_worker_crash|graphql_ci_?lint_hostile_regexp|ci_regexp_oversized_non_ascii_path|ci_regexp_guard_rejection|ci_lint_workhorse_worker_crash|ci_lint_scripted_client_error_burst)(?:_|$)\", 1, DetectionName)\n| where isnotempty(MatchedDetection)\n| project TimeGenerated, MatchedDetection, AlertName, AlertSeverity, CompromisedEntity, ProductName, SystemAlertId\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "SecurityAlert\n| where TimeGenerated > ago(7d)\n| extend DetectionName = replace_regex(tolower(AlertName), @\"[^a-z0-9]+\", \"_\")\n| extend MatchedDetection = extract(@\"(?:^|_)(onigmo_native_worker_crash|graphql_ci_?lint_hostile_regexp|ci_regexp_oversized_non_ascii_path|ci_regexp_guard_rejection|ci_lint_workhorse_worker_crash|ci_lint_scripted_client_error_burst)(?:_|$)\", 1, DetectionName)\n| where isnotempty(MatchedDetection)\n| project TimeGenerated, MatchedDetection, AlertName, AlertSeverity, CompromisedEntity, ProductName, SystemAlertId\n| order by TimeGenerated desc\n"
+          }
+        },
+        "table": "SecurityAlert",
+        "validation": {
+          "analyst": "not_run",
+          "engine": "not_run",
+          "evidence": "pass",
+          "schema": "pass",
+          "static": "pass",
+          "syntax": "pass",
+          "synthetic_fixture": "not_run",
+          "workspace": "not_run"
+        }
+      }
+    }
+  },
+  {
+    "actors": [],
+    "confidence": "Vendor-documented crash signature",
+    "considerations": [
+      "Forward self-managed GitLab Puma worker errors as multiline CEF records. Preserve the crash header and stack in Message and use GitLab as the mapped vendor or product.",
+      "This is a corroborating signal for the CI path. It can also occur with related Onigmo flaws. Check Ruby package provenance and GitLab build because custom images may use a separately updated Ruby package.",
+      "Compare timestamps to GitLab Workhorse and application logs, then independently check for execution evidence. A crash never proves successful exploitation."
+    ],
+    "cves": [
+      "CVE-2026-97229"
+    ],
+    "description": "Look for GitLab Puma crash records containing both the CI regex matcher and native Onigmo compilation frames.",
+    "evidence": [
+      {
+        "claim": "GitLab Security publishes exploitation-attempt detections for vulnerable self-managed GitLab CE/EE. Its linked Onigmo guidance identifies compile-time crash frames together with regexp_matcher.rb as corroborating traces of the CI path.",
+        "location": "Detecting CVE-2026-97229 Exploitation Attempts and linked Onigmo native worker crash detection",
+        "modified": null,
+        "observation_date": null,
+        "published": "2026-10-12",
+        "source": "gitlab",
+        "source_id": "https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-4-2-released/",
+        "url": "https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-4-2-released/"
+      }
+    ],
+    "expected_output": "One row per forwarded Puma crash with its host mapping and original crash message for corroboration.",
+    "history": [
+      {
+        "change": "Created",
+        "date": "2026-11-25T03:12:33Z",
+        "revision": 1,
+        "summary": "Created evidence-backed hunt and validated all supported variants."
+      }
+    ],
+    "hypothesis": "A native worker crash in GitLab's CI regex compilation path can support investigation of CVE-2026-97229 even when alerts have not been integrated.",
+    "id": "HF-2026-0039",
+    "indicator_ids": [],
+    "lookback": 30,
+    "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+    "primary_table": "CommonSecurityLog",
+    "profiles": [
+      "sentinel-cef"
+    ],
+    "published": "2026-11-25T03:12:33Z",
+    "research": "gitlab-ce-ee-cve-2026-97229",
+    "revision": 1,
+    "schema_version": 1,
+    "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+    "signature": "3e86fd6ac03268f4db42004e52d9de318339ee825dd1a759e90b1252928e686e",
+    "source_ids": [
+      "HF-INT-1E237D757592BE"
+    ],
+    "source_published": "2026-10-12",
+    "status": "partially_validated",
+    "tactic": "Initial Access",
+    "tags": [
+      "Exploitation",
+      "CI/CD"
+    ],
+    "technique": "T1190",
+    "title": "GitLab CI Regex Native Worker Crashes",
+    "updated": "2026-11-25T03:12:33Z",
+    "validation": {
+      "date": "2026-11-25T03:12:33Z",
+      "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+      "variants_checked": 10
+    },
+    "variants": {
+      "sentinel-cef": {
+        "profile_revision": 2,
+        "queries": {
+          "1": {
+            "json": "CommonSecurityLog\n| where TimeGenerated > ago(1d)\n| where DeviceVendor =~ \"GitLab\" or DeviceProduct contains \"GitLab\"\n| where Message contains_cs \"[BUG]\" and Message contains_cs \"regexp_matcher.rb\"\n| where Message contains_cs \"onig_compile\" or Message contains_cs \"compile_tree\" or Message contains_cs \"compile_length_tree\"\n| project TimeGenerated, DeviceVendor, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "CommonSecurityLog\n| where TimeGenerated > ago(1d)\n| where DeviceVendor =~ \"GitLab\" or DeviceProduct contains \"GitLab\"\n| where Message contains_cs \"[BUG]\" and Message contains_cs \"regexp_matcher.rb\"\n| where Message contains_cs \"onig_compile\" or Message contains_cs \"compile_tree\" or Message contains_cs \"compile_length_tree\"\n| project TimeGenerated, DeviceVendor, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n"
+          },
+          "14": {
+            "json": "CommonSecurityLog\n| where TimeGenerated > ago(14d)\n| where DeviceVendor =~ \"GitLab\" or DeviceProduct contains \"GitLab\"\n| where Message contains_cs \"[BUG]\" and Message contains_cs \"regexp_matcher.rb\"\n| where Message contains_cs \"onig_compile\" or Message contains_cs \"compile_tree\" or Message contains_cs \"compile_length_tree\"\n| project TimeGenerated, DeviceVendor, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "CommonSecurityLog\n| where TimeGenerated > ago(14d)\n| where DeviceVendor =~ \"GitLab\" or DeviceProduct contains \"GitLab\"\n| where Message contains_cs \"[BUG]\" and Message contains_cs \"regexp_matcher.rb\"\n| where Message contains_cs \"onig_compile\" or Message contains_cs \"compile_tree\" or Message contains_cs \"compile_length_tree\"\n| project TimeGenerated, DeviceVendor, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n"
+          },
+          "3": {
+            "json": "CommonSecurityLog\n| where TimeGenerated > ago(3d)\n| where DeviceVendor =~ \"GitLab\" or DeviceProduct contains \"GitLab\"\n| where Message contains_cs \"[BUG]\" and Message contains_cs \"regexp_matcher.rb\"\n| where Message contains_cs \"onig_compile\" or Message contains_cs \"compile_tree\" or Message contains_cs \"compile_length_tree\"\n| project TimeGenerated, DeviceVendor, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "CommonSecurityLog\n| where TimeGenerated > ago(3d)\n| where DeviceVendor =~ \"GitLab\" or DeviceProduct contains \"GitLab\"\n| where Message contains_cs \"[BUG]\" and Message contains_cs \"regexp_matcher.rb\"\n| where Message contains_cs \"onig_compile\" or Message contains_cs \"compile_tree\" or Message contains_cs \"compile_length_tree\"\n| project TimeGenerated, DeviceVendor, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n"
+          },
+          "30": {
+            "json": "CommonSecurityLog\n| where TimeGenerated > ago(30d)\n| where DeviceVendor =~ \"GitLab\" or DeviceProduct contains \"GitLab\"\n| where Message contains_cs \"[BUG]\" and Message contains_cs \"regexp_matcher.rb\"\n| where Message contains_cs \"onig_compile\" or Message contains_cs \"compile_tree\" or Message contains_cs \"compile_length_tree\"\n| project TimeGenerated, DeviceVendor, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "CommonSecurityLog\n| where TimeGenerated > ago(30d)\n| where DeviceVendor =~ \"GitLab\" or DeviceProduct contains \"GitLab\"\n| where Message contains_cs \"[BUG]\" and Message contains_cs \"regexp_matcher.rb\"\n| where Message contains_cs \"onig_compile\" or Message contains_cs \"compile_tree\" or Message contains_cs \"compile_length_tree\"\n| project TimeGenerated, DeviceVendor, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n"
+          },
+          "7": {
+            "json": "CommonSecurityLog\n| where TimeGenerated > ago(7d)\n| where DeviceVendor =~ \"GitLab\" or DeviceProduct contains \"GitLab\"\n| where Message contains_cs \"[BUG]\" and Message contains_cs \"regexp_matcher.rb\"\n| where Message contains_cs \"onig_compile\" or Message contains_cs \"compile_tree\" or Message contains_cs \"compile_length_tree\"\n| project TimeGenerated, DeviceVendor, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "CommonSecurityLog\n| where TimeGenerated > ago(7d)\n| where DeviceVendor =~ \"GitLab\" or DeviceProduct contains \"GitLab\"\n| where Message contains_cs \"[BUG]\" and Message contains_cs \"regexp_matcher.rb\"\n| where Message contains_cs \"onig_compile\" or Message contains_cs \"compile_tree\" or Message contains_cs \"compile_length_tree\"\n| project TimeGenerated, DeviceVendor, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n"
+          }
+        },
+        "table": "CommonSecurityLog",
+        "validation": {
+          "analyst": "not_run",
+          "engine": "not_run",
+          "evidence": "pass",
+          "schema": "pass",
+          "static": "pass",
+          "syntax": "pass",
+          "synthetic_fixture": "not_run",
+          "workspace": "not_run"
+        }
+      }
+    }
+  },
+  {
+    "actors": [],
+    "confidence": "Observed post-exploitation artifacts",
+    "considerations": [
+      "This requires Ivanti appliance process, file or forensic events mapped to CEF with paths preserved in Message or Activity. Standard VPN connection events usually lack those fields.",
+      "This is a campaign-specific post-compromise hunt. Matches support investigation of the reported incident pattern and cannot identify which vulnerability was used at a given appliance.",
+      "Verify any matching path against approved diagnostics, preserve available appliance and downstream identity evidence, and check Ivanti's guidance on forensic collection. The investigators reported log tampering."
+    ],
+    "cves": [
+      "CVE-2026-111357"
+    ],
+    "description": "Find forwarded Ivanti events that mention the hidden-directory sniffer or companion credential parser recovered by Volexity after compromise.",
+    "evidence": [
+      {
+        "claim": "Volexity recovered a masquerading packet sniffer and its credential-parsing companion script after compromise of an Ivanti Connect Secure appliance. Its October 29 update identifies CVE-2026-111357 as the privilege-escalation stage.",
+        "location": "October 29 update, LDAP Packet Capture, and Ivanti Memory Analysis with Volexity Volcano",
+        "modified": "2026-10-29",
+        "observation_date": null,
+        "published": "2026-10-13",
+        "source": "volexity",
+        "source_id": "https://www.volexity.com/blog/2026/10/13/a-series-of-unauthenticated-events-chained-exploitation-of-ivanti-connect-secure-zero-days/",
+        "url": "https://www.volexity.com/blog/2026/10/13/a-series-of-unauthenticated-events-chained-exploitation-of-ivanti-connect-secure-zero-days/"
+      }
+    ],
+    "expected_output": "One row per matching forwarded event, with the artifact, available device and network fields, and source log message.",
+    "history": [
+      {
+        "change": "Created",
+        "date": "2026-11-25T03:12:33Z",
+        "revision": 1,
+        "summary": "Created evidence-backed hunt and validated all supported variants."
+      }
+    ],
+    "hypothesis": "The combination of the appliance's hidden capture directory and a rare executable or script name can identify artifacts seen after an exploit chain involving CVE-2026-111357.",
+    "id": "HF-2026-0040",
+    "indicator_ids": [],
+    "lookback": 30,
+    "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+    "primary_table": "CommonSecurityLog",
+    "profiles": [
+      "sentinel-cef"
+    ],
+    "published": "2026-11-25T03:12:33Z",
+    "research": "ivanti-ics-cve-2026-111357",
+    "revision": 1,
+    "schema_version": 1,
+    "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+    "signature": "32c80822fbeae10367827440faf92cadbf47dc5d6028603d87d8fc81d5263933",
+    "source_ids": [
+      "HF-INT-21095F4BB1CB0F"
+    ],
+    "source_published": "2026-10-13",
+    "status": "partially_validated",
+    "tactic": "Credential Access",
+    "tags": [
+      "Exploitation",
+      "Credential Access",
+      "Network Edge"
+    ],
+    "technique": "T1040",
+    "title": "Ivanti Connect Secure Post-Compromise Capture Artifacts",
+    "updated": "2026-11-25T03:12:33Z",
+    "validation": {
+      "date": "2026-11-25T03:12:33Z",
+      "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+      "variants_checked": 10
+    },
+    "variants": {
+      "sentinel-cef": {
+        "profile_revision": 2,
+        "queries": {
+          "1": {
+            "json": "CommonSecurityLog\n| where TimeGenerated > ago(1d)\n| where DeviceVendor in~ (\"Ivanti\", \"Pulse Secure\") or DeviceProduct contains \"Connect Secure\"\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/[.]icscap/(?:dsstatmond|h[.]py))(?:[^a-zA-Z0-9._/-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| project TimeGenerated, MatchedArtifact, Activity, DeviceVendor, DeviceProduct, DestinationHostName, SourceIP, DestinationIP, DeviceAction, Message\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "CommonSecurityLog\n| where TimeGenerated > ago(1d)\n| where DeviceVendor in~ (\"Ivanti\", \"Pulse Secure\") or DeviceProduct contains \"Connect Secure\"\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/[.]icscap/(?:dsstatmond|h[.]py))(?:[^a-zA-Z0-9._/-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| project TimeGenerated, MatchedArtifact, Activity, DeviceVendor, DeviceProduct, DestinationHostName, SourceIP, DestinationIP, DeviceAction, Message\n| order by TimeGenerated desc\n"
+          },
+          "14": {
+            "json": "CommonSecurityLog\n| where TimeGenerated > ago(14d)\n| where DeviceVendor in~ (\"Ivanti\", \"Pulse Secure\") or DeviceProduct contains \"Connect Secure\"\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/[.]icscap/(?:dsstatmond|h[.]py))(?:[^a-zA-Z0-9._/-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| project TimeGenerated, MatchedArtifact, Activity, DeviceVendor, DeviceProduct, DestinationHostName, SourceIP, DestinationIP, DeviceAction, Message\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "CommonSecurityLog\n| where TimeGenerated > ago(14d)\n| where DeviceVendor in~ (\"Ivanti\", \"Pulse Secure\") or DeviceProduct contains \"Connect Secure\"\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/[.]icscap/(?:dsstatmond|h[.]py))(?:[^a-zA-Z0-9._/-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| project TimeGenerated, MatchedArtifact, Activity, DeviceVendor, DeviceProduct, DestinationHostName, SourceIP, DestinationIP, DeviceAction, Message\n| order by TimeGenerated desc\n"
+          },
+          "3": {
+            "json": "CommonSecurityLog\n| where TimeGenerated > ago(3d)\n| where DeviceVendor in~ (\"Ivanti\", \"Pulse Secure\") or DeviceProduct contains \"Connect Secure\"\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/[.]icscap/(?:dsstatmond|h[.]py))(?:[^a-zA-Z0-9._/-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| project TimeGenerated, MatchedArtifact, Activity, DeviceVendor, DeviceProduct, DestinationHostName, SourceIP, DestinationIP, DeviceAction, Message\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "CommonSecurityLog\n| where TimeGenerated > ago(3d)\n| where DeviceVendor in~ (\"Ivanti\", \"Pulse Secure\") or DeviceProduct contains \"Connect Secure\"\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/[.]icscap/(?:dsstatmond|h[.]py))(?:[^a-zA-Z0-9._/-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| project TimeGenerated, MatchedArtifact, Activity, DeviceVendor, DeviceProduct, DestinationHostName, SourceIP, DestinationIP, DeviceAction, Message\n| order by TimeGenerated desc\n"
+          },
+          "30": {
+            "json": "CommonSecurityLog\n| where TimeGenerated > ago(30d)\n| where DeviceVendor in~ (\"Ivanti\", \"Pulse Secure\") or DeviceProduct contains \"Connect Secure\"\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/[.]icscap/(?:dsstatmond|h[.]py))(?:[^a-zA-Z0-9._/-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| project TimeGenerated, MatchedArtifact, Activity, DeviceVendor, DeviceProduct, DestinationHostName, SourceIP, DestinationIP, DeviceAction, Message\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "CommonSecurityLog\n| where TimeGenerated > ago(30d)\n| where DeviceVendor in~ (\"Ivanti\", \"Pulse Secure\") or DeviceProduct contains \"Connect Secure\"\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/[.]icscap/(?:dsstatmond|h[.]py))(?:[^a-zA-Z0-9._/-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| project TimeGenerated, MatchedArtifact, Activity, DeviceVendor, DeviceProduct, DestinationHostName, SourceIP, DestinationIP, DeviceAction, Message\n| order by TimeGenerated desc\n"
+          },
+          "7": {
+            "json": "CommonSecurityLog\n| where TimeGenerated > ago(7d)\n| where DeviceVendor in~ (\"Ivanti\", \"Pulse Secure\") or DeviceProduct contains \"Connect Secure\"\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/[.]icscap/(?:dsstatmond|h[.]py))(?:[^a-zA-Z0-9._/-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| project TimeGenerated, MatchedArtifact, Activity, DeviceVendor, DeviceProduct, DestinationHostName, SourceIP, DestinationIP, DeviceAction, Message\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "CommonSecurityLog\n| where TimeGenerated > ago(7d)\n| where DeviceVendor in~ (\"Ivanti\", \"Pulse Secure\") or DeviceProduct contains \"Connect Secure\"\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/[.]icscap/(?:dsstatmond|h[.]py))(?:[^a-zA-Z0-9._/-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| project TimeGenerated, MatchedArtifact, Activity, DeviceVendor, DeviceProduct, DestinationHostName, SourceIP, DestinationIP, DeviceAction, Message\n| order by TimeGenerated desc\n"
+          }
+        },
+        "table": "CommonSecurityLog",
+        "validation": {
+          "analyst": "not_run",
+          "engine": "not_run",
+          "evidence": "pass",
+          "schema": "pass",
+          "static": "pass",
+          "syntax": "pass",
+          "synthetic_fixture": "not_run",
+          "workspace": "not_run"
+        }
+      }
+    }
+  },
+  {
+    "actors": [],
+    "confidence": "Vendor-managed request detection",
+    "considerations": [
+      "Forward AWS WAF events to CEF using AWS as the vendor or AWS WAF as the product. Preserve the matched rule ID in Activity or the AWS WAF JSON log object in Message.",
+      "Use the managed rule group's current version. Coverage of CVE-2026-109618 and CVE-2026-109619 overlaps, so a matched rule cannot reliably attribute the request to either CVE alone.",
+      "Check the final WAF action and corresponding origin logs. A match in count mode may pass to the application, while a block can stop the request at the edge. Neither outcome establishes code execution."
+    ],
+    "cves": [
+      "CVE-2026-109618",
+      "CVE-2026-109619"
+    ],
+    "description": "Find AWS WAF's exact managed rule IDs or structured managed-rule labels associated with the PHP2Shell vulnerabilities.",
+    "evidence": [
+      {
+        "claim": "AWS publishes PHP2Shell_BODY and PHP2Shell_BODY_Extended as managed WAF rules for request behavior associated with the PHP2Shell vulnerabilities. The rules have overlapping coverage.",
+        "location": "Updates of October 22 and 23 and AWS WAF coverage table",
+        "modified": "2026-10-29",
+        "observation_date": null,
+        "published": "2026-10-21",
+        "source": "aws-security",
+        "source_id": "https://aws.amazon.com/blogs/security/using-aws-waf-to-apply-mitigations-for-php2shell-rce-vulnerabilities-cve-2026-109618-and-cve-2026-109619/",
+        "url": "https://aws.amazon.com/blogs/security/using-aws-waf-to-apply-mitigations-for-php2shell-rce-vulnerabilities-cve-2026-109618-and-cve-2026-109619/"
+      }
+    ],
+    "expected_output": "One row per matching WAF detection, with the final WAF action, client, request, and web ACL when available.",
+    "history": [
+      {
+        "change": "Created",
+        "date": "2026-11-25T03:12:33Z",
+        "revision": 1,
+        "summary": "Created evidence-backed hunt and validated all supported variants."
+      }
+    ],
+    "hypothesis": "A PHP2Shell WAF rule match identifies a request worth reviewing for potential attempted exploitation against a PHP runtime.",
+    "id": "HF-2026-0041",
+    "indicator_ids": [],
+    "lookback": 30,
+    "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+    "primary_table": "CommonSecurityLog",
+    "profiles": [
+      "sentinel-cef"
+    ],
+    "published": "2026-11-25T03:12:33Z",
+    "research": "aws-waf-php2shell",
+    "revision": 1,
+    "schema_version": 1,
+    "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+    "signature": "e074caddb6421182b14a7bd39b97eeb5d691a7342de88538d783a1b6d0d42c71",
+    "source_ids": [
+      "HF-INT-4B2D636A485517"
+    ],
+    "source_published": "2026-10-21",
+    "status": "partially_validated",
+    "tactic": "Initial Access",
+    "tags": [
+      "Exploitation",
+      "Web Applications"
+    ],
+    "technique": "T1190",
+    "title": "AWS WAF PHP2Shell Managed Rule Matches",
+    "updated": "2026-11-25T03:12:33Z",
+    "validation": {
+      "date": "2026-11-25T03:12:33Z",
+      "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+      "variants_checked": 10
+    },
+    "variants": {
+      "sentinel-cef": {
+        "profile_revision": 2,
+        "queries": {
+          "1": {
+            "json": "CommonSecurityLog\n| where TimeGenerated > ago(1d)\n| where DeviceVendor in~ (\"AWS\", \"Amazon\", \"Amazon Web Services\") or DeviceProduct =~ \"AWS WAF\"\n| extend WafEvent = parse_json(Message), MappedRule = iff(Activity in~ (\"PHP2Shell_BODY_Extended\", \"PHP2Shell_BODY\"), Activity, \"\")\n| extend Labels = iff(isnotempty(MappedRule) or coalesce(array_length(WafEvent.labels), 0) == 0, dynamic([{}]), WafEvent.labels)\n| mv-expand Label = Labels\n| extend LabelName = tostring(Label.name)\n| extend MatchedRule = case(LabelName =~ \"awswaf:managed:aws:php-app:PHP2Shell_Body_Extended\", \"PHP2Shell_BODY_Extended\", LabelName =~ \"awswaf:managed:aws:php-app:PHP2Shell_Body\", \"PHP2Shell_BODY\", MappedRule)\n| where isnotempty(MatchedRule)\n| project TimeGenerated, MatchedRule, WafAction = coalesce(tostring(WafEvent.action), DeviceAction), ClientIP = coalesce(tostring(WafEvent.httpRequest.clientIp), SourceIP), RequestId = tostring(WafEvent.httpRequest.requestId), RequestUri = coalesce(tostring(WafEvent.httpRequest.uri), RequestURL), WebAcl = tostring(WafEvent.webaclId), DestinationHostName\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "CommonSecurityLog\n| where TimeGenerated > ago(1d)\n| where DeviceVendor in~ (\"AWS\", \"Amazon\", \"Amazon Web Services\") or DeviceProduct =~ \"AWS WAF\"\n| extend WafEvent = parse_json(Message), MappedRule = iff(Activity in~ (\"PHP2Shell_BODY_Extended\", \"PHP2Shell_BODY\"), Activity, \"\")\n| extend Labels = iff(isnotempty(MappedRule) or coalesce(array_length(WafEvent.labels), 0) == 0, dynamic([{}]), WafEvent.labels)\n| mv-expand Label = Labels\n| extend LabelName = tostring(Label.name)\n| extend MatchedRule = case(LabelName =~ \"awswaf:managed:aws:php-app:PHP2Shell_Body_Extended\", \"PHP2Shell_BODY_Extended\", LabelName =~ \"awswaf:managed:aws:php-app:PHP2Shell_Body\", \"PHP2Shell_BODY\", MappedRule)\n| where isnotempty(MatchedRule)\n| project TimeGenerated, MatchedRule, WafAction = coalesce(tostring(WafEvent.action), DeviceAction), ClientIP = coalesce(tostring(WafEvent.httpRequest.clientIp), SourceIP), RequestId = tostring(WafEvent.httpRequest.requestId), RequestUri = coalesce(tostring(WafEvent.httpRequest.uri), RequestURL), WebAcl = tostring(WafEvent.webaclId), DestinationHostName\n| order by TimeGenerated desc\n"
+          },
+          "14": {
+            "json": "CommonSecurityLog\n| where TimeGenerated > ago(14d)\n| where DeviceVendor in~ (\"AWS\", \"Amazon\", \"Amazon Web Services\") or DeviceProduct =~ \"AWS WAF\"\n| extend WafEvent = parse_json(Message), MappedRule = iff(Activity in~ (\"PHP2Shell_BODY_Extended\", \"PHP2Shell_BODY\"), Activity, \"\")\n| extend Labels = iff(isnotempty(MappedRule) or coalesce(array_length(WafEvent.labels), 0) == 0, dynamic([{}]), WafEvent.labels)\n| mv-expand Label = Labels\n| extend LabelName = tostring(Label.name)\n| extend MatchedRule = case(LabelName =~ \"awswaf:managed:aws:php-app:PHP2Shell_Body_Extended\", \"PHP2Shell_BODY_Extended\", LabelName =~ \"awswaf:managed:aws:php-app:PHP2Shell_Body\", \"PHP2Shell_BODY\", MappedRule)\n| where isnotempty(MatchedRule)\n| project TimeGenerated, MatchedRule, WafAction = coalesce(tostring(WafEvent.action), DeviceAction), ClientIP = coalesce(tostring(WafEvent.httpRequest.clientIp), SourceIP), RequestId = tostring(WafEvent.httpRequest.requestId), RequestUri = coalesce(tostring(WafEvent.httpRequest.uri), RequestURL), WebAcl = tostring(WafEvent.webaclId), DestinationHostName\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "CommonSecurityLog\n| where TimeGenerated > ago(14d)\n| where DeviceVendor in~ (\"AWS\", \"Amazon\", \"Amazon Web Services\") or DeviceProduct =~ \"AWS WAF\"\n| extend WafEvent = parse_json(Message), MappedRule = iff(Activity in~ (\"PHP2Shell_BODY_Extended\", \"PHP2Shell_BODY\"), Activity, \"\")\n| extend Labels = iff(isnotempty(MappedRule) or coalesce(array_length(WafEvent.labels), 0) == 0, dynamic([{}]), WafEvent.labels)\n| mv-expand Label = Labels\n| extend LabelName = tostring(Label.name)\n| extend MatchedRule = case(LabelName =~ \"awswaf:managed:aws:php-app:PHP2Shell_Body_Extended\", \"PHP2Shell_BODY_Extended\", LabelName =~ \"awswaf:managed:aws:php-app:PHP2Shell_Body\", \"PHP2Shell_BODY\", MappedRule)\n| where isnotempty(MatchedRule)\n| project TimeGenerated, MatchedRule, WafAction = coalesce(tostring(WafEvent.action), DeviceAction), ClientIP = coalesce(tostring(WafEvent.httpRequest.clientIp), SourceIP), RequestId = tostring(WafEvent.httpRequest.requestId), RequestUri = coalesce(tostring(WafEvent.httpRequest.uri), RequestURL), WebAcl = tostring(WafEvent.webaclId), DestinationHostName\n| order by TimeGenerated desc\n"
+          },
+          "3": {
+            "json": "CommonSecurityLog\n| where TimeGenerated > ago(3d)\n| where DeviceVendor in~ (\"AWS\", \"Amazon\", \"Amazon Web Services\") or DeviceProduct =~ \"AWS WAF\"\n| extend WafEvent = parse_json(Message), MappedRule = iff(Activity in~ (\"PHP2Shell_BODY_Extended\", \"PHP2Shell_BODY\"), Activity, \"\")\n| extend Labels = iff(isnotempty(MappedRule) or coalesce(array_length(WafEvent.labels), 0) == 0, dynamic([{}]), WafEvent.labels)\n| mv-expand Label = Labels\n| extend LabelName = tostring(Label.name)\n| extend MatchedRule = case(LabelName =~ \"awswaf:managed:aws:php-app:PHP2Shell_Body_Extended\", \"PHP2Shell_BODY_Extended\", LabelName =~ \"awswaf:managed:aws:php-app:PHP2Shell_Body\", \"PHP2Shell_BODY\", MappedRule)\n| where isnotempty(MatchedRule)\n| project TimeGenerated, MatchedRule, WafAction = coalesce(tostring(WafEvent.action), DeviceAction), ClientIP = coalesce(tostring(WafEvent.httpRequest.clientIp), SourceIP), RequestId = tostring(WafEvent.httpRequest.requestId), RequestUri = coalesce(tostring(WafEvent.httpRequest.uri), RequestURL), WebAcl = tostring(WafEvent.webaclId), DestinationHostName\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "CommonSecurityLog\n| where TimeGenerated > ago(3d)\n| where DeviceVendor in~ (\"AWS\", \"Amazon\", \"Amazon Web Services\") or DeviceProduct =~ \"AWS WAF\"\n| extend WafEvent = parse_json(Message), MappedRule = iff(Activity in~ (\"PHP2Shell_BODY_Extended\", \"PHP2Shell_BODY\"), Activity, \"\")\n| extend Labels = iff(isnotempty(MappedRule) or coalesce(array_length(WafEvent.labels), 0) == 0, dynamic([{}]), WafEvent.labels)\n| mv-expand Label = Labels\n| extend LabelName = tostring(Label.name)\n| extend MatchedRule = case(LabelName =~ \"awswaf:managed:aws:php-app:PHP2Shell_Body_Extended\", \"PHP2Shell_BODY_Extended\", LabelName =~ \"awswaf:managed:aws:php-app:PHP2Shell_Body\", \"PHP2Shell_BODY\", MappedRule)\n| where isnotempty(MatchedRule)\n| project TimeGenerated, MatchedRule, WafAction = coalesce(tostring(WafEvent.action), DeviceAction), ClientIP = coalesce(tostring(WafEvent.httpRequest.clientIp), SourceIP), RequestId = tostring(WafEvent.httpRequest.requestId), RequestUri = coalesce(tostring(WafEvent.httpRequest.uri), RequestURL), WebAcl = tostring(WafEvent.webaclId), DestinationHostName\n| order by TimeGenerated desc\n"
+          },
+          "30": {
+            "json": "CommonSecurityLog\n| where TimeGenerated > ago(30d)\n| where DeviceVendor in~ (\"AWS\", \"Amazon\", \"Amazon Web Services\") or DeviceProduct =~ \"AWS WAF\"\n| extend WafEvent = parse_json(Message), MappedRule = iff(Activity in~ (\"PHP2Shell_BODY_Extended\", \"PHP2Shell_BODY\"), Activity, \"\")\n| extend Labels = iff(isnotempty(MappedRule) or coalesce(array_length(WafEvent.labels), 0) == 0, dynamic([{}]), WafEvent.labels)\n| mv-expand Label = Labels\n| extend LabelName = tostring(Label.name)\n| extend MatchedRule = case(LabelName =~ \"awswaf:managed:aws:php-app:PHP2Shell_Body_Extended\", \"PHP2Shell_BODY_Extended\", LabelName =~ \"awswaf:managed:aws:php-app:PHP2Shell_Body\", \"PHP2Shell_BODY\", MappedRule)\n| where isnotempty(MatchedRule)\n| project TimeGenerated, MatchedRule, WafAction = coalesce(tostring(WafEvent.action), DeviceAction), ClientIP = coalesce(tostring(WafEvent.httpRequest.clientIp), SourceIP), RequestId = tostring(WafEvent.httpRequest.requestId), RequestUri = coalesce(tostring(WafEvent.httpRequest.uri), RequestURL), WebAcl = tostring(WafEvent.webaclId), DestinationHostName\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "CommonSecurityLog\n| where TimeGenerated > ago(30d)\n| where DeviceVendor in~ (\"AWS\", \"Amazon\", \"Amazon Web Services\") or DeviceProduct =~ \"AWS WAF\"\n| extend WafEvent = parse_json(Message), MappedRule = iff(Activity in~ (\"PHP2Shell_BODY_Extended\", \"PHP2Shell_BODY\"), Activity, \"\")\n| extend Labels = iff(isnotempty(MappedRule) or coalesce(array_length(WafEvent.labels), 0) == 0, dynamic([{}]), WafEvent.labels)\n| mv-expand Label = Labels\n| extend LabelName = tostring(Label.name)\n| extend MatchedRule = case(LabelName =~ \"awswaf:managed:aws:php-app:PHP2Shell_Body_Extended\", \"PHP2Shell_BODY_Extended\", LabelName =~ \"awswaf:managed:aws:php-app:PHP2Shell_Body\", \"PHP2Shell_BODY\", MappedRule)\n| where isnotempty(MatchedRule)\n| project TimeGenerated, MatchedRule, WafAction = coalesce(tostring(WafEvent.action), DeviceAction), ClientIP = coalesce(tostring(WafEvent.httpRequest.clientIp), SourceIP), RequestId = tostring(WafEvent.httpRequest.requestId), RequestUri = coalesce(tostring(WafEvent.httpRequest.uri), RequestURL), WebAcl = tostring(WafEvent.webaclId), DestinationHostName\n| order by TimeGenerated desc\n"
+          },
+          "7": {
+            "json": "CommonSecurityLog\n| where TimeGenerated > ago(7d)\n| where DeviceVendor in~ (\"AWS\", \"Amazon\", \"Amazon Web Services\") or DeviceProduct =~ \"AWS WAF\"\n| extend WafEvent = parse_json(Message), MappedRule = iff(Activity in~ (\"PHP2Shell_BODY_Extended\", \"PHP2Shell_BODY\"), Activity, \"\")\n| extend Labels = iff(isnotempty(MappedRule) or coalesce(array_length(WafEvent.labels), 0) == 0, dynamic([{}]), WafEvent.labels)\n| mv-expand Label = Labels\n| extend LabelName = tostring(Label.name)\n| extend MatchedRule = case(LabelName =~ \"awswaf:managed:aws:php-app:PHP2Shell_Body_Extended\", \"PHP2Shell_BODY_Extended\", LabelName =~ \"awswaf:managed:aws:php-app:PHP2Shell_Body\", \"PHP2Shell_BODY\", MappedRule)\n| where isnotempty(MatchedRule)\n| project TimeGenerated, MatchedRule, WafAction = coalesce(tostring(WafEvent.action), DeviceAction), ClientIP = coalesce(tostring(WafEvent.httpRequest.clientIp), SourceIP), RequestId = tostring(WafEvent.httpRequest.requestId), RequestUri = coalesce(tostring(WafEvent.httpRequest.uri), RequestURL), WebAcl = tostring(WafEvent.webaclId), DestinationHostName\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "CommonSecurityLog\n| where TimeGenerated > ago(7d)\n| where DeviceVendor in~ (\"AWS\", \"Amazon\", \"Amazon Web Services\") or DeviceProduct =~ \"AWS WAF\"\n| extend WafEvent = parse_json(Message), MappedRule = iff(Activity in~ (\"PHP2Shell_BODY_Extended\", \"PHP2Shell_BODY\"), Activity, \"\")\n| extend Labels = iff(isnotempty(MappedRule) or coalesce(array_length(WafEvent.labels), 0) == 0, dynamic([{}]), WafEvent.labels)\n| mv-expand Label = Labels\n| extend LabelName = tostring(Label.name)\n| extend MatchedRule = case(LabelName =~ \"awswaf:managed:aws:php-app:PHP2Shell_Body_Extended\", \"PHP2Shell_BODY_Extended\", LabelName =~ \"awswaf:managed:aws:php-app:PHP2Shell_Body\", \"PHP2Shell_BODY\", MappedRule)\n| where isnotempty(MatchedRule)\n| project TimeGenerated, MatchedRule, WafAction = coalesce(tostring(WafEvent.action), DeviceAction), ClientIP = coalesce(tostring(WafEvent.httpRequest.clientIp), SourceIP), RequestId = tostring(WafEvent.httpRequest.requestId), RequestUri = coalesce(tostring(WafEvent.httpRequest.uri), RequestURL), WebAcl = tostring(WafEvent.webaclId), DestinationHostName\n| order by TimeGenerated desc\n"
+          }
+        },
+        "table": "CommonSecurityLog",
+        "validation": {
+          "analyst": "not_run",
+          "engine": "not_run",
+          "evidence": "pass",
+          "schema": "pass",
+          "static": "pass",
+          "syntax": "pass",
+          "synthetic_fixture": "not_run",
+          "workspace": "not_run"
+        }
+      }
+    }
+  },
+  {
+    "actors": [],
+    "confidence": "Observed post-exploitation artifact",
+    "considerations": [
+      "Scope results to systems hosting MONAI Label. Review the process command line to verify the writer was the app service. Package installation, approved deployments and administrative tooling can account for some writes.",
+      "Confirm the container or host mounted path, file owner and hash. Review Python process starts and any unusual egress after the file event.",
+      "This targets one observed artifact. CVE-2026-133968 can produce other file writes. Launchers that hide the MONAI process name and command line require a locally tuned process filter."
+    ],
+    "cves": [
+      "CVE-2026-133968"
+    ],
+    "description": "Find writes to sitecustomize.py by the MONAI Label service or launcher, based on an artifact Amazon Threat Intelligence observed in a Cairn incident.",
+    "evidence": [
+      {
+        "claim": "Amazon Threat Intelligence observed a write to Python's sitecustomize.py on a compromised medical-imaging AI server and links to the Project MONAI advisory for the underlying file-write issue.",
+        "location": "Zero-day discovery and the linked Project MONAI advisory in Actions taken by AWS",
+        "modified": null,
+        "observation_date": null,
+        "published": "2026-11-20",
+        "source": "aws-security",
+        "source_id": "https://aws.amazon.com/blogs/security/chinese-nexus-actors-cairn-ai-agents-found-a-zero-day-on-their-own/",
+        "url": "https://aws.amazon.com/blogs/security/chinese-nexus-actors-cairn-ai-agents-found-a-zero-day-on-their-own/"
+      }
+    ],
+    "expected_output": "One row per matching endpoint file event with the path, initiating process and file hash when collected.",
+    "history": [
+      {
+        "change": "Created",
+        "date": "2026-11-25T03:12:33Z",
+        "revision": 1,
+        "summary": "Created evidence-backed hunt and validated all supported variants."
+      }
+    ],
+    "hypothesis": "An unexpected Python startup hook written by a MONAI Label process is a post-compromise lead for CVE-2026-133968.",
+    "id": "HF-2026-0042",
+    "indicator_ids": [],
+    "lookback": 30,
+    "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+    "primary_table": "DeviceFileEvents",
+    "profiles": [
+      "sentinel-endpoint"
+    ],
+    "published": "2026-11-25T03:12:33Z",
+    "research": "monai-cairn-cve-2026-133968",
+    "revision": 1,
+    "schema_version": 1,
+    "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+    "signature": "07788ce3b3d6fdd74c64b236da1cafa7e7bbac172a50389b638c6b8223bb5aa8",
+    "source_ids": [
+      "HF-INT-3D69E83D5307AD"
+    ],
+    "source_published": "2026-11-20",
+    "status": "partially_validated",
+    "tactic": "Persistence",
+    "tags": [
+      "Exploitation",
+      "Agentic AI"
+    ],
+    "technique": "T1546.018",
+    "title": "MONAI Label Process Writing a Python Startup Hook",
+    "updated": "2026-11-25T03:12:33Z",
+    "validation": {
+      "date": "2026-11-25T03:12:33Z",
+      "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+      "variants_checked": 10
+    },
+    "variants": {
+      "sentinel-endpoint": {
+        "profile_revision": 2,
+        "queries": {
+          "1": {
+            "json": "DeviceFileEvents\n| where TimeGenerated > ago(1d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"sitecustomize.py\"\n| where InitiatingProcessFileName in~ (\"monailabel\", \"monailabel.exe\") or InitiatingProcessCommandLine matches regex @\"(?i)(?:^|[^a-z0-9_-])monailabel(?:$|[^a-z0-9_-])\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "DeviceFileEvents\n| where TimeGenerated > ago(1d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"sitecustomize.py\"\n| where InitiatingProcessFileName in~ (\"monailabel\", \"monailabel.exe\") or InitiatingProcessCommandLine matches regex @\"(?i)(?:^|[^a-z0-9_-])monailabel(?:$|[^a-z0-9_-])\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine\n| order by TimeGenerated desc\n"
+          },
+          "14": {
+            "json": "DeviceFileEvents\n| where TimeGenerated > ago(14d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"sitecustomize.py\"\n| where InitiatingProcessFileName in~ (\"monailabel\", \"monailabel.exe\") or InitiatingProcessCommandLine matches regex @\"(?i)(?:^|[^a-z0-9_-])monailabel(?:$|[^a-z0-9_-])\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "DeviceFileEvents\n| where TimeGenerated > ago(14d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"sitecustomize.py\"\n| where InitiatingProcessFileName in~ (\"monailabel\", \"monailabel.exe\") or InitiatingProcessCommandLine matches regex @\"(?i)(?:^|[^a-z0-9_-])monailabel(?:$|[^a-z0-9_-])\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine\n| order by TimeGenerated desc\n"
+          },
+          "3": {
+            "json": "DeviceFileEvents\n| where TimeGenerated > ago(3d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"sitecustomize.py\"\n| where InitiatingProcessFileName in~ (\"monailabel\", \"monailabel.exe\") or InitiatingProcessCommandLine matches regex @\"(?i)(?:^|[^a-z0-9_-])monailabel(?:$|[^a-z0-9_-])\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "DeviceFileEvents\n| where TimeGenerated > ago(3d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"sitecustomize.py\"\n| where InitiatingProcessFileName in~ (\"monailabel\", \"monailabel.exe\") or InitiatingProcessCommandLine matches regex @\"(?i)(?:^|[^a-z0-9_-])monailabel(?:$|[^a-z0-9_-])\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine\n| order by TimeGenerated desc\n"
+          },
+          "30": {
+            "json": "DeviceFileEvents\n| where TimeGenerated > ago(30d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"sitecustomize.py\"\n| where InitiatingProcessFileName in~ (\"monailabel\", \"monailabel.exe\") or InitiatingProcessCommandLine matches regex @\"(?i)(?:^|[^a-z0-9_-])monailabel(?:$|[^a-z0-9_-])\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "DeviceFileEvents\n| where TimeGenerated > ago(30d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"sitecustomize.py\"\n| where InitiatingProcessFileName in~ (\"monailabel\", \"monailabel.exe\") or InitiatingProcessCommandLine matches regex @\"(?i)(?:^|[^a-z0-9_-])monailabel(?:$|[^a-z0-9_-])\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine\n| order by TimeGenerated desc\n"
+          },
+          "7": {
+            "json": "DeviceFileEvents\n| where TimeGenerated > ago(7d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"sitecustomize.py\"\n| where InitiatingProcessFileName in~ (\"monailabel\", \"monailabel.exe\") or InitiatingProcessCommandLine matches regex @\"(?i)(?:^|[^a-z0-9_-])monailabel(?:$|[^a-z0-9_-])\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "DeviceFileEvents\n| where TimeGenerated > ago(7d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"sitecustomize.py\"\n| where InitiatingProcessFileName in~ (\"monailabel\", \"monailabel.exe\") or InitiatingProcessCommandLine matches regex @\"(?i)(?:^|[^a-z0-9_-])monailabel(?:$|[^a-z0-9_-])\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine\n| order by TimeGenerated desc\n"
+          }
+        },
+        "table": "DeviceFileEvents",
+        "validation": {
+          "analyst": "not_run",
+          "engine": "not_run",
+          "evidence": "pass",
+          "schema": "pass",
+          "static": "pass",
+          "syntax": "pass",
+          "synthetic_fixture": "not_run",
+          "workspace": "not_run"
+        }
+      }
+    }
+  },
+  {
+    "actors": [],
+    "confidence": "Vendor-confirmed campaign indicators",
+    "considerations": [
+      "Review November 16, 2026 UTC first and verify the user had a page or project in scope at that time. Some infrastructure is reused, so outside-window matches can be unrelated.",
+      "Compare endpoint browsing, CSP reports and application access logs. Distinguish blocked attempts, successful browser access, and any validated exposure using proxy action and corroborating records.",
+      "A connection to the reported collection endpoint is a higher-priority lead. Destination contact alone does not establish which site initiated it or whether information was transmitted."
+    ],
+    "cves": [
+      "CVE-2026-132224"
+    ],
+    "description": "Match proxy or firewall destinations against the exact domains confirmed in Optimizely's incident report and identify the reported role of each destination.",
+    "evidence": [
+      {
+        "claim": "Optimizely reports edits to customer Project JavaScript following exploitation of a signup flaw. Its forensic investigation identified separate skimmer hosting and collection domains.",
+        "location": "How the attack worked and section 10, Indicators of compromise",
+        "modified": null,
+        "observation_date": "2026-11-16",
+        "published": "2026-11-17",
+        "source": "optimizely",
+        "source_id": "https://pages.optimizely.com/rs/947-RKE-048/images/Security%20Incident%20Report%20-%20Optimizely%20Web%20Experimentation%20-%20Nov%2017%202026.pdf",
+        "url": "https://pages.optimizely.com/rs/947-RKE-048/images/Security%20Incident%20Report%20-%20Optimizely%20Web%20Experimentation%20-%20Nov%2017%202026.pdf"
+      }
+    ],
+    "expected_output": "One row per matching proxied or logged connection, with the exact domain, campaign role, client, and connector action.",
+    "history": [
+      {
+        "change": "Created",
+        "date": "2026-11-25T03:12:33Z",
+        "revision": 1,
+        "summary": "Created evidence-backed hunt and validated all supported variants."
+      }
+    ],
+    "hypothesis": "Contact with Optimizely's confirmed skimmer infrastructure around November 16 is a lead for downstream browser exposure associated with CVE-2026-132224.",
+    "id": "HF-2026-0043",
+    "indicator_ids": [
+      "HF-IOC-211C8303EC6F63",
+      "HF-IOC-1303BA9583EE28",
+      "HF-IOC-B4554E88E61AED"
+    ],
+    "lookback": 30,
+    "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+    "primary_table": "CommonSecurityLog",
+    "profiles": [
+      "sentinel-cef"
+    ],
+    "published": "2026-11-25T03:12:33Z",
+    "research": "optimizely-cve-2026-132224",
+    "revision": 1,
+    "schema_version": 1,
+    "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+    "signature": "f2847d31e8ef7e5e78da184dd23de41631e099416a61d916ffd4bb0ef51921b2",
+    "source_ids": [
+      "HF-INT-B4C56F8C95F7AE"
+    ],
+    "source_published": "2026-11-17",
+    "status": "partially_validated",
+    "tactic": "Initial Access",
+    "tags": [
+      "Exploitation",
+      "Supply Chain",
+      "Web Applications"
+    ],
+    "technique": "T1195.002",
+    "title": "Optimizely Web Experimentation Skimmer Connections",
+    "updated": "2026-11-25T03:12:33Z",
+    "validation": {
+      "date": "2026-11-25T03:12:33Z",
+      "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+      "variants_checked": 10
+    },
+    "variants": {
+      "sentinel-cef": {
+        "profile_revision": 2,
+        "queries": {
+          "1": {
+            "json": "CommonSecurityLog\n| where TimeGenerated > ago(1d)\n| extend RequestHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(RequestURL).Host), RequestURL)))\n| extend ConnectionHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(DestinationHostName).Host), DestinationHostName)))\n| extend MatchedDomain = case(RequestHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), RequestHost, ConnectionHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), ConnectionHost, \"\")\n| where isnotempty(MatchedDomain)\n| extend IndicatorRole = iff(MatchedDomain == \"pay-relay.wordpressadmin001.workers.dev\", \"Reported collection endpoint\", \"Reported skimmer infrastructure\")\n| project TimeGenerated, MatchedDomain, IndicatorRole, SourceIP, DestinationIP, DeviceAction, DeviceProduct, RequestURL\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "CommonSecurityLog\n| where TimeGenerated > ago(1d)\n| extend RequestHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(RequestURL).Host), RequestURL)))\n| extend ConnectionHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(DestinationHostName).Host), DestinationHostName)))\n| extend MatchedDomain = case(RequestHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), RequestHost, ConnectionHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), ConnectionHost, \"\")\n| where isnotempty(MatchedDomain)\n| extend IndicatorRole = iff(MatchedDomain == \"pay-relay.wordpressadmin001.workers.dev\", \"Reported collection endpoint\", \"Reported skimmer infrastructure\")\n| project TimeGenerated, MatchedDomain, IndicatorRole, SourceIP, DestinationIP, DeviceAction, DeviceProduct, RequestURL\n| order by TimeGenerated desc\n"
+          },
+          "14": {
+            "json": "CommonSecurityLog\n| where TimeGenerated > ago(14d)\n| extend RequestHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(RequestURL).Host), RequestURL)))\n| extend ConnectionHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(DestinationHostName).Host), DestinationHostName)))\n| extend MatchedDomain = case(RequestHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), RequestHost, ConnectionHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), ConnectionHost, \"\")\n| where isnotempty(MatchedDomain)\n| extend IndicatorRole = iff(MatchedDomain == \"pay-relay.wordpressadmin001.workers.dev\", \"Reported collection endpoint\", \"Reported skimmer infrastructure\")\n| project TimeGenerated, MatchedDomain, IndicatorRole, SourceIP, DestinationIP, DeviceAction, DeviceProduct, RequestURL\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "CommonSecurityLog\n| where TimeGenerated > ago(14d)\n| extend RequestHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(RequestURL).Host), RequestURL)))\n| extend ConnectionHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(DestinationHostName).Host), DestinationHostName)))\n| extend MatchedDomain = case(RequestHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), RequestHost, ConnectionHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), ConnectionHost, \"\")\n| where isnotempty(MatchedDomain)\n| extend IndicatorRole = iff(MatchedDomain == \"pay-relay.wordpressadmin001.workers.dev\", \"Reported collection endpoint\", \"Reported skimmer infrastructure\")\n| project TimeGenerated, MatchedDomain, IndicatorRole, SourceIP, DestinationIP, DeviceAction, DeviceProduct, RequestURL\n| order by TimeGenerated desc\n"
+          },
+          "3": {
+            "json": "CommonSecurityLog\n| where TimeGenerated > ago(3d)\n| extend RequestHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(RequestURL).Host), RequestURL)))\n| extend ConnectionHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(DestinationHostName).Host), DestinationHostName)))\n| extend MatchedDomain = case(RequestHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), RequestHost, ConnectionHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), ConnectionHost, \"\")\n| where isnotempty(MatchedDomain)\n| extend IndicatorRole = iff(MatchedDomain == \"pay-relay.wordpressadmin001.workers.dev\", \"Reported collection endpoint\", \"Reported skimmer infrastructure\")\n| project TimeGenerated, MatchedDomain, IndicatorRole, SourceIP, DestinationIP, DeviceAction, DeviceProduct, RequestURL\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "CommonSecurityLog\n| where TimeGenerated > ago(3d)\n| extend RequestHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(RequestURL).Host), RequestURL)))\n| extend ConnectionHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(DestinationHostName).Host), DestinationHostName)))\n| extend MatchedDomain = case(RequestHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), RequestHost, ConnectionHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), ConnectionHost, \"\")\n| where isnotempty(MatchedDomain)\n| extend IndicatorRole = iff(MatchedDomain == \"pay-relay.wordpressadmin001.workers.dev\", \"Reported collection endpoint\", \"Reported skimmer infrastructure\")\n| project TimeGenerated, MatchedDomain, IndicatorRole, SourceIP, DestinationIP, DeviceAction, DeviceProduct, RequestURL\n| order by TimeGenerated desc\n"
+          },
+          "30": {
+            "json": "CommonSecurityLog\n| where TimeGenerated > ago(30d)\n| extend RequestHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(RequestURL).Host), RequestURL)))\n| extend ConnectionHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(DestinationHostName).Host), DestinationHostName)))\n| extend MatchedDomain = case(RequestHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), RequestHost, ConnectionHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), ConnectionHost, \"\")\n| where isnotempty(MatchedDomain)\n| extend IndicatorRole = iff(MatchedDomain == \"pay-relay.wordpressadmin001.workers.dev\", \"Reported collection endpoint\", \"Reported skimmer infrastructure\")\n| project TimeGenerated, MatchedDomain, IndicatorRole, SourceIP, DestinationIP, DeviceAction, DeviceProduct, RequestURL\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "CommonSecurityLog\n| where TimeGenerated > ago(30d)\n| extend RequestHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(RequestURL).Host), RequestURL)))\n| extend ConnectionHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(DestinationHostName).Host), DestinationHostName)))\n| extend MatchedDomain = case(RequestHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), RequestHost, ConnectionHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), ConnectionHost, \"\")\n| where isnotempty(MatchedDomain)\n| extend IndicatorRole = iff(MatchedDomain == \"pay-relay.wordpressadmin001.workers.dev\", \"Reported collection endpoint\", \"Reported skimmer infrastructure\")\n| project TimeGenerated, MatchedDomain, IndicatorRole, SourceIP, DestinationIP, DeviceAction, DeviceProduct, RequestURL\n| order by TimeGenerated desc\n"
+          },
+          "7": {
+            "json": "CommonSecurityLog\n| where TimeGenerated > ago(7d)\n| extend RequestHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(RequestURL).Host), RequestURL)))\n| extend ConnectionHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(DestinationHostName).Host), DestinationHostName)))\n| extend MatchedDomain = case(RequestHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), RequestHost, ConnectionHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), ConnectionHost, \"\")\n| where isnotempty(MatchedDomain)\n| extend IndicatorRole = iff(MatchedDomain == \"pay-relay.wordpressadmin001.workers.dev\", \"Reported collection endpoint\", \"Reported skimmer infrastructure\")\n| project TimeGenerated, MatchedDomain, IndicatorRole, SourceIP, DestinationIP, DeviceAction, DeviceProduct, RequestURL\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "CommonSecurityLog\n| where TimeGenerated > ago(7d)\n| extend RequestHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(RequestURL).Host), RequestURL)))\n| extend ConnectionHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(DestinationHostName).Host), DestinationHostName)))\n| extend MatchedDomain = case(RequestHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), RequestHost, ConnectionHost in (\"pay-cloud.online\", \"pay.pay-cloud.online\", \"pay-relay.wordpressadmin001.workers.dev\"), ConnectionHost, \"\")\n| where isnotempty(MatchedDomain)\n| extend IndicatorRole = iff(MatchedDomain == \"pay-relay.wordpressadmin001.workers.dev\", \"Reported collection endpoint\", \"Reported skimmer infrastructure\")\n| project TimeGenerated, MatchedDomain, IndicatorRole, SourceIP, DestinationIP, DeviceAction, DeviceProduct, RequestURL\n| order by TimeGenerated desc\n"
+          }
+        },
+        "table": "CommonSecurityLog",
+        "validation": {
+          "analyst": "not_run",
+          "engine": "not_run",
+          "evidence": "pass",
+          "schema": "pass",
+          "static": "pass",
+          "syntax": "pass",
+          "synthetic_fixture": "not_run",
+          "workspace": "not_run"
+        }
+      }
+    }
+  },
+  {
+    "actors": [],
+    "confidence": "Observed post-exploitation artifacts",
+    "considerations": [
+      "Requires forwarded Cisco Expressway process, file or forensic logs that retain paths in Activity or Message. Ordinary call and session logs are unlikely to contain them.",
+      "Review both artifact types on the same appliance and contrast them with approved maintenance. F6 reports the numbered directories as a possible ARTEX link. Directory naming alone does not attribute activity to ARTEX.",
+      "These are post-compromise artifacts from one incident. Corroborate with appliance evidence, the cluster inventory, and the Cisco PSIRT advisory."
+    ],
+    "cves": [
+      "CVE-2026-76466"
+    ],
+    "description": "Find the shared-memory package path and numbered working-directory pattern that F6 observed on compromised Cisco Expressway appliances.",
+    "evidence": [
+      {
+        "claim": "F6 found Python packages staged in shared memory and numbered working directories under /mnt/harddisk/ on compromised Cisco Expressway appliances. The investigators report the naming pattern as a possible ARTEX link.",
+        "location": "Post-compromise Python tooling and working-directory findings",
+        "modified": null,
+        "observation_date": null,
+        "published": "2026-11-23",
+        "source": "f6",
+        "source_id": "https://www.f6.ru/blog/CVE-2026-76466/",
+        "url": "https://www.f6.ru/blog/CVE-2026-76466/"
+      }
+    ],
+    "expected_output": "One row per CEF event with the matched path and the accompanying device or network context.",
+    "history": [
+      {
+        "change": "Created",
+        "date": "2026-11-25T03:12:33Z",
+        "revision": 1,
+        "summary": "Created evidence-backed hunt and validated all supported variants."
+      }
+    ],
+    "hypothesis": "Python package staging on an Expressway appliance together with numbered working directories can identify a post-compromise pattern in one CVE-2026-76466 case.",
+    "id": "HF-2026-0044",
+    "indicator_ids": [],
+    "lookback": 30,
+    "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+    "primary_table": "CommonSecurityLog",
+    "profiles": [
+      "sentinel-cef"
+    ],
+    "published": "2026-11-25T03:12:33Z",
+    "research": "expressway-cve-2026-76466",
+    "revision": 1,
+    "schema_version": 1,
+    "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+    "signature": "41a55b7db17e40d01a6cb146b2f130e32bf280c4025804e838f7d1c7e8a32070",
+    "source_ids": [
+      "HF-INT-2257EBF4C4B3CA"
+    ],
+    "source_published": "2026-11-23",
+    "status": "partially_validated",
+    "tactic": "Command and Control",
+    "tags": [
+      "Exploitation",
+      "Network Edge",
+      "Agentic AI"
+    ],
+    "technique": "T1105",
+    "title": "Cisco Expressway Post-Compromise Python Staging",
+    "updated": "2026-11-25T03:12:33Z",
+    "validation": {
+      "date": "2026-11-25T03:12:33Z",
+      "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+      "variants_checked": 10
+    },
+    "variants": {
+      "sentinel-cef": {
+        "profile_revision": 2,
+        "queries": {
+          "1": {
+            "json": "CommonSecurityLog\n| where TimeGenerated > ago(1d)\n| where DeviceProduct contains \"Expressway\" or (DeviceVendor =~ \"Cisco\" and Activity contains \"Expressway\")\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/dev/shm/pylibs|/mnt/harddisk/i[0-9]{4})(?:[^a-zA-Z0-9._-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| extend ArtifactType = iff(MatchedArtifact == \"/dev/shm/pylibs\", \"Shared-memory package staging\", \"Numbered working directory\")\n| project TimeGenerated, MatchedArtifact, ArtifactType, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "CommonSecurityLog\n| where TimeGenerated > ago(1d)\n| where DeviceProduct contains \"Expressway\" or (DeviceVendor =~ \"Cisco\" and Activity contains \"Expressway\")\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/dev/shm/pylibs|/mnt/harddisk/i[0-9]{4})(?:[^a-zA-Z0-9._-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| extend ArtifactType = iff(MatchedArtifact == \"/dev/shm/pylibs\", \"Shared-memory package staging\", \"Numbered working directory\")\n| project TimeGenerated, MatchedArtifact, ArtifactType, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n"
+          },
+          "14": {
+            "json": "CommonSecurityLog\n| where TimeGenerated > ago(14d)\n| where DeviceProduct contains \"Expressway\" or (DeviceVendor =~ \"Cisco\" and Activity contains \"Expressway\")\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/dev/shm/pylibs|/mnt/harddisk/i[0-9]{4})(?:[^a-zA-Z0-9._-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| extend ArtifactType = iff(MatchedArtifact == \"/dev/shm/pylibs\", \"Shared-memory package staging\", \"Numbered working directory\")\n| project TimeGenerated, MatchedArtifact, ArtifactType, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "CommonSecurityLog\n| where TimeGenerated > ago(14d)\n| where DeviceProduct contains \"Expressway\" or (DeviceVendor =~ \"Cisco\" and Activity contains \"Expressway\")\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/dev/shm/pylibs|/mnt/harddisk/i[0-9]{4})(?:[^a-zA-Z0-9._-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| extend ArtifactType = iff(MatchedArtifact == \"/dev/shm/pylibs\", \"Shared-memory package staging\", \"Numbered working directory\")\n| project TimeGenerated, MatchedArtifact, ArtifactType, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n"
+          },
+          "3": {
+            "json": "CommonSecurityLog\n| where TimeGenerated > ago(3d)\n| where DeviceProduct contains \"Expressway\" or (DeviceVendor =~ \"Cisco\" and Activity contains \"Expressway\")\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/dev/shm/pylibs|/mnt/harddisk/i[0-9]{4})(?:[^a-zA-Z0-9._-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| extend ArtifactType = iff(MatchedArtifact == \"/dev/shm/pylibs\", \"Shared-memory package staging\", \"Numbered working directory\")\n| project TimeGenerated, MatchedArtifact, ArtifactType, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "CommonSecurityLog\n| where TimeGenerated > ago(3d)\n| where DeviceProduct contains \"Expressway\" or (DeviceVendor =~ \"Cisco\" and Activity contains \"Expressway\")\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/dev/shm/pylibs|/mnt/harddisk/i[0-9]{4})(?:[^a-zA-Z0-9._-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| extend ArtifactType = iff(MatchedArtifact == \"/dev/shm/pylibs\", \"Shared-memory package staging\", \"Numbered working directory\")\n| project TimeGenerated, MatchedArtifact, ArtifactType, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n"
+          },
+          "30": {
+            "json": "CommonSecurityLog\n| where TimeGenerated > ago(30d)\n| where DeviceProduct contains \"Expressway\" or (DeviceVendor =~ \"Cisco\" and Activity contains \"Expressway\")\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/dev/shm/pylibs|/mnt/harddisk/i[0-9]{4})(?:[^a-zA-Z0-9._-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| extend ArtifactType = iff(MatchedArtifact == \"/dev/shm/pylibs\", \"Shared-memory package staging\", \"Numbered working directory\")\n| project TimeGenerated, MatchedArtifact, ArtifactType, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "CommonSecurityLog\n| where TimeGenerated > ago(30d)\n| where DeviceProduct contains \"Expressway\" or (DeviceVendor =~ \"Cisco\" and Activity contains \"Expressway\")\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/dev/shm/pylibs|/mnt/harddisk/i[0-9]{4})(?:[^a-zA-Z0-9._-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| extend ArtifactType = iff(MatchedArtifact == \"/dev/shm/pylibs\", \"Shared-memory package staging\", \"Numbered working directory\")\n| project TimeGenerated, MatchedArtifact, ArtifactType, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n"
+          },
+          "7": {
+            "json": "CommonSecurityLog\n| where TimeGenerated > ago(7d)\n| where DeviceProduct contains \"Expressway\" or (DeviceVendor =~ \"Cisco\" and Activity contains \"Expressway\")\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/dev/shm/pylibs|/mnt/harddisk/i[0-9]{4})(?:[^a-zA-Z0-9._-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| extend ArtifactType = iff(MatchedArtifact == \"/dev/shm/pylibs\", \"Shared-memory package staging\", \"Numbered working directory\")\n| project TimeGenerated, MatchedArtifact, ArtifactType, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+            "table": "CommonSecurityLog\n| where TimeGenerated > ago(7d)\n| where DeviceProduct contains \"Expressway\" or (DeviceVendor =~ \"Cisco\" and Activity contains \"Expressway\")\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/dev/shm/pylibs|/mnt/harddisk/i[0-9]{4})(?:[^a-zA-Z0-9._-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| extend ArtifactType = iff(MatchedArtifact == \"/dev/shm/pylibs\", \"Shared-memory package staging\", \"Numbered working directory\")\n| project TimeGenerated, MatchedArtifact, ArtifactType, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n"
           }
         },
         "table": "CommonSecurityLog",

@@ -1,5 +1,5 @@
 import { finding, findingTags, isFresh, sourceState } from "./brief.js";
-import { anchor, button, day, escape, external, icon, link, neutral, options, pagination, profileBy, repo, route,
+import { anchor, button, day, escape, external, icon, link, neutral, options, pagination, profileBy, recentHunts, repo, resultWindow, resultsToolbar, route,
   section, sourceNames, table, tacticKey, tacticName, utc, validationNames } from "./ui.js";
 
 const pages = {
@@ -28,7 +28,7 @@ function evidenceInWindow(data,row) {
 
 function filtered(data, state, rows) {
   const {q, severity, source, start, through, cve, tag, technique, tactic, malware, validation, profile,
-    freshness, category, indicatorType, hunt, change, following, evidenceRange, actor, coverage} = state.filters;
+    freshness, category, indicatorType, hunt, change, following, evidenceRange, actor, coverage, exploitCoverage} = state.filters;
   const tokens = (q || "").toLowerCase().trim().split(/\s+/).filter(Boolean);
   const changedHunts = change ? new Set(data.changes.items.filter(row=>row.type==="hunt" && row.action===change).map(row=>row.id)) : null;
   const huntIndicators = hunt ? data.hunts.find(row=>row.id===hunt)?.indicator_ids || [] : null;
@@ -47,7 +47,7 @@ function filtered(data, state, rows) {
       (!malware || (row.software || []).includes(malware)) &&
       (!validation || row.status === validation) &&
       (!profile || row.profiles?.includes(profile)) &&
-      (!freshness || indicatorState(row) === freshness) &&
+      (!freshness || indicatorState(data,row) === freshness) &&
       (!indicatorType || row.type === indicatorType) &&
       (!huntIndicators || huntIndicators.includes(row.id)) &&
       (!changedHunts || changedHunts.has(row.id)) &&
@@ -55,6 +55,7 @@ function filtered(data, state, rows) {
       (!evidenceRange || evidenceInWindow(data,row) === (evidenceRange === "recent")) &&
       (!actor || row.actors?.includes(actor)) &&
       (!mappedTechniques || mappedTechniques.has(row.id)) &&
+      (!exploitCoverage || Boolean(row.exploitation_hunts?.length) === (exploitCoverage === "covered")) &&
       (!category || row.type === category);
   });
 }
@@ -92,38 +93,50 @@ function filters(data,state,kind) {
     kind === "techniques" ? [tactics,dropdown("coverage","Query coverage",[["sentinel","With behavioral hunts"]],f.coverage)] : [dropdown("severity","Severity",[["high","High"],["medium","Medium"],["low","Low"],["unrated","Unrated"]],f.severity), source, dateRange, technique,
       dropdown("tag","Topic",namedValues(data.records.flatMap(row=>row.tags)),f.tag),
       dropdown("malware","Software",namedValues(data.records.flatMap(row=>row.software || [])),f.malware),
-      `<label>CVE<input type="search" data-filter="cve" value="${escape(f.cve || "")}" placeholder="CVE identifier"></label>`];
-  return `<form class="filters" aria-label="Filter results"><label>Search<input type="search" data-filter="q" value="${escape(f.q || "")}" placeholder="Search ${escape(pages[kind][0].toLowerCase())}"></label>
-    ${extras.join("")}${button("Clear","clear-filters")}</form>`;
+      `<label>CVE<input type="search" data-filter="cve" value="${escape(f.cve || "")}" placeholder="CVE identifier"></label>`,
+      kind === "vulnerabilities" ? dropdown("exploitCoverage","Exploitation hunt coverage",[["covered","With exploitation hunts"],["uncovered","Without exploitation hunts"]],f.exploitCoverage) : ""];
+  const labels = {evidenceRange:f.evidenceRange === "recent" ? "Release window" : "Older reporting",
+    following:"Following", coverage:"With behavioral hunts",
+    exploitCoverage:f.exploitCoverage === "covered" ? "With exploitation hunts" : "Without exploitation hunts",
+    change:changeOptions.find(([value])=>value===f.change)?.[1], category:entityTypes[f.category],
+    validation:validationNames[f.validation], tactic:f.tactic && tacticName(f.tactic), source:sourceNames[f.source],
+    profile:profileBy(data,f.profile)?.short, hunt:data.hunts.find(row=>row.id===f.hunt)?.title};
+  const applied = Object.entries(f).filter(([name])=>name!=="q" && name!=="sort");
+  return `<form class="filters catalog-filters" aria-label="Filter results">
+    <div class="filter-primary"><label>Search<input type="search" data-filter="q" value="${escape(f.q || "")}" placeholder="Search ${escape(pages[kind][0].toLowerCase())}"></label>
+    ${Object.keys(f).length ? button("Clear","clear-filters") : ""}</div>
+    <details data-filter-panel${state.filtersExpanded ? " open" : ""}><summary>More filters</summary><div class="filter-fields">${extras.join("")}</div></details>
+    ${applied.length ? `<div class="chips" aria-label="Applied filters">${applied.map(([name,value])=>
+      `<button type="button" class="chip" data-remove-filter="${escape(name)}" aria-label="Remove filter: ${escape(labels[name] || value)}">${neutral(labels[name] || value)} ×</button>`).join("")}</div>` : ""}</form>`;
 }
 
-function indicatorState(row) {
-  const today = new Date().toISOString().slice(0,10);
+function indicatorState(data,row) {
+  const today = data.manifest.window.through;
   if (row.source_expires && row.source_expires <= today) return "expired";
-  return row.aging_review <= today ? "review" : "current";
+  return row.reported > today || row.aging_review <= today ? "review" : "current";
 }
 
 function huntCard(data, row, state) {
   const following = state.preferences.followed.includes(row.id) ? link("Following",route("hunts",null,{following:"1"})) + " · " : "";
   const primary = profileBy(data,row.profiles[0]);
-  return `<article class="catalog-card">
+  return `<article class="catalog-card" data-record-card>
     <div class="meta">${following}${escape(row.id)} · ${link("REV " + row.revision,route("hunts",row.id,{tab:"revisions"}))}</div>
     <p class="meta">Source: ${day(row.source_published || row.evidence[0]?.published)} · ${escape(primary.short)}${row.primary_table ? ` · <code>${escape(row.primary_table)}</code>` : ""}</p>
     <h2><a href="${route("hunts",row.id)}">${neutral(row.title)}</a></h2><p>${neutral(row.description)}</p>
     <p class="chips">${link(row.technique,route("techniques",row.technique),"chip")}${link(row.tactic,route("hunts",null,{tactic:tacticKey(row.tactic)}),"chip")}
+    ${(row.cves || []).map(cve=>link(cve,route("vulnerabilities",null,{cve}),"chip")).join("")}
     ${(row.actors || []).map(actor=>link(actor,route("hunts",null,{actor}),"chip")).join("")}
     ${link(validationNames[row.status] || row.status,route("hunts",null,{validation:row.status}),"chip")}</p>
-    <label class="checkbox"><input type="checkbox" data-pack-id="${escape(row.id)}"${state.pack.has(row.id) ? " checked" : ""}> Include in ZIP pack</label>
   </article>`;
 }
 
 function entityCard(data,kind,row) {
-  if (kind === "indicators") return `<article class="catalog-card"><div class="meta">${link(row.type.toUpperCase(),route(kind,null,{indicatorType:row.type}))} ·
-    ${link(indicatorState(row),route(kind,null,{freshness:indicatorState(row)}))} · ${day(row.reported)}</div>
+  if (kind === "indicators") return `<article class="catalog-card" data-record-card><div class="meta">${link(row.type.toUpperCase(),route(kind,null,{indicatorType:row.type}))} ·
+    ${link(indicatorState(data,row),route(kind,null,{freshness:indicatorState(data,row)}))} · ${day(row.reported)}</div>
     <h2><a href="${route(kind,row.id)}">${escape(row.display)}</a></h2><p>${neutral(row.context)}</p></article>`;
   const type = entityTypes[row.type];
   const matches = kind === "techniques" ? data.hunts.filter(hunt=>hunt.technique===row.id).length : 0;
-  return `<article class="catalog-card"><div class="meta">${escape(row.id)} · ${kind === "adversaries" ?
+  return `<article class="catalog-card" data-record-card><div class="meta">${escape(row.id)} · ${kind === "adversaries" ?
     link(type.toUpperCase(),route(kind,null,{category:row.type})) : escape(type.toUpperCase())}</div>
     <h2><a href="${route(kind,row.id)}">${neutral(row.title)}</a></h2>${row.aliases?.length > 1 ? `<p>${neutral(row.aliases.slice(1,6).join(", "))}</p>` : ""}
     ${row.description ? `<p class="technique-summary">${neutral(row.description)}</p>` : ""}
@@ -132,19 +145,53 @@ function entityCard(data,kind,row) {
       row.alert_query ? link("Alert pivot",route("techniques",row.id),"chip") : ""}</div></article>`;
 }
 
+function indicatorTargets(data) {
+  const bulk = data.indicatorQuery;
+  return bulk ? [bulk,...(bulk.alternate_targets || [])] : [];
+}
+
+export function indicatorQueryTarget(data,state) {
+  const targets = indicatorTargets(data);
+  return targets.find(target=>target.profile_id === state.indicatorTarget) || targets[0];
+}
+
+function bulkIndicators(data,state) {
+  const bulk = data.indicatorQuery;
+  const target = indicatorQueryTarget(data,state);
+  if (!bulk) return "";
+  const query = target.queries[String(state.indicatorDays)];
+  const counts = Object.entries(bulk.counts_by_type).map(([type,count])=>`${count} ${type.toUpperCase()}`).join(" · ");
+  return `<section class="detail-section bulk-indicators">${section("Hunt across current indicators","crosshair")}
+    <p>${bulk.indicator_count} current indicators as of ${day(bulk.as_of)}${counts ? ` · ${escape(counts)}` : ""}.
+      ${bulk.exclusion_count ? `${bulk.exclusion_count} excluded by age, expiration or eligibility.` : ""}</p>
+    ${query ? `<div class="detail-links">
+      ${button("Copy all current indicators as KQL","copy-bulk-indicators","copy","inverted")}
+      ${indicatorTargets(data).length > 1 ? `<label>Telemetry <select data-indicator-target aria-label="Indicator telemetry">${options(indicatorTargets(data).map(item=>[item.profile_id,item.table]),target.profile_id)}</select></label>` : ""}
+      <label>Lookback <select data-indicator-days aria-label="Indicator lookback">${options(Object.keys(target.queries).map(value=>[Number(value),value+" days"]),state.indicatorDays)}</select></label>
+      </div><p>Microsoft Sentinel · <code>${escape(target.table)}</code>. Each row identifies the matching log field, device and network context, indicator, and source intelligence. One event can generate multiple matches.</p>
+      <p>${escape(target.scope_note || "Matches only fields populated by your connector.")}</p>
+      <details class="mapping" data-indicator-preview${state.indicatorPreview ? " open" : ""}><summary>Preview indicator KQL</summary>
+        <div class="code-surface"><pre tabindex="0"><code>${escape(query)}</code></pre></div></details>` :
+      "<p>No current indicators are eligible for a query in this release.</p>"}</section>`;
+}
+
 export function catalog(data, state) {
   const kind = state.section;
   const isHunts = kind === "hunts";
   const entities = ["indicators","adversaries","techniques"].includes(kind);
-  const limit = isHunts || entities ? 12 : 10;
-  const source = isHunts ? [...data.hunts].sort((a,b)=>
-    (b.source_published || b.evidence[0]?.published || "").localeCompare(a.source_published || a.evidence[0]?.published || "")) : kind === "indicators" ? data.indicators :
+  const source = isHunts ? recentHunts(data.hunts) : kind === "indicators" ? data.indicators :
     kind === "adversaries" ? data.reference.filter(x=>x.type !== "attack-pattern") :
     kind === "techniques" ? data.reference.filter(x=>x.type === "attack-pattern") :
     kind === "vulnerabilities" ? data.records.filter(x=>x.kind==="Vulnerability") :
     kind === "research" ? data.records.filter(x=>x.kind==="Research") : data.records;
   const rows = filtered(data,state,source);
-  const visible = rows.slice(state.page*limit, state.page*limit+limit);
+  const date = row => row.source_published || row.published || row.reported || row.modified || "";
+  const sort = state.filters.sort;
+  if (sort === "title") rows.sort((a,b)=>(a.title || a.display).localeCompare(b.title || b.display));
+  if (sort === "newest") rows.sort((a,b)=>date(b).localeCompare(date(a)));
+  if (sort === "oldest") rows.sort((a,b)=>date(a).localeCompare(date(b)));
+  const {start,end,page,size} = resultWindow(rows.length,state);
+  const visible = rows.slice(start,end);
   let contents = "";
   if (isHunts) {
     const recent = data.hunts.filter(row=>evidenceInWindow(data,row)).length;
@@ -155,24 +202,44 @@ export function catalog(data, state) {
       ${anchor("All hunts",route("hunts"),"crosshair")}
     </nav>`;
   }
+  if (kind === "indicators") contents += bulkIndicators(data,state);
   contents += filters(data,state,kind);
   if (isHunts) {
-    contents += `<div class="detail-links">${button(`Download selected (${state.pack.size})`, "pack-selected","download","inverted")}
-      ${anchor("Default hunt pack (.zip)",data.base+"downloads/hunt-pack.zip","file")}${anchor("Followed hunts",route("hunts",null,{following:"1"}),"star")}
+    contents += `<div class="detail-links">${anchor("Followed hunts",route("hunts",null,{following:"1"}),"star")}
       ${button("Output preferences","settings","settings")}</div>`;
   }
+  contents += resultsToolbar(rows.length,isHunts ? "hunts" : "records",state,true);
   if (visible.length) {
     const markup = visible.map(row => isHunts ? huntCard(data,row,state) : entities ? entityCard(data,kind,row) : finding(data,row,kind)).join("");
     contents += isHunts || entities ? `<div class="catalog-grid">${markup}</div>` : markup;
   } else contents += '<p class="empty">No records match these filters.</p>';
-  contents += pagination(rows.length,state.page,limit,isHunts ? "hunts" : "records");
+  contents += pagination(rows.length,page,size,isHunts ? "hunts" : "records");
   return shell(kind,contents);
 }
 
 function evidenceList(refs) {
   return `<div class="catalog-grid">${refs.map(ref=>`<article class="catalog-card"><p class="meta">${escape(sourceNames[ref.source])} · ${day(ref.published)}</p>
     <h3>${neutral(ref.location)}</h3><p>${neutral(ref.claim)}</p>
-    ${ref.observation_date ? `<p>Source observation ${day(ref.observation_date)}</p>` : ""}${external("Open publisher source",ref.url)}</article>`).join("")}</div>`;
+    ${ref.observation_date ? `<p>Source observation ${day(ref.observation_date)}</p>` : ""}
+    ${ref.modified ? `<p>Publisher updated ${day(ref.modified)}</p>` : ""}${external("Open publisher source",ref.url)}</article>`).join("")}</div>`;
+}
+
+function exploitationHunts(data,row) {
+  const cards = row.huntCards || [];
+  return `<section class="detail-section" aria-labelledby="exploitation-hunts"><h2 id="exploitation-hunts">Exploitation hunts</h2>
+    ${cards.length ? `<div class="catalog-grid">${cards.map(card=>{
+      const profile = profileBy(data,card.profiles[0]);
+      const query = card.variants[profile.id].queries[String(card.lookback)].table;
+      return `<article class="catalog-card">
+        <p class="meta">${escape(profile.target)} · <code>${escape(card.primary_table)}</code> · ${card.lookback}-day lookback</p>
+        <h3>${link(card.title,route("hunts",card.id))}</h3><p>${neutral(card.description)}</p>
+        <p>${neutral(card.confidence)}</p>
+        <div class="detail-links">${anchor("Open Hunt Card",route("hunts",card.id),"crosshair")}
+        <button type="button" class="btn" data-copy-technique="${escape(card.id)}">${icon("copy")} Copy KQL</button></div>
+        <details class="mapping"><summary>Preview KQL</summary><div class="code-surface"><pre tabindex="0"><code>${escape(query)}</code></pre></div></details>
+      </article>`;
+    }).join("")}</div>` : `<p>${row.exploitation_hunts?.length ? "The Hunt Cards could not be loaded. Reload this record to try again." :
+      "A CVE-specific HuntForge query is not available for this vulnerability yet."}</p>`}</section>`;
 }
 
 export function intelligenceDetail(data,state) {
@@ -186,9 +253,10 @@ export function intelligenceDetail(data,state) {
       ["HuntForge first retrieved",utc(row.first_retrieved)],["Latest source retrieval",utc(row.retrieved)],["HuntForge updated",utc(row.updated)],
       ["Evidence confidence",escape(row.confidence)],["HuntForge severity",link(row.severity,route(kind,null,{severity:row.severity}))]
     ])}</section>
+    ${row.kind === "Vulnerability" ? exploitationHunts(data,row) : ""}
     <section class="detail-section">${section("Source evidence","link")}${evidenceList(row.evidence)}</section>
     ${row.hunts.length || row.related.length || row.indicators?.length ? `<section class="detail-section">${section("Related records","network")}
-      <div class="detail-links">${row.hunts.map(id=>anchor(data.hunts.find(x=>x.id===id)?.title||id,route("hunts",id),"crosshair")).join("")}
+      <div class="detail-links">${row.hunts.filter(id=>!row.huntCards?.some(card=>card.id===id)).map(id=>anchor(data.hunts.find(x=>x.id===id)?.title||id,route("hunts",id),"crosshair")).join("")}
       ${row.related.map(id=>anchor(data.records.find(x=>x.id===id)?.title||id,route("intelligence",id),"file")).join("")}
       ${(row.indicators||[]).map(id=>anchor(data.indicators.find(x=>x.id===id)?.display||id,route("indicators",id),"database")).join("")}</div></section>`:""}
     ${scores.length ? `<section class="detail-section">${section("FIRST EPSS","pulse")}<p>EPSS estimates exploitation probability over the next 30 days. CISA’s listing separately records evidence of exploitation.</p>
@@ -206,9 +274,9 @@ export function entityDetail(data,state) {
       <section class="detail-section">${section("Indicator lifecycle","history")}${table(["Attribute","Value"],[
         ["Type",link(row.type,route(kind,null,{indicatorType:row.type}))],["Publisher report",day(row.reported)],["First observation",day(row.first_observed)],
         ["Last observation",day(row.last_observed)],["Publisher expiration",day(row.source_expires)],["HuntForge review date",day(row.aging_review)],
-        ["Freshness",link(indicatorState(row),route(kind,null,{freshness:indicatorState(row)}))]
+        ["Freshness",link(indicatorState(data,row),route(kind,null,{freshness:indicatorState(data,row)}))]
       ])}</section><section class="detail-section">${section("Source evidence","link")}${evidenceList(row.evidence)}</section>
-      <p>${anchor("Browse indicators",route(kind))}</p>`,row.display,`<p class="intro">${neutral(row.context)}</p>`);
+      <p class="detail-links">${anchor("Browse indicators and copy bulk KQL",route(kind),"crosshair")}</p>`,row.display,`<p class="intro">${neutral(row.context)}</p>`);
   }
   const hunts = data.hunts.filter(hunt=>hunt.technique===row.id);
   const related = data.records.filter(rec=>rec.techniques?.includes(row.id));
@@ -300,7 +368,8 @@ export function changelog(data,state) {
   const {q,change,recordType} = state.filters;
   const rows = selected.items.filter(row=>(!change || row.action===change) && (!recordType || row.type===recordType) &&
     (!q || `${row.id} ${row.title}`.toLowerCase().includes(q.trim().toLowerCase())));
-  const matching = rows.slice(state.page*25,state.page*25+25);
+  const {start,end,page,size} = resultWindow(rows.length,state);
+  const matching = rows.slice(start,end);
   return shell("changelog",`<div class="notice">${prior && prior !== data.manifest.release_id ?
     `Last viewed ${escape(prior)}. ${anchor("Changes since that release",route("changelog","since-last-visit"),"history")}` :
     prior ? "Your last visit used the current release." : "This is your first recorded visit."}</div>
@@ -313,11 +382,12 @@ export function changelog(data,state) {
       ${dropdown("recordType","Record type",[["hunt","Hunt"],["intelligence","Intelligence"]],recordType)}
       ${button("Clear","clear-filters")}
     </form>
+    ${resultsToolbar(rows.length,"changes",state)}
     ${matching.length ? `<div class="table-scroll">${table(["Change","Type","ID","Title","Revision"],matching.map(row=>[
       link(row.action,route("changelog",state.id,{...state.filters,change:row.action}),"chip"),
       link(row.type,route("changelog",state.id,{...state.filters,recordType:row.type})),escape(row.id),row.action==="retired" ? neutral(row.title) :
       `<a href="${route(row.type === "hunt" ? "hunts" : "intelligence",row.id)}">${neutral(row.title)}</a>`,row.revision]))}</div>
-      ${pagination(rows.length,state.page,25,"changes")}` : `<p class="empty">${change || recordType || q ?
+      ${pagination(rows.length,page,size,"changes")}` : `<p class="empty">${change || recordType || q ?
         "No release changes match these filters." : "No material changes were recorded for this comparison."}</p>`}</section>`);
 }
 
@@ -328,8 +398,9 @@ export function developers(data) {
     ["Intelligence index",data.base+"intelligence/index.json",route("intelligence")],["Hunt index",data.base+"hunts/index.json",route("hunts")],
     ...(first ? [["Example Hunt Card",data.base+`hunts/${first}.json`,route("hunts",first)]] : []),
     ["Indicators",data.base+"indicators/index.json",route("indicators")],
+    ...(data.indicatorQuery ? [["Bulk indicator KQL",data.base+"indicators/bulk-query.json",route("indicators")]] : []),
     ["Profiles",data.base+"profiles/index.json"],["Search index",data.base+"search.json"],
-    ["Release changes",data.base+"changes.json",route("changelog")],["Hunt pack (.zip)",data.base+"downloads/hunt-pack.zip"],
+    ["Release changes",data.base+"changes.json",route("changelog")],
     ...Object.keys(data.manifest.files).filter(name=>name.startsWith("schemas/")).map(name=>["JSON schema",data.base+name])
   ];
   return shell("developers",`<p class="notice">Use <code>latest.json</code> to resolve a release. Pin that snapshot for a consistent set of files. The public API uses static JSON with generated indexes.</p>

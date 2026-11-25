@@ -1,4 +1,4 @@
-import { activeQuery, anchor, badge, day, escape, external, icon, link, neutral, options, profileBy, route, section, sourceNames,
+import { activeQuery, anchor, badge, day, escape, external, icon, link, neutral, options, profileBy, recentHunts, route, section, sourceNames,
   table, tacticKey, utc, validationNames } from "./ui.js";
 import { explainer } from "./explain.js";
 
@@ -44,7 +44,6 @@ function tabPanel(data, state, variant) {
       <div><h3>Analyze in Sentinel</h3><div class="actions">${anchor("Explain the results to me",route("hunts",hunt.id,{tab:"explain"}),"info")}</div></div>
       <div><h3>Download</h3><div class="actions">
         <button class="btn" type="button" data-action="download-query" ${query ? "" : "disabled"}>${icon("download")} KQL (.kql)</button>
-        <button class="btn" type="button" data-action="pack-current" ${query ? "" : "disabled"}>${icon("file")} Hunt Pack (.zip)</button>
       </div></div></div>`;
 }
 
@@ -70,10 +69,11 @@ export function huntMain(data, state) {
   const {hunt} = state;
   const variant = hunt.variants[state.profile];
   const profile = profileBy(data,state.profile);
-  const position = data.hunts.findIndex(row => row.id === hunt.id);
+  const ordered = recentHunts(data.hunts);
+  const position = ordered.findIndex(row => row.id === hunt.id);
   const following = state.preferences.followed.includes(hunt.id);
-  const previous = data.hunts[position - 1];
-  const next = data.hunts[position + 1];
+  const previous = ordered[position - 1];
+  const next = ordered[position + 1];
   const tabLink = tab => route("hunts",hunt.id,{tab});
   return `<main id="main" tabindex="-1">
     <nav class="breadcrumb" aria-label="Breadcrumb"><a href="#/hunts">Hunts</a>${icon("chevron")}<span>Hunt Card</span>${icon("chevron")}<span>${escape(hunt.id)}</span>
@@ -86,6 +86,7 @@ export function huntMain(data, state) {
         <button class="btn" type="button" data-action="follow" aria-pressed="${following}">${icon("star")} ${following ? "Following" : "Follow"}</button></span>
       </div><h1>${escape(hunt.title)}</h1><p>${neutral(hunt.description)}</p>
       <div class="chips">${link(hunt.technique,route("techniques",hunt.technique),"chip")}
+        ${(hunt.cves || []).map(cve=>link(cve,route("vulnerabilities",null,{cve}),"chip")).join("")}
         ${link(hunt.tactic,route("hunts",null,{tactic:tacticKey(hunt.tactic)}),"chip")}
         ${link(profile.target,tabLink("environment"),"chip")}
         ${link("KQL",route("hunts",hunt.id),"chip")}</div>

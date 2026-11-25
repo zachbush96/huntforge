@@ -1,0 +1,195 @@
+{
+  "confidence": "Behavioral hypothesis",
+  "considerations": [
+    "Filter known administrative scripts and managed automation.",
+    "Review the full command line and initiating process ancestry.",
+    "Correlate destinations with internal DNS, proxy logs and approved intelligence.",
+    "Review the surrounding device timeline before broadening the lookback."
+  ],
+  "description": "Scope outbound PowerShell connections on monitored devices and correlate them with published behavior and local incident evidence.",
+  "evidence": [
+    {
+      "claim": "Microsoft observed PowerShell downloading an MSI after fraudulent remote support access.",
+      "location": "Execution and MITRE ATT&CK sections",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-09-02",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/09/02/impersonating-it-support-threat-actors-turn-remote-session-into-enterprise-wide-access/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/09/02/impersonating-it-support-threat-actors-turn-remote-session-into-enterprise-wide-access/"
+    }
+  ],
+  "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+  "history": [
+    {
+      "change": "Created",
+      "date": "2026-11-25T01:48:50Z",
+      "revision": 1,
+      "summary": "Created evidence-backed hunt and validated all supported variants."
+    },
+    {
+      "change": "Updated",
+      "date": "2026-11-25T01:56:27Z",
+      "revision": 2,
+      "summary": "Revalidated after changes to confidence."
+    },
+    {
+      "change": "Updated",
+      "date": "2026-11-25T02:32:19Z",
+      "revision": 3,
+      "summary": "Revalidated after changes to profiles, source_published, tags, variants, primary_table."
+    },
+    {
+      "change": "Updated",
+      "date": "2026-11-25T03:12:33Z",
+      "revision": 4,
+      "summary": "Revalidated after changes to variants."
+    }
+  ],
+  "hypothesis": "PowerShell used to retrieve a payload may leave a process-attributed network event.",
+  "id": "HF-2025-0001",
+  "indicator_ids": [],
+  "lookback": 7,
+  "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+  "primary_table": "WindowsEvent",
+  "profiles": [
+    "sentinel-windows",
+    "sentinel-endpoint",
+    "defender-xdr"
+  ],
+  "published": "2026-11-25T01:48:50Z",
+  "release_id": "hf-20261124-99b0217c01c0",
+  "research": "powershell-download",
+  "revision": 4,
+  "schema_version": 1,
+  "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+  "signature": "d911bebdbab1118d6afc037fa4607cefe539d29c63ccb93cfed702c29bfc602d",
+  "source_ids": [
+    "HF-INT-3906A981456D92"
+  ],
+  "source_published": "2026-09-02",
+  "status": "partially_validated",
+  "tactic": "Execution",
+  "tags": [
+    "LOLBins",
+    "Phishing"
+  ],
+  "technique": "T1059.001",
+  "title": "Suspicious PowerShell Network Activity",
+  "updated": "2026-11-25T03:12:33Z",
+  "validation": {
+    "date": "2026-11-25T03:12:33Z",
+    "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+    "variants_checked": 30
+  },
+  "variants": {
+    "defender-xdr": {
+      "profile_revision": 2,
+      "queries": {
+        "1": {
+          "json": "DeviceNetworkEvents\n| where Timestamp > ago(1d)\n| where InitiatingProcessFileName in~ (\n    \"powershell.exe\",\n    \"pwsh.exe\"\n)\n| where isnotempty(RemoteIP)\n| project Timestamp, DeviceName, RemoteIP, RemotePort, RemoteUrl,\n          InitiatingProcessCommandLine\n| order by Timestamp desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceNetworkEvents\n| where Timestamp > ago(1d)\n| where InitiatingProcessFileName in~ (\n    \"powershell.exe\",\n    \"pwsh.exe\"\n)\n| where isnotempty(RemoteIP)\n| project Timestamp, DeviceName, RemoteIP, RemotePort, RemoteUrl,\n          InitiatingProcessCommandLine\n| order by Timestamp desc\n"
+        },
+        "14": {
+          "json": "DeviceNetworkEvents\n| where Timestamp > ago(14d)\n| where InitiatingProcessFileName in~ (\n    \"powershell.exe\",\n    \"pwsh.exe\"\n)\n| where isnotempty(RemoteIP)\n| project Timestamp, DeviceName, RemoteIP, RemotePort, RemoteUrl,\n          InitiatingProcessCommandLine\n| order by Timestamp desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceNetworkEvents\n| where Timestamp > ago(14d)\n| where InitiatingProcessFileName in~ (\n    \"powershell.exe\",\n    \"pwsh.exe\"\n)\n| where isnotempty(RemoteIP)\n| project Timestamp, DeviceName, RemoteIP, RemotePort, RemoteUrl,\n          InitiatingProcessCommandLine\n| order by Timestamp desc\n"
+        },
+        "3": {
+          "json": "DeviceNetworkEvents\n| where Timestamp > ago(3d)\n| where InitiatingProcessFileName in~ (\n    \"powershell.exe\",\n    \"pwsh.exe\"\n)\n| where isnotempty(RemoteIP)\n| project Timestamp, DeviceName, RemoteIP, RemotePort, RemoteUrl,\n          InitiatingProcessCommandLine\n| order by Timestamp desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceNetworkEvents\n| where Timestamp > ago(3d)\n| where InitiatingProcessFileName in~ (\n    \"powershell.exe\",\n    \"pwsh.exe\"\n)\n| where isnotempty(RemoteIP)\n| project Timestamp, DeviceName, RemoteIP, RemotePort, RemoteUrl,\n          InitiatingProcessCommandLine\n| order by Timestamp desc\n"
+        },
+        "30": {
+          "json": "DeviceNetworkEvents\n| where Timestamp > ago(30d)\n| where InitiatingProcessFileName in~ (\n    \"powershell.exe\",\n    \"pwsh.exe\"\n)\n| where isnotempty(RemoteIP)\n| project Timestamp, DeviceName, RemoteIP, RemotePort, RemoteUrl,\n          InitiatingProcessCommandLine\n| order by Timestamp desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceNetworkEvents\n| where Timestamp > ago(30d)\n| where InitiatingProcessFileName in~ (\n    \"powershell.exe\",\n    \"pwsh.exe\"\n)\n| where isnotempty(RemoteIP)\n| project Timestamp, DeviceName, RemoteIP, RemotePort, RemoteUrl,\n          InitiatingProcessCommandLine\n| order by Timestamp desc\n"
+        },
+        "7": {
+          "json": "DeviceNetworkEvents\n| where Timestamp > ago(7d)\n| where InitiatingProcessFileName in~ (\n    \"powershell.exe\",\n    \"pwsh.exe\"\n)\n| where isnotempty(RemoteIP)\n| project Timestamp, DeviceName, RemoteIP, RemotePort, RemoteUrl,\n          InitiatingProcessCommandLine\n| order by Timestamp desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceNetworkEvents\n| where Timestamp > ago(7d)\n| where InitiatingProcessFileName in~ (\n    \"powershell.exe\",\n    \"pwsh.exe\"\n)\n| where isnotempty(RemoteIP)\n| project Timestamp, DeviceName, RemoteIP, RemotePort, RemoteUrl,\n          InitiatingProcessCommandLine\n| order by Timestamp desc\n"
+        }
+      },
+      "table": "DeviceNetworkEvents",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    },
+    "sentinel-endpoint": {
+      "profile_revision": 2,
+      "queries": {
+        "1": {
+          "json": "DeviceNetworkEvents\n| where TimeGenerated > ago(1d)\n| where InitiatingProcessFileName in~ (\n    \"powershell.exe\",\n    \"pwsh.exe\"\n)\n| where isnotempty(RemoteIP)\n| project TimeGenerated, DeviceName, RemoteIP, RemotePort, RemoteUrl,\n          InitiatingProcessCommandLine\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceNetworkEvents\n| where TimeGenerated > ago(1d)\n| where InitiatingProcessFileName in~ (\n    \"powershell.exe\",\n    \"pwsh.exe\"\n)\n| where isnotempty(RemoteIP)\n| project TimeGenerated, DeviceName, RemoteIP, RemotePort, RemoteUrl,\n          InitiatingProcessCommandLine\n| order by TimeGenerated desc\n"
+        },
+        "14": {
+          "json": "DeviceNetworkEvents\n| where TimeGenerated > ago(14d)\n| where InitiatingProcessFileName in~ (\n    \"powershell.exe\",\n    \"pwsh.exe\"\n)\n| where isnotempty(RemoteIP)\n| project TimeGenerated, DeviceName, RemoteIP, RemotePort, RemoteUrl,\n          InitiatingProcessCommandLine\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceNetworkEvents\n| where TimeGenerated > ago(14d)\n| where InitiatingProcessFileName in~ (\n    \"powershell.exe\",\n    \"pwsh.exe\"\n)\n| where isnotempty(RemoteIP)\n| project TimeGenerated, DeviceName, RemoteIP, RemotePort, RemoteUrl,\n          InitiatingProcessCommandLine\n| order by TimeGenerated desc\n"
+        },
+        "3": {
+          "json": "DeviceNetworkEvents\n| where TimeGenerated > ago(3d)\n| where InitiatingProcessFileName in~ (\n    \"powershell.exe\",\n    \"pwsh.exe\"\n)\n| where isnotempty(RemoteIP)\n| project TimeGenerated, DeviceName, RemoteIP, RemotePort, RemoteUrl,\n          InitiatingProcessCommandLine\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceNetworkEvents\n| where TimeGenerated > ago(3d)\n| where InitiatingProcessFileName in~ (\n    \"powershell.exe\",\n    \"pwsh.exe\"\n)\n| where isnotempty(RemoteIP)\n| project TimeGenerated, DeviceName, RemoteIP, RemotePort, RemoteUrl,\n          InitiatingProcessCommandLine\n| order by TimeGenerated desc\n"
+        },
+        "30": {
+          "json": "DeviceNetworkEvents\n| where TimeGenerated > ago(30d)\n| where InitiatingProcessFileName in~ (\n    \"powershell.exe\",\n    \"pwsh.exe\"\n)\n| where isnotempty(RemoteIP)\n| project TimeGenerated, DeviceName, RemoteIP, RemotePort, RemoteUrl,\n          InitiatingProcessCommandLine\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceNetworkEvents\n| where TimeGenerated > ago(30d)\n| where InitiatingProcessFileName in~ (\n    \"powershell.exe\",\n    \"pwsh.exe\"\n)\n| where isnotempty(RemoteIP)\n| project TimeGenerated, DeviceName, RemoteIP, RemotePort, RemoteUrl,\n          InitiatingProcessCommandLine\n| order by TimeGenerated desc\n"
+        },
+        "7": {
+          "json": "DeviceNetworkEvents\n| where TimeGenerated > ago(7d)\n| where InitiatingProcessFileName in~ (\n    \"powershell.exe\",\n    \"pwsh.exe\"\n)\n| where isnotempty(RemoteIP)\n| project TimeGenerated, DeviceName, RemoteIP, RemotePort, RemoteUrl,\n          InitiatingProcessCommandLine\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceNetworkEvents\n| where TimeGenerated > ago(7d)\n| where InitiatingProcessFileName in~ (\n    \"powershell.exe\",\n    \"pwsh.exe\"\n)\n| where isnotempty(RemoteIP)\n| project TimeGenerated, DeviceName, RemoteIP, RemotePort, RemoteUrl,\n          InitiatingProcessCommandLine\n| order by TimeGenerated desc\n"
+        }
+      },
+      "table": "DeviceNetworkEvents",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    },
+    "sentinel-windows": {
+      "profile_revision": 1,
+      "queries": {
+        "1": {
+          "json": "WindowsEvent\n| where TimeGenerated > ago(1d)\n| where Channel == \"Microsoft-Windows-Sysmon/Operational\" and EventID == 3\n| extend Image = tostring(EventData.Image), DestinationIP = tostring(EventData.DestinationIp)\n| where Image endswith @\"\\powershell.exe\" or Image endswith @\"\\pwsh.exe\"\n| where isnotempty(DestinationIP)\n| project TimeGenerated, Computer, Image, DestinationIP, DestinationPort = tostring(EventData.DestinationPort),\n          ProcessGuid = tostring(EventData.ProcessGuid), User = tostring(EventData.User)\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "WindowsEvent\n| where TimeGenerated > ago(1d)\n| where Channel == \"Microsoft-Windows-Sysmon/Operational\" and EventID == 3\n| extend Image = tostring(EventData.Image), DestinationIP = tostring(EventData.DestinationIp)\n| where Image endswith @\"\\powershell.exe\" or Image endswith @\"\\pwsh.exe\"\n| where isnotempty(DestinationIP)\n| project TimeGenerated, Computer, Image, DestinationIP, DestinationPort = tostring(EventData.DestinationPort),\n          ProcessGuid = tostring(EventData.ProcessGuid), User = tostring(EventData.User)\n| order by TimeGenerated desc\n"
+        },
+        "14": {
+          "json": "WindowsEvent\n| where TimeGenerated > ago(14d)\n| where Channel == \"Microsoft-Windows-Sysmon/Operational\" and EventID == 3\n| extend Image = tostring(EventData.Image), DestinationIP = tostring(EventData.DestinationIp)\n| where Image endswith @\"\\powershell.exe\" or Image endswith @\"\\pwsh.exe\"\n| where isnotempty(DestinationIP)\n| project TimeGenerated, Computer, Image, DestinationIP, DestinationPort = tostring(EventData.DestinationPort),\n          ProcessGuid = tostring(EventData.ProcessGuid), User = tostring(EventData.User)\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "WindowsEvent\n| where TimeGenerated > ago(14d)\n| where Channel == \"Microsoft-Windows-Sysmon/Operational\" and EventID == 3\n| extend Image = tostring(EventData.Image), DestinationIP = tostring(EventData.DestinationIp)\n| where Image endswith @\"\\powershell.exe\" or Image endswith @\"\\pwsh.exe\"\n| where isnotempty(DestinationIP)\n| project TimeGenerated, Computer, Image, DestinationIP, DestinationPort = tostring(EventData.DestinationPort),\n          ProcessGuid = tostring(EventData.ProcessGuid), User = tostring(EventData.User)\n| order by TimeGenerated desc\n"
+        },
+        "3": {
+          "json": "WindowsEvent\n| where TimeGenerated > ago(3d)\n| where Channel == \"Microsoft-Windows-Sysmon/Operational\" and EventID == 3\n| extend Image = tostring(EventData.Image), DestinationIP = tostring(EventData.DestinationIp)\n| where Image endswith @\"\\powershell.exe\" or Image endswith @\"\\pwsh.exe\"\n| where isnotempty(DestinationIP)\n| project TimeGenerated, Computer, Image, DestinationIP, DestinationPort = tostring(EventData.DestinationPort),\n          ProcessGuid = tostring(EventData.ProcessGuid), User = tostring(EventData.User)\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "WindowsEvent\n| where TimeGenerated > ago(3d)\n| where Channel == \"Microsoft-Windows-Sysmon/Operational\" and EventID == 3\n| extend Image = tostring(EventData.Image), DestinationIP = tostring(EventData.DestinationIp)\n| where Image endswith @\"\\powershell.exe\" or Image endswith @\"\\pwsh.exe\"\n| where isnotempty(DestinationIP)\n| project TimeGenerated, Computer, Image, DestinationIP, DestinationPort = tostring(EventData.DestinationPort),\n          ProcessGuid = tostring(EventData.ProcessGuid), User = tostring(EventData.User)\n| order by TimeGenerated desc\n"
+        },
+        "30": {
+          "json": "WindowsEvent\n| where TimeGenerated > ago(30d)\n| where Channel == \"Microsoft-Windows-Sysmon/Operational\" and EventID == 3\n| extend Image = tostring(EventData.Image), DestinationIP = tostring(EventData.DestinationIp)\n| where Image endswith @\"\\powershell.exe\" or Image endswith @\"\\pwsh.exe\"\n| where isnotempty(DestinationIP)\n| project TimeGenerated, Computer, Image, DestinationIP, DestinationPort = tostring(EventData.DestinationPort),\n          ProcessGuid = tostring(EventData.ProcessGuid), User = tostring(EventData.User)\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "WindowsEvent\n| where TimeGenerated > ago(30d)\n| where Channel == \"Microsoft-Windows-Sysmon/Operational\" and EventID == 3\n| extend Image = tostring(EventData.Image), DestinationIP = tostring(EventData.DestinationIp)\n| where Image endswith @\"\\powershell.exe\" or Image endswith @\"\\pwsh.exe\"\n| where isnotempty(DestinationIP)\n| project TimeGenerated, Computer, Image, DestinationIP, DestinationPort = tostring(EventData.DestinationPort),\n          ProcessGuid = tostring(EventData.ProcessGuid), User = tostring(EventData.User)\n| order by TimeGenerated desc\n"
+        },
+        "7": {
+          "json": "WindowsEvent\n| where TimeGenerated > ago(7d)\n| where Channel == \"Microsoft-Windows-Sysmon/Operational\" and EventID == 3\n| extend Image = tostring(EventData.Image), DestinationIP = tostring(EventData.DestinationIp)\n| where Image endswith @\"\\powershell.exe\" or Image endswith @\"\\pwsh.exe\"\n| where isnotempty(DestinationIP)\n| project TimeGenerated, Computer, Image, DestinationIP, DestinationPort = tostring(EventData.DestinationPort),\n          ProcessGuid = tostring(EventData.ProcessGuid), User = tostring(EventData.User)\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "WindowsEvent\n| where TimeGenerated > ago(7d)\n| where Channel == \"Microsoft-Windows-Sysmon/Operational\" and EventID == 3\n| extend Image = tostring(EventData.Image), DestinationIP = tostring(EventData.DestinationIp)\n| where Image endswith @\"\\powershell.exe\" or Image endswith @\"\\pwsh.exe\"\n| where isnotempty(DestinationIP)\n| project TimeGenerated, Computer, Image, DestinationIP, DestinationPort = tostring(EventData.DestinationPort),\n          ProcessGuid = tostring(EventData.ProcessGuid), User = tostring(EventData.User)\n| order by TimeGenerated desc\n"
+        }
+      },
+      "table": "WindowsEvent",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    }
+  }
+}

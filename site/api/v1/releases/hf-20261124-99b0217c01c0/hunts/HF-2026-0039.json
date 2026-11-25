@@ -1,0 +1,106 @@
+{
+  "actors": [],
+  "confidence": "Vendor-documented crash signature",
+  "considerations": [
+    "Forward self-managed GitLab Puma worker errors as multiline CEF records. Preserve the crash header and stack in Message and use GitLab as the mapped vendor or product.",
+    "This is a corroborating signal for the CI path. It can also occur with related Onigmo flaws. Check Ruby package provenance and GitLab build because custom images may use a separately updated Ruby package.",
+    "Compare timestamps to GitLab Workhorse and application logs, then independently check for execution evidence. A crash never proves successful exploitation."
+  ],
+  "cves": [
+    "CVE-2026-97229"
+  ],
+  "description": "Look for GitLab Puma crash records containing both the CI regex matcher and native Onigmo compilation frames.",
+  "evidence": [
+    {
+      "claim": "GitLab Security publishes exploitation-attempt detections for vulnerable self-managed GitLab CE/EE. Its linked Onigmo guidance identifies compile-time crash frames together with regexp_matcher.rb as corroborating traces of the CI path.",
+      "location": "Detecting CVE-2026-97229 Exploitation Attempts and linked Onigmo native worker crash detection",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-10-12",
+      "source": "gitlab",
+      "source_id": "https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-4-2-released/",
+      "url": "https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-4-2-released/"
+    }
+  ],
+  "expected_output": "One row per forwarded Puma crash with its host mapping and original crash message for corroboration.",
+  "history": [
+    {
+      "change": "Created",
+      "date": "2026-11-25T03:12:33Z",
+      "revision": 1,
+      "summary": "Created evidence-backed hunt and validated all supported variants."
+    }
+  ],
+  "hypothesis": "A native worker crash in GitLab's CI regex compilation path can support investigation of CVE-2026-97229 even when alerts have not been integrated.",
+  "id": "HF-2026-0039",
+  "indicator_ids": [],
+  "lookback": 30,
+  "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+  "primary_table": "CommonSecurityLog",
+  "profiles": [
+    "sentinel-cef"
+  ],
+  "published": "2026-11-25T03:12:33Z",
+  "release_id": "hf-20261124-99b0217c01c0",
+  "research": "gitlab-ce-ee-cve-2026-97229",
+  "revision": 1,
+  "schema_version": 1,
+  "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+  "signature": "3e86fd6ac03268f4db42004e52d9de318339ee825dd1a759e90b1252928e686e",
+  "source_ids": [
+    "HF-INT-1E237D757592BE"
+  ],
+  "source_published": "2026-10-12",
+  "status": "partially_validated",
+  "tactic": "Initial Access",
+  "tags": [
+    "Exploitation",
+    "CI/CD"
+  ],
+  "technique": "T1190",
+  "title": "GitLab CI Regex Native Worker Crashes",
+  "updated": "2026-11-25T03:12:33Z",
+  "validation": {
+    "date": "2026-11-25T03:12:33Z",
+    "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+    "variants_checked": 10
+  },
+  "variants": {
+    "sentinel-cef": {
+      "profile_revision": 2,
+      "queries": {
+        "1": {
+          "json": "CommonSecurityLog\n| where TimeGenerated > ago(1d)\n| where DeviceVendor =~ \"GitLab\" or DeviceProduct contains \"GitLab\"\n| where Message contains_cs \"[BUG]\" and Message contains_cs \"regexp_matcher.rb\"\n| where Message contains_cs \"onig_compile\" or Message contains_cs \"compile_tree\" or Message contains_cs \"compile_length_tree\"\n| project TimeGenerated, DeviceVendor, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CommonSecurityLog\n| where TimeGenerated > ago(1d)\n| where DeviceVendor =~ \"GitLab\" or DeviceProduct contains \"GitLab\"\n| where Message contains_cs \"[BUG]\" and Message contains_cs \"regexp_matcher.rb\"\n| where Message contains_cs \"onig_compile\" or Message contains_cs \"compile_tree\" or Message contains_cs \"compile_length_tree\"\n| project TimeGenerated, DeviceVendor, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n"
+        },
+        "14": {
+          "json": "CommonSecurityLog\n| where TimeGenerated > ago(14d)\n| where DeviceVendor =~ \"GitLab\" or DeviceProduct contains \"GitLab\"\n| where Message contains_cs \"[BUG]\" and Message contains_cs \"regexp_matcher.rb\"\n| where Message contains_cs \"onig_compile\" or Message contains_cs \"compile_tree\" or Message contains_cs \"compile_length_tree\"\n| project TimeGenerated, DeviceVendor, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CommonSecurityLog\n| where TimeGenerated > ago(14d)\n| where DeviceVendor =~ \"GitLab\" or DeviceProduct contains \"GitLab\"\n| where Message contains_cs \"[BUG]\" and Message contains_cs \"regexp_matcher.rb\"\n| where Message contains_cs \"onig_compile\" or Message contains_cs \"compile_tree\" or Message contains_cs \"compile_length_tree\"\n| project TimeGenerated, DeviceVendor, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n"
+        },
+        "3": {
+          "json": "CommonSecurityLog\n| where TimeGenerated > ago(3d)\n| where DeviceVendor =~ \"GitLab\" or DeviceProduct contains \"GitLab\"\n| where Message contains_cs \"[BUG]\" and Message contains_cs \"regexp_matcher.rb\"\n| where Message contains_cs \"onig_compile\" or Message contains_cs \"compile_tree\" or Message contains_cs \"compile_length_tree\"\n| project TimeGenerated, DeviceVendor, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CommonSecurityLog\n| where TimeGenerated > ago(3d)\n| where DeviceVendor =~ \"GitLab\" or DeviceProduct contains \"GitLab\"\n| where Message contains_cs \"[BUG]\" and Message contains_cs \"regexp_matcher.rb\"\n| where Message contains_cs \"onig_compile\" or Message contains_cs \"compile_tree\" or Message contains_cs \"compile_length_tree\"\n| project TimeGenerated, DeviceVendor, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n"
+        },
+        "30": {
+          "json": "CommonSecurityLog\n| where TimeGenerated > ago(30d)\n| where DeviceVendor =~ \"GitLab\" or DeviceProduct contains \"GitLab\"\n| where Message contains_cs \"[BUG]\" and Message contains_cs \"regexp_matcher.rb\"\n| where Message contains_cs \"onig_compile\" or Message contains_cs \"compile_tree\" or Message contains_cs \"compile_length_tree\"\n| project TimeGenerated, DeviceVendor, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CommonSecurityLog\n| where TimeGenerated > ago(30d)\n| where DeviceVendor =~ \"GitLab\" or DeviceProduct contains \"GitLab\"\n| where Message contains_cs \"[BUG]\" and Message contains_cs \"regexp_matcher.rb\"\n| where Message contains_cs \"onig_compile\" or Message contains_cs \"compile_tree\" or Message contains_cs \"compile_length_tree\"\n| project TimeGenerated, DeviceVendor, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n"
+        },
+        "7": {
+          "json": "CommonSecurityLog\n| where TimeGenerated > ago(7d)\n| where DeviceVendor =~ \"GitLab\" or DeviceProduct contains \"GitLab\"\n| where Message contains_cs \"[BUG]\" and Message contains_cs \"regexp_matcher.rb\"\n| where Message contains_cs \"onig_compile\" or Message contains_cs \"compile_tree\" or Message contains_cs \"compile_length_tree\"\n| project TimeGenerated, DeviceVendor, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CommonSecurityLog\n| where TimeGenerated > ago(7d)\n| where DeviceVendor =~ \"GitLab\" or DeviceProduct contains \"GitLab\"\n| where Message contains_cs \"[BUG]\" and Message contains_cs \"regexp_matcher.rb\"\n| where Message contains_cs \"onig_compile\" or Message contains_cs \"compile_tree\" or Message contains_cs \"compile_length_tree\"\n| project TimeGenerated, DeviceVendor, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n"
+        }
+      },
+      "table": "CommonSecurityLog",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    }
+  }
+}

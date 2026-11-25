@@ -1,0 +1,40 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Email threat landscape: Q3 2026 trends and insights",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-05",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/05/email-threat-landscape-q3-2026-trends-and-insights/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/05/email-threat-landscape-q3-2026-trends-and-insights/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-42DCCC485F1F6E",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-05",
+  "related": [],
+  "release_id": "hf-20261124-99b0217c01c0",
+  "retrieved": "2026-11-25T03:12:33Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "bddd412f81cb1fd2f7d0b6503b267e43263dbda7681e3821fd662c3245de8a52",
+  "source": "microsoft",
+  "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/05/email-threat-landscape-q3-2026-trends-and-insights/",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include phishing.",
+  "tags": [
+    "Phishing"
+  ],
+  "title": "Email threat landscape: Q3 2026 trends and insights",
+  "updated": "2026-11-25T01:48:50Z"
+}

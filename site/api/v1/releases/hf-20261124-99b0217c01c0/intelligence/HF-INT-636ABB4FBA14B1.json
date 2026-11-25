@@ -1,0 +1,52 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Microsoft demonstrated in a lab that device code phishing can expose sessions used by coding agents, and noted earlier device-code phishing campaigns. The demonstration is distinct from observed incidents.",
+      "location": "Research scope and mitigation guidance",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-17",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/17/the-risks-of-device-code-authentication-for-ai-coding-agents/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/17/the-risks-of-device-code-authentication-for-ai-coding-agents/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [
+    "HF-2026-0021",
+    "HF-2026-0022",
+    "HF-2026-0023"
+  ],
+  "id": "HF-INT-636ABB4FBA14B1",
+  "in_window": true,
+  "indicators": [],
+  "kind": "Research",
+  "published": "2026-11-17",
+  "related": [],
+  "release_id": "hf-20261124-99b0217c01c0",
+  "retrieved": "2026-11-25T03:12:33Z",
+  "revision": 2,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "49adc816be34f15e24a90e11e9b4e7b1e0093406c5fef0490f077cea481552bf",
+  "software": [],
+  "source": "microsoft",
+  "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/17/the-risks-of-device-code-authentication-for-ai-coding-agents/",
+  "status": "active",
+  "summary": "Microsoft demonstrated in a lab that device code phishing can expose sessions used by coding agents, and noted earlier device-code phishing campaigns. The demonstration is distinct from observed incidents.",
+  "tags": [
+    "Agentic AI",
+    "Phishing",
+    "Identity"
+  ],
+  "techniques": [
+    "T1528",
+    "T1566.002"
+  ],
+  "title": "The risks of device code authentication for AI coding agents",
+  "updated": "2026-11-25T02:32:19Z"
+}

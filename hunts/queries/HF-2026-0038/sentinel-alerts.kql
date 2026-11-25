@@ -1,0 +1,7 @@
+SecurityAlert
+| where TimeGenerated > ago(30d)
+| extend DetectionName = replace_regex(tolower(AlertName), @"[^a-z0-9]+", "_")
+| extend MatchedDetection = extract(@"(?:^|_)(onigmo_native_worker_crash|graphql_ci_?lint_hostile_regexp|ci_regexp_oversized_non_ascii_path|ci_regexp_guard_rejection|ci_lint_workhorse_worker_crash|ci_lint_scripted_client_error_burst)(?:_|$)", 1, DetectionName)
+| where isnotempty(MatchedDetection)
+| project TimeGenerated, MatchedDetection, AlertName, AlertSeverity, CompromisedEntity, ProductName, SystemAlertId
+| order by TimeGenerated desc

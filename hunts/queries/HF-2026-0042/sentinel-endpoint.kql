@@ -1,0 +1,6 @@
+DeviceFileEvents
+| where TimeGenerated > ago(30d)
+| where ActionType in~ ("FileCreated", "FileModified", "FileRenamed") and FileName =~ "sitecustomize.py"
+| where InitiatingProcessFileName in~ ("monailabel", "monailabel.exe") or InitiatingProcessCommandLine matches regex @"(?i)(?:^|[^a-z0-9_-])monailabel(?:$|[^a-z0-9_-])"
+| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine
+| order by TimeGenerated desc

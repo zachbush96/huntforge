@@ -1,0 +1,6 @@
+CommonSecurityLog
+| where TimeGenerated > ago(7d)
+| where isnotempty(SourceIP) and isnotempty(DestinationIP) and DestinationPort > 0
+| summarize Events = count(), Hosts = dcount(DestinationIP), Ports = dcount(DestinationPort), Actions = make_set(DeviceAction, 8) by SourceIP, Window = bin(TimeGenerated, 5m)
+| where Events >= 80 and Hosts >= 5 and Ports >= 12
+| order by Events desc

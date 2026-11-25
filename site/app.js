@@ -1,9 +1,8 @@
 import { briefAside, briefMain } from "./brief.js";
-import { catalog, changelog, developers, entityDetail, intelligenceDetail, missing, systemStatus } from "./catalog.js";
+import { catalog, changelog, developers, entityDetail, indicatorQueryTarget, intelligenceDetail, missing, systemStatus } from "./catalog.js";
 import { huntMain, huntTabs } from "./hunt.js";
 import { cancelExplanation, explainResults } from "./explain.js";
-import { activeQuery, escape, header, icon, neutral, queryMode, route, sidebar } from "./ui.js";
-import { zip } from "./zip.js";
+import { activeQuery, escape, header, icon, neutral, pageSizes, queryMode, route, sidebar } from "./ui.js";
 
 const app = document.querySelector("#app");
 const announcer = document.querySelector("#announcer");
@@ -13,7 +12,7 @@ const copyDialog = document.querySelector("#copy-dialog");
 const releaseIdPattern = /^hf-\d{8}-[0-9a-f]{12}$/;
 const filterKeys = new Set(["q","severity","source","start","through","cve","tag","technique","tactic","malware",
   "validation","profile","freshness","category","indicatorType","hunt","change","recordType","following","sourceState","panel",
-  "evidenceRange","actor","coverage"]);
+  "evidenceRange","actor","coverage","sort","exploitCoverage"]);
 let data;
 let navigation = 0;
 
@@ -30,9 +29,11 @@ const savedProfiles = saved?.profiles && typeof saved.profiles === "object" ? sa
 const preferredProfiles = saved?.profilePreferenceVersion === 2 ? savedProfiles :
   Object.fromEntries(Object.entries(savedProfiles).filter(([,profile])=>profile !== "defender-xdr"));
 const state = {
-  section:"brief", id:null, tab:"query", page:0, filters:{}, hunt:null, detail:null, error:false,
-  profile:null, pack:new Set(), preferences:{json:saved?.json === true, days:[1,3,7,14,30].includes(saved?.days) ? saved.days : 7,
-    profiles:preferredProfiles, profilePreferenceVersion:2, followed:Array.isArray(saved?.followed) ? saved.followed : []},
+  section:"brief", id:null, tab:"query", page:0, pageSize:4, filters:{}, hunt:null, detail:null, error:false,
+  filtersExpanded:!window.matchMedia("(max-width: 740px)").matches, indicatorDays:30, indicatorTarget:null, indicatorPreview:false,
+  profile:null, preferences:{json:saved?.json === true, days:[1,3,7,14,30].includes(saved?.days) ? saved.days : 7,
+    profiles:preferredProfiles, profilePreferenceVersion:2, followed:Array.isArray(saved?.followed) ? saved.followed : [],
+    pageSizes:saved?.pageSizes && typeof saved.pageSizes === "object" ? saved.pageSizes : {}},
   previousVisit:stored("last-release", null)
 };
 
@@ -57,7 +58,8 @@ async function load() {
     manifest, base, get, records:intelligence.items, hunts:hunts.items, indicators:indicators.items, profiles:profiles.items,
     reference:reference.items, referenceVersion:reference.version, search:search.items, report, changes,
     history:history.items.filter(row => releaseIdPattern.test(row.release_id)), text:new Map(search.items.map(row=>[row.id,row.text])),
-    cards:new Map()
+    cards:new Map(), indicatorQuery:manifest.files["indicators/bulk-query.json"] ?
+      await get("indicators/bulk-query.json").catch(()=>null) : null
   };
   save("last-release", manifest.release_id);
   await navigate();
@@ -81,17 +83,26 @@ function readRoute() {
   let recordId = null;
   try { recordId = id ? decodeURIComponent(id) : null; }
   catch { /* A malformed ID has no detail route. */ }
-  return {section:section || "brief",id:recordId,filters,tab:huntTabs.some(([key])=>key===tab) ? tab : "query"};
+  const page = Number(params.get("page"));
+  return {section:section || "brief",id:recordId,filters,tab:huntTabs.some(([key])=>key===tab) ? tab : "query",
+    page:Number.isSafeInteger(page) && page>1 ? page-1 : 0, requestedSize:Number(params.get("size"))};
 }
 
 function stateRoute() {
   const filters = {...state.filters};
+  if (!state.id || state.section === "changelog") {
+    if (state.page) filters.page = state.page+1;
+    if (state.page || state.pageSize !== pageSizes(state.section)[0]) filters.size = state.pageSize;
+  }
   if (state.hunt && state.tab !== "query") filters.tab = state.tab;
   return route(state.section,state.id,filters);
 }
 
-function syncRoute() {
-  history.replaceState(null,"",stateRoute());
+function syncRoute(push = false) {
+  const hash = stateRoute();
+  if (hash === location.hash) return;
+  if (push) history.pushState(null,"",hash);
+  else history.replaceState(null,"",hash);
 }
 
 async function comparison() {
@@ -109,13 +120,21 @@ async function navigate() {
   if (!data || location.hash === "#main") return;
   cancelExplanation(app.querySelector("#explain-results"));
   const sequence = ++navigation;
-  const {section,id,filters,tab} = readRoute();
-  Object.assign(state,{section,id,page:0,filters,hunt:null,detail:null,error:false,tab,profile:null});
+  const {section,id,filters,tab,page,requestedSize} = readRoute();
+  const sizes = pageSizes(section);
+  const preferredSize = state.preferences.pageSizes[section];
+  const pageSize = [requestedSize,preferredSize,...sizes].find(size=>sizes.includes(size));
+  const filtersExpanded = state.section === section ? state.filtersExpanded : !window.matchMedia("(max-width: 740px)").matches;
+  Object.assign(state,{section,id,page,pageSize,filters,filtersExpanded,hunt:null,detail:null,error:false,tab,profile:null});
   let hunt, detail;
   try {
     if (section === "hunts" && id && data.hunts.some(row => row.id === id)) hunt = await huntCard(id);
     if (["intelligence","research","vulnerabilities"].includes(section) && id && data.records.some(row=>row.id===id)) {
       detail = await data.get("intelligence/" + encodeURIComponent(id) + ".json");
+      if (detail.kind === "Vulnerability") {
+        const requests = await Promise.allSettled((detail.exploitation_hunts || []).map(huntCard));
+        detail.huntCards = requests.filter(result=>result.status==="fulfilled").map(result=>result.value);
+      }
     }
     if (section === "indicators" && id) detail = data.indicators.find(x=>x.id===id);
     if (section === "techniques" && id) {
@@ -144,12 +163,15 @@ async function navigate() {
   render();
   if (sequence > 1) {
     window.scrollTo(0,0);
-    document.querySelector("#main")?.focus({preventScroll:true});
+    const focus = state.page ? document.querySelector("#results") : document.querySelector("#main");
+    if (state.page) focus?.scrollIntoView({block:"start"});
+    focus?.focus({preventScroll:true});
   }
 }
 
 function render(preserve = null) {
   cancelExplanation(app.querySelector("#explain-results"));
+  const navScroll = app.querySelector(".sidebar nav")?.scrollLeft || 0;
   const brief = state.section === "brief";
   let main;
   let aside = "";
@@ -167,12 +189,25 @@ function render(preserve = null) {
   else if (["intelligence","hunts","adversaries","vulnerabilities","indicators","techniques","research"].includes(state.section)) main = catalog(data,state);
   else main = missing(data,state);
   app.innerHTML = header(data,brief) + `<div class="layout${brief ? "" : " compact"}${state.hunt ? " hunt" : ""}">${sidebar(state,data,brief)}${main}${aside}</div>`;
+  const nav = app.querySelector(".sidebar nav");
+  nav.scrollLeft = navScroll;
+  revealHorizontal(nav, '[aria-current="page"]');
+  revealHorizontal(app.querySelector(".tabs"), '[aria-selected="true"]');
   document.title = `HuntForge — ${app.querySelector("h1")?.textContent || "Threat Intelligence"}`;
   if (preserve) {
     const control = document.querySelector(preserve.selector);
     control?.focus({preventScroll:true});
     if (control?.type === "search" && preserve.cursor != null) control.setSelectionRange(preserve.cursor,preserve.cursor);
   }
+}
+
+function revealHorizontal(container, selector) {
+  const active = container?.querySelector(selector);
+  if (!active || container.scrollWidth <= container.clientWidth) return;
+  const item = active.getBoundingClientRect();
+  const area = container.getBoundingClientRect();
+  if (item.left < area.left) container.scrollLeft += item.left-area.left-4;
+  if (item.right > area.right) container.scrollLeft += item.right-area.right+4;
 }
 
 function setPreference(key,value,selector) {
@@ -223,7 +258,7 @@ async function copy(value,label) {
     await navigator.clipboard.writeText(value);
     announce(`${label} copied.`);
     const focused = document.activeElement;
-    if (focused?.matches("[data-action=copy-query], [data-copy-url], [data-copy-technique], [data-explain=copy]") && !focused.hasAttribute("data-copied")) {
+    if (focused?.matches("[data-action^=copy-], [data-copy-url], [data-copy-technique], [data-explain=copy]") && !focused.hasAttribute("data-copied")) {
       const original = focused.innerHTML;
       focused.setAttribute("data-copied","");
       focused.innerHTML = icon("check") + " Copied";
@@ -258,35 +293,26 @@ function exportName(hunt,profile,days,mode) {
   return `${hunt.id}-r${hunt.revision}-${profile}-${days}d-${mode}.kql`;
 }
 
-async function pack(huntIds) {
-  if (!huntIds.length) {
-    announce("Select a hunt to download.");
+app.addEventListener("click", event=>{
+  if (!data) return;
+  const control = event.target.closest("button");
+  if (!control) {
+    const interactive = event.target.closest("a,label,input,select,textarea,summary,[contenteditable]");
+    const card = event.target.closest("[data-record-card]");
+    if (!interactive && card && !window.getSelection()?.toString()) {
+      const destination = card.querySelector("h2 a, h3 a");
+      if (destination && (event.ctrlKey || event.metaKey)) window.open(destination.href,"_blank","noopener");
+      else if (destination) destination.click();
+    }
     return;
   }
-  try {
-    const hunts = await Promise.all(huntIds.map(huntCard));
-    const files = {"README.txt":"Run each .kql file as a separate query in the documented execution target.\n"};
-    const metadata = [];
-    const mode = queryMode(state);
-    const days = state.preferences.days;
-    for (const hunt of hunts) {
-      const preferred = state.preferences.profiles[hunt.id];
-      const profile = hunt.variants[preferred] ? preferred : hunt.profiles[0];
-      const variant = hunt.variants[profile];
-      const filename = exportName(hunt,profile,days,mode);
-      files[filename] = variant.queries[String(days)][mode];
-      metadata.push({id:hunt.id,revision:hunt.revision,profile,lookback_days:days,output:mode,file:filename,
-        target:data.profiles.find(row=>row.id===profile).target,evidence:hunt.evidence,validation:variant.validation});
-    }
-    files["manifest.json"] = JSON.stringify({schema_version:1,release_id:data.manifest.release_id,queries:metadata},null,2)+"\n";
-    download(zip(files), `HuntForge-${hunts.length > 1 ? data.manifest.release_id : hunts[0].id}-pack.zip`);
-    announce(`Downloaded ${hunts.length} separate KQL quer${hunts.length===1 ? "y" : "ies"}.`);
-  } catch { announce("The hunt pack could not be prepared. Try again."); }
-}
-
-app.addEventListener("click", event=>{
-  const control = event.target.closest("button");
-  if (!control || !data) return;
+  if (control.dataset.removeFilter) {
+    delete state.filters[control.dataset.removeFilter];
+    state.page = 0;
+    syncRoute();
+    render({selector:"[data-filter=q]"});
+    return;
+  }
   if (control.dataset.copyUrl) {
     copy(new URL(control.dataset.copyUrl,document.baseURI).href,"API URL");
     return;
@@ -307,7 +333,10 @@ app.addEventListener("click", event=>{
   }
   if (control.dataset.page != null) {
     state.page = Number(control.dataset.page);
-    render({selector:`[data-page="${state.page}"]`});
+    syncRoute(true);
+    render({selector:"#results"});
+    document.querySelector("#results")?.scrollIntoView({block:"start"});
+    return;
   }
   if (control.dataset.tab) {
     state.tab = control.dataset.tab;
@@ -324,6 +353,7 @@ app.addEventListener("click", event=>{
     },
     "copy-query":()=>copy(activeQuery(state),"KQL"),
     "copy-indicator":()=>copy(state.detail?.value,"Canonical indicator"),
+    "copy-bulk-indicators":()=>copy(indicatorQueryTarget(data,state)?.queries[String(state.indicatorDays)],"Indicator KQL"),
     permalink:()=>copy(new URL(stateRoute(),location.href).href,"Hunt permalink"),
     "use-lookback":()=>{
       state.tab = "query";
@@ -339,7 +369,6 @@ app.addEventListener("click", event=>{
       const query=activeQuery(state);
       if (query) download(new Blob([query],{type:"text/plain;charset=utf-8"}),exportName(state.hunt,state.profile,state.preferences.days,queryMode(state)));
     },
-    "pack-current":()=>pack([state.hunt.id]),"pack-selected":()=>pack([...state.pack]),
     retry:()=>location.reload()
   };
   actions[control.dataset.action]?.();
@@ -358,6 +387,24 @@ app.addEventListener("input",event=>{
 });
 app.addEventListener("change",event=>{
   const control = event.target;
+  if (control.hasAttribute("data-page-size")) {
+    const size = Number(control.value);
+    if (!pageSizes(state.section).includes(size)) return;
+    state.pageSize = size;
+    state.page = 0;
+    state.preferences.pageSizes[state.section] = size;
+    save("preferences",state.preferences);
+    syncRoute(true);
+    render({selector:"[data-page-size]"});
+    return;
+  }
+  if (control.hasAttribute("data-indicator-days") || control.hasAttribute("data-indicator-target")) {
+    const days = control.hasAttribute("data-indicator-days");
+    if (days) state.indicatorDays = Number(control.value);
+    else state.indicatorTarget = control.value;
+    render({selector:days ? "[data-indicator-days]" : "[data-indicator-target]"});
+    return;
+  }
   if (control.matches("[data-filter]:not(input[type=search])")) handleFilter(control);
   if (control.dataset.setting) {
     const key = control.dataset.setting;
@@ -365,13 +412,12 @@ app.addEventListener("change",event=>{
     const value = key === "json" ? control.checked : key === "days" ? Number(control.value) : control.value;
     setPreference(key,value,selector);
   }
-  if (control.dataset.packId) {
-    if (control.checked) state.pack.add(control.dataset.packId);
-    else state.pack.delete(control.dataset.packId);
-    const packButton = app.querySelector("[data-action=pack-selected]");
-    if (packButton) packButton.innerHTML = icon("download") + `Download selected (${state.pack.size})`;
-  }
 });
+app.addEventListener("toggle",event=>{
+  if (!event.target.isConnected) return;
+  if (event.target.matches("[data-filter-panel]")) state.filtersExpanded = event.target.open;
+  if (event.target.matches("[data-indicator-preview]")) state.indicatorPreview = event.target.open;
+},true);
 app.addEventListener("submit",event=>{
   if (event.target.matches(".filters")) event.preventDefault();
   if (event.target.id === "explain-results" && state.hunt) {
@@ -392,6 +438,11 @@ app.addEventListener("reset",event=>{
   form.querySelector(".explain-status").textContent = "";
 });
 searchDialog.addEventListener("input",event=>{ if (event.target.type === "search") showResults(event.target.value); });
+searchDialog.addEventListener("keydown",event=>{
+  if (event.target.id === "global-search" && event.key === "Enter" && event.target.value.trim()) {
+    searchDialog.querySelector("#global-results a")?.click();
+  }
+});
 searchDialog.addEventListener("click",event=>{ if (event.target.closest("a")) searchDialog.close(); });
 settingsDialog.addEventListener("change",event=>{ if (event.target.dataset.setting === "json") setPreference("json",event.target.checked); });
 document.addEventListener("keydown",event=>{

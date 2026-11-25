@@ -1,0 +1,524 @@
+{
+  "count": 9,
+  "items": [
+    {
+      "assumptions": "Forward the required event channel into the workspace. Sysmon event 3 requires NetworkConnect logging. Windows Security events require the relevant audit policy.",
+      "id": "sentinel-windows",
+      "name": "Sentinel · Windows events",
+      "revision": 1,
+      "schema_version": 1,
+      "short": "Sentinel Windows",
+      "source": "Windows Event Forwarding / Azure Monitor Agent",
+      "synthetic": false,
+      "tables": {
+        "SecurityEvent": {
+          "capability": "windows-security",
+          "columns": {
+            "Account": "string",
+            "Activity": "string",
+            "CommandLine": "string",
+            "Computer": "string",
+            "EventID": "int",
+            "IpAddress": "string",
+            "LogonType": "int",
+            "NewProcessName": "string",
+            "TargetUserName": "string",
+            "TimeGenerated": "datetime"
+          },
+          "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/securityevent",
+          "mappings": {
+            "Timestamp": "TimeGenerated"
+          },
+          "semantics": "TimeGenerated is the timestamp exposed by the workspace table.",
+          "timestamp": "TimeGenerated"
+        },
+        "WindowsEvent": {
+          "capability": "windows-events",
+          "columns": {
+            "Channel": "string",
+            "Computer": "string",
+            "EventData": "dynamic",
+            "EventID": "int",
+            "TimeGenerated": "datetime"
+          },
+          "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/windowsevent",
+          "mappings": {
+            "Timestamp": "TimeGenerated"
+          },
+          "semantics": "TimeGenerated is the timestamp exposed by the workspace table.",
+          "timestamp": "TimeGenerated"
+        }
+      },
+      "target": "Microsoft Sentinel Logs"
+    },
+    {
+      "assumptions": "In the Microsoft Defender XDR connector, enable raw event streaming into the Sentinel Log Analytics workspace for the table used by this query.",
+      "id": "sentinel-endpoint",
+      "name": "Sentinel · Endpoint events",
+      "revision": 2,
+      "schema_version": 1,
+      "short": "Sentinel Endpoint",
+      "source": "Defender XDR raw event streaming",
+      "synthetic": false,
+      "tables": {
+        "DeviceEvents": {
+          "capability": "endpoint-events",
+          "columns": {
+            "ActionType": "string",
+            "AdditionalFields": "dynamic",
+            "DeviceName": "string",
+            "InitiatingProcessFileName": "string",
+            "TimeGenerated": "datetime"
+          },
+          "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/deviceevents",
+          "mappings": {
+            "Timestamp": "TimeGenerated"
+          },
+          "semantics": "TimeGenerated is the timestamp exposed by the workspace table.",
+          "timestamp": "TimeGenerated"
+        },
+        "DeviceFileEvents": {
+          "capability": "files",
+          "columns": {
+            "ActionType": "string",
+            "DeviceName": "string",
+            "FileName": "string",
+            "FolderPath": "string",
+            "InitiatingProcessCommandLine": "string",
+            "InitiatingProcessFileName": "string",
+            "SHA256": "string",
+            "TimeGenerated": "datetime"
+          },
+          "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/devicefileevents",
+          "mappings": {
+            "Timestamp": "TimeGenerated"
+          },
+          "semantics": "TimeGenerated is the timestamp exposed by the workspace table.",
+          "timestamp": "TimeGenerated"
+        },
+        "DeviceNetworkEvents": {
+          "capability": "network-process",
+          "columns": {
+            "ActionType": "string",
+            "DeviceName": "string",
+            "InitiatingProcessCommandLine": "string",
+            "InitiatingProcessFileName": "string",
+            "LocalIP": "string",
+            "LocalPort": "int",
+            "Protocol": "string",
+            "RemoteIP": "string",
+            "RemoteIPType": "string",
+            "RemotePort": "int",
+            "RemoteUrl": "string",
+            "TimeGenerated": "datetime"
+          },
+          "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/devicenetworkevents",
+          "mappings": {
+            "Action": "ActionType",
+            "CommandLine": "InitiatingProcessCommandLine",
+            "Destination IP": "RemoteIP",
+            "Destination Port": "RemotePort",
+            "Destination URL": "RemoteUrl",
+            "Device": "DeviceName",
+            "Process": "InitiatingProcessFileName",
+            "Timestamp": "TimeGenerated"
+          },
+          "semantics": "TimeGenerated is the timestamp exposed by the workspace table.",
+          "timestamp": "TimeGenerated"
+        },
+        "DeviceProcessEvents": {
+          "capability": "process",
+          "columns": {
+            "AccountName": "string",
+            "DeviceName": "string",
+            "FileName": "string",
+            "FolderPath": "string",
+            "InitiatingProcessFileName": "string",
+            "ProcessCommandLine": "string",
+            "TimeGenerated": "datetime"
+          },
+          "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/deviceprocessevents",
+          "mappings": {
+            "CommandLine": "ProcessCommandLine",
+            "Device": "DeviceName",
+            "Parent": "InitiatingProcessFileName",
+            "Path": "FolderPath",
+            "Process": "FileName",
+            "Timestamp": "TimeGenerated",
+            "User": "AccountName"
+          },
+          "semantics": "TimeGenerated is the timestamp exposed by the workspace table.",
+          "timestamp": "TimeGenerated"
+        },
+        "DeviceRegistryEvents": {
+          "capability": "registry",
+          "columns": {
+            "ActionType": "string",
+            "DeviceName": "string",
+            "InitiatingProcessFileName": "string",
+            "RegistryKey": "string",
+            "RegistryValueData": "string",
+            "RegistryValueName": "string",
+            "TimeGenerated": "datetime"
+          },
+          "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/deviceregistryevents",
+          "mappings": {
+            "Timestamp": "TimeGenerated"
+          },
+          "semantics": "TimeGenerated is the timestamp exposed by the workspace table.",
+          "timestamp": "TimeGenerated"
+        }
+      },
+      "target": "Microsoft Sentinel Logs"
+    },
+    {
+      "assumptions": "Stream the relevant Entra diagnostic categories to the workspace: interactive user sign-ins, service principal sign-ins, or directory audit logs.",
+      "id": "sentinel-entra",
+      "name": "Sentinel · Entra ID",
+      "revision": 2,
+      "schema_version": 1,
+      "short": "Sentinel Entra",
+      "source": "Microsoft Entra ID diagnostic logs",
+      "synthetic": false,
+      "tables": {
+        "AADServicePrincipalSignInLogs": {
+          "capability": "service-principal",
+          "columns": {
+            "AppId": "string",
+            "IPAddress": "string",
+            "ResourceDisplayName": "string",
+            "ResultType": "string",
+            "ServicePrincipalId": "string",
+            "ServicePrincipalName": "string",
+            "TimeGenerated": "datetime"
+          },
+          "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/aadserviceprincipalsigninlogs",
+          "mappings": {
+            "Outcome": "ResultType",
+            "Principal ID": "ServicePrincipalId",
+            "Resource": "ResourceDisplayName",
+            "Source IP": "IPAddress",
+            "Timestamp": "TimeGenerated",
+            "User": "ServicePrincipalName"
+          },
+          "semantics": "TimeGenerated is the documented event time field for this profile.",
+          "timestamp": "TimeGenerated"
+        },
+        "AuditLogs": {
+          "capability": "directory-audit",
+          "columns": {
+            "ActivityDisplayName": "string",
+            "Category": "string",
+            "CorrelationId": "string",
+            "InitiatedBy": "dynamic",
+            "OperationName": "string",
+            "Result": "string",
+            "TargetResources": "dynamic",
+            "TimeGenerated": "datetime"
+          },
+          "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/auditlogs",
+          "mappings": {
+            "Timestamp": "TimeGenerated"
+          },
+          "semantics": "TimeGenerated is the timestamp exposed by the workspace table.",
+          "timestamp": "TimeGenerated"
+        },
+        "SigninLogs": {
+          "capability": "identity",
+          "columns": {
+            "AppDisplayName": "string",
+            "AppId": "string",
+            "AuthenticationProtocol": "string",
+            "ConditionalAccessStatus": "string",
+            "IPAddress": "string",
+            "Location": "string",
+            "ResultType": "string",
+            "RiskLevelDuringSignIn": "string",
+            "TimeGenerated": "datetime",
+            "UserPrincipalName": "string"
+          },
+          "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/signinlogs",
+          "mappings": {
+            "Timestamp": "TimeGenerated"
+          },
+          "semantics": "TimeGenerated is the timestamp exposed by the workspace table.",
+          "timestamp": "TimeGenerated"
+        }
+      },
+      "target": "Microsoft Sentinel Logs"
+    },
+    {
+      "assumptions": "Confirm the CEF connector populates destination hostname or request URL. Review vendor-specific action strings before interpreting outcomes.",
+      "id": "sentinel-cef",
+      "name": "Sentinel · CEF network and proxy logs",
+      "revision": 2,
+      "schema_version": 1,
+      "short": "Sentinel CEF",
+      "source": "CEF via Azure Monitor Agent",
+      "synthetic": false,
+      "tables": {
+        "CommonSecurityLog": {
+          "capability": "web",
+          "columns": {
+            "Activity": "string",
+            "DestinationHostName": "string",
+            "DestinationIP": "string",
+            "DestinationPort": "int",
+            "DeviceAction": "string",
+            "DeviceProduct": "string",
+            "DeviceVendor": "string",
+            "Message": "string",
+            "RequestClientApplication": "string",
+            "RequestURL": "string",
+            "SourceIP": "string",
+            "TimeGenerated": "datetime"
+          },
+          "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/commonsecuritylog",
+          "mappings": {
+            "Action": "DeviceAction",
+            "Destination IP": "DestinationIP",
+            "Destination URL": "RequestURL",
+            "Hostname": "DestinationHostName",
+            "Platform": "DeviceVendor",
+            "Source IP": "SourceIP",
+            "Timestamp": "TimeGenerated"
+          },
+          "semantics": "TimeGenerated is the documented event time field for this profile.",
+          "timestamp": "TimeGenerated"
+        }
+      },
+      "target": "Microsoft Sentinel Logs"
+    },
+    {
+      "assumptions": "Route Graph activity logs, Key Vault resource-specific diagnostics, or Azure Activity logs to the workspace as required by the selected table.",
+      "id": "sentinel-azure",
+      "name": "Sentinel · Azure and Graph audit",
+      "revision": 1,
+      "schema_version": 1,
+      "short": "Sentinel Azure",
+      "source": "Azure resource or Microsoft Graph diagnostics",
+      "synthetic": false,
+      "tables": {
+        "AZKVAuditLogs": {
+          "capability": "key-vault",
+          "columns": {
+            "CallerIpAddress": "string",
+            "OperationName": "string",
+            "ResultType": "string",
+            "TimeGenerated": "datetime",
+            "_ResourceId": "string"
+          },
+          "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/azkvauditlogs",
+          "mappings": {
+            "Timestamp": "TimeGenerated"
+          },
+          "semantics": "TimeGenerated is the timestamp exposed by the workspace table.",
+          "timestamp": "TimeGenerated"
+        },
+        "MicrosoftGraphActivityLogs": {
+          "capability": "graph",
+          "columns": {
+            "AppId": "string",
+            "IPAddress": "string",
+            "RequestMethod": "string",
+            "RequestUri": "string",
+            "ResponseSizeBytes": "int",
+            "ResponseStatusCode": "int",
+            "ServicePrincipalId": "string",
+            "TimeGenerated": "datetime"
+          },
+          "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/microsoftgraphactivitylogs",
+          "mappings": {
+            "Timestamp": "TimeGenerated"
+          },
+          "semantics": "TimeGenerated is the timestamp exposed by the workspace table.",
+          "timestamp": "TimeGenerated"
+        }
+      },
+      "target": "Microsoft Sentinel Logs"
+    },
+    {
+      "assumptions": "Enable EmailEvents or EmailUrlInfo raw event streaming from Defender for Office 365 through the Microsoft Defender XDR connector.",
+      "id": "sentinel-email",
+      "name": "Sentinel · Email events",
+      "revision": 1,
+      "schema_version": 1,
+      "short": "Sentinel Email",
+      "source": "Defender for Office 365 raw event streaming",
+      "synthetic": false,
+      "tables": {
+        "EmailEvents": {
+          "capability": "email",
+          "columns": {
+            "DeliveryAction": "string",
+            "NetworkMessageId": "string",
+            "RecipientEmailAddress": "string",
+            "SenderFromAddress": "string",
+            "SenderFromDomain": "string",
+            "Subject": "string",
+            "TimeGenerated": "datetime"
+          },
+          "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/emailevents",
+          "mappings": {
+            "Timestamp": "TimeGenerated"
+          },
+          "semantics": "TimeGenerated is the timestamp exposed by the workspace table.",
+          "timestamp": "TimeGenerated"
+        },
+        "EmailUrlInfo": {
+          "capability": "email-url",
+          "columns": {
+            "NetworkMessageId": "string",
+            "TimeGenerated": "datetime",
+            "Url": "string",
+            "UrlDomain": "string",
+            "UrlLocation": "string"
+          },
+          "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/emailurlinfo",
+          "mappings": {
+            "Timestamp": "TimeGenerated"
+          },
+          "semantics": "TimeGenerated is the timestamp exposed by the workspace table.",
+          "timestamp": "TimeGenerated"
+        }
+      },
+      "target": "Microsoft Sentinel Logs"
+    },
+    {
+      "assumptions": "The relevant security product must emit and forward alerts to the Sentinel workspace. Detection names and details vary by connector and product.",
+      "id": "sentinel-alerts",
+      "name": "Sentinel · Security alerts",
+      "revision": 2,
+      "schema_version": 1,
+      "short": "Sentinel Alerts",
+      "source": "Integrated security alert provider",
+      "synthetic": false,
+      "tables": {
+        "SecurityAlert": {
+          "capability": "alerts",
+          "columns": {
+            "AlertName": "string",
+            "AlertSeverity": "string",
+            "CompromisedEntity": "string",
+            "Description": "string",
+            "ExtendedProperties": "string",
+            "ProductName": "string",
+            "SubTechniques": "string",
+            "SystemAlertId": "string",
+            "Techniques": "string",
+            "TimeGenerated": "datetime"
+          },
+          "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/securityalert",
+          "mappings": {
+            "Timestamp": "TimeGenerated"
+          },
+          "semantics": "TimeGenerated is the timestamp exposed by the workspace table.",
+          "timestamp": "TimeGenerated"
+        }
+      },
+      "target": "Microsoft Sentinel Logs"
+    },
+    {
+      "assumptions": "Example table and field names only. Map your schema locally. Action values are retained as supplied; review the source vocabulary.",
+      "id": "custom-proxy",
+      "name": "Custom proxy (Web Proxy)",
+      "revision": 1,
+      "schema_version": 1,
+      "short": "Synthetic proxy",
+      "source": "Synthetic web proxy schema",
+      "synthetic": true,
+      "tables": {
+        "CustomWeb_CL": {
+          "capability": "web",
+          "columns": {
+            "ProxyAction": "string",
+            "RequestUrl": "string",
+            "SourceAddress": "string",
+            "TargetAddress": "string",
+            "TargetHost": "string",
+            "TimeGenerated": "datetime",
+            "UserId": "string"
+          },
+          "documentation": null,
+          "mappings": {
+            "Action": "ProxyAction",
+            "Destination IP": "TargetAddress",
+            "Destination URL": "RequestUrl",
+            "Hostname": "TargetHost",
+            "Source IP": "SourceAddress",
+            "Timestamp": "TimeGenerated",
+            "User": "UserId"
+          },
+          "semantics": "TimeGenerated is the documented event time field for this profile.",
+          "timestamp": "TimeGenerated"
+        }
+      },
+      "target": "Microsoft Sentinel Logs"
+    },
+    {
+      "assumptions": "Microsoft Defender for Endpoint must populate the table. Advanced hunting and device data access are required.",
+      "id": "defender-xdr",
+      "name": "Defender XDR",
+      "revision": 2,
+      "schema_version": 1,
+      "short": "Defender XDR",
+      "source": "Microsoft Defender for Endpoint",
+      "synthetic": false,
+      "tables": {
+        "DeviceNetworkEvents": {
+          "capability": "network-process",
+          "columns": {
+            "ActionType": "string",
+            "DeviceName": "string",
+            "InitiatingProcessCommandLine": "string",
+            "InitiatingProcessFileName": "string",
+            "RemoteIP": "string",
+            "RemotePort": "int",
+            "RemoteUrl": "string",
+            "Timestamp": "datetime"
+          },
+          "documentation": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-devicenetworkevents-table",
+          "mappings": {
+            "Action": "ActionType",
+            "CommandLine": "InitiatingProcessCommandLine",
+            "Destination IP": "RemoteIP",
+            "Destination Port": "RemotePort",
+            "Destination URL": "RemoteUrl",
+            "Device": "DeviceName",
+            "Process": "InitiatingProcessFileName",
+            "Timestamp": "Timestamp"
+          },
+          "semantics": "Timestamp is the documented event time field for this profile.",
+          "timestamp": "Timestamp"
+        },
+        "DeviceProcessEvents": {
+          "capability": "process",
+          "columns": {
+            "AccountName": "string",
+            "DeviceName": "string",
+            "FileName": "string",
+            "FolderPath": "string",
+            "InitiatingProcessFileName": "string",
+            "ProcessCommandLine": "string",
+            "Timestamp": "datetime"
+          },
+          "documentation": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-deviceprocessevents-table",
+          "mappings": {
+            "CommandLine": "ProcessCommandLine",
+            "Device": "DeviceName",
+            "Parent": "InitiatingProcessFileName",
+            "Path": "FolderPath",
+            "Process": "FileName",
+            "Timestamp": "Timestamp",
+            "User": "AccountName"
+          },
+          "semantics": "Timestamp is the documented event time field for this profile.",
+          "timestamp": "Timestamp"
+        }
+      },
+      "target": "Microsoft Defender advanced hunting"
+    }
+  ],
+  "release_id": "hf-20261124-99b0217c01c0",
+  "schema_version": 1
+}

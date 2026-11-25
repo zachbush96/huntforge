@@ -1,0 +1,208 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-111497"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-24",
+      "epss": "0.999870000",
+      "percentile": "0.999830000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.99931000",
+      "percentile": "0.99970000"
+    },
+    {
+      "date": "2026-11-22",
+      "epss": "0.99931000",
+      "percentile": "0.99970000"
+    },
+    {
+      "date": "2026-11-21",
+      "epss": "0.99931000",
+      "percentile": "0.99970000"
+    },
+    {
+      "date": "2026-11-20",
+      "epss": "0.82370000",
+      "percentile": "0.99671000"
+    },
+    {
+      "date": "2026-11-19",
+      "epss": "0.82370000",
+      "percentile": "0.99670000"
+    },
+    {
+      "date": "2026-11-18",
+      "epss": "0.82641000",
+      "percentile": "0.99674000"
+    },
+    {
+      "date": "2026-11-17",
+      "epss": "0.82641000",
+      "percentile": "0.99673000"
+    },
+    {
+      "date": "2026-11-16",
+      "epss": "0.82641000",
+      "percentile": "0.99673000"
+    },
+    {
+      "date": "2026-11-15",
+      "epss": "0.82641000",
+      "percentile": "0.99673000"
+    },
+    {
+      "date": "2026-11-14",
+      "epss": "0.82641000",
+      "percentile": "0.99673000"
+    },
+    {
+      "date": "2026-11-13",
+      "epss": "0.82641000",
+      "percentile": "0.99672000"
+    },
+    {
+      "date": "2026-11-12",
+      "epss": "0.82641000",
+      "percentile": "0.99672000"
+    },
+    {
+      "date": "2026-11-11",
+      "epss": "0.82641000",
+      "percentile": "0.99672000"
+    },
+    {
+      "date": "2026-11-10",
+      "epss": "0.82641000",
+      "percentile": "0.99670000"
+    },
+    {
+      "date": "2026-11-09",
+      "epss": "0.82641000",
+      "percentile": "0.99669000"
+    },
+    {
+      "date": "2026-11-08",
+      "epss": "0.82641000",
+      "percentile": "0.99669000"
+    },
+    {
+      "date": "2026-11-07",
+      "epss": "0.82641000",
+      "percentile": "0.99669000"
+    },
+    {
+      "date": "2026-11-06",
+      "epss": "0.82641000",
+      "percentile": "0.99669000"
+    },
+    {
+      "date": "2026-11-05",
+      "epss": "0.82641000",
+      "percentile": "0.99668000"
+    },
+    {
+      "date": "2026-11-04",
+      "epss": "0.82641000",
+      "percentile": "0.99668000"
+    },
+    {
+      "date": "2026-11-03",
+      "epss": "0.82641000",
+      "percentile": "0.99667000"
+    },
+    {
+      "date": "2026-11-02",
+      "epss": "0.82641000",
+      "percentile": "0.99667000"
+    },
+    {
+      "date": "2026-11-01",
+      "epss": "0.82641000",
+      "percentile": "0.99666000"
+    },
+    {
+      "date": "2026-10-31",
+      "epss": "0.82641000",
+      "percentile": "0.99666000"
+    },
+    {
+      "date": "2026-10-30",
+      "epss": "0.82641000",
+      "percentile": "0.99666000"
+    },
+    {
+      "date": "2026-10-29",
+      "epss": "0.82641000",
+      "percentile": "0.99665000"
+    },
+    {
+      "date": "2026-10-28",
+      "epss": "0.87988000",
+      "percentile": "0.99763000"
+    },
+    {
+      "date": "2026-10-27",
+      "epss": "0.55483000",
+      "percentile": "0.99030000"
+    },
+    {
+      "date": "2026-10-26",
+      "epss": "0.36027000",
+      "percentile": "0.98463000"
+    },
+    {
+      "date": "2026-10-25",
+      "epss": "0.32782000",
+      "percentile": "0.98336000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-10-27",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-111497",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-111497"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-10996733474B42",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "Brotli",
+  "published": "2026-10-27",
+  "ransomware_use": "unknown",
+  "related": [
+    "HF-INT-3B573666DE1648",
+    "HF-INT-652C8F30B0994D",
+    "HF-INT-91475641F52FB3",
+    "HF-INT-F45D3069B40C90",
+    "HF-INT-FF020DED0D3324"
+  ],
+  "release_id": "hf-20261124-99b0217c01c0",
+  "remediation_due": "2026-11-10",
+  "retrieved": "2026-11-25T03:12:33Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "47f275a57adf059babb3d5f584045fc785a7b6f0ff320df388c2582430f1e52d",
+  "source": "cisa-kev",
+  "source_id": "CVE-2026-111497",
+  "status": "active",
+  "summary": "CISA added CVE-2026-111497 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-10.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Google Brotli Unchecked Return Value Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "Google"
+}

@@ -1,18 +1,18 @@
 {
   "counts": {
-    "hunts": 35,
-    "in_window": 104,
-    "indicators": 16,
-    "intelligence": 106,
+    "hunts": 44,
+    "in_window": 108,
+    "indicators": 19,
+    "intelligence": 114,
     "profiles": 9,
     "sources": 6,
     "techniques": 706
   },
-  "created": "2026-11-25T02:35:21Z",
-  "release_id": "hf-20261124-6f3fbfc7f039",
+  "created": "2026-11-25T03:12:38Z",
+  "release_id": "hf-20261124-99b0217c01c0",
   "schema_version": 1,
-  "snapshot": "releases/hf-20261124-6f3fbfc7f039/manifest.json",
-  "source_commit": "0e2c5c6a6f313be3e5543968a8a64003eb7b89c2",
+  "snapshot": "releases/hf-20261124-99b0217c01c0/manifest.json",
+  "source_commit": "62eebb393c6301229c78c9f23afe7f831c52d2af",
   "window": {
     "from": "2026-10-25",
     "through": "2026-11-24"

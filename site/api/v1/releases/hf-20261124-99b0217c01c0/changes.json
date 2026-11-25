@@ -1,0 +1,218 @@
+{
+  "count": 30,
+  "items": [
+    {
+      "action": "updated",
+      "id": "HF-2025-0001",
+      "revision": 4,
+      "title": "Suspicious PowerShell Network Activity",
+      "type": "hunt"
+    },
+    {
+      "action": "updated",
+      "id": "HF-2026-0002",
+      "revision": 3,
+      "title": "GSocket Process Activity",
+      "type": "hunt"
+    },
+    {
+      "action": "updated",
+      "id": "HF-2026-0003",
+      "revision": 3,
+      "title": "Microsoft 365 Outage Phishing Destinations",
+      "type": "hunt"
+    },
+    {
+      "action": "updated",
+      "id": "HF-2026-0004",
+      "revision": 3,
+      "title": "Quick Assist Process Activity",
+      "type": "hunt"
+    },
+    {
+      "action": "updated",
+      "id": "HF-2026-0007",
+      "revision": 2,
+      "title": "ARTEX-Associated Remote Connections on Endpoints",
+      "type": "hunt"
+    },
+    {
+      "action": "updated",
+      "id": "HF-2026-0024",
+      "revision": 2,
+      "title": "ScreenConnect Spawning a Command Shell",
+      "type": "hunt"
+    },
+    {
+      "action": "updated",
+      "id": "HF-2026-0025",
+      "revision": 2,
+      "title": "RelayTrap Scheduled Task Activity",
+      "type": "hunt"
+    },
+    {
+      "action": "updated",
+      "id": "HF-2026-0026",
+      "revision": 2,
+      "title": "SCKit Run Key Persistence",
+      "type": "hunt"
+    },
+    {
+      "action": "updated",
+      "id": "HF-2026-0027",
+      "revision": 2,
+      "title": "Defender Path Exclusions Near SCKit Activity",
+      "type": "hunt"
+    },
+    {
+      "action": "updated",
+      "id": "HF-2026-0028",
+      "revision": 2,
+      "title": "GSocket Distribution Endpoint Connections",
+      "type": "hunt"
+    },
+    {
+      "action": "updated",
+      "id": "HF-2026-0029",
+      "revision": 2,
+      "title": "GSocket Launch From Cron",
+      "type": "hunt"
+    },
+    {
+      "action": "updated",
+      "id": "HF-2026-0030",
+      "revision": 2,
+      "title": "GSocket-Related Files in Linux Shared Memory",
+      "type": "hunt"
+    },
+    {
+      "action": "updated",
+      "id": "HF-2026-0034",
+      "revision": 2,
+      "title": "PowerShell Launched by a Remote Support Process",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0036",
+      "revision": 1,
+      "title": "Drupal Web Workers Writing Site Settings",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0037",
+      "revision": 1,
+      "title": "External SMB From Outlook and Nearby System Connections",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0038",
+      "revision": 1,
+      "title": "GitLab CVE-2026-97229 Vendor Detection Alerts",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0039",
+      "revision": 1,
+      "title": "GitLab CI Regex Native Worker Crashes",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0040",
+      "revision": 1,
+      "title": "Ivanti Connect Secure Post-Compromise Capture Artifacts",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0041",
+      "revision": 1,
+      "title": "AWS WAF PHP2Shell Managed Rule Matches",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0042",
+      "revision": 1,
+      "title": "MONAI Label Process Writing a Python Startup Hook",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0043",
+      "revision": 1,
+      "title": "Optimizely Web Experimentation Skimmer Connections",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-2026-0044",
+      "revision": 1,
+      "title": "Cisco Expressway Post-Compromise Python Staging",
+      "type": "hunt"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-1E237D757592BE",
+      "revision": 1,
+      "title": "GitLab critical patch release 19.4.2, 19.3.5 and 19.2.8",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-21095F4BB1CB0F",
+      "revision": 1,
+      "title": "Volexity investigation of chained Ivanti Connect Secure exploitation",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-2257EBF4C4B3CA",
+      "revision": 1,
+      "title": "F6 investigation of Cisco Expressway CVE-2026-76466 exploitation",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-30B425716EEE85",
+      "revision": 1,
+      "title": "Drupal core installer remote code execution advisory SA-CORE-2026-017",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-3D69E83D5307AD",
+      "revision": 1,
+      "title": "Amazon Threat Intelligence investigation of a Cairn AI agent campaign",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-4B2D636A485517",
+      "revision": 1,
+      "title": "AWS WAF mitigations and managed rules for PHP2Shell",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-6532E5CD2531FA",
+      "revision": 1,
+      "title": "CTIR Gov technical recommendation 23/2026 for the Microsoft Outlook vulnerability",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-B4C56F8C95F7AE",
+      "revision": 1,
+      "title": "Optimizely Web Experimentation initial security incident report",
+      "type": "intelligence"
+    }
+  ],
+  "release_id": "hf-20261124-99b0217c01c0",
+  "schema_version": 1,
+  "tombstones": []
+}

@@ -1,0 +1,137 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-19868"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-24",
+      "epss": "0.080400000",
+      "percentile": "0.948650000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.08040000",
+      "percentile": "0.94923000"
+    },
+    {
+      "date": "2026-11-22",
+      "epss": "0.08040000",
+      "percentile": "0.94922000"
+    },
+    {
+      "date": "2026-11-21",
+      "epss": "0.08040000",
+      "percentile": "0.94918000"
+    },
+    {
+      "date": "2026-11-20",
+      "epss": "0.00532000",
+      "percentile": "0.45870000"
+    },
+    {
+      "date": "2026-11-19",
+      "epss": "0.00532000",
+      "percentile": "0.45730000"
+    },
+    {
+      "date": "2026-11-18",
+      "epss": "0.00532000",
+      "percentile": "0.45663000"
+    },
+    {
+      "date": "2026-11-17",
+      "epss": "0.00532000",
+      "percentile": "0.45557000"
+    },
+    {
+      "date": "2026-11-16",
+      "epss": "0.00532000",
+      "percentile": "0.45527000"
+    },
+    {
+      "date": "2026-11-15",
+      "epss": "0.00532000",
+      "percentile": "0.45524000"
+    },
+    {
+      "date": "2026-11-14",
+      "epss": "0.00532000",
+      "percentile": "0.45539000"
+    },
+    {
+      "date": "2026-11-13",
+      "epss": "0.00532000",
+      "percentile": "0.45511000"
+    },
+    {
+      "date": "2026-11-12",
+      "epss": "0.00532000",
+      "percentile": "0.45457000"
+    },
+    {
+      "date": "2026-11-11",
+      "epss": "0.00532000",
+      "percentile": "0.45417000"
+    },
+    {
+      "date": "2026-11-10",
+      "epss": "0.00532000",
+      "percentile": "0.45297000"
+    },
+    {
+      "date": "2026-11-09",
+      "epss": "0.00621000",
+      "percentile": "0.50063000"
+    },
+    {
+      "date": "2026-11-08",
+      "epss": "0.00621000",
+      "percentile": "0.50046000"
+    },
+    {
+      "date": "2026-11-07",
+      "epss": "0.00621000",
+      "percentile": "0.50027000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-06",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-19868",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-19868"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-5AB971E73989B9",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "SonicOS SSLVPN",
+  "published": "2026-11-06",
+  "ransomware_use": "unknown",
+  "related": [],
+  "release_id": "hf-20261124-99b0217c01c0",
+  "remediation_due": "2026-11-20",
+  "retrieved": "2026-11-25T03:12:33Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "19c7d1875c5b8011960788d3743bf33346173ecdb03d26473151b2ff40db35b6",
+  "source": "cisa-kev",
+  "source_id": "CVE-2026-19868",
+  "status": "active",
+  "summary": "CISA added CVE-2026-19868 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-20.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "SonicWall SonicOS SSLVPN Use of Single-factor Authentication Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "SonicWall"
+}

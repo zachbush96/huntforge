@@ -1,0 +1,5 @@
+SecurityEvent
+| where TimeGenerated > ago(7d)
+| where EventID == 4688 and NewProcessName endswith @"\QuickAssist.exe"
+| project TimeGenerated, Computer, Account, NewProcessName, CommandLine
+| order by TimeGenerated desc

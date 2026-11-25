@@ -1,0 +1,42 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-109097"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Siemens ROS#",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-17",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-06",
+      "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-06"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-4A756643B0596F",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-17",
+  "related": [],
+  "release_id": "hf-20261124-99b0217c01c0",
+  "retrieved": "2026-11-25T03:12:33Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "1269c91de2bb688412e61577733354b93318805af5a8ba15a81b3fa4bf6963f9",
+  "source": "cisa-advisories",
+  "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-06",
+  "status": "active",
+  "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-109097.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Siemens ROS#",
+  "updated": "2026-11-25T01:48:50Z"
+}

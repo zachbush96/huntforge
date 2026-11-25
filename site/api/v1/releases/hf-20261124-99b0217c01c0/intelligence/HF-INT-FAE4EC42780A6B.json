@@ -1,0 +1,42 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-109830"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Siemens meta-iot2050",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-17",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-11",
+      "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-11"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-FAE4EC42780A6B",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-17",
+  "related": [],
+  "release_id": "hf-20261124-99b0217c01c0",
+  "retrieved": "2026-11-25T03:12:33Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "6f47d3283eb8007d7721a1bf94d74bbaeb352c40f9c4e2190cdd6366b425fea3",
+  "source": "cisa-advisories",
+  "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-11",
+  "status": "active",
+  "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-109830.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Siemens meta-iot2050",
+  "updated": "2026-11-25T01:48:50Z"
+}

@@ -1,4 +1,4 @@
-import { badge, bars, day, escape, hoursAgo, icon, link, neutral, pagination, route, sourceNames, table, utc } from "./ui.js";
+import { badge, bars, day, escape, hoursAgo, icon, link, neutral, pagination, resultWindow, resultsToolbar, route, sourceNames, table, utc } from "./ui.js";
 
 export function findingTags(data, record, limit) {
   const cves = record.cves.map(cve => {
@@ -13,10 +13,11 @@ export function findingTags(data, record, limit) {
 export function finding(data, record, section = "intelligence") {
   const detail = route(section,record.id);
   const date = day(record.published);
-  return `<article class="finding">
+  return `<article class="finding" data-record-card>
     <div class="finding-level">${link(record.severity.toUpperCase(),route(section,null,{severity:record.severity}),"severity " + record.severity)}<span class="finding-id">${escape(record.id)}</span></div>
     <div class="finding-body"><div class="finding-action">
-      ${record.hunts?.length ? `<a class="stamp" href="${route("hunts", record.hunts[0])}">${icon("check")} PARTIALLY VALIDATED</a>` :
+      ${record.exploitation_hunts?.length ? `<a class="stamp" href="${route("vulnerabilities",record.id)}">${icon("crosshair")} ${record.exploitation_hunts.length} EXPLOITATION HUNT${record.exploitation_hunts.length > 1 ? "S" : ""}</a>` :
+      record.hunts?.length ? `<a class="stamp" href="${route("hunts", record.hunts[0])}">${icon("check")} PARTIALLY VALIDATED</a>` :
         `<a class="stamp" href="${detail}">${icon("file")} SOURCE EVIDENCE</a>`}</div>
       <h3>${link(record.title,detail)}</h3>
       <p>${neutral(record.summary)}</p>
@@ -61,7 +62,8 @@ export function briefMain(data, state) {
   ];
   const changes = state.previousVisit !== manifest.release_id && data.history.some(row=>row.release_id===state.previousVisit)
     ? route("changelog","since-last-visit") : route("changelog");
-  const visible = records.slice(state.page*4, state.page*4+4);
+  const {start,end,page,size} = resultWindow(records.length,state);
+  const visible = records.slice(start,end);
   return `<main id="main" class="brief-main" tabindex="-1">
     <section class="brief-hero"><div class="globe-art" aria-hidden="true"></div><p class="eyebrow">The Brief / Daily Threat Overview</p>
       <h1>Daily Threat Brief</h1>
@@ -71,8 +73,9 @@ export function briefMain(data, state) {
        <span>${link(`COVERAGE: ${day(from)}–${day(through)}`,route("intelligence",null,{start:from,through}))}</span>
        <span>${link("SOURCES: " + manifest.counts.sources,route("status"))}</span><span>${link("HUNTS AVAILABLE: " + manifest.counts.hunts,route("hunts"))}</span></p>
     </section>
-    <section class="developments">${bars("TOP DEVELOPMENTS")}${visible.map(row=>finding(data,row)).join("") || '<p class="empty">No findings in this collection window.</p>'}
-      ${pagination(records.length, state.page, 4, "findings")}
+    <section class="developments">${bars("TOP DEVELOPMENTS")}${resultsToolbar(records.length,"findings",state)}
+      ${visible.map(row=>finding(data,row)).join("") || '<p class="empty">No findings in this collection window.</p>'}
+      ${pagination(records.length, page, size, "findings")}
       <div class="brief-actions">${link("What changed since my last visit?",changes,"changes-link")}
       <button class="btn" type="button" data-action="search">${icon("search")} Search release</button></div>
     </section></main>`;

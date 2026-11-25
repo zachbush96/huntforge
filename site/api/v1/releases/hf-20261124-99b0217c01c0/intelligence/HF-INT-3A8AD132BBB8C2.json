@@ -1,0 +1,42 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-129713"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Danfoss AK-SM 8xxA Series",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-24",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-328-03",
+      "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-328-03"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-3A8AD132BBB8C2",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-24",
+  "related": [],
+  "release_id": "hf-20261124-99b0217c01c0",
+  "retrieved": "2026-11-25T03:12:33Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "f22095819e26a27a89ba10d3f62d8bf30df554e5f735745df122e76f8967de60",
+  "source": "cisa-advisories",
+  "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-328-03",
+  "status": "active",
+  "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-129713.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Danfoss AK-SM 8xxA Series",
+  "updated": "2026-11-25T01:48:50Z"
+}

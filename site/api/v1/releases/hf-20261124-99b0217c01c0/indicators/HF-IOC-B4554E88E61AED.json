@@ -1,0 +1,29 @@
+{
+  "aging_review": "2027-01-01",
+  "context": "Collection endpoint identified in the Optimizely incident investigation.",
+  "display": "pay-relay[.]wordpressadmin001[.]workers[.]dev",
+  "evidence": [
+    {
+      "claim": "Optimizely reports edits to customer Project JavaScript following exploitation of a signup flaw. Its forensic investigation identified separate skimmer hosting and collection domains.",
+      "location": "How the attack worked and section 10, Indicators of compromise",
+      "modified": null,
+      "observation_date": "2026-11-16",
+      "published": "2026-11-17",
+      "source": "optimizely",
+      "source_id": "https://pages.optimizely.com/rs/947-RKE-048/images/Security%20Incident%20Report%20-%20Optimizely%20Web%20Experimentation%20-%20Nov%2017%202026.pdf",
+      "url": "https://pages.optimizely.com/rs/947-RKE-048/images/Security%20Incident%20Report%20-%20Optimizely%20Web%20Experimentation%20-%20Nov%2017%202026.pdf"
+    }
+  ],
+  "first_observed": "2026-11-16",
+  "id": "HF-IOC-B4554E88E61AED",
+  "last_observed": null,
+  "original": "pay-relay.wordpressadmin001.workers[.]dev",
+  "record_id": "HF-INT-B4C56F8C95F7AE",
+  "release_id": "hf-20261124-99b0217c01c0",
+  "reported": "2026-11-17",
+  "revision": 1,
+  "schema_version": 1,
+  "source_expires": null,
+  "type": "domain",
+  "value": "pay-relay.wordpressadmin001.workers.dev"
+}

@@ -1,0 +1,54 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-111560",
+    "CVE-2026-111793",
+    "CVE-2026-116606",
+    "CVE-2026-124194",
+    "CVE-2026-20320"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "CISA Adds Six Known Exploited Vulnerabilities to Catalog",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-10",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/10/cisa-adds-six-known-exploited-vulnerabilities-catalog",
+      "url": "https://www.cisa.gov/news-events/alerts/2026/11/10/cisa-adds-six-known-exploited-vulnerabilities-catalog"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-F4B34728A6F8E3",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-10",
+  "related": [
+    "HF-INT-240DEE846EA1A3",
+    "HF-INT-319DE574E6A282",
+    "HF-INT-6532E5CD2531FA",
+    "HF-INT-B0B8542C7EF0F2",
+    "HF-INT-BB45CD26141525",
+    "HF-INT-BB5BC5C5E453D1"
+  ],
+  "release_id": "hf-20261124-99b0217c01c0",
+  "retrieved": "2026-11-25T03:12:33Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "db55ce277c7fa19c1403e0605d523a960da77bbe32c9a803f5adce0efa29f2ca",
+  "source": "cisa-advisories",
+  "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/10/cisa-adds-six-known-exploited-vulnerabilities-catalog",
+  "status": "active",
+  "summary": "Publisher security advisory. Topics include identity, exploitation. References CVE-2026-111560, CVE-2026-111793, CVE-2026-116606, CVE-2026-124194, CVE-2026-20320.",
+  "tags": [
+    "Identity",
+    "Exploitation"
+  ],
+  "title": "CISA Adds Six Known Exploited Vulnerabilities to Catalog",
+  "updated": "2026-11-25T01:48:50Z"
+}

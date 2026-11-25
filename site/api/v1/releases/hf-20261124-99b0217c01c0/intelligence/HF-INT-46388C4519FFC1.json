@@ -1,0 +1,117 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-125350"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-24",
+      "epss": "0.068000000",
+      "percentile": "0.940860000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.06800000",
+      "percentile": "0.94158000"
+    },
+    {
+      "date": "2026-11-22",
+      "epss": "0.06800000",
+      "percentile": "0.94156000"
+    },
+    {
+      "date": "2026-11-21",
+      "epss": "0.01890000",
+      "percentile": "0.80082000"
+    },
+    {
+      "date": "2026-11-20",
+      "epss": "0.00962000",
+      "percentile": "0.62480000"
+    },
+    {
+      "date": "2026-11-19",
+      "epss": "0.00962000",
+      "percentile": "0.62364000"
+    },
+    {
+      "date": "2026-11-18",
+      "epss": "0.00962000",
+      "percentile": "0.62314000"
+    },
+    {
+      "date": "2026-11-17",
+      "epss": "0.00962000",
+      "percentile": "0.62217000"
+    },
+    {
+      "date": "2026-11-16",
+      "epss": "0.00962000",
+      "percentile": "0.62188000"
+    },
+    {
+      "date": "2026-11-15",
+      "epss": "0.00962000",
+      "percentile": "0.62181000"
+    },
+    {
+      "date": "2026-11-14",
+      "epss": "0.00962000",
+      "percentile": "0.62184000"
+    },
+    {
+      "date": "2026-11-13",
+      "epss": "0.00962000",
+      "percentile": "0.62163000"
+    },
+    {
+      "date": "2026-11-12",
+      "epss": "0.00962000",
+      "percentile": "0.62112000"
+    },
+    {
+      "date": "2026-11-11",
+      "epss": "0.00962000",
+      "percentile": "0.62065000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-10",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-125350",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-125350"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-46388C4519FFC1",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "Chromium",
+  "published": "2026-11-10",
+  "ransomware_use": "unknown",
+  "related": [],
+  "release_id": "hf-20261124-99b0217c01c0",
+  "remediation_due": "2026-11-24",
+  "retrieved": "2026-11-25T03:12:33Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "f724943fd0b49e88766ca8061c943300dc46de584d0e7ae07ea0bede6cc42b06",
+  "source": "cisa-kev",
+  "source_id": "CVE-2026-125350",
+  "status": "active",
+  "summary": "CISA added CVE-2026-125350 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-24.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Google Chromium Use-After-Free Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "Google"
+}

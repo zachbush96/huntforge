@@ -1,0 +1,204 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2025-42884"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-24",
+      "epss": "0.009020000",
+      "percentile": "0.604740000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.00902000",
+      "percentile": "0.60644000"
+    },
+    {
+      "date": "2026-11-22",
+      "epss": "0.00714000",
+      "percentile": "0.54603000"
+    },
+    {
+      "date": "2026-11-21",
+      "epss": "0.00714000",
+      "percentile": "0.54582000"
+    },
+    {
+      "date": "2026-11-20",
+      "epss": "0.00276000",
+      "percentile": "0.20480000"
+    },
+    {
+      "date": "2026-11-19",
+      "epss": "0.00276000",
+      "percentile": "0.20355000"
+    },
+    {
+      "date": "2026-11-18",
+      "epss": "0.00276000",
+      "percentile": "0.20281000"
+    },
+    {
+      "date": "2026-11-17",
+      "epss": "0.00276000",
+      "percentile": "0.20256000"
+    },
+    {
+      "date": "2026-11-16",
+      "epss": "0.00276000",
+      "percentile": "0.20251000"
+    },
+    {
+      "date": "2026-11-15",
+      "epss": "0.00276000",
+      "percentile": "0.20249000"
+    },
+    {
+      "date": "2026-11-14",
+      "epss": "0.00276000",
+      "percentile": "0.20266000"
+    },
+    {
+      "date": "2026-11-13",
+      "epss": "0.00276000",
+      "percentile": "0.20250000"
+    },
+    {
+      "date": "2026-11-12",
+      "epss": "0.00276000",
+      "percentile": "0.20262000"
+    },
+    {
+      "date": "2026-11-11",
+      "epss": "0.00276000",
+      "percentile": "0.20246000"
+    },
+    {
+      "date": "2026-11-10",
+      "epss": "0.00276000",
+      "percentile": "0.20194000"
+    },
+    {
+      "date": "2026-11-09",
+      "epss": "0.00276000",
+      "percentile": "0.20154000"
+    },
+    {
+      "date": "2026-11-08",
+      "epss": "0.00276000",
+      "percentile": "0.20141000"
+    },
+    {
+      "date": "2026-11-07",
+      "epss": "0.00276000",
+      "percentile": "0.20131000"
+    },
+    {
+      "date": "2026-11-06",
+      "epss": "0.00276000",
+      "percentile": "0.20122000"
+    },
+    {
+      "date": "2026-11-05",
+      "epss": "0.00276000",
+      "percentile": "0.20136000"
+    },
+    {
+      "date": "2026-11-04",
+      "epss": "0.00276000",
+      "percentile": "0.20146000"
+    },
+    {
+      "date": "2026-11-03",
+      "epss": "0.00276000",
+      "percentile": "0.20098000"
+    },
+    {
+      "date": "2026-11-02",
+      "epss": "0.00276000",
+      "percentile": "0.20050000"
+    },
+    {
+      "date": "2026-11-01",
+      "epss": "0.00276000",
+      "percentile": "0.20063000"
+    },
+    {
+      "date": "2026-10-31",
+      "epss": "0.00276000",
+      "percentile": "0.20064000"
+    },
+    {
+      "date": "2026-10-30",
+      "epss": "0.00276000",
+      "percentile": "0.20056000"
+    },
+    {
+      "date": "2026-10-29",
+      "epss": "0.00276000",
+      "percentile": "0.20021000"
+    },
+    {
+      "date": "2026-10-28",
+      "epss": "0.00276000",
+      "percentile": "0.19984000"
+    },
+    {
+      "date": "2026-10-27",
+      "epss": "0.00276000",
+      "percentile": "0.19905000"
+    },
+    {
+      "date": "2026-10-26",
+      "epss": "0.00276000",
+      "percentile": "0.19844000"
+    },
+    {
+      "date": "2026-10-25",
+      "epss": "0.00276000",
+      "percentile": "0.19827000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-20",
+      "source": "cisa-kev",
+      "source_id": "CVE-2025-42884",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2025-42884"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-9AA23ACE9EE456",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "NetWeaver",
+  "published": "2026-11-20",
+  "ransomware_use": "unknown",
+  "related": [
+    "HF-INT-B22EEC5809CE5C"
+  ],
+  "release_id": "hf-20261124-99b0217c01c0",
+  "remediation_due": "2026-11-23",
+  "retrieved": "2026-11-25T03:12:33Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "ffb130f94bf92b8e0290402ce57083f95a4ea6bb88c289220b714a31087729b8",
+  "source": "cisa-kev",
+  "source_id": "CVE-2025-42884",
+  "status": "active",
+  "summary": "CISA added CVE-2025-42884 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-23.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "SAP NetWeaver Improper Neutralization of Special Elements in Data Query Logic Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "SAP"
+}

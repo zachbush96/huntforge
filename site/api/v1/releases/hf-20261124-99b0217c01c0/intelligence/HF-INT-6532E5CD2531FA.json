@@ -1,0 +1,56 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-124194"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Brazil's government incident response center documents unintended external authentication from affected Outlook clients and recommends monitoring unexpected outbound SMB and other authentication-related connections.",
+      "location": "Sections 2 and 5(b–d), as updated November 16",
+      "modified": "2026-11-16",
+      "observation_date": null,
+      "published": "2026-10-22",
+      "source": "ctir",
+      "source_id": "https://www.gov.br/gsi/pt-br/assuntos/ctir/recomendacoes/2026/recomendacao-23-2026",
+      "url": "https://www.gov.br/gsi/pt-br/assuntos/ctir/recomendacoes/2026/recomendacao-23-2026"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T03:12:33Z",
+  "hunts": [
+    "HF-2026-0037"
+  ],
+  "id": "HF-INT-6532E5CD2531FA",
+  "in_window": false,
+  "indicators": [],
+  "kind": "Research",
+  "published": "2026-10-22",
+  "related": [
+    "HF-INT-319DE574E6A282",
+    "HF-INT-F4B34728A6F8E3"
+  ],
+  "release_id": "hf-20261124-99b0217c01c0",
+  "retrieved": "2026-11-25T03:12:33Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "fe64f1415572ec3d7d896cf661fde62b2c346759c15950cf9b7f3b055a730a8e",
+  "software": [
+    "Microsoft Outlook"
+  ],
+  "source": "ctir",
+  "source_id": "https://www.gov.br/gsi/pt-br/assuntos/ctir/recomendacoes/2026/recomendacao-23-2026",
+  "status": "active",
+  "summary": "Brazil's government incident response center documents unintended external authentication from affected Outlook clients and recommends monitoring unexpected outbound SMB and other authentication-related connections.",
+  "tags": [
+    "Exploitation",
+    "Credential Access",
+    "Email"
+  ],
+  "techniques": [
+    "T1187"
+  ],
+  "title": "CTIR Gov technical recommendation 23/2026 for the Microsoft Outlook vulnerability",
+  "updated": "2026-11-25T03:12:33Z"
+}

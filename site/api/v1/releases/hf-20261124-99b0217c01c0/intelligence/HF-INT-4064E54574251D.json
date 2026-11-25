@@ -1,0 +1,206 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-111357"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-24",
+      "epss": "0.008030000",
+      "percentile": "0.574680000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.00803000",
+      "percentile": "0.57648000"
+    },
+    {
+      "date": "2026-11-22",
+      "epss": "0.00803000",
+      "percentile": "0.57641000"
+    },
+    {
+      "date": "2026-11-21",
+      "epss": "0.00803000",
+      "percentile": "0.57615000"
+    },
+    {
+      "date": "2026-11-20",
+      "epss": "0.00533000",
+      "percentile": "0.45917000"
+    },
+    {
+      "date": "2026-11-19",
+      "epss": "0.00533000",
+      "percentile": "0.45777000"
+    },
+    {
+      "date": "2026-11-18",
+      "epss": "0.00533000",
+      "percentile": "0.45709000"
+    },
+    {
+      "date": "2026-11-17",
+      "epss": "0.00533000",
+      "percentile": "0.45603000"
+    },
+    {
+      "date": "2026-11-16",
+      "epss": "0.00533000",
+      "percentile": "0.45573000"
+    },
+    {
+      "date": "2026-11-15",
+      "epss": "0.00533000",
+      "percentile": "0.45570000"
+    },
+    {
+      "date": "2026-11-14",
+      "epss": "0.00533000",
+      "percentile": "0.45585000"
+    },
+    {
+      "date": "2026-11-13",
+      "epss": "0.00533000",
+      "percentile": "0.45557000"
+    },
+    {
+      "date": "2026-11-12",
+      "epss": "0.00533000",
+      "percentile": "0.45504000"
+    },
+    {
+      "date": "2026-11-11",
+      "epss": "0.00533000",
+      "percentile": "0.45463000"
+    },
+    {
+      "date": "2026-11-10",
+      "epss": "0.00533000",
+      "percentile": "0.45343000"
+    },
+    {
+      "date": "2026-11-09",
+      "epss": "0.00533000",
+      "percentile": "0.45286000"
+    },
+    {
+      "date": "2026-11-08",
+      "epss": "0.00533000",
+      "percentile": "0.45270000"
+    },
+    {
+      "date": "2026-11-07",
+      "epss": "0.00533000",
+      "percentile": "0.45246000"
+    },
+    {
+      "date": "2026-11-06",
+      "epss": "0.00533000",
+      "percentile": "0.45192000"
+    },
+    {
+      "date": "2026-11-05",
+      "epss": "0.00533000",
+      "percentile": "0.45162000"
+    },
+    {
+      "date": "2026-11-04",
+      "epss": "0.00533000",
+      "percentile": "0.45139000"
+    },
+    {
+      "date": "2026-11-03",
+      "epss": "0.00533000",
+      "percentile": "0.45064000"
+    },
+    {
+      "date": "2026-11-02",
+      "epss": "0.00533000",
+      "percentile": "0.45014000"
+    },
+    {
+      "date": "2026-11-01",
+      "epss": "0.00533000",
+      "percentile": "0.45024000"
+    },
+    {
+      "date": "2026-10-31",
+      "epss": "0.00533000",
+      "percentile": "0.45029000"
+    },
+    {
+      "date": "2026-10-30",
+      "epss": "0.00316000",
+      "percentile": "0.24569000"
+    },
+    {
+      "date": "2026-10-29",
+      "epss": "0.00247000",
+      "percentile": "0.16012000"
+    },
+    {
+      "date": "2026-10-28",
+      "epss": "0.00247000",
+      "percentile": "0.15979000"
+    },
+    {
+      "date": "2026-10-27",
+      "epss": "0.00247000",
+      "percentile": "0.15902000"
+    },
+    {
+      "date": "2026-10-26",
+      "epss": "0.00247000",
+      "percentile": "0.15844000"
+    },
+    {
+      "date": "2026-10-25",
+      "epss": "0.00247000",
+      "percentile": "0.15831000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-10-30",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-111357",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-111357"
+    }
+  ],
+  "exploitation_hunts": [
+    "HF-2026-0040"
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-4064E54574251D",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "Connect Secure",
+  "published": "2026-10-30",
+  "ransomware_use": "unknown",
+  "related": [
+    "HF-INT-21095F4BB1CB0F"
+  ],
+  "release_id": "hf-20261124-99b0217c01c0",
+  "remediation_due": "2026-11-02",
+  "retrieved": "2026-11-25T03:12:33Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "31b30b7fb6a9fda561ae89dae072296d7004d7f26e53a6dac95e1905e8cb8ff1",
+  "source": "cisa-kev",
+  "source_id": "CVE-2026-111357",
+  "status": "active",
+  "summary": "CISA added CVE-2026-111357 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-02.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Ivanti Connect Secure Missing Authentication for Critical Function Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "Ivanti"
+}

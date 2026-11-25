@@ -1,0 +1,51 @@
+{
+  "assumptions": "Forward the required event channel into the workspace. Sysmon event 3 requires NetworkConnect logging. Windows Security events require the relevant audit policy.",
+  "id": "sentinel-windows",
+  "name": "Sentinel · Windows events",
+  "release_id": "hf-20261124-99b0217c01c0",
+  "revision": 1,
+  "schema_version": 1,
+  "short": "Sentinel Windows",
+  "source": "Windows Event Forwarding / Azure Monitor Agent",
+  "synthetic": false,
+  "tables": {
+    "SecurityEvent": {
+      "capability": "windows-security",
+      "columns": {
+        "Account": "string",
+        "Activity": "string",
+        "CommandLine": "string",
+        "Computer": "string",
+        "EventID": "int",
+        "IpAddress": "string",
+        "LogonType": "int",
+        "NewProcessName": "string",
+        "TargetUserName": "string",
+        "TimeGenerated": "datetime"
+      },
+      "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/securityevent",
+      "mappings": {
+        "Timestamp": "TimeGenerated"
+      },
+      "semantics": "TimeGenerated is the timestamp exposed by the workspace table.",
+      "timestamp": "TimeGenerated"
+    },
+    "WindowsEvent": {
+      "capability": "windows-events",
+      "columns": {
+        "Channel": "string",
+        "Computer": "string",
+        "EventData": "dynamic",
+        "EventID": "int",
+        "TimeGenerated": "datetime"
+      },
+      "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/windowsevent",
+      "mappings": {
+        "Timestamp": "TimeGenerated"
+      },
+      "semantics": "TimeGenerated is the timestamp exposed by the workspace table.",
+      "timestamp": "TimeGenerated"
+    }
+  },
+  "target": "Microsoft Sentinel Logs"
+}

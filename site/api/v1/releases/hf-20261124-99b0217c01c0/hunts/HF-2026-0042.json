@@ -1,0 +1,106 @@
+{
+  "actors": [],
+  "confidence": "Observed post-exploitation artifact",
+  "considerations": [
+    "Scope results to systems hosting MONAI Label. Review the process command line to verify the writer was the app service. Package installation, approved deployments and administrative tooling can account for some writes.",
+    "Confirm the container or host mounted path, file owner and hash. Review Python process starts and any unusual egress after the file event.",
+    "This targets one observed artifact. CVE-2026-133968 can produce other file writes. Launchers that hide the MONAI process name and command line require a locally tuned process filter."
+  ],
+  "cves": [
+    "CVE-2026-133968"
+  ],
+  "description": "Find writes to sitecustomize.py by the MONAI Label service or launcher, based on an artifact Amazon Threat Intelligence observed in a Cairn incident.",
+  "evidence": [
+    {
+      "claim": "Amazon Threat Intelligence observed a write to Python's sitecustomize.py on a compromised medical-imaging AI server and links to the Project MONAI advisory for the underlying file-write issue.",
+      "location": "Zero-day discovery and the linked Project MONAI advisory in Actions taken by AWS",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-20",
+      "source": "aws-security",
+      "source_id": "https://aws.amazon.com/blogs/security/chinese-nexus-actors-cairn-ai-agents-found-a-zero-day-on-their-own/",
+      "url": "https://aws.amazon.com/blogs/security/chinese-nexus-actors-cairn-ai-agents-found-a-zero-day-on-their-own/"
+    }
+  ],
+  "expected_output": "One row per matching endpoint file event with the path, initiating process and file hash when collected.",
+  "history": [
+    {
+      "change": "Created",
+      "date": "2026-11-25T03:12:33Z",
+      "revision": 1,
+      "summary": "Created evidence-backed hunt and validated all supported variants."
+    }
+  ],
+  "hypothesis": "An unexpected Python startup hook written by a MONAI Label process is a post-compromise lead for CVE-2026-133968.",
+  "id": "HF-2026-0042",
+  "indicator_ids": [],
+  "lookback": 30,
+  "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+  "primary_table": "DeviceFileEvents",
+  "profiles": [
+    "sentinel-endpoint"
+  ],
+  "published": "2026-11-25T03:12:33Z",
+  "release_id": "hf-20261124-99b0217c01c0",
+  "research": "monai-cairn-cve-2026-133968",
+  "revision": 1,
+  "schema_version": 1,
+  "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+  "signature": "07788ce3b3d6fdd74c64b236da1cafa7e7bbac172a50389b638c6b8223bb5aa8",
+  "source_ids": [
+    "HF-INT-3D69E83D5307AD"
+  ],
+  "source_published": "2026-11-20",
+  "status": "partially_validated",
+  "tactic": "Persistence",
+  "tags": [
+    "Exploitation",
+    "Agentic AI"
+  ],
+  "technique": "T1546.018",
+  "title": "MONAI Label Process Writing a Python Startup Hook",
+  "updated": "2026-11-25T03:12:33Z",
+  "validation": {
+    "date": "2026-11-25T03:12:33Z",
+    "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+    "variants_checked": 10
+  },
+  "variants": {
+    "sentinel-endpoint": {
+      "profile_revision": 2,
+      "queries": {
+        "1": {
+          "json": "DeviceFileEvents\n| where TimeGenerated > ago(1d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"sitecustomize.py\"\n| where InitiatingProcessFileName in~ (\"monailabel\", \"monailabel.exe\") or InitiatingProcessCommandLine matches regex @\"(?i)(?:^|[^a-z0-9_-])monailabel(?:$|[^a-z0-9_-])\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceFileEvents\n| where TimeGenerated > ago(1d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"sitecustomize.py\"\n| where InitiatingProcessFileName in~ (\"monailabel\", \"monailabel.exe\") or InitiatingProcessCommandLine matches regex @\"(?i)(?:^|[^a-z0-9_-])monailabel(?:$|[^a-z0-9_-])\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine\n| order by TimeGenerated desc\n"
+        },
+        "14": {
+          "json": "DeviceFileEvents\n| where TimeGenerated > ago(14d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"sitecustomize.py\"\n| where InitiatingProcessFileName in~ (\"monailabel\", \"monailabel.exe\") or InitiatingProcessCommandLine matches regex @\"(?i)(?:^|[^a-z0-9_-])monailabel(?:$|[^a-z0-9_-])\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceFileEvents\n| where TimeGenerated > ago(14d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"sitecustomize.py\"\n| where InitiatingProcessFileName in~ (\"monailabel\", \"monailabel.exe\") or InitiatingProcessCommandLine matches regex @\"(?i)(?:^|[^a-z0-9_-])monailabel(?:$|[^a-z0-9_-])\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine\n| order by TimeGenerated desc\n"
+        },
+        "3": {
+          "json": "DeviceFileEvents\n| where TimeGenerated > ago(3d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"sitecustomize.py\"\n| where InitiatingProcessFileName in~ (\"monailabel\", \"monailabel.exe\") or InitiatingProcessCommandLine matches regex @\"(?i)(?:^|[^a-z0-9_-])monailabel(?:$|[^a-z0-9_-])\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceFileEvents\n| where TimeGenerated > ago(3d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"sitecustomize.py\"\n| where InitiatingProcessFileName in~ (\"monailabel\", \"monailabel.exe\") or InitiatingProcessCommandLine matches regex @\"(?i)(?:^|[^a-z0-9_-])monailabel(?:$|[^a-z0-9_-])\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine\n| order by TimeGenerated desc\n"
+        },
+        "30": {
+          "json": "DeviceFileEvents\n| where TimeGenerated > ago(30d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"sitecustomize.py\"\n| where InitiatingProcessFileName in~ (\"monailabel\", \"monailabel.exe\") or InitiatingProcessCommandLine matches regex @\"(?i)(?:^|[^a-z0-9_-])monailabel(?:$|[^a-z0-9_-])\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceFileEvents\n| where TimeGenerated > ago(30d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"sitecustomize.py\"\n| where InitiatingProcessFileName in~ (\"monailabel\", \"monailabel.exe\") or InitiatingProcessCommandLine matches regex @\"(?i)(?:^|[^a-z0-9_-])monailabel(?:$|[^a-z0-9_-])\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine\n| order by TimeGenerated desc\n"
+        },
+        "7": {
+          "json": "DeviceFileEvents\n| where TimeGenerated > ago(7d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"sitecustomize.py\"\n| where InitiatingProcessFileName in~ (\"monailabel\", \"monailabel.exe\") or InitiatingProcessCommandLine matches regex @\"(?i)(?:^|[^a-z0-9_-])monailabel(?:$|[^a-z0-9_-])\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceFileEvents\n| where TimeGenerated > ago(7d)\n| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"sitecustomize.py\"\n| where InitiatingProcessFileName in~ (\"monailabel\", \"monailabel.exe\") or InitiatingProcessCommandLine matches regex @\"(?i)(?:^|[^a-z0-9_-])monailabel(?:$|[^a-z0-9_-])\"\n| project TimeGenerated, DeviceName, ActionType, FileName, FolderPath, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine\n| order by TimeGenerated desc\n"
+        }
+      },
+      "table": "DeviceFileEvents",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    }
+  }
+}
