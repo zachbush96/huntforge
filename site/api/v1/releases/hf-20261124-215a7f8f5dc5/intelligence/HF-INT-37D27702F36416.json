@@ -1,0 +1,39 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Lessons from 59 Linux Kernel Bug Reports",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-11",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/11/lessons-from-59-linux-kernel-bug-reports/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/11/lessons-from-59-linux-kernel-bug-reports/"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-37D27702F36416",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-11",
+  "related": [],
+  "release_id": "hf-20261124-215a7f8f5dc5",
+  "retrieved": "2026-11-25T01:53:01Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "2a35bf621a352372c109f43a699e7d4d5e0124523576118d818c3ea86f244945",
+  "source": "microsoft",
+  "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/11/lessons-from-59-linux-kernel-bug-reports/",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include exploitation.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Lessons from 59 Linux Kernel Bug Reports",
+  "updated": "2026-11-25T01:48:50Z"
+}

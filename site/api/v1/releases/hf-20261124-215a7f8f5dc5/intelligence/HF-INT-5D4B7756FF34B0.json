@@ -1,0 +1,39 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Familiar weaknesses, exploited faster: defending against agentic cyber attacks",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-24",
+      "source": "ncsc",
+      "source_id": "https://www.ncsc.gov.uk/blogs/familiar-weaknesses-exploited-faster-defending-against-agentic-cyber-attacks",
+      "url": "https://www.ncsc.gov.uk/blogs/familiar-weaknesses-exploited-faster-defending-against-agentic-cyber-attacks"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-5D4B7756FF34B0",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-24",
+  "related": [],
+  "release_id": "hf-20261124-215a7f8f5dc5",
+  "retrieved": "2026-11-25T01:53:01Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "6e5dae8147d1936f0f744f5b3fa48f576cafb3ff2cbd61d3a223e76eb6c4fd85",
+  "source": "ncsc",
+  "source_id": "https://www.ncsc.gov.uk/blogs/familiar-weaknesses-exploited-faster-defending-against-agentic-cyber-attacks",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include agentic ai.",
+  "tags": [
+    "Agentic AI"
+  ],
+  "title": "Familiar weaknesses, exploited faster: defending against agentic cyber attacks",
+  "updated": "2026-11-25T01:48:50Z"
+}

@@ -1,0 +1,39 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Microsoft named a Leader in the 2026 Gartner® Magic Quadrant™ for AI Agent Management Platforms",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-03",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/03/microsoft-named-a-leader-in-the-2026-gartner-magic-quadrant-for-ai-agent-management-platforms/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/03/microsoft-named-a-leader-in-the-2026-gartner-magic-quadrant-for-ai-agent-management-platforms/"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-C252AAF10AAB00",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-03",
+  "related": [],
+  "release_id": "hf-20261124-215a7f8f5dc5",
+  "retrieved": "2026-11-25T01:53:01Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "5f19f0bf6d8266fdd3f3a668abe02b685e92c06848aa4e2505ccc3b10b8a8ae4",
+  "source": "microsoft",
+  "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/03/microsoft-named-a-leader-in-the-2026-gartner-magic-quadrant-for-ai-agent-management-platforms/",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include agentic ai.",
+  "tags": [
+    "Agentic AI"
+  ],
+  "title": "Microsoft named a Leader in the 2026 Gartner® Magic Quadrant™ for AI Agent Management Platforms",
+  "updated": "2026-11-25T01:48:50Z"
+}

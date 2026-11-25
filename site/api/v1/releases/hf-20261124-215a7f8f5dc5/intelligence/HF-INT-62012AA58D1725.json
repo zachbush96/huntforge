@@ -1,0 +1,171 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-119977"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-24",
+      "epss": "0.080540000",
+      "percentile": "0.948710000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.08054000",
+      "percentile": "0.94929000"
+    },
+    {
+      "date": "2026-11-22",
+      "epss": "0.08054000",
+      "percentile": "0.94928000"
+    },
+    {
+      "date": "2026-11-21",
+      "epss": "0.08054000",
+      "percentile": "0.94924000"
+    },
+    {
+      "date": "2026-11-20",
+      "epss": "0.01586000",
+      "percentile": "0.76197000"
+    },
+    {
+      "date": "2026-11-19",
+      "epss": "0.01586000",
+      "percentile": "0.76122000"
+    },
+    {
+      "date": "2026-11-18",
+      "epss": "0.01586000",
+      "percentile": "0.76089000"
+    },
+    {
+      "date": "2026-11-17",
+      "epss": "0.01586000",
+      "percentile": "0.76024000"
+    },
+    {
+      "date": "2026-11-16",
+      "epss": "0.01199000",
+      "percentile": "0.68670000"
+    },
+    {
+      "date": "2026-11-15",
+      "epss": "0.01199000",
+      "percentile": "0.68665000"
+    },
+    {
+      "date": "2026-11-14",
+      "epss": "0.01199000",
+      "percentile": "0.68666000"
+    },
+    {
+      "date": "2026-11-13",
+      "epss": "0.01199000",
+      "percentile": "0.68645000"
+    },
+    {
+      "date": "2026-11-12",
+      "epss": "0.01199000",
+      "percentile": "0.68599000"
+    },
+    {
+      "date": "2026-11-11",
+      "epss": "0.01199000",
+      "percentile": "0.68563000"
+    },
+    {
+      "date": "2026-11-10",
+      "epss": "0.01199000",
+      "percentile": "0.68421000"
+    },
+    {
+      "date": "2026-11-09",
+      "epss": "0.01199000",
+      "percentile": "0.68385000"
+    },
+    {
+      "date": "2026-11-08",
+      "epss": "0.01157000",
+      "percentile": "0.67278000"
+    },
+    {
+      "date": "2026-11-07",
+      "epss": "0.01157000",
+      "percentile": "0.67258000"
+    },
+    {
+      "date": "2026-11-06",
+      "epss": "0.01157000",
+      "percentile": "0.67209000"
+    },
+    {
+      "date": "2026-11-05",
+      "epss": "0.01157000",
+      "percentile": "0.67184000"
+    },
+    {
+      "date": "2026-11-04",
+      "epss": "0.01020000",
+      "percentile": "0.63514000"
+    },
+    {
+      "date": "2026-11-03",
+      "epss": "0.00600000",
+      "percentile": "0.48751000"
+    },
+    {
+      "date": "2026-11-02",
+      "epss": "0.00600000",
+      "percentile": "0.48701000"
+    },
+    {
+      "date": "2026-11-01",
+      "epss": "0.00600000",
+      "percentile": "0.48710000"
+    },
+    {
+      "date": "2026-10-31",
+      "epss": "0.00600000",
+      "percentile": "0.48715000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-03",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-119977",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-119977"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-62012AA58D1725",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "WordPress Core",
+  "published": "2026-11-03",
+  "ransomware_use": "unknown",
+  "related": [],
+  "release_id": "hf-20261124-215a7f8f5dc5",
+  "remediation_due": "2026-11-06",
+  "retrieved": "2026-11-25T01:53:01Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "f1d6094b5a957d174a98458b0cfbd23a1b74c4eae7607fcce5cde3ac5040bd55",
+  "source": "cisa-kev",
+  "source_id": "CVE-2026-119977",
+  "status": "active",
+  "summary": "CISA added CVE-2026-119977 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-06.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "WordPress WordPress Core Time-of-check Time-of-use (TOCTOU) Race Condition Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "WordPress"
+}

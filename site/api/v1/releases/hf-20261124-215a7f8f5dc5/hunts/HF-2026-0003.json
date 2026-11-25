@@ -1,0 +1,213 @@
+{
+  "confidence": "Publisher-observed indicators",
+  "considerations": [
+    "Correlate matches with mail delivery and user click telemetry.",
+    "Use the action field to distinguish blocks from permitted requests.",
+    "Review URL paths and Entra sign-ins before inferring credential exposure.",
+    "Security scanners and automated previews can generate matches."
+  ],
+  "description": "Review network or proxy events for the exact downstream domains Microsoft reported.",
+  "evidence": [
+    {
+      "claim": "Microsoft reported downstream destinations and a redirect path in deceptive Microsoft 365 service-health messages. The report did not confirm credential submission.",
+      "location": "Lure and redirect flow, MITRE ATT&CK, and indicators sections",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-16",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/"
+    }
+  ],
+  "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+  "history": [
+    {
+      "change": "Created",
+      "date": "2026-11-25T01:48:50Z",
+      "revision": 1,
+      "summary": "Created evidence-backed hunt and validated all supported variants."
+    }
+  ],
+  "hypothesis": "Exact destination host matches can identify traffic associated with the documented phishing campaign.",
+  "id": "HF-2026-0003",
+  "indicator_ids": [
+    "HF-IOC-67384D48D4FE0E",
+    "HF-IOC-643EC22834E642",
+    "HF-IOC-4BDFC7D2DF496E",
+    "HF-IOC-A6CE6D434B06E6"
+  ],
+  "lookback": 7,
+  "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+  "profiles": [
+    "defender-xdr",
+    "sentinel-cef",
+    "custom-menlo",
+    "custom-proxy"
+  ],
+  "published": "2026-11-25T01:48:50Z",
+  "release_id": "hf-20261124-215a7f8f5dc5",
+  "research": "outage-phishing",
+  "revision": 1,
+  "schema_version": 1,
+  "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+  "signature": "a92faaae78423f532b5ca32c00967962cf71f3edae8b7623b36969347ec6bbcf",
+  "source_ids": [
+    "HF-INT-A08614C0DEBC42"
+  ],
+  "status": "partially_validated",
+  "tactic": "Initial Access",
+  "technique": "T1566.002",
+  "title": "Microsoft 365 Outage Phishing Destinations",
+  "updated": "2026-11-25T01:48:50Z",
+  "validation": {
+    "date": "2026-11-25T01:48:50Z",
+    "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+    "variants_checked": 40
+  },
+  "variants": {
+    "custom-menlo": {
+      "profile_revision": 1,
+      "queries": {
+        "1": {
+          "json": "CustomWeb_CL\n| where TimeGenerated > ago(1d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(Host contains \"://\", tostring(parse_url(Host).Host), Host), tostring(parse_url(Url).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, UserPrincipal, ClientIp, RemoteIp, Url, Disposition, HuntDestinationHost\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CustomWeb_CL\n| where TimeGenerated > ago(1d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(Host contains \"://\", tostring(parse_url(Host).Host), Host), tostring(parse_url(Url).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, UserPrincipal, ClientIp, RemoteIp, Url, Disposition, HuntDestinationHost\n| order by TimeGenerated desc\n"
+        },
+        "14": {
+          "json": "CustomWeb_CL\n| where TimeGenerated > ago(14d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(Host contains \"://\", tostring(parse_url(Host).Host), Host), tostring(parse_url(Url).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, UserPrincipal, ClientIp, RemoteIp, Url, Disposition, HuntDestinationHost\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CustomWeb_CL\n| where TimeGenerated > ago(14d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(Host contains \"://\", tostring(parse_url(Host).Host), Host), tostring(parse_url(Url).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, UserPrincipal, ClientIp, RemoteIp, Url, Disposition, HuntDestinationHost\n| order by TimeGenerated desc\n"
+        },
+        "3": {
+          "json": "CustomWeb_CL\n| where TimeGenerated > ago(3d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(Host contains \"://\", tostring(parse_url(Host).Host), Host), tostring(parse_url(Url).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, UserPrincipal, ClientIp, RemoteIp, Url, Disposition, HuntDestinationHost\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CustomWeb_CL\n| where TimeGenerated > ago(3d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(Host contains \"://\", tostring(parse_url(Host).Host), Host), tostring(parse_url(Url).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, UserPrincipal, ClientIp, RemoteIp, Url, Disposition, HuntDestinationHost\n| order by TimeGenerated desc\n"
+        },
+        "30": {
+          "json": "CustomWeb_CL\n| where TimeGenerated > ago(30d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(Host contains \"://\", tostring(parse_url(Host).Host), Host), tostring(parse_url(Url).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, UserPrincipal, ClientIp, RemoteIp, Url, Disposition, HuntDestinationHost\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CustomWeb_CL\n| where TimeGenerated > ago(30d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(Host contains \"://\", tostring(parse_url(Host).Host), Host), tostring(parse_url(Url).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, UserPrincipal, ClientIp, RemoteIp, Url, Disposition, HuntDestinationHost\n| order by TimeGenerated desc\n"
+        },
+        "7": {
+          "json": "CustomWeb_CL\n| where TimeGenerated > ago(7d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(Host contains \"://\", tostring(parse_url(Host).Host), Host), tostring(parse_url(Url).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, UserPrincipal, ClientIp, RemoteIp, Url, Disposition, HuntDestinationHost\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CustomWeb_CL\n| where TimeGenerated > ago(7d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(Host contains \"://\", tostring(parse_url(Host).Host), Host), tostring(parse_url(Url).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, UserPrincipal, ClientIp, RemoteIp, Url, Disposition, HuntDestinationHost\n| order by TimeGenerated desc\n"
+        }
+      },
+      "table": "CustomWeb_CL",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    },
+    "custom-proxy": {
+      "profile_revision": 1,
+      "queries": {
+        "1": {
+          "json": "CustomWeb_CL\n| where TimeGenerated > ago(1d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(TargetHost contains \"://\", tostring(parse_url(TargetHost).Host), TargetHost), tostring(parse_url(RequestUrl).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, UserId, SourceAddress, TargetAddress, RequestUrl, ProxyAction, HuntDestinationHost\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CustomWeb_CL\n| where TimeGenerated > ago(1d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(TargetHost contains \"://\", tostring(parse_url(TargetHost).Host), TargetHost), tostring(parse_url(RequestUrl).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, UserId, SourceAddress, TargetAddress, RequestUrl, ProxyAction, HuntDestinationHost\n| order by TimeGenerated desc\n"
+        },
+        "14": {
+          "json": "CustomWeb_CL\n| where TimeGenerated > ago(14d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(TargetHost contains \"://\", tostring(parse_url(TargetHost).Host), TargetHost), tostring(parse_url(RequestUrl).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, UserId, SourceAddress, TargetAddress, RequestUrl, ProxyAction, HuntDestinationHost\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CustomWeb_CL\n| where TimeGenerated > ago(14d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(TargetHost contains \"://\", tostring(parse_url(TargetHost).Host), TargetHost), tostring(parse_url(RequestUrl).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, UserId, SourceAddress, TargetAddress, RequestUrl, ProxyAction, HuntDestinationHost\n| order by TimeGenerated desc\n"
+        },
+        "3": {
+          "json": "CustomWeb_CL\n| where TimeGenerated > ago(3d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(TargetHost contains \"://\", tostring(parse_url(TargetHost).Host), TargetHost), tostring(parse_url(RequestUrl).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, UserId, SourceAddress, TargetAddress, RequestUrl, ProxyAction, HuntDestinationHost\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CustomWeb_CL\n| where TimeGenerated > ago(3d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(TargetHost contains \"://\", tostring(parse_url(TargetHost).Host), TargetHost), tostring(parse_url(RequestUrl).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, UserId, SourceAddress, TargetAddress, RequestUrl, ProxyAction, HuntDestinationHost\n| order by TimeGenerated desc\n"
+        },
+        "30": {
+          "json": "CustomWeb_CL\n| where TimeGenerated > ago(30d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(TargetHost contains \"://\", tostring(parse_url(TargetHost).Host), TargetHost), tostring(parse_url(RequestUrl).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, UserId, SourceAddress, TargetAddress, RequestUrl, ProxyAction, HuntDestinationHost\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CustomWeb_CL\n| where TimeGenerated > ago(30d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(TargetHost contains \"://\", tostring(parse_url(TargetHost).Host), TargetHost), tostring(parse_url(RequestUrl).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, UserId, SourceAddress, TargetAddress, RequestUrl, ProxyAction, HuntDestinationHost\n| order by TimeGenerated desc\n"
+        },
+        "7": {
+          "json": "CustomWeb_CL\n| where TimeGenerated > ago(7d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(TargetHost contains \"://\", tostring(parse_url(TargetHost).Host), TargetHost), tostring(parse_url(RequestUrl).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, UserId, SourceAddress, TargetAddress, RequestUrl, ProxyAction, HuntDestinationHost\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CustomWeb_CL\n| where TimeGenerated > ago(7d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(TargetHost contains \"://\", tostring(parse_url(TargetHost).Host), TargetHost), tostring(parse_url(RequestUrl).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, UserId, SourceAddress, TargetAddress, RequestUrl, ProxyAction, HuntDestinationHost\n| order by TimeGenerated desc\n"
+        }
+      },
+      "table": "CustomWeb_CL",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    },
+    "defender-xdr": {
+      "profile_revision": 1,
+      "queries": {
+        "1": {
+          "json": "DeviceNetworkEvents\n| where Timestamp > ago(1d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(RemoteUrl contains \"://\", tostring(parse_url(RemoteUrl).Host), RemoteUrl), tostring(parse_url(RemoteUrl).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project Timestamp, DeviceName, RemoteIP, RemoteUrl, ActionType, HuntDestinationHost\n| order by Timestamp desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceNetworkEvents\n| where Timestamp > ago(1d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(RemoteUrl contains \"://\", tostring(parse_url(RemoteUrl).Host), RemoteUrl), tostring(parse_url(RemoteUrl).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project Timestamp, DeviceName, RemoteIP, RemoteUrl, ActionType, HuntDestinationHost\n| order by Timestamp desc\n"
+        },
+        "14": {
+          "json": "DeviceNetworkEvents\n| where Timestamp > ago(14d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(RemoteUrl contains \"://\", tostring(parse_url(RemoteUrl).Host), RemoteUrl), tostring(parse_url(RemoteUrl).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project Timestamp, DeviceName, RemoteIP, RemoteUrl, ActionType, HuntDestinationHost\n| order by Timestamp desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceNetworkEvents\n| where Timestamp > ago(14d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(RemoteUrl contains \"://\", tostring(parse_url(RemoteUrl).Host), RemoteUrl), tostring(parse_url(RemoteUrl).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project Timestamp, DeviceName, RemoteIP, RemoteUrl, ActionType, HuntDestinationHost\n| order by Timestamp desc\n"
+        },
+        "3": {
+          "json": "DeviceNetworkEvents\n| where Timestamp > ago(3d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(RemoteUrl contains \"://\", tostring(parse_url(RemoteUrl).Host), RemoteUrl), tostring(parse_url(RemoteUrl).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project Timestamp, DeviceName, RemoteIP, RemoteUrl, ActionType, HuntDestinationHost\n| order by Timestamp desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceNetworkEvents\n| where Timestamp > ago(3d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(RemoteUrl contains \"://\", tostring(parse_url(RemoteUrl).Host), RemoteUrl), tostring(parse_url(RemoteUrl).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project Timestamp, DeviceName, RemoteIP, RemoteUrl, ActionType, HuntDestinationHost\n| order by Timestamp desc\n"
+        },
+        "30": {
+          "json": "DeviceNetworkEvents\n| where Timestamp > ago(30d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(RemoteUrl contains \"://\", tostring(parse_url(RemoteUrl).Host), RemoteUrl), tostring(parse_url(RemoteUrl).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project Timestamp, DeviceName, RemoteIP, RemoteUrl, ActionType, HuntDestinationHost\n| order by Timestamp desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceNetworkEvents\n| where Timestamp > ago(30d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(RemoteUrl contains \"://\", tostring(parse_url(RemoteUrl).Host), RemoteUrl), tostring(parse_url(RemoteUrl).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project Timestamp, DeviceName, RemoteIP, RemoteUrl, ActionType, HuntDestinationHost\n| order by Timestamp desc\n"
+        },
+        "7": {
+          "json": "DeviceNetworkEvents\n| where Timestamp > ago(7d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(RemoteUrl contains \"://\", tostring(parse_url(RemoteUrl).Host), RemoteUrl), tostring(parse_url(RemoteUrl).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project Timestamp, DeviceName, RemoteIP, RemoteUrl, ActionType, HuntDestinationHost\n| order by Timestamp desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceNetworkEvents\n| where Timestamp > ago(7d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(RemoteUrl contains \"://\", tostring(parse_url(RemoteUrl).Host), RemoteUrl), tostring(parse_url(RemoteUrl).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project Timestamp, DeviceName, RemoteIP, RemoteUrl, ActionType, HuntDestinationHost\n| order by Timestamp desc\n"
+        }
+      },
+      "table": "DeviceNetworkEvents",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    },
+    "sentinel-cef": {
+      "profile_revision": 1,
+      "queries": {
+        "1": {
+          "json": "CommonSecurityLog\n| where TimeGenerated > ago(1d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(DestinationHostName contains \"://\", tostring(parse_url(DestinationHostName).Host), DestinationHostName), tostring(parse_url(RequestURL).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, SourceIP, DestinationIP, RequestURL, DeviceAction, HuntDestinationHost\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CommonSecurityLog\n| where TimeGenerated > ago(1d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(DestinationHostName contains \"://\", tostring(parse_url(DestinationHostName).Host), DestinationHostName), tostring(parse_url(RequestURL).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, SourceIP, DestinationIP, RequestURL, DeviceAction, HuntDestinationHost\n| order by TimeGenerated desc\n"
+        },
+        "14": {
+          "json": "CommonSecurityLog\n| where TimeGenerated > ago(14d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(DestinationHostName contains \"://\", tostring(parse_url(DestinationHostName).Host), DestinationHostName), tostring(parse_url(RequestURL).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, SourceIP, DestinationIP, RequestURL, DeviceAction, HuntDestinationHost\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CommonSecurityLog\n| where TimeGenerated > ago(14d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(DestinationHostName contains \"://\", tostring(parse_url(DestinationHostName).Host), DestinationHostName), tostring(parse_url(RequestURL).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, SourceIP, DestinationIP, RequestURL, DeviceAction, HuntDestinationHost\n| order by TimeGenerated desc\n"
+        },
+        "3": {
+          "json": "CommonSecurityLog\n| where TimeGenerated > ago(3d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(DestinationHostName contains \"://\", tostring(parse_url(DestinationHostName).Host), DestinationHostName), tostring(parse_url(RequestURL).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, SourceIP, DestinationIP, RequestURL, DeviceAction, HuntDestinationHost\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CommonSecurityLog\n| where TimeGenerated > ago(3d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(DestinationHostName contains \"://\", tostring(parse_url(DestinationHostName).Host), DestinationHostName), tostring(parse_url(RequestURL).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, SourceIP, DestinationIP, RequestURL, DeviceAction, HuntDestinationHost\n| order by TimeGenerated desc\n"
+        },
+        "30": {
+          "json": "CommonSecurityLog\n| where TimeGenerated > ago(30d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(DestinationHostName contains \"://\", tostring(parse_url(DestinationHostName).Host), DestinationHostName), tostring(parse_url(RequestURL).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, SourceIP, DestinationIP, RequestURL, DeviceAction, HuntDestinationHost\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CommonSecurityLog\n| where TimeGenerated > ago(30d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(DestinationHostName contains \"://\", tostring(parse_url(DestinationHostName).Host), DestinationHostName), tostring(parse_url(RequestURL).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, SourceIP, DestinationIP, RequestURL, DeviceAction, HuntDestinationHost\n| order by TimeGenerated desc\n"
+        },
+        "7": {
+          "json": "CommonSecurityLog\n| where TimeGenerated > ago(7d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(DestinationHostName contains \"://\", tostring(parse_url(DestinationHostName).Host), DestinationHostName), tostring(parse_url(RequestURL).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, SourceIP, DestinationIP, RequestURL, DeviceAction, HuntDestinationHost\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CommonSecurityLog\n| where TimeGenerated > ago(7d)\n| extend HuntDestinationHost = tolower(trim_end(@\"\\.+\", coalesce(iff(DestinationHostName contains \"://\", tostring(parse_url(DestinationHostName).Host), DestinationHostName), tostring(parse_url(RequestURL).Host))))\n| where HuntDestinationHost in (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, SourceIP, DestinationIP, RequestURL, DeviceAction, HuntDestinationHost\n| order by TimeGenerated desc\n"
+        }
+      },
+      "table": "CommonSecurityLog",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    }
+  }
+}

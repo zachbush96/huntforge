@@ -1,0 +1,41 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "The risks of device code authentication for AI coding agents",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-17",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/17/the-risks-of-device-code-authentication-for-ai-coding-agents/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/17/the-risks-of-device-code-authentication-for-ai-coding-agents/"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-636ABB4FBA14B1",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-17",
+  "related": [],
+  "release_id": "hf-20261124-215a7f8f5dc5",
+  "retrieved": "2026-11-25T01:53:01Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "caed7951e9eed701a5ba830aabc6c4954fa217cd69cf7096e8577ffc3b1eeea6",
+  "source": "microsoft",
+  "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/17/the-risks-of-device-code-authentication-for-ai-coding-agents/",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include phishing, identity, agentic ai.",
+  "tags": [
+    "Phishing",
+    "Identity",
+    "Agentic AI"
+  ],
+  "title": "The risks of device code authentication for AI coding agents",
+  "updated": "2026-11-25T01:48:50Z"
+}

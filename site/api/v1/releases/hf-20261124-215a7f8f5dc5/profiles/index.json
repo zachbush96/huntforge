@@ -1,0 +1,217 @@
+{
+  "count": 5,
+  "items": [
+    {
+      "assumptions": "Microsoft Defender for Endpoint must populate the table. Advanced hunting and device data access are required.",
+      "id": "defender-xdr",
+      "name": "Defender XDR (default)",
+      "revision": 1,
+      "schema_version": 1,
+      "short": "Defender XDR",
+      "source": "Microsoft Defender for Endpoint",
+      "synthetic": false,
+      "tables": {
+        "DeviceNetworkEvents": {
+          "capability": "network-process",
+          "columns": {
+            "ActionType": "string",
+            "DeviceName": "string",
+            "InitiatingProcessCommandLine": "string",
+            "InitiatingProcessFileName": "string",
+            "RemoteIP": "string",
+            "RemotePort": "int",
+            "RemoteUrl": "string",
+            "Timestamp": "datetime"
+          },
+          "documentation": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-devicenetworkevents-table",
+          "mappings": {
+            "Action": "ActionType",
+            "CommandLine": "InitiatingProcessCommandLine",
+            "Destination IP": "RemoteIP",
+            "Destination Port": "RemotePort",
+            "Destination URL": "RemoteUrl",
+            "Device": "DeviceName",
+            "Process": "InitiatingProcessFileName",
+            "Timestamp": "Timestamp"
+          },
+          "semantics": "Timestamp is the documented event time field for this profile.",
+          "timestamp": "Timestamp"
+        },
+        "DeviceProcessEvents": {
+          "capability": "process",
+          "columns": {
+            "AccountName": "string",
+            "DeviceName": "string",
+            "FileName": "string",
+            "FolderPath": "string",
+            "InitiatingProcessFileName": "string",
+            "ProcessCommandLine": "string",
+            "Timestamp": "datetime"
+          },
+          "documentation": "https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-deviceprocessevents-table",
+          "mappings": {
+            "CommandLine": "ProcessCommandLine",
+            "Device": "DeviceName",
+            "Parent": "InitiatingProcessFileName",
+            "Path": "FolderPath",
+            "Process": "FileName",
+            "Timestamp": "Timestamp",
+            "User": "AccountName"
+          },
+          "semantics": "Timestamp is the documented event time field for this profile.",
+          "timestamp": "Timestamp"
+        }
+      },
+      "target": "Microsoft Defender advanced hunting"
+    },
+    {
+      "assumptions": "Enable service-principal diagnostics and use a role with read access to the workspace table. ResultType 0 denotes success.",
+      "id": "sentinel-entra",
+      "name": "Sentinel Entra ID",
+      "revision": 1,
+      "schema_version": 1,
+      "short": "Entra ID",
+      "source": "Microsoft Entra ID diagnostic logs",
+      "synthetic": false,
+      "tables": {
+        "AADServicePrincipalSignInLogs": {
+          "capability": "service-principal",
+          "columns": {
+            "IPAddress": "string",
+            "ResourceDisplayName": "string",
+            "ResultType": "string",
+            "ServicePrincipalId": "string",
+            "ServicePrincipalName": "string",
+            "TimeGenerated": "datetime"
+          },
+          "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/aadserviceprincipalsigninlogs",
+          "mappings": {
+            "Outcome": "ResultType",
+            "Principal ID": "ServicePrincipalId",
+            "Resource": "ResourceDisplayName",
+            "Source IP": "IPAddress",
+            "Timestamp": "TimeGenerated",
+            "User": "ServicePrincipalName"
+          },
+          "semantics": "TimeGenerated is the documented event time field for this profile.",
+          "timestamp": "TimeGenerated"
+        }
+      },
+      "target": "Microsoft Sentinel Logs"
+    },
+    {
+      "assumptions": "Confirm the CEF connector populates destination hostname or request URL. Review vendor-specific action strings before interpreting outcomes.",
+      "id": "sentinel-cef",
+      "name": "Generic CEF (CommonSecurityLog)",
+      "revision": 1,
+      "schema_version": 1,
+      "short": "Generic CEF",
+      "source": "CEF via Azure Monitor Agent",
+      "synthetic": false,
+      "tables": {
+        "CommonSecurityLog": {
+          "capability": "web",
+          "columns": {
+            "DestinationHostName": "string",
+            "DestinationIP": "string",
+            "DeviceAction": "string",
+            "DeviceProduct": "string",
+            "DeviceVendor": "string",
+            "RequestURL": "string",
+            "SourceIP": "string",
+            "TimeGenerated": "datetime"
+          },
+          "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/commonsecuritylog",
+          "mappings": {
+            "Action": "DeviceAction",
+            "Destination IP": "DestinationIP",
+            "Destination URL": "RequestURL",
+            "Hostname": "DestinationHostName",
+            "Platform": "DeviceVendor",
+            "Source IP": "SourceIP",
+            "Timestamp": "TimeGenerated"
+          },
+          "semantics": "TimeGenerated is the documented event time field for this profile.",
+          "timestamp": "TimeGenerated"
+        }
+      },
+      "target": "Microsoft Sentinel Logs"
+    },
+    {
+      "assumptions": "Example table and field names only. Map your schema locally. Action values are retained as supplied; review the source vocabulary.",
+      "id": "custom-menlo",
+      "name": "Custom Menlo (Browser Isolation)",
+      "revision": 1,
+      "schema_version": 1,
+      "short": "Synthetic Menlo",
+      "source": "Synthetic browser-isolation schema",
+      "synthetic": true,
+      "tables": {
+        "CustomWeb_CL": {
+          "capability": "web",
+          "columns": {
+            "ClientIp": "string",
+            "Disposition": "string",
+            "Host": "string",
+            "RemoteIp": "string",
+            "TimeGenerated": "datetime",
+            "Url": "string",
+            "UserPrincipal": "string"
+          },
+          "documentation": null,
+          "mappings": {
+            "Action": "Disposition",
+            "Destination IP": "RemoteIp",
+            "Destination URL": "Url",
+            "Hostname": "Host",
+            "Source IP": "ClientIp",
+            "Timestamp": "TimeGenerated",
+            "User": "UserPrincipal"
+          },
+          "semantics": "TimeGenerated is the documented event time field for this profile.",
+          "timestamp": "TimeGenerated"
+        }
+      },
+      "target": "Microsoft Sentinel Logs"
+    },
+    {
+      "assumptions": "Example table and field names only. Map your schema locally. Action values are retained as supplied; review the source vocabulary.",
+      "id": "custom-proxy",
+      "name": "Custom proxy (Web Proxy)",
+      "revision": 1,
+      "schema_version": 1,
+      "short": "Synthetic proxy",
+      "source": "Synthetic web proxy schema",
+      "synthetic": true,
+      "tables": {
+        "CustomWeb_CL": {
+          "capability": "web",
+          "columns": {
+            "ProxyAction": "string",
+            "RequestUrl": "string",
+            "SourceAddress": "string",
+            "TargetAddress": "string",
+            "TargetHost": "string",
+            "TimeGenerated": "datetime",
+            "UserId": "string"
+          },
+          "documentation": null,
+          "mappings": {
+            "Action": "ProxyAction",
+            "Destination IP": "TargetAddress",
+            "Destination URL": "RequestUrl",
+            "Hostname": "TargetHost",
+            "Source IP": "SourceAddress",
+            "Timestamp": "TimeGenerated",
+            "User": "UserId"
+          },
+          "semantics": "TimeGenerated is the documented event time field for this profile.",
+          "timestamp": "TimeGenerated"
+        }
+      },
+      "target": "Microsoft Sentinel Logs"
+    }
+  ],
+  "release_id": "hf-20261124-215a7f8f5dc5",
+  "schema_version": 1
+}

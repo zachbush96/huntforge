@@ -1,0 +1,147 @@
+{
+  "count": 5,
+  "items": [
+    {
+      "aging_review": "2026-12-31",
+      "context": "Principal downstream destination.",
+      "display": "reallifeaccounting[.]com",
+      "evidence": [
+        {
+          "claim": "Microsoft reported downstream destinations and a redirect path in deceptive Microsoft 365 service-health messages. The report did not confirm credential submission.",
+          "location": "Lure and redirect flow, MITRE ATT&CK, and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-16",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/"
+        }
+      ],
+      "first_observed": null,
+      "id": "HF-IOC-67384D48D4FE0E",
+      "last_observed": null,
+      "original": "reallifeaccounting[.]com",
+      "record_id": "HF-INT-A08614C0DEBC42",
+      "reported": "2026-11-16",
+      "revision": 1,
+      "schema_version": 1,
+      "source_expires": null,
+      "type": "domain",
+      "value": "reallifeaccounting.com"
+    },
+    {
+      "aging_review": "2026-12-31",
+      "context": "Downstream destination in some messages.",
+      "display": "outagefixed[.]sbs",
+      "evidence": [
+        {
+          "claim": "Microsoft reported downstream destinations and a redirect path in deceptive Microsoft 365 service-health messages. The report did not confirm credential submission.",
+          "location": "Lure and redirect flow, MITRE ATT&CK, and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-16",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/"
+        }
+      ],
+      "first_observed": null,
+      "id": "HF-IOC-643EC22834E642",
+      "last_observed": null,
+      "original": "outagefixed[.]sbs",
+      "record_id": "HF-INT-A08614C0DEBC42",
+      "reported": "2026-11-16",
+      "revision": 1,
+      "schema_version": 1,
+      "source_expires": null,
+      "type": "domain",
+      "value": "outagefixed.sbs"
+    },
+    {
+      "aging_review": "2026-12-31",
+      "context": "Downstream destination in some messages.",
+      "display": "outagerestored[.]sbs",
+      "evidence": [
+        {
+          "claim": "Microsoft reported downstream destinations and a redirect path in deceptive Microsoft 365 service-health messages. The report did not confirm credential submission.",
+          "location": "Lure and redirect flow, MITRE ATT&CK, and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-16",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/"
+        }
+      ],
+      "first_observed": null,
+      "id": "HF-IOC-4BDFC7D2DF496E",
+      "last_observed": null,
+      "original": "outagerestored[.]sbs",
+      "record_id": "HF-INT-A08614C0DEBC42",
+      "reported": "2026-11-16",
+      "revision": 1,
+      "schema_version": 1,
+      "source_expires": null,
+      "type": "domain",
+      "value": "outagerestored.sbs"
+    },
+    {
+      "aging_review": "2026-12-31",
+      "context": "Reported downstream destination path.",
+      "display": "hxxps://reallifeaccounting[.]com/themelist0[.]html",
+      "evidence": [
+        {
+          "claim": "Microsoft reported downstream destinations and a redirect path in deceptive Microsoft 365 service-health messages. The report did not confirm credential submission.",
+          "location": "Lure and redirect flow, MITRE ATT&CK, and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-16",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/"
+        }
+      ],
+      "first_observed": null,
+      "id": "HF-IOC-A6CE6D434B06E6",
+      "last_observed": null,
+      "original": "hxxps://reallifeaccounting[.]com/themelist0[.]html",
+      "record_id": "HF-INT-A08614C0DEBC42",
+      "reported": "2026-11-16",
+      "revision": 1,
+      "schema_version": 1,
+      "source_expires": null,
+      "type": "url",
+      "value": "https://reallifeaccounting.com/themelist0.html"
+    },
+    {
+      "aging_review": "2026-12-20",
+      "context": "IP observed in successful service principal sign-ins across multiple applications.",
+      "display": "199[.]19[.]77[.]84",
+      "evidence": [
+        {
+          "claim": "Microsoft reported successful service-principal sign-ins from a campaign-associated address across multiple application IDs. The date below is the earliest activity Microsoft describes.",
+          "location": "Credential abuse via Entra ID and indicators sections",
+          "modified": null,
+          "observation_date": "2026-10-28",
+          "published": "2026-11-05",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/"
+        }
+      ],
+      "first_observed": "2026-10-28",
+      "id": "HF-IOC-334489FDDAC4E4",
+      "last_observed": null,
+      "original": "199.19.77[.]84",
+      "record_id": "HF-INT-4B6ABBDBB70347",
+      "reported": "2026-11-05",
+      "revision": 1,
+      "schema_version": 1,
+      "source_expires": null,
+      "type": "ipv4",
+      "value": "199.19.77.84"
+    }
+  ],
+  "release_id": "hf-20261124-215a7f8f5dc5",
+  "schema_version": 1
+}

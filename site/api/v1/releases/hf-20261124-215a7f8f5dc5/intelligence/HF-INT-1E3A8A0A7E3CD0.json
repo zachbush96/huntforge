@@ -1,0 +1,41 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-59082"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Siemens SIMATIC WinCC",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-17",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-09",
+      "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-09"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-1E3A8A0A7E3CD0",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-17",
+  "related": [],
+  "release_id": "hf-20261124-215a7f8f5dc5",
+  "retrieved": "2026-11-25T01:53:01Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "f89db2f90dbab9cad6d08d3e99ee91cbe6cb8c8fe8aec83175131350be706936",
+  "source": "cisa-advisories",
+  "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-09",
+  "status": "active",
+  "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-59082.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Siemens SIMATIC WinCC",
+  "updated": "2026-11-25T01:48:50Z"
+}

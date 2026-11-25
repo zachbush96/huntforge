@@ -1,0 +1,41 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-126088"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Autonomy Logic OpenPLC Runtime",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-19",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-323-01",
+      "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-323-01"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-AD267EAA2B1154",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-19",
+  "related": [],
+  "release_id": "hf-20261124-215a7f8f5dc5",
+  "retrieved": "2026-11-25T01:53:01Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "e13f91cba1dce77d95a01806d38702262e665941961b7f63438ca82e3cdae161",
+  "source": "cisa-advisories",
+  "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-323-01",
+  "status": "active",
+  "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-126088.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Autonomy Logic OpenPLC Runtime",
+  "updated": "2026-11-25T01:48:50Z"
+}

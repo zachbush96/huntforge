@@ -1,0 +1,47 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Microsoft observed fraudulent IT support sessions conducted primarily through Quick Assist before staging additional tools.",
+      "location": "Intrusion case studies and initial access sections",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-10-30",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/"
+    }
+  ],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [
+    "HF-2026-0004"
+  ],
+  "id": "HF-INT-E26238C5B4C5C7",
+  "in_window": true,
+  "indicators": [],
+  "kind": "Research",
+  "published": "2026-10-30",
+  "related": [],
+  "release_id": "hf-20261124-215a7f8f5dc5",
+  "retrieved": "2026-11-25T01:53:01Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "584c9e5d42740a157a14c687668035e7e0aa4ee2bea0c242dca4ff8d3bfc063d",
+  "software": [],
+  "source": "microsoft",
+  "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/",
+  "status": "active",
+  "summary": "Microsoft observed fraudulent IT support sessions conducted primarily through Quick Assist before staging additional tools.",
+  "tags": [
+    "Phishing",
+    "Identity"
+  ],
+  "techniques": [
+    "T1219.002"
+  ],
+  "title": "From help desk impersonation to AD CS abuse: Investigating ESC1 and ESC8 intrusion paths",
+  "updated": "2026-11-25T01:48:50Z"
+}
