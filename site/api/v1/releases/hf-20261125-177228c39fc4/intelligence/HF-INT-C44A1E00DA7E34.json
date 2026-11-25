@@ -1,0 +1,38 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Introducing CORNERSTONE: delivering external services for the NCSC",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-24",
+      "source": "ncsc",
+      "source_id": "https://www.ncsc.gov.uk/blogs/introducing-cornerstone-delivering-external-services-for-the-ncsc",
+      "url": "https://www.ncsc.gov.uk/blogs/introducing-cornerstone-delivering-external-services-for-the-ncsc"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-C44A1E00DA7E34",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-24",
+  "related": [],
+  "release_id": "hf-20261125-177228c39fc4",
+  "retrieved": "2026-11-25T18:01:29Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "115f4916fcf1b49773f9133907f15c28efdcea55b46010fcd8345c64946d9fd4",
+  "source": "ncsc",
+  "source_id": "https://www.ncsc.gov.uk/blogs/introducing-cornerstone-delivering-external-services-for-the-ncsc",
+  "status": "active",
+  "summary": "Publisher research and guidance.",
+  "tags": [],
+  "title": "Introducing CORNERSTONE: delivering external services for the NCSC",
+  "updated": "2026-11-25T01:48:50Z"
+}

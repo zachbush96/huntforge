@@ -1,0 +1,41 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "How to protect against preinstalled Android malware",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-25",
+      "source": "securelist",
+      "source_id": "securelist:122093",
+      "url": "https://securelist.com/tr/how-to-protect-against-preinstalled-android-malware/122093/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-1FB78CC504EA95",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-25",
+  "related": [],
+  "release_id": "hf-20261125-177228c39fc4",
+  "retrieved": "2026-11-25T18:01:29Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "31ff1b2a6d98af1c9cab304d0e92b60c0b107d93e404822b7224126ca088832f",
+  "source": "securelist",
+  "source_id": "securelist:122093",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include supply chain, malware.",
+  "tags": [
+    "Supply Chain",
+    "Malware"
+  ],
+  "title": "How to protect against preinstalled Android malware",
+  "updated": "2026-11-25T17:59:44Z"
+}

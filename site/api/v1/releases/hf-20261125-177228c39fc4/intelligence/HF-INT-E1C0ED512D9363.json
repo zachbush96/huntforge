@@ -1,0 +1,42 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "QUIC and Covert: Novel HTTP/3-Powered RATs Target Southeast Asian Governments",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-16",
+      "source": "unit-42",
+      "source_id": "unit-42:189752",
+      "url": "https://unit42.paloaltonetworks.com/custom-rats-target-southeast-asia-governments/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T03:51:30Z",
+  "hunts": [],
+  "id": "HF-INT-E1C0ED512D9363",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-16",
+  "related": [],
+  "release_id": "hf-20261125-177228c39fc4",
+  "retrieved": "2026-11-25T18:01:29Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "e003f0ba4cfda978f8b8de6fc3b38af9e1120b6254f8a35349af260f7b79a970",
+  "source": "unit-42",
+  "source_id": "unit-42:189752",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include phishing, identity, apt activity.",
+  "tags": [
+    "Phishing",
+    "Identity",
+    "APT Activity"
+  ],
+  "title": "QUIC and Covert: Novel HTTP/3-Powered RATs Target Southeast Asian Governments",
+  "updated": "2026-11-25T17:59:44Z"
+}

@@ -1,0 +1,48 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-109618",
+    "CVE-2026-109619"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Siemens Building Automation and Energy Products",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-12",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-316-01",
+      "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-316-01"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-89146FF5418730",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-12",
+  "related": [
+    "HF-INT-057C02B04CC39C",
+    "HF-INT-1CB9F463F8DAF5",
+    "HF-INT-3B6E9E7F34FEAC",
+    "HF-INT-4B2D636A485517"
+  ],
+  "release_id": "hf-20261125-177228c39fc4",
+  "retrieved": "2026-11-25T18:01:29Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "d2387266d9cdc4746ce3613c1288f2e57b21fc99d15f9a495a8918c951689098",
+  "source": "cisa-advisories",
+  "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-316-01",
+  "status": "active",
+  "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-109618, CVE-2026-109619.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Siemens Building Automation and Energy Products",
+  "updated": "2026-11-25T01:48:50Z"
+}

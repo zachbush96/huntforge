@@ -1,0 +1,38 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Filter generation in practice: from algorithms to LLMs",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-10-30",
+      "source": "securelist",
+      "source_id": "securelist:121697",
+      "url": "https://securelist.com/practical-filter-generation/121697/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-B78891736696B2",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-10-30",
+  "related": [],
+  "release_id": "hf-20261125-177228c39fc4",
+  "retrieved": "2026-11-25T18:01:29Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "3dc73540617c115506cfefa885ea910a3a5bd5ef144dfc678e736ab5f89b0a7e",
+  "source": "securelist",
+  "source_id": "securelist:121697",
+  "status": "active",
+  "summary": "Publisher research and guidance.",
+  "tags": [],
+  "title": "Filter generation in practice: from algorithms to LLMs",
+  "updated": "2026-11-25T17:59:44Z"
+}

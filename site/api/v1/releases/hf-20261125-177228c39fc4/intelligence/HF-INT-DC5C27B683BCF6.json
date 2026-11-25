@@ -1,0 +1,38 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "From industry concern to practical action: the value of working with regulators",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-10-27",
+      "source": "ncsc",
+      "source_id": "https://www.ncsc.gov.uk/blogs/industry-concern-practical-action-value-working-regulators",
+      "url": "https://www.ncsc.gov.uk/blogs/industry-concern-practical-action-value-working-regulators"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-DC5C27B683BCF6",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-10-27",
+  "related": [],
+  "release_id": "hf-20261125-177228c39fc4",
+  "retrieved": "2026-11-25T18:01:29Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "b8b8b97cc6a4c1786095d852a4955809db92949c4b0599d7b50af228ae2624c6",
+  "source": "ncsc",
+  "source_id": "https://www.ncsc.gov.uk/blogs/industry-concern-practical-action-value-working-regulators",
+  "status": "active",
+  "summary": "Publisher research and guidance.",
+  "tags": [],
+  "title": "From industry concern to practical action: the value of working with regulators",
+  "updated": "2026-11-25T01:48:50Z"
+}

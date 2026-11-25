@@ -1,0 +1,38 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Joint Factsheet USG Partners Urge Hardening Industrial Refrigeration Cold Chain Monitoring Systems",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-05",
+      "source": "fbi-flash",
+      "source_id": "fbi-flash:261105",
+      "url": "https://www.ic3.gov/CSA/2026/261105.pdf"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-1F2AD1518FF673",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-05",
+  "related": [],
+  "release_id": "hf-20261125-177228c39fc4",
+  "retrieved": "2026-11-25T18:01:29Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "34fbe2a4d7b7c114699d66d223fed4fd57eb95ee6e5cb3b4ca54b55167ff917e",
+  "source": "fbi-flash",
+  "source_id": "fbi-flash:261105",
+  "status": "active",
+  "summary": "Publisher security advisory.",
+  "tags": [],
+  "title": "Joint Factsheet USG Partners Urge Hardening Industrial Refrigeration Cold Chain Monitoring Systems",
+  "updated": "2026-11-25T17:59:44Z"
+}

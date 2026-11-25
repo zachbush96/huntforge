@@ -1,0 +1,42 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "CyberStrikeAI in the wild: the use of AI in real-world attacks on organizations",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-02",
+      "source": "securelist",
+      "source_id": "securelist:121715",
+      "url": "https://securelist.com/tr/cyberstrikeai-attacks/121715/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-194F0856A8DDAA",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-02",
+  "related": [],
+  "release_id": "hf-20261125-177228c39fc4",
+  "retrieved": "2026-11-25T18:01:29Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "02c1202e5ef5ad30d1008d2297a492771a0dbc2ec30321bc0d65bae92e38cec4",
+  "source": "securelist",
+  "source_id": "securelist:121715",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include apt activity, lolbins, exploitation.",
+  "tags": [
+    "APT Activity",
+    "LOLBins",
+    "Exploitation"
+  ],
+  "title": "CyberStrikeAI in the wild: the use of AI in real-world attacks on organizations",
+  "updated": "2026-11-25T17:59:44Z"
+}

@@ -1,0 +1,41 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "The forced audit: how AuditTeam’s OpsAgent framework masks ransomware as consulting",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-18",
+      "source": "securelist",
+      "source_id": "securelist:122031",
+      "url": "https://securelist.com/auditteam-opsagent-forced-audit/122031/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-60B381A800197A",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-18",
+  "related": [],
+  "release_id": "hf-20261125-177228c39fc4",
+  "retrieved": "2026-11-25T18:01:29Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "1a364703b531262f2459746bac7c3a6266accd594711c7a11c0320436b33a259",
+  "source": "securelist",
+  "source_id": "securelist:122031",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include ransomware, malware.",
+  "tags": [
+    "Ransomware",
+    "Malware"
+  ],
+  "title": "The forced audit: how AuditTeam’s OpsAgent framework masks ransomware as consulting",
+  "updated": "2026-11-25T17:59:44Z"
+}

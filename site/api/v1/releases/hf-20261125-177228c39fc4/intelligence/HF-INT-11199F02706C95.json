@@ -1,0 +1,40 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Vulnérabilité dans les produits Schneider Electric (25 novembre 2026)",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-25",
+      "source": "cert-fr",
+      "source_id": "cert-fr:CERTFR-2026-AVI-1618",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1618/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-11199F02706C95",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-25",
+  "related": [],
+  "release_id": "hf-20261125-177228c39fc4",
+  "retrieved": "2026-11-25T18:01:29Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "5ef5f756e741c7ffb13d9a82fee877642af49430f5ada4bc0ae52c9e2135a5d5",
+  "source": "cert-fr",
+  "source_id": "cert-fr:CERTFR-2026-AVI-1618",
+  "status": "active",
+  "summary": "CERT-FR security advisory. The publisher lists affected products and mitigations.",
+  "tags": [
+    "Vulnerability management"
+  ],
+  "title": "Vulnérabilité dans les produits Schneider Electric (25 novembre 2026)",
+  "updated": "2026-11-25T17:59:44Z"
+}

@@ -1,0 +1,41 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Black Friday, red flags: too-good-to-be-true deals hiding real threats",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-23",
+      "source": "securelist",
+      "source_id": "securelist:122061",
+      "url": "https://securelist.com/black-friday-threat-report-2026/122061/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-A69502CA969D44",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-23",
+  "related": [],
+  "release_id": "hf-20261125-177228c39fc4",
+  "retrieved": "2026-11-25T18:01:29Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "d5bdfdfc4b11fa34ddffaf5b67173fb3718fb5ca16e487748addf22d54d16f0f",
+  "source": "securelist",
+  "source_id": "securelist:122061",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include phishing, malware.",
+  "tags": [
+    "Phishing",
+    "Malware"
+  ],
+  "title": "Black Friday, red flags: too-good-to-be-true deals hiding real threats",
+  "updated": "2026-11-25T17:59:44Z"
+}

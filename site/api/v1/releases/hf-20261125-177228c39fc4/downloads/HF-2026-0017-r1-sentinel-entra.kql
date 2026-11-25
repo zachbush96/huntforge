@@ -1,0 +1,5 @@
+AuditLogs
+| where TimeGenerated > ago(14d)
+| where OperationName in~ ("Add app role assignment to service principal", "Add app role assignment to the service principal", "Add member to role")
+| project TimeGenerated, OperationName, Category, Result, InitiatedBy, TargetResources, CorrelationId
+| order by TimeGenerated desc

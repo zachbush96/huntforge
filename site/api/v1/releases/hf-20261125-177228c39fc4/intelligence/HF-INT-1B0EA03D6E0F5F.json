@@ -1,0 +1,204 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-90817"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-25",
+      "epss": "0.188810000",
+      "percentile": "0.978620000"
+    },
+    {
+      "date": "2026-11-24",
+      "epss": "0.34335000",
+      "percentile": "0.98433000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.34335000",
+      "percentile": "0.98448000"
+    },
+    {
+      "date": "2026-11-22",
+      "epss": "0.34335000",
+      "percentile": "0.98448000"
+    },
+    {
+      "date": "2026-11-21",
+      "epss": "0.33395000",
+      "percentile": "0.98413000"
+    },
+    {
+      "date": "2026-11-20",
+      "epss": "0.25657000",
+      "percentile": "0.98008000"
+    },
+    {
+      "date": "2026-11-19",
+      "epss": "0.25187000",
+      "percentile": "0.97974000"
+    },
+    {
+      "date": "2026-11-18",
+      "epss": "0.03749000",
+      "percentile": "0.90092000"
+    },
+    {
+      "date": "2026-11-17",
+      "epss": "0.03749000",
+      "percentile": "0.90063000"
+    },
+    {
+      "date": "2026-11-16",
+      "epss": "0.03749000",
+      "percentile": "0.90054000"
+    },
+    {
+      "date": "2026-11-15",
+      "epss": "0.03749000",
+      "percentile": "0.90051000"
+    },
+    {
+      "date": "2026-11-14",
+      "epss": "0.03749000",
+      "percentile": "0.90052000"
+    },
+    {
+      "date": "2026-11-13",
+      "epss": "0.03749000",
+      "percentile": "0.90045000"
+    },
+    {
+      "date": "2026-11-12",
+      "epss": "0.03749000",
+      "percentile": "0.90029000"
+    },
+    {
+      "date": "2026-11-11",
+      "epss": "0.03749000",
+      "percentile": "0.90014000"
+    },
+    {
+      "date": "2026-11-10",
+      "epss": "0.03749000",
+      "percentile": "0.89964000"
+    },
+    {
+      "date": "2026-11-09",
+      "epss": "0.03749000",
+      "percentile": "0.89950000"
+    },
+    {
+      "date": "2026-11-08",
+      "epss": "0.03749000",
+      "percentile": "0.89945000"
+    },
+    {
+      "date": "2026-11-07",
+      "epss": "0.03749000",
+      "percentile": "0.89939000"
+    },
+    {
+      "date": "2026-11-06",
+      "epss": "0.03749000",
+      "percentile": "0.89924000"
+    },
+    {
+      "date": "2026-11-05",
+      "epss": "0.03749000",
+      "percentile": "0.89913000"
+    },
+    {
+      "date": "2026-11-04",
+      "epss": "0.03749000",
+      "percentile": "0.89905000"
+    },
+    {
+      "date": "2026-11-03",
+      "epss": "0.03749000",
+      "percentile": "0.89889000"
+    },
+    {
+      "date": "2026-11-02",
+      "epss": "0.03749000",
+      "percentile": "0.89875000"
+    },
+    {
+      "date": "2026-11-01",
+      "epss": "0.03749000",
+      "percentile": "0.89874000"
+    },
+    {
+      "date": "2026-10-31",
+      "epss": "0.03749000",
+      "percentile": "0.89874000"
+    },
+    {
+      "date": "2026-10-30",
+      "epss": "0.03749000",
+      "percentile": "0.89859000"
+    },
+    {
+      "date": "2026-10-29",
+      "epss": "0.03749000",
+      "percentile": "0.89845000"
+    },
+    {
+      "date": "2026-10-28",
+      "epss": "0.03749000",
+      "percentile": "0.89833000"
+    },
+    {
+      "date": "2026-10-27",
+      "epss": "0.03749000",
+      "percentile": "0.89816000"
+    },
+    {
+      "date": "2026-10-26",
+      "epss": "0.03749000",
+      "percentile": "0.89797000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-18",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-90817",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-90817"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-1B0EA03D6E0F5F",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "Research Electronic Data Capture (REDCap)",
+  "published": "2026-11-18",
+  "ransomware_use": "unknown",
+  "related": [
+    "HF-INT-2BF6E3B53184CD"
+  ],
+  "release_id": "hf-20261125-177228c39fc4",
+  "remediation_due": "2026-11-21",
+  "retrieved": "2026-11-25T18:01:29Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "f3555abc7ab3399875a4f276757ab348debfa59dbd4184569335058d3290b449",
+  "source": "cisa-kev",
+  "source_id": "CVE-2026-90817",
+  "status": "active",
+  "summary": "CISA added CVE-2026-90817 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-21.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Vanderbilt University Research Electronic Data Capture (REDCap) Code Injection Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "Vanderbilt University"
+}

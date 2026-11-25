@@ -1,0 +1,42 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-123633"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "NGINX HTTP/2 Use-After-Free: CVE-2026-123633",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-24",
+      "source": "unit-42",
+      "source_id": "unit-42:190150",
+      "url": "https://unit42.paloaltonetworks.com/cve-2026-123633-nginx-http2-vulnerability/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T03:51:30Z",
+  "hunts": [],
+  "id": "HF-INT-949EE0ABB721D9",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-24",
+  "related": [],
+  "release_id": "hf-20261125-177228c39fc4",
+  "retrieved": "2026-11-25T18:01:29Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "62fd8bb7711265a3542a5063a3f33161b50f061bff3888ef1b5735114b67d8a6",
+  "source": "unit-42",
+  "source_id": "unit-42:190150",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include exploitation. References CVE-2026-123633.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "NGINX HTTP/2 Use-After-Free: CVE-2026-123633",
+  "updated": "2026-11-25T17:59:44Z"
+}

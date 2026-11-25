@@ -1,0 +1,107 @@
+{
+  "actors": [],
+  "confidence": "Observed post-exploitation artifacts",
+  "considerations": [
+    "Requires forwarded Cisco Expressway process, file or forensic logs that retain paths in Activity or Message. Ordinary call and session logs are unlikely to contain them.",
+    "Review both artifact types on the same appliance and contrast them with approved maintenance. F6 reports the numbered directories as a possible ARTEX link. Directory naming alone does not attribute activity to ARTEX.",
+    "These are post-compromise artifacts from one incident. Corroborate with appliance evidence, the cluster inventory, and the Cisco PSIRT advisory."
+  ],
+  "cves": [
+    "CVE-2026-76466"
+  ],
+  "description": "Find the shared-memory package path and numbered working-directory pattern that F6 observed on compromised Cisco Expressway appliances.",
+  "evidence": [
+    {
+      "claim": "F6 found Python packages staged in shared memory and numbered working directories under /mnt/harddisk/ on compromised Cisco Expressway appliances. The investigators report the naming pattern as a possible ARTEX link.",
+      "location": "Post-compromise Python tooling and working-directory findings",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-23",
+      "source": "f6",
+      "source_id": "https://www.f6.ru/blog/CVE-2026-76466/",
+      "url": "https://www.f6.ru/blog/CVE-2026-76466/"
+    }
+  ],
+  "expected_output": "One row per CEF event with the matched path and the accompanying device or network context.",
+  "history": [
+    {
+      "change": "Created",
+      "date": "2026-11-25T03:12:33Z",
+      "revision": 1,
+      "summary": "Created evidence-backed hunt and validated all supported variants."
+    }
+  ],
+  "hypothesis": "Python package staging on an Expressway appliance together with numbered working directories can identify a post-compromise pattern in one CVE-2026-76466 case.",
+  "id": "HF-2026-0044",
+  "indicator_ids": [],
+  "lookback": 30,
+  "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+  "primary_table": "CommonSecurityLog",
+  "profiles": [
+    "sentinel-cef"
+  ],
+  "published": "2026-11-25T03:12:33Z",
+  "release_id": "hf-20261125-177228c39fc4",
+  "research": "expressway-cve-2026-76466",
+  "revision": 1,
+  "schema_version": 1,
+  "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+  "signature": "41a55b7db17e40d01a6cb146b2f130e32bf280c4025804e838f7d1c7e8a32070",
+  "source_ids": [
+    "HF-INT-2257EBF4C4B3CA"
+  ],
+  "source_published": "2026-11-23",
+  "status": "partially_validated",
+  "tactic": "Command and Control",
+  "tags": [
+    "Exploitation",
+    "Network Edge",
+    "Agentic AI"
+  ],
+  "technique": "T1105",
+  "title": "Cisco Expressway Post-Compromise Python Staging",
+  "updated": "2026-11-25T03:12:33Z",
+  "validation": {
+    "date": "2026-11-25T03:12:33Z",
+    "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+    "variants_checked": 10
+  },
+  "variants": {
+    "sentinel-cef": {
+      "profile_revision": 2,
+      "queries": {
+        "1": {
+          "json": "CommonSecurityLog\n| where TimeGenerated > ago(1d)\n| where DeviceProduct contains \"Expressway\" or (DeviceVendor =~ \"Cisco\" and Activity contains \"Expressway\")\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/dev/shm/pylibs|/mnt/harddisk/i[0-9]{4})(?:[^a-zA-Z0-9._-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| extend ArtifactType = iff(MatchedArtifact == \"/dev/shm/pylibs\", \"Shared-memory package staging\", \"Numbered working directory\")\n| project TimeGenerated, MatchedArtifact, ArtifactType, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CommonSecurityLog\n| where TimeGenerated > ago(1d)\n| where DeviceProduct contains \"Expressway\" or (DeviceVendor =~ \"Cisco\" and Activity contains \"Expressway\")\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/dev/shm/pylibs|/mnt/harddisk/i[0-9]{4})(?:[^a-zA-Z0-9._-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| extend ArtifactType = iff(MatchedArtifact == \"/dev/shm/pylibs\", \"Shared-memory package staging\", \"Numbered working directory\")\n| project TimeGenerated, MatchedArtifact, ArtifactType, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n"
+        },
+        "14": {
+          "json": "CommonSecurityLog\n| where TimeGenerated > ago(14d)\n| where DeviceProduct contains \"Expressway\" or (DeviceVendor =~ \"Cisco\" and Activity contains \"Expressway\")\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/dev/shm/pylibs|/mnt/harddisk/i[0-9]{4})(?:[^a-zA-Z0-9._-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| extend ArtifactType = iff(MatchedArtifact == \"/dev/shm/pylibs\", \"Shared-memory package staging\", \"Numbered working directory\")\n| project TimeGenerated, MatchedArtifact, ArtifactType, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CommonSecurityLog\n| where TimeGenerated > ago(14d)\n| where DeviceProduct contains \"Expressway\" or (DeviceVendor =~ \"Cisco\" and Activity contains \"Expressway\")\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/dev/shm/pylibs|/mnt/harddisk/i[0-9]{4})(?:[^a-zA-Z0-9._-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| extend ArtifactType = iff(MatchedArtifact == \"/dev/shm/pylibs\", \"Shared-memory package staging\", \"Numbered working directory\")\n| project TimeGenerated, MatchedArtifact, ArtifactType, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n"
+        },
+        "3": {
+          "json": "CommonSecurityLog\n| where TimeGenerated > ago(3d)\n| where DeviceProduct contains \"Expressway\" or (DeviceVendor =~ \"Cisco\" and Activity contains \"Expressway\")\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/dev/shm/pylibs|/mnt/harddisk/i[0-9]{4})(?:[^a-zA-Z0-9._-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| extend ArtifactType = iff(MatchedArtifact == \"/dev/shm/pylibs\", \"Shared-memory package staging\", \"Numbered working directory\")\n| project TimeGenerated, MatchedArtifact, ArtifactType, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CommonSecurityLog\n| where TimeGenerated > ago(3d)\n| where DeviceProduct contains \"Expressway\" or (DeviceVendor =~ \"Cisco\" and Activity contains \"Expressway\")\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/dev/shm/pylibs|/mnt/harddisk/i[0-9]{4})(?:[^a-zA-Z0-9._-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| extend ArtifactType = iff(MatchedArtifact == \"/dev/shm/pylibs\", \"Shared-memory package staging\", \"Numbered working directory\")\n| project TimeGenerated, MatchedArtifact, ArtifactType, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n"
+        },
+        "30": {
+          "json": "CommonSecurityLog\n| where TimeGenerated > ago(30d)\n| where DeviceProduct contains \"Expressway\" or (DeviceVendor =~ \"Cisco\" and Activity contains \"Expressway\")\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/dev/shm/pylibs|/mnt/harddisk/i[0-9]{4})(?:[^a-zA-Z0-9._-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| extend ArtifactType = iff(MatchedArtifact == \"/dev/shm/pylibs\", \"Shared-memory package staging\", \"Numbered working directory\")\n| project TimeGenerated, MatchedArtifact, ArtifactType, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CommonSecurityLog\n| where TimeGenerated > ago(30d)\n| where DeviceProduct contains \"Expressway\" or (DeviceVendor =~ \"Cisco\" and Activity contains \"Expressway\")\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/dev/shm/pylibs|/mnt/harddisk/i[0-9]{4})(?:[^a-zA-Z0-9._-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| extend ArtifactType = iff(MatchedArtifact == \"/dev/shm/pylibs\", \"Shared-memory package staging\", \"Numbered working directory\")\n| project TimeGenerated, MatchedArtifact, ArtifactType, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n"
+        },
+        "7": {
+          "json": "CommonSecurityLog\n| where TimeGenerated > ago(7d)\n| where DeviceProduct contains \"Expressway\" or (DeviceVendor =~ \"Cisco\" and Activity contains \"Expressway\")\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/dev/shm/pylibs|/mnt/harddisk/i[0-9]{4})(?:[^a-zA-Z0-9._-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| extend ArtifactType = iff(MatchedArtifact == \"/dev/shm/pylibs\", \"Shared-memory package staging\", \"Numbered working directory\")\n| project TimeGenerated, MatchedArtifact, ArtifactType, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CommonSecurityLog\n| where TimeGenerated > ago(7d)\n| where DeviceProduct contains \"Expressway\" or (DeviceVendor =~ \"Cisco\" and Activity contains \"Expressway\")\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/dev/shm/pylibs|/mnt/harddisk/i[0-9]{4})(?:[^a-zA-Z0-9._-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| extend ArtifactType = iff(MatchedArtifact == \"/dev/shm/pylibs\", \"Shared-memory package staging\", \"Numbered working directory\")\n| project TimeGenerated, MatchedArtifact, ArtifactType, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message\n| order by TimeGenerated desc\n"
+        }
+      },
+      "table": "CommonSecurityLog",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    }
+  }
+}

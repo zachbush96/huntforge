@@ -1,0 +1,41 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Blurring the Lines: Intrusion Shows Connection With Three Major Ransomware Gangs",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2025-09-08",
+      "source": "dfir-report",
+      "source_id": "dfir-report:47946",
+      "url": "https://thedfirreport.com/2025/09/08/blurring-the-lines-intrusion-shows-connection-with-three-major-ransomware-gangs/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-3FAEC73BFB069B",
+  "in_window": false,
+  "kind": "Research",
+  "published": "2025-09-08",
+  "related": [],
+  "release_id": "hf-20261125-177228c39fc4",
+  "retrieved": "2026-11-25T18:01:29Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "2eff6568a8cf8d48fa96e53e2d43ae81bbd8e899c504d683e3411f3df476c744",
+  "source": "dfir-report",
+  "source_id": "dfir-report:47946",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include ransomware, identity.",
+  "tags": [
+    "Ransomware",
+    "Identity"
+  ],
+  "title": "Blurring the Lines: Intrusion Shows Connection With Three Major Ransomware Gangs",
+  "updated": "2026-11-25T17:59:44Z"
+}

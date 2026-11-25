@@ -1,0 +1,6 @@
+AADServicePrincipalSignInLogs
+| where TimeGenerated > ago(7d)
+| where ResultType == "0" and isnotempty(IPAddress) and isnotempty(ServicePrincipalId)
+| summarize SignIns = count(), Principals = dcount(ServicePrincipalId), Names = make_set(ServicePrincipalName, 12), Resources = make_set(ResourceDisplayName, 12) by IPAddress, Window = bin(TimeGenerated, 15m)
+| where Principals >= 4
+| order by Principals desc

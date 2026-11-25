@@ -1,0 +1,5 @@
+MicrosoftGraphActivityLogs
+| where TimeGenerated > ago(14d)
+| where IPAddress in ("199.19.77.84")
+| project TimeGenerated, IPAddress, AppId, ServicePrincipalId, RequestMethod, RequestUri, ResponseStatusCode
+| order by TimeGenerated desc

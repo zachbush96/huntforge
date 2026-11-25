@@ -1,0 +1,40 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Multiples vulnérabilités dans MongoDB (23 novembre 2026)",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-23",
+      "source": "cert-fr",
+      "source_id": "cert-fr:CERTFR-2026-AVI-1606",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1606/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T03:51:30Z",
+  "hunts": [],
+  "id": "HF-INT-0E3871D4CE4FFA",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-23",
+  "related": [],
+  "release_id": "hf-20261125-177228c39fc4",
+  "retrieved": "2026-11-25T18:01:29Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "c93c7f7e83770457c928da3cd4078691ae2f89f114f6073aeeaea3a5b7fce5be",
+  "source": "cert-fr",
+  "source_id": "cert-fr:CERTFR-2026-AVI-1606",
+  "status": "active",
+  "summary": "CERT-FR security advisory. The publisher lists affected products and mitigations.",
+  "tags": [
+    "Vulnerability management"
+  ],
+  "title": "Multiples vulnérabilités dans MongoDB (23 novembre 2026)",
+  "updated": "2026-11-25T17:59:44Z"
+}

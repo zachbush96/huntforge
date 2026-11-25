@@ -1,0 +1,44 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Kaspersky investigated ransomware incidents in ESXi and Proxmox environments where excessive privilege, exposed management access and poor credential handling increased the impact. Its guidance calls for dedicated monitoring identities, restricted management networks and protected logs and backups.",
+      "location": "Introduction and remediation guidance",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-06",
+      "source": "securelist",
+      "source_id": "securelist:121819",
+      "url": "https://securelist.com/virtualization-security-esxi-and-proxmox-ransomware-cases/121819/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-E6789E6A643102",
+  "in_window": true,
+  "indicators": [],
+  "kind": "Research",
+  "published": "2026-11-06",
+  "related": [],
+  "release_id": "hf-20261125-177228c39fc4",
+  "retrieved": "2026-11-25T18:01:29Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "7615ec76dbaad997ddaced0779f387febc808fadcd2bf804f9b5fa84d2f26658",
+  "software": [],
+  "source": "securelist",
+  "source_id": "securelist:121819",
+  "status": "active",
+  "summary": "Kaspersky investigated ransomware incidents in ESXi and Proxmox environments where excessive privilege, exposed management access and poor credential handling increased the impact. Its guidance calls for dedicated monitoring identities, restricted management networks and protected logs and backups.",
+  "tags": [
+    "Ransomware",
+    "Identity"
+  ],
+  "techniques": [],
+  "title": "Virtualization security: attack layers and misconfiguration impact",
+  "updated": "2026-11-25T17:59:44Z"
+}

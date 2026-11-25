@@ -1,0 +1,40 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Multiples vulnérabilités dans les produits Mattermost (20 novembre 2026)",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-20",
+      "source": "cert-fr",
+      "source_id": "cert-fr:CERTFR-2026-AVI-1588",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1588/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T03:51:30Z",
+  "hunts": [],
+  "id": "HF-INT-939E0E00F74B45",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-20",
+  "related": [],
+  "release_id": "hf-20261125-177228c39fc4",
+  "retrieved": "2026-11-25T18:01:29Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "9af6f40a60f060276b34411384df26a95708acd31ed8a2faf8bc3856f6524808",
+  "source": "cert-fr",
+  "source_id": "cert-fr:CERTFR-2026-AVI-1588",
+  "status": "active",
+  "summary": "CERT-FR security advisory. The publisher lists affected products and mitigations.",
+  "tags": [
+    "Vulnerability management"
+  ],
+  "title": "Multiples vulnérabilités dans les produits Mattermost (20 novembre 2026)",
+  "updated": "2026-11-25T17:59:44Z"
+}

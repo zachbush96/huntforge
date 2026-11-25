@@ -1,0 +1,40 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "North Korean Hackers Use Secretly Recorded Webcam Library of 900+ Tech Workers in $400M \"FaceStealer\" Crypto Theft Scheme",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-12",
+      "source": "fbi-flash",
+      "source_id": "fbi-flash:261112",
+      "url": "https://www.ic3.gov/CSA/2026/261112.pdf"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-DA24BE8DB2143E",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-12",
+  "related": [],
+  "release_id": "hf-20261125-177228c39fc4",
+  "retrieved": "2026-11-25T18:01:29Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "fcd94b12a287f911afa0ffb98cc796330df1ff570781bb5b6227ea62a8d02722",
+  "source": "fbi-flash",
+  "source_id": "fbi-flash:261112",
+  "status": "active",
+  "summary": "Publisher security advisory. Topics include apt activity.",
+  "tags": [
+    "APT Activity"
+  ],
+  "title": "North Korean Hackers Use Secretly Recorded Webcam Library of 900+ Tech Workers in $400M \"FaceStealer\" Crypto Theft Scheme",
+  "updated": "2026-11-25T17:59:44Z"
+}

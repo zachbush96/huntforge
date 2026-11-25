@@ -1,0 +1,58 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-109618",
+    "CVE-2026-109619"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "AWS publishes PHP2Shell_BODY and PHP2Shell_BODY_Extended as managed WAF rules for request behavior associated with the PHP2Shell vulnerabilities. The rules have overlapping coverage.",
+      "location": "Updates of October 22 and 23 and AWS WAF coverage table",
+      "modified": "2026-10-29",
+      "observation_date": null,
+      "published": "2026-10-21",
+      "source": "aws-security",
+      "source_id": "https://aws.amazon.com/blogs/security/using-aws-waf-to-apply-mitigations-for-php2shell-rce-vulnerabilities-cve-2026-109618-and-cve-2026-109619/",
+      "url": "https://aws.amazon.com/blogs/security/using-aws-waf-to-apply-mitigations-for-php2shell-rce-vulnerabilities-cve-2026-109618-and-cve-2026-109619/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T03:12:33Z",
+  "hunts": [
+    "HF-2026-0041"
+  ],
+  "id": "HF-INT-4B2D636A485517",
+  "in_window": false,
+  "indicators": [],
+  "kind": "Research",
+  "published": "2026-10-21",
+  "related": [
+    "HF-INT-057C02B04CC39C",
+    "HF-INT-1CB9F463F8DAF5",
+    "HF-INT-3B6E9E7F34FEAC",
+    "HF-INT-89146FF5418730"
+  ],
+  "release_id": "hf-20261125-177228c39fc4",
+  "retrieved": "2026-11-25T03:12:33Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "27c7394423580ba4e9bbcac5663a6d4da915fba025c572bbb8f3e2f291ef19a8",
+  "software": [
+    "PHP"
+  ],
+  "source": "aws-security",
+  "source_id": "https://aws.amazon.com/blogs/security/using-aws-waf-to-apply-mitigations-for-php2shell-rce-vulnerabilities-cve-2026-109618-and-cve-2026-109619/",
+  "status": "active",
+  "summary": "AWS publishes PHP2Shell_BODY and PHP2Shell_BODY_Extended as managed WAF rules for request behavior associated with the PHP2Shell vulnerabilities. The rules have overlapping coverage.",
+  "tags": [
+    "Exploitation",
+    "Web Applications"
+  ],
+  "techniques": [
+    "T1190"
+  ],
+  "title": "AWS WAF mitigations and managed rules for PHP2Shell",
+  "updated": "2026-11-25T03:12:33Z"
+}

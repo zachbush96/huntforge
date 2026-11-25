@@ -1,0 +1,41 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Flash Alert: From Bing Search to Ransomware: Bumblebee and AdaptixC2 Deliver Akira",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2025-08-05",
+      "source": "dfir-report",
+      "source_id": "dfir-report:49376",
+      "url": "https://thedfirreport.com/2025/08/05/from-bing-search-to-ransomware-bumblebee-and-adaptixc2-deliver-akira-2/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-8C87DEFEB75C33",
+  "in_window": false,
+  "kind": "Research",
+  "published": "2025-08-05",
+  "related": [],
+  "release_id": "hf-20261125-177228c39fc4",
+  "retrieved": "2026-11-25T18:01:29Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "590ea4671f3abaf097657e4fca0a74d9ef0d071079ed6f8b58367f6be2ba00db",
+  "source": "dfir-report",
+  "source_id": "dfir-report:49376",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include ransomware, malware.",
+  "tags": [
+    "Ransomware",
+    "Malware"
+  ],
+  "title": "Flash Alert: From Bing Search to Ransomware: Bumblebee and AdaptixC2 Deliver Akira",
+  "updated": "2026-11-25T17:59:44Z"
+}

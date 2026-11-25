@@ -1,0 +1,35 @@
+{
+  "assumptions": "The relevant security product must emit and forward alerts to the Sentinel workspace. Detection names and details vary by connector and product.",
+  "id": "sentinel-alerts",
+  "name": "Sentinel · Security alerts",
+  "release_id": "hf-20261125-177228c39fc4",
+  "revision": 2,
+  "schema_version": 1,
+  "short": "Sentinel Alerts",
+  "source": "Integrated security alert provider",
+  "synthetic": false,
+  "tables": {
+    "SecurityAlert": {
+      "capability": "alerts",
+      "columns": {
+        "AlertName": "string",
+        "AlertSeverity": "string",
+        "CompromisedEntity": "string",
+        "Description": "string",
+        "ExtendedProperties": "string",
+        "ProductName": "string",
+        "SubTechniques": "string",
+        "SystemAlertId": "string",
+        "Techniques": "string",
+        "TimeGenerated": "datetime"
+      },
+      "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/securityalert",
+      "mappings": {
+        "Timestamp": "TimeGenerated"
+      },
+      "semantics": "TimeGenerated is the timestamp exposed by the workspace table.",
+      "timestamp": "TimeGenerated"
+    }
+  },
+  "target": "Microsoft Sentinel Logs"
+}

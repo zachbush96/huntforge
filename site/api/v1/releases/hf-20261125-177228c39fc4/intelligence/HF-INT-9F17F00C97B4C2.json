@@ -1,0 +1,40 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Vulnérabilité dans GitLab (20 novembre 2026)",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-20",
+      "source": "cert-fr",
+      "source_id": "cert-fr:CERTFR-2026-AVI-1591",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1591/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T03:51:30Z",
+  "hunts": [],
+  "id": "HF-INT-9F17F00C97B4C2",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-20",
+  "related": [],
+  "release_id": "hf-20261125-177228c39fc4",
+  "retrieved": "2026-11-25T18:01:29Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "7be7a7343d1bf98ceb6101fc4d15be117d5ebe5f31ceb74e1019ab00ba9bddec",
+  "source": "cert-fr",
+  "source_id": "cert-fr:CERTFR-2026-AVI-1591",
+  "status": "active",
+  "summary": "CERT-FR security advisory. The publisher lists affected products and mitigations.",
+  "tags": [
+    "Vulnerability management"
+  ],
+  "title": "Vulnérabilité dans GitLab (20 novembre 2026)",
+  "updated": "2026-11-25T17:59:44Z"
+}

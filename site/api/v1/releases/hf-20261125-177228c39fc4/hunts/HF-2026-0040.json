@@ -1,0 +1,107 @@
+{
+  "actors": [],
+  "confidence": "Observed post-exploitation artifacts",
+  "considerations": [
+    "This requires Ivanti appliance process, file or forensic events mapped to CEF with paths preserved in Message or Activity. Standard VPN connection events usually lack those fields.",
+    "This is a campaign-specific post-compromise hunt. Matches support investigation of the reported incident pattern and cannot identify which vulnerability was used at a given appliance.",
+    "Verify any matching path against approved diagnostics, preserve available appliance and downstream identity evidence, and check Ivanti's guidance on forensic collection. The investigators reported log tampering."
+  ],
+  "cves": [
+    "CVE-2026-111357"
+  ],
+  "description": "Find forwarded Ivanti events that mention the hidden-directory sniffer or companion credential parser recovered by Volexity after compromise.",
+  "evidence": [
+    {
+      "claim": "Volexity recovered a masquerading packet sniffer and its credential-parsing companion script after compromise of an Ivanti Connect Secure appliance. Its October 29 update identifies CVE-2026-111357 as the privilege-escalation stage.",
+      "location": "October 29 update, LDAP Packet Capture, and Ivanti Memory Analysis with Volexity Volcano",
+      "modified": "2026-10-29",
+      "observation_date": null,
+      "published": "2026-10-13",
+      "source": "volexity",
+      "source_id": "https://www.volexity.com/blog/2026/10/13/a-series-of-unauthenticated-events-chained-exploitation-of-ivanti-connect-secure-zero-days/",
+      "url": "https://www.volexity.com/blog/2026/10/13/a-series-of-unauthenticated-events-chained-exploitation-of-ivanti-connect-secure-zero-days/"
+    }
+  ],
+  "expected_output": "One row per matching forwarded event, with the artifact, available device and network fields, and source log message.",
+  "history": [
+    {
+      "change": "Created",
+      "date": "2026-11-25T03:12:33Z",
+      "revision": 1,
+      "summary": "Created evidence-backed hunt and validated all supported variants."
+    }
+  ],
+  "hypothesis": "The combination of the appliance's hidden capture directory and a rare executable or script name can identify artifacts seen after an exploit chain involving CVE-2026-111357.",
+  "id": "HF-2026-0040",
+  "indicator_ids": [],
+  "lookback": 30,
+  "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+  "primary_table": "CommonSecurityLog",
+  "profiles": [
+    "sentinel-cef"
+  ],
+  "published": "2026-11-25T03:12:33Z",
+  "release_id": "hf-20261125-177228c39fc4",
+  "research": "ivanti-ics-cve-2026-111357",
+  "revision": 1,
+  "schema_version": 1,
+  "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+  "signature": "32c80822fbeae10367827440faf92cadbf47dc5d6028603d87d8fc81d5263933",
+  "source_ids": [
+    "HF-INT-21095F4BB1CB0F"
+  ],
+  "source_published": "2026-10-13",
+  "status": "partially_validated",
+  "tactic": "Credential Access",
+  "tags": [
+    "Exploitation",
+    "Credential Access",
+    "Network Edge"
+  ],
+  "technique": "T1040",
+  "title": "Ivanti Connect Secure Post-Compromise Capture Artifacts",
+  "updated": "2026-11-25T03:12:33Z",
+  "validation": {
+    "date": "2026-11-25T03:12:33Z",
+    "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+    "variants_checked": 10
+  },
+  "variants": {
+    "sentinel-cef": {
+      "profile_revision": 2,
+      "queries": {
+        "1": {
+          "json": "CommonSecurityLog\n| where TimeGenerated > ago(1d)\n| where DeviceVendor in~ (\"Ivanti\", \"Pulse Secure\") or DeviceProduct contains \"Connect Secure\"\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/[.]icscap/(?:dsstatmond|h[.]py))(?:[^a-zA-Z0-9._/-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| project TimeGenerated, MatchedArtifact, Activity, DeviceVendor, DeviceProduct, DestinationHostName, SourceIP, DestinationIP, DeviceAction, Message\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CommonSecurityLog\n| where TimeGenerated > ago(1d)\n| where DeviceVendor in~ (\"Ivanti\", \"Pulse Secure\") or DeviceProduct contains \"Connect Secure\"\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/[.]icscap/(?:dsstatmond|h[.]py))(?:[^a-zA-Z0-9._/-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| project TimeGenerated, MatchedArtifact, Activity, DeviceVendor, DeviceProduct, DestinationHostName, SourceIP, DestinationIP, DeviceAction, Message\n| order by TimeGenerated desc\n"
+        },
+        "14": {
+          "json": "CommonSecurityLog\n| where TimeGenerated > ago(14d)\n| where DeviceVendor in~ (\"Ivanti\", \"Pulse Secure\") or DeviceProduct contains \"Connect Secure\"\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/[.]icscap/(?:dsstatmond|h[.]py))(?:[^a-zA-Z0-9._/-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| project TimeGenerated, MatchedArtifact, Activity, DeviceVendor, DeviceProduct, DestinationHostName, SourceIP, DestinationIP, DeviceAction, Message\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CommonSecurityLog\n| where TimeGenerated > ago(14d)\n| where DeviceVendor in~ (\"Ivanti\", \"Pulse Secure\") or DeviceProduct contains \"Connect Secure\"\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/[.]icscap/(?:dsstatmond|h[.]py))(?:[^a-zA-Z0-9._/-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| project TimeGenerated, MatchedArtifact, Activity, DeviceVendor, DeviceProduct, DestinationHostName, SourceIP, DestinationIP, DeviceAction, Message\n| order by TimeGenerated desc\n"
+        },
+        "3": {
+          "json": "CommonSecurityLog\n| where TimeGenerated > ago(3d)\n| where DeviceVendor in~ (\"Ivanti\", \"Pulse Secure\") or DeviceProduct contains \"Connect Secure\"\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/[.]icscap/(?:dsstatmond|h[.]py))(?:[^a-zA-Z0-9._/-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| project TimeGenerated, MatchedArtifact, Activity, DeviceVendor, DeviceProduct, DestinationHostName, SourceIP, DestinationIP, DeviceAction, Message\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CommonSecurityLog\n| where TimeGenerated > ago(3d)\n| where DeviceVendor in~ (\"Ivanti\", \"Pulse Secure\") or DeviceProduct contains \"Connect Secure\"\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/[.]icscap/(?:dsstatmond|h[.]py))(?:[^a-zA-Z0-9._/-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| project TimeGenerated, MatchedArtifact, Activity, DeviceVendor, DeviceProduct, DestinationHostName, SourceIP, DestinationIP, DeviceAction, Message\n| order by TimeGenerated desc\n"
+        },
+        "30": {
+          "json": "CommonSecurityLog\n| where TimeGenerated > ago(30d)\n| where DeviceVendor in~ (\"Ivanti\", \"Pulse Secure\") or DeviceProduct contains \"Connect Secure\"\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/[.]icscap/(?:dsstatmond|h[.]py))(?:[^a-zA-Z0-9._/-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| project TimeGenerated, MatchedArtifact, Activity, DeviceVendor, DeviceProduct, DestinationHostName, SourceIP, DestinationIP, DeviceAction, Message\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CommonSecurityLog\n| where TimeGenerated > ago(30d)\n| where DeviceVendor in~ (\"Ivanti\", \"Pulse Secure\") or DeviceProduct contains \"Connect Secure\"\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/[.]icscap/(?:dsstatmond|h[.]py))(?:[^a-zA-Z0-9._/-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| project TimeGenerated, MatchedArtifact, Activity, DeviceVendor, DeviceProduct, DestinationHostName, SourceIP, DestinationIP, DeviceAction, Message\n| order by TimeGenerated desc\n"
+        },
+        "7": {
+          "json": "CommonSecurityLog\n| where TimeGenerated > ago(7d)\n| where DeviceVendor in~ (\"Ivanti\", \"Pulse Secure\") or DeviceProduct contains \"Connect Secure\"\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/[.]icscap/(?:dsstatmond|h[.]py))(?:[^a-zA-Z0-9._/-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| project TimeGenerated, MatchedArtifact, Activity, DeviceVendor, DeviceProduct, DestinationHostName, SourceIP, DestinationIP, DeviceAction, Message\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "CommonSecurityLog\n| where TimeGenerated > ago(7d)\n| where DeviceVendor in~ (\"Ivanti\", \"Pulse Secure\") or DeviceProduct contains \"Connect Secure\"\n| extend EventText = strcat(Activity, \" \", Message)\n| extend MatchedArtifact = extract(@\"(/[.]icscap/(?:dsstatmond|h[.]py))(?:[^a-zA-Z0-9._/-]|$)\", 1, EventText)\n| where isnotempty(MatchedArtifact)\n| project TimeGenerated, MatchedArtifact, Activity, DeviceVendor, DeviceProduct, DestinationHostName, SourceIP, DestinationIP, DeviceAction, Message\n| order by TimeGenerated desc\n"
+        }
+      },
+      "table": "CommonSecurityLog",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    }
+  }
+}

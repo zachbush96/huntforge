@@ -1,0 +1,40 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Attackers Use Autonomous AI to Target Semiconductor, Defense and Civil Society Sectors",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-12",
+      "source": "unit-42",
+      "source_id": "unit-42:189684",
+      "url": "https://unit42.paloaltonetworks.com/cairn-framework-ai-autonomous-attacks/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T03:51:30Z",
+  "hunts": [],
+  "id": "HF-INT-68A2D40A87ACA4",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-12",
+  "related": [],
+  "release_id": "hf-20261125-177228c39fc4",
+  "retrieved": "2026-11-25T18:01:29Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "21f615436434a9aaa6685f6fba54ea8fb29a93c3451eeaf5f81b34ecd3e9b93b",
+  "source": "unit-42",
+  "source_id": "unit-42:189684",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include agentic ai.",
+  "tags": [
+    "Agentic AI"
+  ],
+  "title": "Attackers Use Autonomous AI to Target Semiconductor, Defense and Civil Society Sectors",
+  "updated": "2026-11-25T17:59:44Z"
+}

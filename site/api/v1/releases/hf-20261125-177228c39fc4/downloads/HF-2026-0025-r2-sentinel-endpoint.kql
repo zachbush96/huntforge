@@ -1,0 +1,5 @@
+DeviceEvents
+| where TimeGenerated > ago(14d)
+| where ActionType contains "ScheduledTask" and (tostring(AdditionalFields) contains "RelayTrap" or tostring(AdditionalFields) contains "TrapWatch")
+| project TimeGenerated, DeviceName, ActionType, InitiatingProcessFileName, AdditionalFields
+| order by TimeGenerated desc

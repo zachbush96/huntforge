@@ -1,0 +1,40 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Multiples vulnérabilités dans Tenable Enclave Security (25 novembre 2026)",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-25",
+      "source": "cert-fr",
+      "source_id": "cert-fr:CERTFR-2026-AVI-1615",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1615/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-C083FA1FD9854E",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-25",
+  "related": [],
+  "release_id": "hf-20261125-177228c39fc4",
+  "retrieved": "2026-11-25T18:01:29Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "fca8ec12d0452420afa2f3ced528fe25341508ea68e7fc1da1b0d7704628a9de",
+  "source": "cert-fr",
+  "source_id": "cert-fr:CERTFR-2026-AVI-1615",
+  "status": "active",
+  "summary": "CERT-FR security advisory. The publisher lists affected products and mitigations.",
+  "tags": [
+    "Vulnerability management"
+  ],
+  "title": "Multiples vulnérabilités dans Tenable Enclave Security (25 novembre 2026)",
+  "updated": "2026-11-25T17:59:44Z"
+}

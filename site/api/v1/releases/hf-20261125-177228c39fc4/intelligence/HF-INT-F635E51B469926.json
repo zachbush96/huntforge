@@ -1,0 +1,38 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
+      "location": "CISA advisory archive",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-10-30",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/alerts/2026/10/30/cisa-adds-two-known-exploited-vulnerabilities-catalog",
+      "url": "https://www.cisa.gov/news-events/alerts/2026/10/30/cisa-adds-two-known-exploited-vulnerabilities-catalog"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-F635E51B469926",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-10-30",
+  "related": [],
+  "release_id": "hf-20261125-177228c39fc4",
+  "retrieved": "2026-11-25T18:01:29Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "e62d4a02c82c595900623ae3bec7c5a51c585e36ba50c064645b2a36512cde2d",
+  "source": "cisa-advisories",
+  "source_id": "https://www.cisa.gov/news-events/alerts/2026/10/30/cisa-adds-two-known-exploited-vulnerabilities-catalog",
+  "status": "active",
+  "summary": "Publisher security advisory indexed in the CISA advisory archive.",
+  "tags": [],
+  "title": "CISA Adds Two Known Exploited Vulnerabilities to Catalog",
+  "updated": "2026-11-25T01:48:50Z"
+}

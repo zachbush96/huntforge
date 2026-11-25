@@ -1,0 +1,204 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-20320"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-25",
+      "epss": "0.013010000",
+      "percentile": "0.705080000"
+    },
+    {
+      "date": "2026-11-24",
+      "epss": "0.01682000",
+      "percentile": "0.77441000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.01682000",
+      "percentile": "0.77566000"
+    },
+    {
+      "date": "2026-11-22",
+      "epss": "0.01682000",
+      "percentile": "0.77560000"
+    },
+    {
+      "date": "2026-11-21",
+      "epss": "0.01682000",
+      "percentile": "0.77544000"
+    },
+    {
+      "date": "2026-11-20",
+      "epss": "0.00976000",
+      "percentile": "0.62952000"
+    },
+    {
+      "date": "2026-11-19",
+      "epss": "0.00976000",
+      "percentile": "0.62836000"
+    },
+    {
+      "date": "2026-11-18",
+      "epss": "0.00976000",
+      "percentile": "0.62787000"
+    },
+    {
+      "date": "2026-11-17",
+      "epss": "0.00976000",
+      "percentile": "0.62690000"
+    },
+    {
+      "date": "2026-11-16",
+      "epss": "0.00976000",
+      "percentile": "0.62661000"
+    },
+    {
+      "date": "2026-11-15",
+      "epss": "0.00976000",
+      "percentile": "0.62655000"
+    },
+    {
+      "date": "2026-11-14",
+      "epss": "0.00976000",
+      "percentile": "0.62656000"
+    },
+    {
+      "date": "2026-11-13",
+      "epss": "0.00976000",
+      "percentile": "0.62634000"
+    },
+    {
+      "date": "2026-11-12",
+      "epss": "0.00820000",
+      "percentile": "0.57739000"
+    },
+    {
+      "date": "2026-11-11",
+      "epss": "0.00820000",
+      "percentile": "0.57690000"
+    },
+    {
+      "date": "2026-11-10",
+      "epss": "0.00385000",
+      "percentile": "0.32917000"
+    },
+    {
+      "date": "2026-11-09",
+      "epss": "0.00385000",
+      "percentile": "0.32865000"
+    },
+    {
+      "date": "2026-11-08",
+      "epss": "0.00495000",
+      "percentile": "0.42763000"
+    },
+    {
+      "date": "2026-11-07",
+      "epss": "0.00495000",
+      "percentile": "0.42740000"
+    },
+    {
+      "date": "2026-11-06",
+      "epss": "0.00495000",
+      "percentile": "0.42684000"
+    },
+    {
+      "date": "2026-11-05",
+      "epss": "0.00495000",
+      "percentile": "0.42652000"
+    },
+    {
+      "date": "2026-11-04",
+      "epss": "0.00495000",
+      "percentile": "0.42626000"
+    },
+    {
+      "date": "2026-11-03",
+      "epss": "0.00495000",
+      "percentile": "0.42550000"
+    },
+    {
+      "date": "2026-11-02",
+      "epss": "0.00495000",
+      "percentile": "0.42495000"
+    },
+    {
+      "date": "2026-11-01",
+      "epss": "0.00495000",
+      "percentile": "0.42506000"
+    },
+    {
+      "date": "2026-10-31",
+      "epss": "0.00495000",
+      "percentile": "0.42513000"
+    },
+    {
+      "date": "2026-10-30",
+      "epss": "0.00495000",
+      "percentile": "0.42483000"
+    },
+    {
+      "date": "2026-10-29",
+      "epss": "0.00495000",
+      "percentile": "0.42419000"
+    },
+    {
+      "date": "2026-10-28",
+      "epss": "0.00495000",
+      "percentile": "0.42358000"
+    },
+    {
+      "date": "2026-10-27",
+      "epss": "0.00495000",
+      "percentile": "0.42288000"
+    },
+    {
+      "date": "2026-10-26",
+      "epss": "0.00495000",
+      "percentile": "0.42215000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-10",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-20320",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-20320"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-B0B8542C7EF0F2",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "BroadWorks",
+  "published": "2026-11-10",
+  "ransomware_use": "unknown",
+  "related": [
+    "HF-INT-F4B34728A6F8E3"
+  ],
+  "release_id": "hf-20261125-177228c39fc4",
+  "remediation_due": "2026-11-24",
+  "retrieved": "2026-11-25T18:01:29Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "74f39502eb8873d8e203b6b3a26f1521f4d1c0803b7563518b3fb8660ca95c80",
+  "source": "cisa-kev",
+  "source_id": "CVE-2026-20320",
+  "status": "active",
+  "summary": "CISA added CVE-2026-20320 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-24.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Cisco BroadWorks Improper Restriction of XML External Entity Reference Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "Cisco"
+}

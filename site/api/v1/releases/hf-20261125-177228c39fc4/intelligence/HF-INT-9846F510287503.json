@@ -1,0 +1,41 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "ARTEX and beyond: AI-enabled penetration testing platforms",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-13",
+      "source": "cisco-talos",
+      "source_id": "cisco-talos:6af61536012a6800019c5875",
+      "url": "https://blog.talosintelligence.com/artex-and-beyond/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T03:51:30Z",
+  "hunts": [],
+  "id": "HF-INT-9846F510287503",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-13",
+  "related": [],
+  "release_id": "hf-20261125-177228c39fc4",
+  "retrieved": "2026-11-25T18:01:29Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "f1cc70baf824180863819333430b526fee49e76c343ec48fbb090feb889b6348",
+  "source": "cisco-talos",
+  "source_id": "cisco-talos:6af61536012a6800019c5875",
+  "status": "active",
+  "summary": "Publisher security advisory. Topics include apt activity, exploitation.",
+  "tags": [
+    "APT Activity",
+    "Exploitation"
+  ],
+  "title": "ARTEX and beyond: AI-enabled penetration testing platforms",
+  "updated": "2026-11-25T17:59:44Z"
+}

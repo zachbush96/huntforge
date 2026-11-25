@@ -1,0 +1,43 @@
+{
+  "assumptions": "Confirm the CEF connector populates destination hostname or request URL. Review vendor-specific action strings before interpreting outcomes.",
+  "id": "sentinel-cef",
+  "name": "Sentinel · CEF network and proxy logs",
+  "release_id": "hf-20261125-177228c39fc4",
+  "revision": 2,
+  "schema_version": 1,
+  "short": "Sentinel CEF",
+  "source": "CEF via Azure Monitor Agent",
+  "synthetic": false,
+  "tables": {
+    "CommonSecurityLog": {
+      "capability": "web",
+      "columns": {
+        "Activity": "string",
+        "DestinationHostName": "string",
+        "DestinationIP": "string",
+        "DestinationPort": "int",
+        "DeviceAction": "string",
+        "DeviceProduct": "string",
+        "DeviceVendor": "string",
+        "Message": "string",
+        "RequestClientApplication": "string",
+        "RequestURL": "string",
+        "SourceIP": "string",
+        "TimeGenerated": "datetime"
+      },
+      "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/commonsecuritylog",
+      "mappings": {
+        "Action": "DeviceAction",
+        "Destination IP": "DestinationIP",
+        "Destination URL": "RequestURL",
+        "Hostname": "DestinationHostName",
+        "Platform": "DeviceVendor",
+        "Source IP": "SourceIP",
+        "Timestamp": "TimeGenerated"
+      },
+      "semantics": "TimeGenerated is the documented event time field for this profile.",
+      "timestamp": "TimeGenerated"
+    }
+  },
+  "target": "Microsoft Sentinel Logs"
+}

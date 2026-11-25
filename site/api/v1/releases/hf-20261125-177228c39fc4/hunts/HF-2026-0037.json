@@ -1,0 +1,108 @@
+{
+  "actors": [],
+  "confidence": "Source-backed behavioral hypothesis",
+  "considerations": [
+    "Review the attribution column first. A shared five-minute window with Outlook is a weaker lead because normal Outlook and SMB traffic can overlap.",
+    "Exclude approved external file services and validate endpoint, firewall and outbound NTLM records for direction, authentication and whether any connection was blocked.",
+    "Correlate the user and device timeline with recent message opens and check the installed Office build. A network event alone cannot establish authentication data exposure.",
+    "The query pivots on TCP ports 139 and 445 for publicly classified destinations. It does not measure HTTP or WebDAV behavior and returns up to 256 SMB events per device per five-minute window."
+  ],
+  "cves": [
+    "CVE-2026-124194"
+  ],
+  "description": "Find attempts from classic Outlook to reach public SMB destinations and check for kernel-attributed attempts on devices with nearby Outlook network activity.",
+  "evidence": [
+    {
+      "claim": "Brazil's government incident response center documents unintended external authentication from affected Outlook clients and recommends monitoring unexpected outbound SMB and other authentication-related connections.",
+      "location": "Sections 2 and 5(b–d), as updated November 16",
+      "modified": "2026-11-16",
+      "observation_date": null,
+      "published": "2026-10-22",
+      "source": "ctir",
+      "source_id": "https://www.gov.br/gsi/pt-br/assuntos/ctir/recomendacoes/2026/recomendacao-23-2026",
+      "url": "https://www.gov.br/gsi/pt-br/assuntos/ctir/recomendacoes/2026/recomendacao-23-2026"
+    }
+  ],
+  "expected_output": "One row per public SMB candidate, with attribution strength, device, destination, action and Outlook network activity count.",
+  "history": [
+    {
+      "change": "Created",
+      "date": "2026-11-25T03:12:33Z",
+      "revision": 1,
+      "summary": "Created evidence-backed hunt and validated all supported variants."
+    }
+  ],
+  "hypothesis": "Unexpected public SMB from Outlook, or SMB recorded under System close to Outlook activity, can help triage forced authentication associated with CVE-2026-124194.",
+  "id": "HF-2026-0037",
+  "indicator_ids": [],
+  "lookback": 30,
+  "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+  "primary_table": "DeviceNetworkEvents",
+  "profiles": [
+    "sentinel-endpoint"
+  ],
+  "published": "2026-11-25T03:12:33Z",
+  "release_id": "hf-20261125-177228c39fc4",
+  "research": "outlook-cve-2026-124194",
+  "revision": 1,
+  "schema_version": 1,
+  "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+  "signature": "94db0cbd471a69d81096c457ef5017f542afcd4dd6429a3be3be66350e760f37",
+  "source_ids": [
+    "HF-INT-6532E5CD2531FA"
+  ],
+  "source_published": "2026-10-22",
+  "status": "partially_validated",
+  "tactic": "Credential Access",
+  "tags": [
+    "Exploitation",
+    "Credential Access",
+    "Email"
+  ],
+  "technique": "T1187",
+  "title": "External SMB From Outlook and Nearby System Connections",
+  "updated": "2026-11-25T03:12:33Z",
+  "validation": {
+    "date": "2026-11-25T03:12:33Z",
+    "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+    "variants_checked": 10
+  },
+  "variants": {
+    "sentinel-endpoint": {
+      "profile_revision": 2,
+      "queries": {
+        "1": {
+          "json": "DeviceNetworkEvents\n| where TimeGenerated > ago(1d)\n| where isnotempty(DeviceName)\n| extend IsOutlook = InitiatingProcessFileName =~ \"outlook.exe\", IsPublicSmb = Protocol =~ \"TCP\" and RemoteIPType =~ \"Public\" and RemotePort in (139, 445) and isnotempty(RemoteIP)\n| where IsOutlook or (IsPublicSmb and (InitiatingProcessFileName =~ \"System\" or isempty(InitiatingProcessFileName)))\n| summarize OutlookNetworkEvents = countif(IsOutlook), SmbConnections = make_list_if(bag_pack(\"EventTime\", TimeGenerated, \"Action\", ActionType, \"Process\", InitiatingProcessFileName, \"IP\", RemoteIP, \"Port\", RemotePort, \"URL\", RemoteUrl), IsPublicSmb, 256) by DeviceName, Window = bin(TimeGenerated, 5m)\n| where OutlookNetworkEvents > 0\n| mv-expand Connection = SmbConnections\n| extend Process = tostring(Connection.Process)\n| extend Attribution = iff(Process =~ \"outlook.exe\", \"Outlook process\", \"System or unknown process with nearby Outlook activity\")\n| project TimeGenerated = todatetime(Connection.EventTime), DeviceName, Attribution, Process, RemoteIP = tostring(Connection.IP), RemotePort = toint(Connection.Port), RemoteUrl = tostring(Connection.URL), ActionType = tostring(Connection.Action), OutlookNetworkEvents\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceNetworkEvents\n| where TimeGenerated > ago(1d)\n| where isnotempty(DeviceName)\n| extend IsOutlook = InitiatingProcessFileName =~ \"outlook.exe\", IsPublicSmb = Protocol =~ \"TCP\" and RemoteIPType =~ \"Public\" and RemotePort in (139, 445) and isnotempty(RemoteIP)\n| where IsOutlook or (IsPublicSmb and (InitiatingProcessFileName =~ \"System\" or isempty(InitiatingProcessFileName)))\n| summarize OutlookNetworkEvents = countif(IsOutlook), SmbConnections = make_list_if(bag_pack(\"EventTime\", TimeGenerated, \"Action\", ActionType, \"Process\", InitiatingProcessFileName, \"IP\", RemoteIP, \"Port\", RemotePort, \"URL\", RemoteUrl), IsPublicSmb, 256) by DeviceName, Window = bin(TimeGenerated, 5m)\n| where OutlookNetworkEvents > 0\n| mv-expand Connection = SmbConnections\n| extend Process = tostring(Connection.Process)\n| extend Attribution = iff(Process =~ \"outlook.exe\", \"Outlook process\", \"System or unknown process with nearby Outlook activity\")\n| project TimeGenerated = todatetime(Connection.EventTime), DeviceName, Attribution, Process, RemoteIP = tostring(Connection.IP), RemotePort = toint(Connection.Port), RemoteUrl = tostring(Connection.URL), ActionType = tostring(Connection.Action), OutlookNetworkEvents\n| order by TimeGenerated desc\n"
+        },
+        "14": {
+          "json": "DeviceNetworkEvents\n| where TimeGenerated > ago(14d)\n| where isnotempty(DeviceName)\n| extend IsOutlook = InitiatingProcessFileName =~ \"outlook.exe\", IsPublicSmb = Protocol =~ \"TCP\" and RemoteIPType =~ \"Public\" and RemotePort in (139, 445) and isnotempty(RemoteIP)\n| where IsOutlook or (IsPublicSmb and (InitiatingProcessFileName =~ \"System\" or isempty(InitiatingProcessFileName)))\n| summarize OutlookNetworkEvents = countif(IsOutlook), SmbConnections = make_list_if(bag_pack(\"EventTime\", TimeGenerated, \"Action\", ActionType, \"Process\", InitiatingProcessFileName, \"IP\", RemoteIP, \"Port\", RemotePort, \"URL\", RemoteUrl), IsPublicSmb, 256) by DeviceName, Window = bin(TimeGenerated, 5m)\n| where OutlookNetworkEvents > 0\n| mv-expand Connection = SmbConnections\n| extend Process = tostring(Connection.Process)\n| extend Attribution = iff(Process =~ \"outlook.exe\", \"Outlook process\", \"System or unknown process with nearby Outlook activity\")\n| project TimeGenerated = todatetime(Connection.EventTime), DeviceName, Attribution, Process, RemoteIP = tostring(Connection.IP), RemotePort = toint(Connection.Port), RemoteUrl = tostring(Connection.URL), ActionType = tostring(Connection.Action), OutlookNetworkEvents\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceNetworkEvents\n| where TimeGenerated > ago(14d)\n| where isnotempty(DeviceName)\n| extend IsOutlook = InitiatingProcessFileName =~ \"outlook.exe\", IsPublicSmb = Protocol =~ \"TCP\" and RemoteIPType =~ \"Public\" and RemotePort in (139, 445) and isnotempty(RemoteIP)\n| where IsOutlook or (IsPublicSmb and (InitiatingProcessFileName =~ \"System\" or isempty(InitiatingProcessFileName)))\n| summarize OutlookNetworkEvents = countif(IsOutlook), SmbConnections = make_list_if(bag_pack(\"EventTime\", TimeGenerated, \"Action\", ActionType, \"Process\", InitiatingProcessFileName, \"IP\", RemoteIP, \"Port\", RemotePort, \"URL\", RemoteUrl), IsPublicSmb, 256) by DeviceName, Window = bin(TimeGenerated, 5m)\n| where OutlookNetworkEvents > 0\n| mv-expand Connection = SmbConnections\n| extend Process = tostring(Connection.Process)\n| extend Attribution = iff(Process =~ \"outlook.exe\", \"Outlook process\", \"System or unknown process with nearby Outlook activity\")\n| project TimeGenerated = todatetime(Connection.EventTime), DeviceName, Attribution, Process, RemoteIP = tostring(Connection.IP), RemotePort = toint(Connection.Port), RemoteUrl = tostring(Connection.URL), ActionType = tostring(Connection.Action), OutlookNetworkEvents\n| order by TimeGenerated desc\n"
+        },
+        "3": {
+          "json": "DeviceNetworkEvents\n| where TimeGenerated > ago(3d)\n| where isnotempty(DeviceName)\n| extend IsOutlook = InitiatingProcessFileName =~ \"outlook.exe\", IsPublicSmb = Protocol =~ \"TCP\" and RemoteIPType =~ \"Public\" and RemotePort in (139, 445) and isnotempty(RemoteIP)\n| where IsOutlook or (IsPublicSmb and (InitiatingProcessFileName =~ \"System\" or isempty(InitiatingProcessFileName)))\n| summarize OutlookNetworkEvents = countif(IsOutlook), SmbConnections = make_list_if(bag_pack(\"EventTime\", TimeGenerated, \"Action\", ActionType, \"Process\", InitiatingProcessFileName, \"IP\", RemoteIP, \"Port\", RemotePort, \"URL\", RemoteUrl), IsPublicSmb, 256) by DeviceName, Window = bin(TimeGenerated, 5m)\n| where OutlookNetworkEvents > 0\n| mv-expand Connection = SmbConnections\n| extend Process = tostring(Connection.Process)\n| extend Attribution = iff(Process =~ \"outlook.exe\", \"Outlook process\", \"System or unknown process with nearby Outlook activity\")\n| project TimeGenerated = todatetime(Connection.EventTime), DeviceName, Attribution, Process, RemoteIP = tostring(Connection.IP), RemotePort = toint(Connection.Port), RemoteUrl = tostring(Connection.URL), ActionType = tostring(Connection.Action), OutlookNetworkEvents\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceNetworkEvents\n| where TimeGenerated > ago(3d)\n| where isnotempty(DeviceName)\n| extend IsOutlook = InitiatingProcessFileName =~ \"outlook.exe\", IsPublicSmb = Protocol =~ \"TCP\" and RemoteIPType =~ \"Public\" and RemotePort in (139, 445) and isnotempty(RemoteIP)\n| where IsOutlook or (IsPublicSmb and (InitiatingProcessFileName =~ \"System\" or isempty(InitiatingProcessFileName)))\n| summarize OutlookNetworkEvents = countif(IsOutlook), SmbConnections = make_list_if(bag_pack(\"EventTime\", TimeGenerated, \"Action\", ActionType, \"Process\", InitiatingProcessFileName, \"IP\", RemoteIP, \"Port\", RemotePort, \"URL\", RemoteUrl), IsPublicSmb, 256) by DeviceName, Window = bin(TimeGenerated, 5m)\n| where OutlookNetworkEvents > 0\n| mv-expand Connection = SmbConnections\n| extend Process = tostring(Connection.Process)\n| extend Attribution = iff(Process =~ \"outlook.exe\", \"Outlook process\", \"System or unknown process with nearby Outlook activity\")\n| project TimeGenerated = todatetime(Connection.EventTime), DeviceName, Attribution, Process, RemoteIP = tostring(Connection.IP), RemotePort = toint(Connection.Port), RemoteUrl = tostring(Connection.URL), ActionType = tostring(Connection.Action), OutlookNetworkEvents\n| order by TimeGenerated desc\n"
+        },
+        "30": {
+          "json": "DeviceNetworkEvents\n| where TimeGenerated > ago(30d)\n| where isnotempty(DeviceName)\n| extend IsOutlook = InitiatingProcessFileName =~ \"outlook.exe\", IsPublicSmb = Protocol =~ \"TCP\" and RemoteIPType =~ \"Public\" and RemotePort in (139, 445) and isnotempty(RemoteIP)\n| where IsOutlook or (IsPublicSmb and (InitiatingProcessFileName =~ \"System\" or isempty(InitiatingProcessFileName)))\n| summarize OutlookNetworkEvents = countif(IsOutlook), SmbConnections = make_list_if(bag_pack(\"EventTime\", TimeGenerated, \"Action\", ActionType, \"Process\", InitiatingProcessFileName, \"IP\", RemoteIP, \"Port\", RemotePort, \"URL\", RemoteUrl), IsPublicSmb, 256) by DeviceName, Window = bin(TimeGenerated, 5m)\n| where OutlookNetworkEvents > 0\n| mv-expand Connection = SmbConnections\n| extend Process = tostring(Connection.Process)\n| extend Attribution = iff(Process =~ \"outlook.exe\", \"Outlook process\", \"System or unknown process with nearby Outlook activity\")\n| project TimeGenerated = todatetime(Connection.EventTime), DeviceName, Attribution, Process, RemoteIP = tostring(Connection.IP), RemotePort = toint(Connection.Port), RemoteUrl = tostring(Connection.URL), ActionType = tostring(Connection.Action), OutlookNetworkEvents\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceNetworkEvents\n| where TimeGenerated > ago(30d)\n| where isnotempty(DeviceName)\n| extend IsOutlook = InitiatingProcessFileName =~ \"outlook.exe\", IsPublicSmb = Protocol =~ \"TCP\" and RemoteIPType =~ \"Public\" and RemotePort in (139, 445) and isnotempty(RemoteIP)\n| where IsOutlook or (IsPublicSmb and (InitiatingProcessFileName =~ \"System\" or isempty(InitiatingProcessFileName)))\n| summarize OutlookNetworkEvents = countif(IsOutlook), SmbConnections = make_list_if(bag_pack(\"EventTime\", TimeGenerated, \"Action\", ActionType, \"Process\", InitiatingProcessFileName, \"IP\", RemoteIP, \"Port\", RemotePort, \"URL\", RemoteUrl), IsPublicSmb, 256) by DeviceName, Window = bin(TimeGenerated, 5m)\n| where OutlookNetworkEvents > 0\n| mv-expand Connection = SmbConnections\n| extend Process = tostring(Connection.Process)\n| extend Attribution = iff(Process =~ \"outlook.exe\", \"Outlook process\", \"System or unknown process with nearby Outlook activity\")\n| project TimeGenerated = todatetime(Connection.EventTime), DeviceName, Attribution, Process, RemoteIP = tostring(Connection.IP), RemotePort = toint(Connection.Port), RemoteUrl = tostring(Connection.URL), ActionType = tostring(Connection.Action), OutlookNetworkEvents\n| order by TimeGenerated desc\n"
+        },
+        "7": {
+          "json": "DeviceNetworkEvents\n| where TimeGenerated > ago(7d)\n| where isnotempty(DeviceName)\n| extend IsOutlook = InitiatingProcessFileName =~ \"outlook.exe\", IsPublicSmb = Protocol =~ \"TCP\" and RemoteIPType =~ \"Public\" and RemotePort in (139, 445) and isnotempty(RemoteIP)\n| where IsOutlook or (IsPublicSmb and (InitiatingProcessFileName =~ \"System\" or isempty(InitiatingProcessFileName)))\n| summarize OutlookNetworkEvents = countif(IsOutlook), SmbConnections = make_list_if(bag_pack(\"EventTime\", TimeGenerated, \"Action\", ActionType, \"Process\", InitiatingProcessFileName, \"IP\", RemoteIP, \"Port\", RemotePort, \"URL\", RemoteUrl), IsPublicSmb, 256) by DeviceName, Window = bin(TimeGenerated, 5m)\n| where OutlookNetworkEvents > 0\n| mv-expand Connection = SmbConnections\n| extend Process = tostring(Connection.Process)\n| extend Attribution = iff(Process =~ \"outlook.exe\", \"Outlook process\", \"System or unknown process with nearby Outlook activity\")\n| project TimeGenerated = todatetime(Connection.EventTime), DeviceName, Attribution, Process, RemoteIP = tostring(Connection.IP), RemotePort = toint(Connection.Port), RemoteUrl = tostring(Connection.URL), ActionType = tostring(Connection.Action), OutlookNetworkEvents\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceNetworkEvents\n| where TimeGenerated > ago(7d)\n| where isnotempty(DeviceName)\n| extend IsOutlook = InitiatingProcessFileName =~ \"outlook.exe\", IsPublicSmb = Protocol =~ \"TCP\" and RemoteIPType =~ \"Public\" and RemotePort in (139, 445) and isnotempty(RemoteIP)\n| where IsOutlook or (IsPublicSmb and (InitiatingProcessFileName =~ \"System\" or isempty(InitiatingProcessFileName)))\n| summarize OutlookNetworkEvents = countif(IsOutlook), SmbConnections = make_list_if(bag_pack(\"EventTime\", TimeGenerated, \"Action\", ActionType, \"Process\", InitiatingProcessFileName, \"IP\", RemoteIP, \"Port\", RemotePort, \"URL\", RemoteUrl), IsPublicSmb, 256) by DeviceName, Window = bin(TimeGenerated, 5m)\n| where OutlookNetworkEvents > 0\n| mv-expand Connection = SmbConnections\n| extend Process = tostring(Connection.Process)\n| extend Attribution = iff(Process =~ \"outlook.exe\", \"Outlook process\", \"System or unknown process with nearby Outlook activity\")\n| project TimeGenerated = todatetime(Connection.EventTime), DeviceName, Attribution, Process, RemoteIP = tostring(Connection.IP), RemotePort = toint(Connection.Port), RemoteUrl = tostring(Connection.URL), ActionType = tostring(Connection.Action), OutlookNetworkEvents\n| order by TimeGenerated desc\n"
+        }
+      },
+      "table": "DeviceNetworkEvents",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    }
+  }
+}

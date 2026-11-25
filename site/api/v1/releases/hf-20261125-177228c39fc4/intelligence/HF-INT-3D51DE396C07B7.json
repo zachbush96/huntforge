@@ -1,0 +1,48 @@
+{
+  "actors": [
+    "GT13"
+  ],
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-16232"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "GreyNoise attributed activity against at least 22 organizations to the cluster it tracks as GT13. Its confirmed Check Point Security Management Server campaign activity spanned October 17 to November 2, 2026, and the report cites Check Point CVE-2026-16232.",
+      "location": "Campaign Summary",
+      "modified": null,
+      "observation_date": "2026-10-17",
+      "published": "2026-11-23",
+      "source": "greynoise",
+      "source_id": "greynoise:2de3299b-0f1b-4940-8fdd-acccdb1e59da",
+      "url": "https://www.greynoise.io/blog/check-point-security-management-servers-intrusion-campaign"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-3D51DE396C07B7",
+  "in_window": true,
+  "indicators": [],
+  "kind": "Research",
+  "published": "2026-11-23",
+  "related": [],
+  "release_id": "hf-20261125-177228c39fc4",
+  "retrieved": "2026-11-25T18:01:29Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "300524b5dfc749aa5ed285d2a019ad6b33429a5c3c78cee4934de6875a6613bb",
+  "software": [],
+  "source": "greynoise",
+  "source_id": "greynoise:2de3299b-0f1b-4940-8fdd-acccdb1e59da",
+  "status": "active",
+  "summary": "GreyNoise attributed activity against at least 22 organizations to the cluster it tracks as GT13. Its confirmed Check Point Security Management Server campaign activity spanned October 17 to November 2, 2026, and the report cites Check Point CVE-2026-16232.",
+  "tags": [
+    "Exploitation"
+  ],
+  "techniques": [],
+  "title": "An Active Intrusion Campaign Against Check Point Security Management Servers",
+  "updated": "2026-11-25T17:59:44Z"
+}
