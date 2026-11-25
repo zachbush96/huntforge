@@ -5,7 +5,7 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import date, datetime, timedelta
 from zoneinfo import ZoneInfo
 
-from .queries import generate_hunts, reviewed
+from .queries import add_technique_pivots, generate_hunts, reviewed
 from .sources import ROOT, advisory, attack, canonical, digest, epss, kev, read_json, utc_now, write_json
 
 CATALOG = ROOT / "data/catalog.json"
@@ -105,6 +105,7 @@ def update(as_of, initial_release=False):
     start = as_of - timedelta(days=30)
     catalog, changes, reviewed_ids = collection(start, as_of, previous, started)
     profiles = read_json(PROFILE_CATALOG)
+    add_technique_pivots(catalog["reference"]["items"], profiles)
     hunts, rejected = generate_hunts(catalog["records"], catalog["indicators"], reviewed_ids, profiles,
                                     catalog.get("reference", {}).get("items", []), prior_hunts, started)
     if not hunts:

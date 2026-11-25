@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1
+
+- Added statically validated exact-ID Sentinel alert pivots to all ATT&CK technique pages.
+
 ## 0.2.0
 
 - Made Sentinel Logs the default for every Hunt Card and expanded the catalog with recent ARTEX, nation-state, phishing and endpoint hunts.

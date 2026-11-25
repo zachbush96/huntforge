@@ -2281,6 +2281,12 @@
         "date": "2026-11-25T02:24:27Z",
         "revision": 1,
         "summary": "Created evidence-backed hunt and validated all supported variants."
+      },
+      {
+        "change": "Updated",
+        "date": "2026-11-25T02:33:51Z",
+        "revision": 2,
+        "summary": "Revalidated after changes to variants."
       }
     ],
     "hypothesis": "Find ingested provider alerts for Jasper Sleet sign-in activity.",
@@ -2294,10 +2300,10 @@
     ],
     "published": "2026-11-25T02:24:27Z",
     "research": "dprk-ai",
-    "revision": 1,
+    "revision": 2,
     "schema_version": 1,
     "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
-    "signature": "1793e3e33fe502f2e0186d688ad83e222c86391d119a86fb0fb61ded554369ac",
+    "signature": "4c6607ed8828db8ea41abacc719ead32c7d967ee385929eebd1de3c99882a5e0",
     "source_ids": [
       "HF-INT-ECB2698675C7A2"
     ],
@@ -2312,15 +2318,15 @@
     ],
     "technique": "T1078.004",
     "title": "North Korea · Jasper Sleet Sign-in Alerts",
-    "updated": "2026-11-25T02:24:27Z",
+    "updated": "2026-11-25T02:33:51Z",
     "validation": {
-      "date": "2026-11-25T02:24:27Z",
+      "date": "2026-11-25T02:33:51Z",
       "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
       "variants_checked": 10
     },
     "variants": {
       "sentinel-alerts": {
-        "profile_revision": 1,
+        "profile_revision": 2,
         "queries": {
           "1": {
             "json": "SecurityAlert\n| where TimeGenerated > ago(1d)\n| where AlertName has_all (\"Jasper\", \"Sleet\") and (AlertName contains \"sign-in\" or AlertName has \"signin\")\n| project TimeGenerated, AlertName, AlertSeverity, ProductName, CompromisedEntity, SystemAlertId\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
@@ -2387,6 +2393,12 @@
         "date": "2026-11-25T02:24:27Z",
         "revision": 1,
         "summary": "Created evidence-backed hunt and validated all supported variants."
+      },
+      {
+        "change": "Updated",
+        "date": "2026-11-25T02:33:51Z",
+        "revision": 2,
+        "summary": "Revalidated after changes to variants."
       }
     ],
     "hypothesis": "Find ingested alerts for ProcmacSteal, a payload family reported in Sapphire Sleet's Rust software compromise.",
@@ -2400,10 +2412,10 @@
     ],
     "published": "2026-11-25T02:24:27Z",
     "research": "dprk-ai",
-    "revision": 1,
+    "revision": 2,
     "schema_version": 1,
     "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
-    "signature": "2085cd96be04496d961e10e57deea13f23d48713649f7f28d9b15b70ae853c29",
+    "signature": "6068cb575925a9ed309263a25c324b74546189362e3a46b02f39bc431cefa4bf",
     "source_ids": [
       "HF-INT-ECB2698675C7A2"
     ],
@@ -2418,15 +2430,15 @@
     ],
     "technique": "T1195.002",
     "title": "North Korea · Sapphire Sleet ProcmacSteal Alerts",
-    "updated": "2026-11-25T02:24:27Z",
+    "updated": "2026-11-25T02:33:51Z",
     "validation": {
-      "date": "2026-11-25T02:24:27Z",
+      "date": "2026-11-25T02:33:51Z",
       "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
       "variants_checked": 10
     },
     "variants": {
       "sentinel-alerts": {
-        "profile_revision": 1,
+        "profile_revision": 2,
         "queries": {
           "1": {
             "json": "SecurityAlert\n| where TimeGenerated > ago(1d)\n| where AlertName contains \"ProcmacSteal\" or Description contains \"ProcmacSteal\" or ExtendedProperties contains \"ProcmacSteal\"\n| project TimeGenerated, AlertName, AlertSeverity, ProductName, CompromisedEntity, SystemAlertId\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",

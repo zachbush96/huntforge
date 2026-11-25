@@ -381,7 +381,7 @@
     "assumptions": "The relevant security product must emit and forward alerts to the Sentinel workspace. Detection names and details vary by connector and product.",
     "id": "sentinel-alerts",
     "name": "Sentinel · Security alerts",
-    "revision": 1,
+    "revision": 2,
     "schema_version": 1,
     "short": "Sentinel Alerts",
     "source": "Integrated security alert provider",
@@ -396,7 +396,9 @@
           "Description": "string",
           "ExtendedProperties": "string",
           "ProductName": "string",
+          "SubTechniques": "string",
           "SystemAlertId": "string",
+          "Techniques": "string",
           "TimeGenerated": "datetime"
         },
         "documentation": "https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/securityalert",

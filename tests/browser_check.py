@@ -126,6 +126,12 @@ def sentinel_catalog(page, base):
     query.get_by_role("button",name="Copy KQL").click()
     expect(page.get_by_text("KQL copied.",exact=True)).to_have_text("KQL copied.")
     assert "TimeGenerated" in page.evaluate("navigator.clipboard.readText()")
+    page.goto(base+"#/techniques/T1001")
+    expect(page.get_by_role("heading",name="What this technique means")).to_be_visible()
+    pivot = page.locator(".technique-query").filter(has_text="Look up alerts tagged T1001")
+    pivot.locator("summary").click()
+    expect(pivot.locator("pre")).to_contain_text("SecurityAlert")
+    expect(pivot.locator("pre")).to_contain_text("T1001")
 
 
 def results_explanation(page, base):
@@ -206,6 +212,11 @@ def check(base, channel, screenshots):
         errors = []
         page.on("pageerror", lambda error: errors.append(str(error)))
         page.goto(base)
+        expect(page.get_by_role("heading", name="Daily Threat Brief")).to_be_visible()
+        page.evaluate("""localStorage.setItem('huntforge:preferences',JSON.stringify({
+            profiles:{'HF-2025-0001':'defender-xdr'}
+        }))""")
+        page.reload()
         expect(page.get_by_role("heading", name="Daily Threat Brief")).to_be_visible()
         drilldowns(page,base)
         sentinel_catalog(page,base)

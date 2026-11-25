@@ -2,7 +2,7 @@
 
 HuntForge publishes public threat intelligence and evidence-backed KQL for Microsoft Sentinel and Defender XDR. Browse [the website](https://zachbush96.github.io/huntforge/), resolve [the latest API release](https://zachbush96.github.io/huntforge/api/v1/latest.json), or download KQL from [the publication branch](https://github.com/zachbush96/huntforge/tree/codex/publications/hunts/queries).
 
-Hunts default to Microsoft Sentinel Logs. Filter by source date, actor or topic, and open a technique to see its definition and available Sentinel queries.
+Hunts default to Microsoft Sentinel Logs. Filter by source date, actor or topic. Each technique includes a definition and a Sentinel alert pivot using ATT&CK tags, plus behavioral KQL when HuntForge covers the technique.
 
 On a Hunt Card, select **Explain the results to me** to analyze redacted results with an endpoint you control. Enter the full URL, model and API format. The form supports Ollama native chat and Chat Completions-compatible servers. The endpoint must allow browser requests from the HuntForge origin. Requests go directly to your endpoint, and results and API keys are kept in the form for the current visit.
 

@@ -194,6 +194,29 @@ def static_pass(query):
     )
 
 
+def add_technique_pivots(items, profiles):
+    profile = next(row for row in profiles if row["id"] == "sentinel-alerts")
+    validate_profile(profile)
+    schema = profile["tables"]["SecurityAlert"]
+    techniques = [row for row in items if row["type"] == "attack-pattern"]
+    jobs = []
+    for row in techniques:
+        identifier = row["id"]
+        if not re.fullmatch(r"T\d{4}(?:\.\d{3})?", identifier):
+            raise ValueError(f"Unexpected technique identifier: {identifier}")
+        pattern = r"(?i)(?:^|[^a-z0-9.])" + re.escape(identifier) + r"(?:$|[^a-z0-9.])"
+        statements = [
+            f'| where strcat(Techniques, " ", SubTechniques) matches regex @"{pattern}"',
+            "| project TimeGenerated, AlertName, AlertSeverity, ProductName, CompromisedEntity, SystemAlertId",
+            "| order by TimeGenerated desc",
+        ]
+        jobs.append({"table": "SecurityAlert", "columns": schema["columns"], "query": render_query("SecurityAlert", schema, statements, 30)})
+    for row, job, result in zip(techniques, jobs, run_validator(jobs) if jobs else []):
+        if result["syntax"] or result["errors"] or not result["tabular"] or not static_pass(job["query"]):
+            raise ValueError(f"Technique alert pivot failed validation: {row['id']}")
+        row["alert_query"] = job["query"]
+
+
 def generate_hunts(records, indicators, by_key, profiles, techniques, previous, today):
     ids = {x["id"] for x in techniques}
     jobs, checks, candidates, rejected = [], {}, [], []

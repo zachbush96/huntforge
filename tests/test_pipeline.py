@@ -83,6 +83,17 @@ class QueriesTests(unittest.TestCase):
                 self.assertEqual(hunt["primary_table"], hunt["variants"][profile_id]["table"])
                 self.assertIn("| where TimeGenerated >", hunt["variants"][profile_id]["queries"][str(hunt["lookback"])]["table"])
 
+    def test_all_techniques_have_descriptions_and_sentinel_alert_pivots(self):
+        items = read_json(CATALOG)["reference"]["items"]
+        techniques = [row for row in items if row["type"] == "attack-pattern"]
+        self.assertTrue(techniques)
+        for row in techniques:
+            with self.subTest(technique=row["id"]):
+                self.assertTrue(row["description"])
+                self.assertTrue(row["alert_query"].startswith("SecurityAlert\n| where TimeGenerated > ago(30d)"))
+                self.assertIn(row["id"].replace(".", r"\."), row["alert_query"])
+                self.assertTrue(static_pass(row["alert_query"]))
+
 
 class ReleaseTests(unittest.TestCase):
     def test_pack_carries_individual_queries_and_provenance(self):
