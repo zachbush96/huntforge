@@ -166,7 +166,7 @@ jobs:
             rsync -a --delete ".archive/accepted/$directory/" ".archive/published/$directory/"
           done
           git -C .archive/published add -A -- data hunts reports site
-          git -C .archive/published +            -c 'user.name=github-actions[bot]' -c 'user.email=41898282+github-actions[bot]@users.noreply.github.com' +            commit -m "Archive $EXPECTED_RELEASE"
+          git -C .archive/published -c 'user.name=github-actions[bot]' -c 'user.email=41898282+github-actions[bot]@users.noreply.github.com' commit -m "Archive $EXPECTED_RELEASE"
           git -C .archive/published push origin HEAD:refs/heads/codex/publications
           echo "Archived $EXPECTED_RELEASE in codex/publications" >> "$GITHUB_STEP_SUMMARY"
 
