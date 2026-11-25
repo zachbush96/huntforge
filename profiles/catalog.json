@@ -53,7 +53,7 @@
     "assumptions": "In the Microsoft Defender XDR connector, enable raw event streaming into the Sentinel Log Analytics workspace for the table used by this query.",
     "id": "sentinel-endpoint",
     "name": "Sentinel · Endpoint events",
-    "revision": 1,
+    "revision": 2,
     "schema_version": 1,
     "short": "Sentinel Endpoint",
     "source": "Defender XDR raw event streaming",
@@ -82,6 +82,7 @@
           "DeviceName": "string",
           "FileName": "string",
           "FolderPath": "string",
+          "InitiatingProcessCommandLine": "string",
           "InitiatingProcessFileName": "string",
           "SHA256": "string",
           "TimeGenerated": "datetime"
@@ -100,7 +101,11 @@
           "DeviceName": "string",
           "InitiatingProcessCommandLine": "string",
           "InitiatingProcessFileName": "string",
+          "LocalIP": "string",
+          "LocalPort": "int",
+          "Protocol": "string",
           "RemoteIP": "string",
+          "RemoteIPType": "string",
           "RemotePort": "int",
           "RemoteUrl": "string",
           "TimeGenerated": "datetime"

@@ -67,10 +67,11 @@ def collection(start, end, previous, stamp):
         prior = old.get(identifier, {})
         signature = digest(canonical({k: v for k, v in row.items() if k not in volatile}))
         changed = prior.get("signature") != signature
-        retrieved = status[row["source"]].get("retrieved")
+        feed = status.get(row["source"], {})
+        retrieved = feed.get("retrieved")
         if row["id"] in reviewed_ids.values() and not prior:
             retrieved = stamp
-        if status[row["source"]]["state"] != "live":
+        if feed.get("state") != "live":
             retrieved = prior.get("retrieved", retrieved)
         row = {**row, "signature": signature, "revision": prior.get("revision", 0) + changed,
                "first_retrieved": prior.get("first_retrieved", retrieved), "retrieved": retrieved,

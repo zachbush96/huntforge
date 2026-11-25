@@ -965,5 +965,289 @@
       ]
     },
     "expected_output": "One row per source, destination and five-minute window."
+  },
+  {
+    "id": "HF-2026-0036",
+    "research": "drupal-core-cve-2026-132165",
+    "cves": ["CVE-2026-132165"],
+    "title": "Drupal Web Workers Writing Site Settings",
+    "description": "Find a web or PHP worker writing Drupal's per-site settings file, a lead for the installer abuse described in CVE-2026-132165.",
+    "hypothesis": "A web worker unexpectedly writing an existing site's settings.php may indicate attempted reinstallation or configuration tampering.",
+    "confidence": "Source-backed behavioral hypothesis",
+    "profiles": ["sentinel-endpoint"],
+    "technique": "T1190",
+    "tactic": "Initial Access",
+    "lookback": 30,
+    "considerations": [
+      "Scope results to known Drupal hosts and established sites. New installations, deployments and configuration management can write this file legitimately.",
+      "Compare its change time and content to the deployment record. Corroborate unexpected database-setting or administrator changes with web and application audit logs.",
+      "This covers a subset of CVE-2026-132165 behavior. The publisher does not report settings.php modifications in the live cases cited by the advisory."
+    ],
+    "actors": [],
+    "query": {
+      "table": "DeviceFileEvents",
+      "statements": [
+        "| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"settings.php\"",
+        "| where FolderPath matches regex @\"(?i)(?:^|[/\\\\])sites[/\\\\][^/\\\\]+(?:[/\\\\]settings[.]php)?[/\\\\]?$\"",
+        "| where InitiatingProcessFileName in~ (\"w3wp.exe\", \"php.exe\", \"php-cgi.exe\", \"php-cgi\", \"httpd.exe\", \"httpd\", \"apache2\") or InitiatingProcessFileName startswith \"php-fpm\"",
+        "| project {time}, DeviceName, ActionType, FileName, FolderPath, InitiatingProcessFileName, SHA256",
+        "| order by {time} desc"
+      ]
+    },
+    "expected_output": "One row per matching file operation, with the host, path, process and file hash when collected."
+  },
+  {
+    "id": "HF-2026-0037",
+    "research": "outlook-cve-2026-124194",
+    "cves": ["CVE-2026-124194"],
+    "title": "External SMB From Outlook and Nearby System Connections",
+    "description": "Find attempts from classic Outlook to reach public SMB destinations and check for kernel-attributed attempts on devices with nearby Outlook network activity.",
+    "hypothesis": "Unexpected public SMB from Outlook, or SMB recorded under System close to Outlook activity, can help triage forced authentication associated with CVE-2026-124194.",
+    "confidence": "Source-backed behavioral hypothesis",
+    "profiles": ["sentinel-endpoint"],
+    "technique": "T1187",
+    "tactic": "Credential Access",
+    "lookback": 30,
+    "considerations": [
+      "Review the attribution column first. A shared five-minute window with Outlook is a weaker lead because normal Outlook and SMB traffic can overlap.",
+      "Exclude approved external file services and validate endpoint, firewall and outbound NTLM records for direction, authentication and whether any connection was blocked.",
+      "Correlate the user and device timeline with recent message opens and check the installed Office build. A network event alone cannot establish authentication data exposure.",
+      "The query pivots on TCP ports 139 and 445 for publicly classified destinations. It does not measure HTTP or WebDAV behavior and returns up to 256 SMB events per device per five-minute window."
+    ],
+    "actors": [],
+    "query": {
+      "table": "DeviceNetworkEvents",
+      "statements": [
+        "| where isnotempty(DeviceName)",
+        "| extend IsOutlook = InitiatingProcessFileName =~ \"outlook.exe\", IsPublicSmb = Protocol =~ \"TCP\" and RemoteIPType =~ \"Public\" and RemotePort in (139, 445) and isnotempty(RemoteIP)",
+        "| where IsOutlook or (IsPublicSmb and (InitiatingProcessFileName =~ \"System\" or isempty(InitiatingProcessFileName)))",
+        "| summarize OutlookNetworkEvents = countif(IsOutlook), SmbConnections = make_list_if(bag_pack(\"EventTime\", {time}, \"Action\", ActionType, \"Process\", InitiatingProcessFileName, \"IP\", RemoteIP, \"Port\", RemotePort, \"URL\", RemoteUrl), IsPublicSmb, 256) by DeviceName, Window = bin({time}, 5m)",
+        "| where OutlookNetworkEvents > 0",
+        "| mv-expand Connection = SmbConnections",
+        "| extend Process = tostring(Connection.Process)",
+        "| extend Attribution = iff(Process =~ \"outlook.exe\", \"Outlook process\", \"System or unknown process with nearby Outlook activity\")",
+        "| project {time} = todatetime(Connection.EventTime), DeviceName, Attribution, Process, RemoteIP = tostring(Connection.IP), RemotePort = toint(Connection.Port), RemoteUrl = tostring(Connection.URL), ActionType = tostring(Connection.Action), OutlookNetworkEvents",
+        "| order by {time} desc"
+      ]
+    },
+    "expected_output": "One row per public SMB candidate, with attribution strength, device, destination, action and Outlook network activity count."
+  },
+  {
+    "id": "HF-2026-0038",
+    "research": "gitlab-ce-ee-cve-2026-97229",
+    "cves": ["CVE-2026-97229"],
+    "title": "GitLab CVE-2026-97229 Vendor Detection Alerts",
+    "description": "Find Sentinel alerts named after the six exploitation-attempt detections that GitLab publishes for CVE-2026-97229.",
+    "hypothesis": "A GitLab-published exploitation-attempt detection can surface requests rejected by safeguards, crash evidence or a related error burst on self-managed GitLab.",
+    "confidence": "Vendor detection names",
+    "profiles": ["sentinel-alerts"],
+    "technique": "T1190",
+    "tactic": "Initial Access",
+    "lookback": 30,
+    "considerations": [
+      "This requires the GitLab detections or an equivalent alert integration to write to SecurityAlert. Match the published titles or preserve them as part of the alert title.",
+      "The generic Onigmo native crash signal also covers other GitLab/Ruby vulnerabilities. Corroborate with the CI regex compilation stack, related GitLab detections, and the GitLab and Ruby builds.",
+      "A rejection or worker crash can be consistent with an attempt. Review host process, file and network timelines independently for evidence of code execution."
+    ],
+    "actors": [],
+    "query": {
+      "table": "SecurityAlert",
+      "statements": [
+        "| extend DetectionName = replace_regex(tolower(AlertName), @\"[^a-z0-9]+\", \"_\")",
+        "| extend MatchedDetection = extract(@\"(?:^|_)(onigmo_native_worker_crash|graphql_ci_?lint_hostile_regexp|ci_regexp_oversized_non_ascii_path|ci_regexp_guard_rejection|ci_lint_workhorse_worker_crash|ci_lint_scripted_client_error_burst)(?:_|$)\", 1, DetectionName)",
+        "| where isnotempty(MatchedDetection)",
+        "| project {time}, MatchedDetection, AlertName, AlertSeverity, CompromisedEntity, ProductName, SystemAlertId",
+        "| order by {time} desc"
+      ]
+    },
+    "expected_output": "One row per matching alert with the named detection, affected entity, alert ID and reporting product."
+  },
+  {
+    "id": "HF-2026-0039",
+    "research": "gitlab-ce-ee-cve-2026-97229",
+    "cves": ["CVE-2026-97229"],
+    "title": "GitLab CI Regex Native Worker Crashes",
+    "description": "Look for GitLab Puma crash records containing both the CI regex matcher and native Onigmo compilation frames.",
+    "hypothesis": "A native worker crash in GitLab's CI regex compilation path can support investigation of CVE-2026-97229 even when alerts have not been integrated.",
+    "confidence": "Vendor-documented crash signature",
+    "profiles": ["sentinel-cef"],
+    "technique": "T1190",
+    "tactic": "Initial Access",
+    "lookback": 30,
+    "considerations": [
+      "Forward self-managed GitLab Puma worker errors as multiline CEF records. Preserve the crash header and stack in Message and use GitLab as the mapped vendor or product.",
+      "This is a corroborating signal for the CI path. It can also occur with related Onigmo flaws. Check Ruby package provenance and GitLab build because custom images may use a separately updated Ruby package.",
+      "Compare timestamps to GitLab Workhorse and application logs, then independently check for execution evidence. A crash never proves successful exploitation."
+    ],
+    "actors": [],
+    "query": {
+      "table": "CommonSecurityLog",
+      "statements": [
+        "| where DeviceVendor =~ \"GitLab\" or DeviceProduct contains \"GitLab\"",
+        "| where Message contains_cs \"[BUG]\" and Message contains_cs \"regexp_matcher.rb\"",
+        "| where Message contains_cs \"onig_compile\" or Message contains_cs \"compile_tree\" or Message contains_cs \"compile_length_tree\"",
+        "| project {time}, DeviceVendor, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message",
+        "| order by {time} desc"
+      ]
+    },
+    "expected_output": "One row per forwarded Puma crash with its host mapping and original crash message for corroboration."
+  },
+  {
+    "id": "HF-2026-0040",
+    "research": "ivanti-ics-cve-2026-111357",
+    "cves": ["CVE-2026-111357"],
+    "title": "Ivanti Connect Secure Post-Compromise Capture Artifacts",
+    "description": "Find forwarded Ivanti events that mention the hidden-directory sniffer or companion credential parser recovered by Volexity after compromise.",
+    "hypothesis": "The combination of the appliance's hidden capture directory and a rare executable or script name can identify artifacts seen after an exploit chain involving CVE-2026-111357.",
+    "confidence": "Observed post-exploitation artifacts",
+    "profiles": ["sentinel-cef"],
+    "technique": "T1040",
+    "tactic": "Credential Access",
+    "lookback": 30,
+    "considerations": [
+      "This requires Ivanti appliance process, file or forensic events mapped to CEF with paths preserved in Message or Activity. Standard VPN connection events usually lack those fields.",
+      "This is a campaign-specific post-compromise hunt. Matches support investigation of the reported incident pattern and cannot identify which vulnerability was used at a given appliance.",
+      "Verify any matching path against approved diagnostics, preserve available appliance and downstream identity evidence, and check Ivanti's guidance on forensic collection. The investigators reported log tampering."
+    ],
+    "actors": [],
+    "query": {
+      "table": "CommonSecurityLog",
+      "statements": [
+        "| where DeviceVendor in~ (\"Ivanti\", \"Pulse Secure\") or DeviceProduct contains \"Connect Secure\"",
+        "| extend EventText = strcat(Activity, \" \", Message)",
+        "| extend MatchedArtifact = extract(@\"(/[.]icscap/(?:dsstatmond|h[.]py))(?:[^a-zA-Z0-9._/-]|$)\", 1, EventText)",
+        "| where isnotempty(MatchedArtifact)",
+        "| project {time}, MatchedArtifact, Activity, DeviceVendor, DeviceProduct, DestinationHostName, SourceIP, DestinationIP, DeviceAction, Message",
+        "| order by {time} desc"
+      ]
+    },
+    "expected_output": "One row per matching forwarded event, with the artifact, available device and network fields, and source log message."
+  },
+  {
+    "id": "HF-2026-0041",
+    "research": "aws-waf-php2shell",
+    "cves": ["CVE-2026-109618", "CVE-2026-109619"],
+    "title": "AWS WAF PHP2Shell Managed Rule Matches",
+    "description": "Find AWS WAF's exact managed rule IDs or structured managed-rule labels associated with the PHP2Shell vulnerabilities.",
+    "hypothesis": "A PHP2Shell WAF rule match identifies a request worth reviewing for potential attempted exploitation against a PHP runtime.",
+    "confidence": "Vendor-managed request detection",
+    "profiles": ["sentinel-cef"],
+    "technique": "T1190",
+    "tactic": "Initial Access",
+    "lookback": 30,
+    "considerations": [
+      "Forward AWS WAF events to CEF using AWS as the vendor or AWS WAF as the product. Preserve the matched rule ID in Activity or the AWS WAF JSON log object in Message.",
+      "Use the managed rule group's current version. Coverage of CVE-2026-109618 and CVE-2026-109619 overlaps, so a matched rule cannot reliably attribute the request to either CVE alone.",
+      "Check the final WAF action and corresponding origin logs. A match in count mode may pass to the application, while a block can stop the request at the edge. Neither outcome establishes code execution."
+    ],
+    "actors": [],
+    "query": {
+      "table": "CommonSecurityLog",
+      "statements": [
+        "| where DeviceVendor in~ (\"AWS\", \"Amazon\", \"Amazon Web Services\") or DeviceProduct =~ \"AWS WAF\"",
+        "| extend WafEvent = parse_json(Message), MappedRule = iff(Activity in~ (\"PHP2Shell_BODY_Extended\", \"PHP2Shell_BODY\"), Activity, \"\")",
+        "| extend Labels = iff(isnotempty(MappedRule) or coalesce(array_length(WafEvent.labels), 0) == 0, dynamic([{}]), WafEvent.labels)",
+        "| mv-expand Label = Labels",
+        "| extend LabelName = tostring(Label.name)",
+        "| extend MatchedRule = case(LabelName =~ \"awswaf:managed:aws:php-app:PHP2Shell_Body_Extended\", \"PHP2Shell_BODY_Extended\", LabelName =~ \"awswaf:managed:aws:php-app:PHP2Shell_Body\", \"PHP2Shell_BODY\", MappedRule)",
+        "| where isnotempty(MatchedRule)",
+        "| project {time}, MatchedRule, WafAction = coalesce(tostring(WafEvent.action), DeviceAction), ClientIP = coalesce(tostring(WafEvent.httpRequest.clientIp), SourceIP), RequestId = tostring(WafEvent.httpRequest.requestId), RequestUri = coalesce(tostring(WafEvent.httpRequest.uri), RequestURL), WebAcl = tostring(WafEvent.webaclId), DestinationHostName",
+        "| order by {time} desc"
+      ]
+    },
+    "expected_output": "One row per matching WAF detection, with the final WAF action, client, request, and web ACL when available."
+  },
+  {
+    "id": "HF-2026-0042",
+    "research": "monai-cairn-cve-2026-133968",
+    "cves": ["CVE-2026-133968"],
+    "title": "MONAI Label Process Writing a Python Startup Hook",
+    "description": "Find writes to sitecustomize.py by the MONAI Label service or launcher, based on an artifact Amazon Threat Intelligence observed in a Cairn incident.",
+    "hypothesis": "An unexpected Python startup hook written by a MONAI Label process is a post-compromise lead for CVE-2026-133968.",
+    "confidence": "Observed post-exploitation artifact",
+    "profiles": ["sentinel-endpoint"],
+    "technique": "T1546.018",
+    "tactic": "Persistence",
+    "lookback": 30,
+    "considerations": [
+      "Scope results to systems hosting MONAI Label. Review the process command line to verify the writer was the app service. Package installation, approved deployments and administrative tooling can account for some writes.",
+      "Confirm the container or host mounted path, file owner and hash. Review Python process starts and any unusual egress after the file event.",
+      "This targets one observed artifact. CVE-2026-133968 can produce other file writes. Launchers that hide the MONAI process name and command line require a locally tuned process filter."
+    ],
+    "actors": [],
+    "query": {
+      "table": "DeviceFileEvents",
+      "statements": [
+        "| where ActionType in~ (\"FileCreated\", \"FileModified\", \"FileRenamed\") and FileName =~ \"sitecustomize.py\"",
+        "| where InitiatingProcessFileName in~ (\"monailabel\", \"monailabel.exe\") or InitiatingProcessCommandLine matches regex @\"(?i)(?:^|[^a-z0-9_-])monailabel(?:$|[^a-z0-9_-])\"",
+        "| project {time}, DeviceName, ActionType, FileName, FolderPath, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine",
+        "| order by {time} desc"
+      ]
+    },
+    "expected_output": "One row per matching endpoint file event with the path, initiating process and file hash when collected."
+  },
+  {
+    "id": "HF-2026-0043",
+    "research": "optimizely-cve-2026-132224",
+    "cves": ["CVE-2026-132224"],
+    "title": "Optimizely Web Experimentation Skimmer Connections",
+    "description": "Match proxy or firewall destinations against the exact domains confirmed in Optimizely's incident report and identify the reported role of each destination.",
+    "hypothesis": "Contact with Optimizely's confirmed skimmer infrastructure around November 16 is a lead for downstream browser exposure associated with CVE-2026-132224.",
+    "confidence": "Vendor-confirmed campaign indicators",
+    "profiles": ["sentinel-cef"],
+    "technique": "T1195.002",
+    "tactic": "Initial Access",
+    "lookback": 30,
+    "considerations": [
+      "Review November 16, 2026 UTC first and verify the user had a page or project in scope at that time. Some infrastructure is reused, so outside-window matches can be unrelated.",
+      "Compare endpoint browsing, CSP reports and application access logs. Distinguish blocked attempts, successful browser access, and any validated exposure using proxy action and corroborating records.",
+      "A connection to the reported collection endpoint is a higher-priority lead. Destination contact alone does not establish which site initiated it or whether information was transmitted."
+    ],
+    "actors": [],
+    "query": {
+      "table": "CommonSecurityLog",
+      "statements": [
+        "| extend RequestHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(RequestURL).Host), RequestURL)))",
+        "| extend ConnectionHost = tolower(trim_end(@\"[.]+\", coalesce(tostring(parse_url(DestinationHostName).Host), DestinationHostName)))",
+        "| extend MatchedDomain = case(RequestHost in ({domain}), RequestHost, ConnectionHost in ({domain}), ConnectionHost, \"\")",
+        "| where isnotempty(MatchedDomain)",
+        "| extend IndicatorRole = iff(MatchedDomain == \"pay-relay.wordpressadmin001.workers.dev\", \"Reported collection endpoint\", \"Reported skimmer infrastructure\")",
+        "| project {time}, MatchedDomain, IndicatorRole, SourceIP, DestinationIP, DeviceAction, DeviceProduct, RequestURL",
+        "| order by {time} desc"
+      ]
+    },
+    "expected_output": "One row per matching proxied or logged connection, with the exact domain, campaign role, client, and connector action."
+  },
+  {
+    "id": "HF-2026-0044",
+    "research": "expressway-cve-2026-76466",
+    "cves": ["CVE-2026-76466"],
+    "title": "Cisco Expressway Post-Compromise Python Staging",
+    "description": "Find the shared-memory package path and numbered working-directory pattern that F6 observed on compromised Cisco Expressway appliances.",
+    "hypothesis": "Python package staging on an Expressway appliance together with numbered working directories can identify a post-compromise pattern in one CVE-2026-76466 case.",
+    "confidence": "Observed post-exploitation artifacts",
+    "profiles": ["sentinel-cef"],
+    "technique": "T1105",
+    "tactic": "Command and Control",
+    "lookback": 30,
+    "considerations": [
+      "Requires forwarded Cisco Expressway process, file or forensic logs that retain paths in Activity or Message. Ordinary call and session logs are unlikely to contain them.",
+      "Review both artifact types on the same appliance and contrast them with approved maintenance. F6 reports the numbered directories as a possible ARTEX link. Directory naming alone does not attribute activity to ARTEX.",
+      "These are post-compromise artifacts from one incident. Corroborate with appliance evidence, the cluster inventory, and the Cisco PSIRT advisory."
+    ],
+    "actors": [],
+    "query": {
+      "table": "CommonSecurityLog",
+      "statements": [
+        "| where DeviceProduct contains \"Expressway\" or (DeviceVendor =~ \"Cisco\" and Activity contains \"Expressway\")",
+        "| extend EventText = strcat(Activity, \" \", Message)",
+        "| extend MatchedArtifact = extract(@\"(/dev/shm/pylibs|/mnt/harddisk/i[0-9]{4})(?:[^a-zA-Z0-9._-]|$)\", 1, EventText)",
+        "| where isnotempty(MatchedArtifact)",
+        "| extend ArtifactType = iff(MatchedArtifact == \"/dev/shm/pylibs\", \"Shared-memory package staging\", \"Numbered working directory\")",
+        "| project {time}, MatchedArtifact, ArtifactType, DeviceProduct, DestinationHostName, DestinationIP, SourceIP, Activity, Message",
+        "| order by {time} desc"
+      ]
+    },
+    "expected_output": "One row per CEF event with the matched path and the accompanying device or network context."
   }
 ]

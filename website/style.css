@@ -57,7 +57,7 @@ button:hover, .button:hover { background: #e7e7e7; }
 .compact-header { height: 54px; padding-inline: 15px; gap: 19px; background: #0b0b0b; }
 .compact-header .brand { font-size: 35px; }
 .compact-header .tagline { white-space: nowrap; }
-.brief-search { display: none; }
+.brief-search { display: inline-flex; }
 .layout { display: grid; min-height: calc(100vh - 62px); grid-template-columns: minmax(186px, 14.15%) minmax(0, 1fr) minmax(335px, 29.2%); }
 .layout.compact { grid-template-columns: minmax(165px, 12.15%) minmax(0, 1fr); min-height: calc(100vh - 54px); }
 .layout.hunt main { width: 100%; max-width: 1370px; margin-inline: auto; }
@@ -260,6 +260,17 @@ input[type=checkbox] { accent-color: #0b0b0b; }
 .filters input[data-filter=q] { min-width: min(300px, 68vw); }
 .filters select { max-width: min(100%, 70vw); }
 .filters button { min-height: 28px; }
+.catalog-filters { display: grid; align-items: start; }
+.filter-primary, .filter-fields, .results-toolbar { display: flex; align-items: end; flex-wrap: wrap; gap: 9px 12px; }
+.filter-fields { margin-top: 10px; }
+.catalog-filters summary { cursor: pointer; font: 700 .76rem var(--mono); }
+.catalog-filters .chips button { min-height: 26px; }
+.results-toolbar { align-items: center; padding: 8px 0; margin-bottom: 7px; font: 650 .75rem var(--mono); scroll-margin-top: 10px; }
+.results-toolbar strong { margin-right: auto; }
+.results-toolbar label, .bulk-indicators label { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+[data-record-card] { cursor: pointer; }
+[data-record-card]:hover, [data-record-card]:focus-within { outline: 1px solid var(--ink); outline-offset: -1px; }
+.bulk-indicators .code-surface, #exploitation-hunts + .catalog-grid .code-surface { margin-top: 8px; max-height: 28rem; overflow: auto; cursor: text; }
 .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 12px; margin-top: 14px; }
 .catalog-card { background: #fff; border: 1px solid #151515; border-radius: 3px; padding: 12px; overflow-wrap: anywhere; }
 .catalog-card h2, .catalog-card h3 { font: 900 1.1rem/1.18 var(--heavy); letter-spacing: -.025em; margin: 5px 0 7px; }
@@ -319,7 +330,6 @@ dialog textarea { min-height: 200px; resize: vertical; font: .77rem/1.5 var(--mo
   .brand .anvil { width: 33px; height: 23px; }
   .topbar .brand-slash, .topbar .tagline, .top-end .top-box, .top-end .top-divider, .top-end .public, .top-end .top-link span, .top-end .api-link { display: none; }
   .top-end { gap: 9px; }
-  .brief-search { display: inline-flex; }
   .search-button { border: 0; width: auto; padding: 0 2px; }
   .search-button span, .search-button kbd { display: none; }
   .layout, .layout.compact, .layout.hunt { display: block; min-height: calc(100vh - 53px); }

@@ -4,8 +4,8 @@ import argparse
 import json
 import os
 import re
-import zipfile
 from pathlib import Path
+from urllib.parse import parse_qs, urljoin, urlsplit
 
 from playwright.sync_api import expect, sync_playwright
 
@@ -203,6 +203,111 @@ def results_explanation(page, base):
         page.unroute(endpoint+"/**",model_response)
 
 
+def catalog_controls(page, base):
+    page.set_viewport_size({"width":1586,"height":992})
+    page.goto(base)
+    page.reload()
+    search = page.locator(".topbar").get_by_role("button",name="Search",exact=True)
+    expect(search).to_be_visible()
+    search.click()
+    expect(page.get_by_role("searchbox",name="Search public release")).to_be_focused()
+    page.keyboard.press("Escape")
+
+    page.goto(base+"#/techniques")
+    page_size = page.get_by_label("Results per page",exact=True).first
+    cards = page.locator(".catalog-card")
+    expect(page_size).to_have_value("12")
+    expect(cards).to_have_count(12)
+    page_size.select_option("24")
+    expect(cards).to_have_count(24)
+    pager = page.get_by_role("navigation",name="Results pages").last
+    pager.get_by_label("Next page",exact=True).click()
+    expect(pager.get_by_text("Showing 25–48",exact=False)).to_be_visible()
+    params = parse_qs(urlsplit(page.url).fragment.partition("?")[2])
+    assert params.get("size") == ["24"] and params.get("page") == ["2"],page.url
+    page.reload()
+    expect(page_size).to_have_value("24")
+    expect(pager.get_by_text("Showing 25–48",exact=False)).to_be_visible()
+
+    card_destination = cards.first.get_by_role("heading").get_by_role("link").get_attribute("href")
+    assert card_destination
+    cards.first.click(position={"x":8,"y":8})
+    expect(page).to_have_url(urljoin(base,card_destination))
+    expect(page.get_by_role("heading",name="What this technique means")).to_be_visible()
+    page.go_back()
+    expect(pager.get_by_text("Showing 25–48",exact=False)).to_be_visible()
+
+    tactic = cards.locator('a[href*="tactic="]').first
+    tactic_href = tactic.get_attribute("href")
+    assert tactic_href
+    target_tactic = parse_qs(urlsplit(tactic_href).fragment.partition("?")[2])["tactic"][0]
+    tactic.click()
+    expect(page.get_by_label("Tactic",exact=True)).to_have_value(target_tactic)
+    assert urlsplit(page.url).fragment.partition("?")[0] == "/techniques"
+    page.goto(base+"#/techniques")
+    page_size.select_option("48")
+    expect(cards).to_have_count(48)
+
+    page.goto(base+"#/hunts")
+    expect(page.get_by_role("heading",name="Hunts",exact=True)).to_be_visible()
+    expect(page.get_by_role("link",name=re.compile("hunt pack",re.I))).to_have_count(0)
+    expect(page.get_by_role("button",name=re.compile("download selected",re.I))).to_have_count(0)
+    expect(page.get_by_label("Include in ZIP pack",exact=True)).to_have_count(0)
+
+    page.set_viewport_size({"width":390,"height":844})
+    page.goto(base+"#/developers")
+    expect(page.get_by_role("heading",name="Developers",exact=True)).to_be_visible()
+    active_link = page.get_by_role("navigation",name="Main navigation").get_by_role("link",name="Developers",exact=True)
+    expect(active_link).to_have_attribute("aria-current","page")
+    expect(active_link).to_be_in_viewport(ratio=0.5)
+    assert page.evaluate("document.documentElement.scrollWidth") == 390
+
+
+def defender_queries(page, base):
+    def copy_query(control, table, days):
+        control.click()
+        heading = f"{table}\n| where TimeGenerated > ago({days}d)"
+        page.wait_for_function("""heading => navigator.clipboard.readText().then(text =>
+            text.replaceAll('\\r\\n', '\\n').startsWith(heading))""", arg=heading, timeout=5000)
+        return page.evaluate("navigator.clipboard.readText()").replace("\r\n", "\n")
+
+    page.goto(base+"#/vulnerabilities")
+    coverage = page.get_by_label("Exploitation hunt coverage", exact=True)
+    coverage.select_option(label="With exploitation hunts")
+    assert parse_qs(urlsplit(page.url).fragment.partition("?")[2])["exploitCoverage"] == ["covered"]
+    cve = "CVE-2026-132165"
+    page.get_by_label("CVE", exact=True).fill(cve)
+    record = page.locator(".finding").filter(has=page.get_by_role("link", name=cve, exact=True)).first
+    record.get_by_role("heading").get_by_role("link").click()
+    section = page.get_by_role("region", name="Exploitation hunts", exact=True)
+    vulnerability_query = copy_query(section.get_by_role("button", name="Copy KQL", exact=True), "DeviceFileEvents", 30)
+    assert "settings.php" in vulnerability_query
+    hunt_link = section.get_by_role("link", name="Open Hunt Card", exact=True)
+    expect(hunt_link).to_have_attribute("href", "#/hunts/HF-2026-0036")
+    hunt_link.click()
+    expect(page.get_by_role("heading", name="Microsoft Sentinel Logs KQL")).to_be_visible()
+    expect(page.locator(".code-line").first).to_have_text("DeviceFileEvents")
+    expect(page.locator(".code-line").filter(has_text="settings.php").first).to_be_visible()
+
+    page.goto(base+"#/indicators")
+    lookback = page.get_by_label("Indicator lookback", exact=True)
+    copy = page.get_by_role("button", name="Copy all current indicators as KQL", exact=True)
+    expect(lookback).to_have_value("30")
+    expect(copy).to_be_enabled()
+    default_query = copy_query(copy, "CommonSecurityLog", 30)
+    assert "RequestURL" in default_query
+    for field in ("MatchedField", "MatchedSide", "TrafficDirection", "LogComputer", "IntelRecordId",
+                  "IndicatorContext", "EvidenceURLs"):
+        assert field in default_query, field
+    lookback.select_option("14")
+    shorter_query = copy_query(copy, "CommonSecurityLog", 14)
+    assert "ago(30d)" not in shorter_query
+    assert re.search(r"\bdynamic\(\{", shorter_query)
+    page.get_by_label("Indicator telemetry", exact=True).select_option(label="DeviceNetworkEvents")
+    endpoint_query = copy_query(copy, "DeviceNetworkEvents", 14)
+    assert "RemoteIP" in endpoint_query and "RemoteUrl" in endpoint_query
+
+
 def check(base, channel, screenshots):
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(channel=channel, headless=True)
@@ -221,11 +326,12 @@ def check(base, channel, screenshots):
         drilldowns(page,base)
         sentinel_catalog(page,base)
         results_explanation(page,base)
+        defender_queries(page,base)
         page.goto(base)
         expect(page.get_by_role("heading", name="Daily Threat Brief")).to_be_visible()
         if screenshots:
             page.screenshot(path=str(screenshots / "brief.png"), full_page=True)
-        page.get_by_role("button", name="Page 2", exact=True).click()
+        page.get_by_label("Page 2",exact=True).click()
         expect(page.get_by_text("Showing 5–8",exact=False)).to_be_visible()
         page.keyboard.press("/")
         search = page.get_by_role("searchbox",name="Search public release")
@@ -261,13 +367,9 @@ def check(base, channel, screenshots):
         assert copied.startswith("WindowsEvent\n") and copied.count("make_list(pack_all())") == 1
         with page.expect_download() as download:
             page.get_by_role("button",name="KQL (.kql)").click()
+        assert download.value.suggested_filename.endswith(".kql")
         assert download.value.path().read_bytes().decode()==copied
-        with page.expect_download() as download:
-            page.get_by_role("button",name="Hunt Pack (.zip)").click()
-        with zipfile.ZipFile(download.value.path()) as archive:
-            item = json.loads(archive.read("manifest.json"))["queries"][0]
-            assert item["output"] == "json" and item["lookback_days"] == 14 and item["evidence"]
-            assert archive.read(item["file"]).decode() == copied
+        expect(page.get_by_role("button",name="Hunt Pack (.zip)")).to_have_count(0)
         page.evaluate("() => { navigator.clipboard.writeText = () => Promise.reject(new Error('fixture denied')); }")
         page.locator("[data-action=copy-query]").click()
         expect(page.get_by_role("dialog",name="KQL")).to_be_visible()
@@ -295,11 +397,6 @@ def check(base, channel, screenshots):
         page.get_by_label("Profile",exact=True).select_option("sentinel-cef")
         expect(page.get_by_role("heading",name="Microsoft 365 Outage Phishing Destinations")).to_be_visible()
         expect(page.get_by_role("heading",name="Suspicious PowerShell Network Activity")).to_have_count(0)
-        page.locator(".catalog-card").filter(has=page.get_by_role("heading",name="Microsoft 365 Outage Phishing Destinations")).get_by_label("Include in ZIP pack").check()
-        with page.expect_download() as download:
-            page.get_by_role("button",name="Download selected (1)").click()
-        with zipfile.ZipFile(download.value.path()) as archive:
-            assert archive.testzip() is None
         page.goto(base+"#/intelligence")
         page.get_by_role("searchbox",name="Search",exact=True).fill("zz-no-fixture-result")
         expect(page.get_by_text("No records match these filters.")).to_be_visible()
@@ -312,7 +409,11 @@ def check(base, channel, screenshots):
         page.evaluate("localStorage.removeItem('huntforge:preferences')")
         page.goto(base)
         page.get_by_role("link",name=re.compile("high severity",re.I)).click()
-        expect(page.get_by_label("Severity",exact=True)).to_have_value("high")
+        severity = page.get_by_label("Severity",exact=True)
+        if not severity.is_visible():
+            page.get_by_text(re.compile(r"^More filters\b")).click()
+        expect(severity).to_be_visible()
+        expect(severity).to_have_value("high")
         assert page.evaluate("document.documentElement.scrollWidth") == 390
         for path,title,name in [("","Daily Threat Brief","brief-mobile"),
             ("#/hunts/HF-2025-0001","Suspicious PowerShell Network Activity","hunt-mobile")]:
@@ -321,6 +422,7 @@ def check(base, channel, screenshots):
             assert page.evaluate("document.documentElement.scrollWidth") == 390
             if screenshots:
                 page.screenshot(path=str(screenshots / (name+".png")), full_page=True)
+        catalog_controls(page,base)
         assert not errors,errors
         context.close()
         browser.close()

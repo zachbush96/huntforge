@@ -6,9 +6,9 @@ import os
 import re
 import subprocess
 from datetime import date, timedelta
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, urlunsplit
 
-from .sources import ROOT, digest, evidence, read_json, record, stable
+from .sources import CVE, ROOT, digest, evidence, read_json, record, stable
 
 DAYS = (1, 3, 7, 14, 30)
 JSON_SUFFIX = "| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)"
@@ -19,6 +19,18 @@ DOMAIN = re.compile(r"^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}$")
 TABLES = {"powershell-download": "DeviceNetworkEvents", "gsocket": "DeviceProcessEvents",
           "quick-assist": "DeviceProcessEvents", "outage-phishing": "DeviceNetworkEvents",
           "service-principal": "AADServicePrincipalSignInLogs"}
+CURATED_EVIDENCE = {
+    "drupal": {"https://www.drupal.org/sa-core-2026-017"},
+    "ctir": {"https://www.gov.br/gsi/pt-br/assuntos/ctir/recomendacoes/2026/recomendacao-23-2026"},
+    "gitlab": {"https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-4-2-released/"},
+    "volexity": {"https://www.volexity.com/blog/2026/10/13/a-series-of-unauthenticated-events-chained-exploitation-of-ivanti-connect-secure-zero-days/"},
+    "aws-security": {
+        "https://aws.amazon.com/blogs/security/using-aws-waf-to-apply-mitigations-for-php2shell-rce-vulnerabilities-cve-2026-109618-and-cve-2026-109619/",
+        "https://aws.amazon.com/blogs/security/chinese-nexus-actors-cairn-ai-agents-found-a-zero-day-on-their-own/",
+    },
+    "optimizely": {"https://pages.optimizely.com/rs/947-RKE-048/images/Security%20Incident%20Report%20-%20Optimizely%20Web%20Experimentation%20-%20Nov%2017%202026.pdf"},
+    "f6": {"https://www.f6.ru/blog/CVE-2026-76466/"},
+}
 
 
 def kql_string(value):
@@ -34,17 +46,28 @@ def reviewed():
     for item in read_json(ROOT / "data/reviewed-evidence.json"):
         url = item["url"]
         parts = urlsplit(url)
-        if parts[:2] != ("https", "www.microsoft.com") or not parts.path.startswith("/en-us/security/blog/"):
+        source = item.get("source", "microsoft")
+        microsoft = source == "microsoft" and parts[:2] == ("https", "www.microsoft.com") and parts.path.startswith("/en-us/security/blog/")
+        if not microsoft and url not in CURATED_EVIDENCE.get(source, ()):
             raise ValueError("Reviewed evidence must reference the approved publisher")
-        ref = evidence("microsoft", url, url, item["date"], item["location"], item["claim"])
+        cves = item.get("cves", [])
+        if any(not CVE.fullmatch(cve) for cve in cves):
+            raise ValueError("Invalid CVE in reviewed evidence")
+        ref = evidence(source, url, url, item["date"], item["location"], item["claim"])
         ref["observation_date"] = item.get("observation_date")
-        row = record("microsoft", url, item["date"], item["title"], item["claim"], "Research", "unrated",
-                     [ref], cves=[], tags=item["tags"], techniques=item["techniques"], software=item.get("software", []),
+        ref["modified"] = item.get("updated_date")
+        row = record(source, url, item["date"], item["title"], item["claim"], "Research", "unrated",
+                     [ref], cves=cves, tags=item["tags"], techniques=item["techniques"], software=item.get("software", []),
                      **({"actors": item["actors"]} if item.get("actors") else {}))
         by_key[item["key"]] = row["id"]
         row["indicators"] = []
         for kind, original, context in item.get("indicators", []):
-            value = original.lower().replace("[.]", ".").replace("hxxps://", "https://")
+            value = re.sub(r"^hxxps://", "https://", original.replace("[.]", "."), flags=re.I)
+            if kind == "url":
+                parsed = urlsplit(value)
+                value = urlunsplit(parsed._replace(scheme=parsed.scheme.lower(), netloc=parsed.netloc.lower()))
+            else:
+                value = value.lower()
             if kind == "domain" and not DOMAIN.fullmatch(value):
                 raise ValueError("Invalid domain indicator")
             if kind == "ipv4" and not ipaddress.IPv4Address(value).is_global:
@@ -225,6 +248,9 @@ def generate_hunts(records, indicators, by_key, profiles, techniques, previous, 
         source = records_by_id[by_key[rule["research"]]]
         if rule["technique"] not in ids or not source["evidence"] or rule["technique"] not in source["techniques"]:
             rejected.append({"id": rule["id"], "reason": "Missing reviewed behavioral evidence or ATT&CK reference"})
+            continue
+        if not set(rule.get("cves", [])).issubset(source["cves"]):
+            rejected.append({"id": rule["id"], "reason": "CVE linkage lacks matching reviewed evidence"})
             continue
         metadata = {key: value for key, value in rule.items() if key != "query"}
         candidate = {**metadata, "schema_version": 1, "status": "partially_validated", "source_ids": [source["id"]],

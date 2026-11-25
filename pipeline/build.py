@@ -1,17 +1,16 @@
 """Build one consistent static website and versioned public API snapshot."""
 
 import argparse
-import io
 import json
 import os
 import re
 import shutil
 import subprocess
-import zipfile
 from collections import Counter, defaultdict
 from pathlib import Path
 
 from .collect import CATALOG, HUNTS, PROFILE_CATALOG, REPORT
+from .indicator_query import build_indicator_query
 from .sources import ROOT, canonical, digest, read_json, write_json
 
 DIST = ROOT / "dist"
@@ -20,27 +19,6 @@ RELEASE_ID = re.compile(r"^hf-\d{8}-[0-9a-f]{12}$")
 
 def json_index(release, items):
     return {"schema_version": 1, "release_id": release, "count": len(items), "items": items}
-
-
-def zip_snapshot(hunts, release):
-    buffer = io.BytesIO()
-    files = {}
-    entries = []
-    for hunt in hunts:
-        for profile_id, variant in hunt["variants"].items():
-            filename = f"{hunt['id']}-r{hunt['revision']}-{profile_id}.kql"
-            files[filename] = variant["queries"][str(hunt["lookback"])]["table"].encode()
-            entries.append({"hunt_id": hunt["id"], "revision": hunt["revision"], "file": filename,
-                            "profile": profile_id, "days": hunt["lookback"], "output": "table",
-                            "evidence": hunt["evidence"], "validation": variant["validation"]})
-    files["manifest.json"] = canonical({"schema_version": 1, "release_id": release, "queries": entries})
-    files["README.txt"] = b"HuntForge KQL pack. Run each .kql file as a separate query in its documented target.\n"
-    with zipfile.ZipFile(buffer, mode="w", compression=zipfile.ZIP_DEFLATED) as archive:
-        for name, contents in sorted(files.items()):
-            info = zipfile.ZipInfo(name)
-            info.compress_type = zipfile.ZIP_DEFLATED
-            archive.writestr(info, contents)
-    return buffer.getvalue()
 
 
 def make_search(records, hunts, indicators, reference):
@@ -73,22 +51,27 @@ def release_files(catalog, hunts, profiles, report, commit):
         for cve in row["cves"]:
             shared[cve].append(row["id"])
     hunts_for_record = defaultdict(list)
+    hunts_for_cve = defaultdict(list)
     for hunt in hunts:
         for identifier in hunt["source_ids"]:
             hunts_for_record[identifier].append(hunt["id"])
+        for cve in hunt.get("cves", []):
+            hunts_for_cve[cve].append(hunt["id"])
     records = [{**row, "related": sorted({linked for cve in row["cves"] for linked in shared[cve] if linked != row["id"]}),
+                "exploitation_hunts": sorted({identifier for cve in row["cves"] for identifier in hunts_for_cve[cve]}) if row["kind"] == "Vulnerability" else [],
                 "hunts": hunts_for_record[row["id"]], "epss": catalog["epss"].get(row["source_id"], [])} for row in records]
+    indicator_query = build_indicator_query(indicators, records, profiles, catalog["window"]["through"])
     file_map = {
         "intelligence/index.json": canonical(json_index(release, [{k: v for k, v in row.items() if k != "epss"} for row in records])),
         "hunts/index.json": canonical(json_index(release, [{k: v for k, v in row.items() if k != "variants"} for row in hunts])),
         "indicators/index.json": canonical(json_index(release, indicators)),
+        "indicators/bulk-query.json": canonical({**indicator_query, "schema_version": 1, "release_id": release}),
         "profiles/index.json": canonical(json_index(release, profiles)),
         "reference/index.json": canonical({**json_index(release, reference), "version": catalog["reference"].get("collection"),
                                             "license": catalog["reference"].get("license")}),
         "search.json": canonical(json_index(release, make_search(records, hunts, indicators, reference))),
         "changes.json": canonical({**json_index(release, catalog["changes"]), "tombstones": catalog["tombstones"]}),
         "report.json": canonical({**report, "release_id": release}),
-        "downloads/hunt-pack.zip": zip_snapshot(hunts, release),
     }
     for kind, rows in (("intelligence", records), ("hunts", hunts), ("indicators", indicators), ("profiles", profiles)):
         for row in rows:

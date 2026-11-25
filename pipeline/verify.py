@@ -60,7 +60,10 @@ def verify_http(url, expected):
     uri = f"api/v1/releases/{expected}/"
     manifest = json.loads(get(uri + "manifest.json", True)[0])
     assert manifest["release_id"] == expected
-    required = ["hunts/HF-2025-0001.json", "intelligence/index.json", "downloads/hunt-pack.zip"]
+    example_kql = next(path for path in manifest["files"] if path.startswith("downloads/HF-2025-0001-") and path.endswith(".kql"))
+    required = ["hunts/HF-2025-0001.json", "intelligence/index.json", example_kql]
+    if "indicators/bulk-query.json" in manifest["files"]:
+        required.append("indicators/bulk-query.json")
     with ThreadPoolExecutor(max_workers=3) as pool:
         checks = [pool.submit(get, uri + path, path.endswith(".json")) for path in required]
         for path, result in zip(required, checks):

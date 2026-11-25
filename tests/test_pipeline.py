@@ -1,10 +1,9 @@
-import io
+import json
 import unittest
-import zipfile
 from datetime import date
 from unittest.mock import patch
 
-from pipeline.build import release_files, zip_snapshot
+from pipeline.build import release_files
 from pipeline.collect import CATALOG, HUNTS, PROFILE_CATALOG, REPORT, collection
 from pipeline.queries import DAYS, JSON_SUFFIX, render_query, run_validator, static_pass, validate_profile, variant
 from pipeline.sources import CisaListing, ROOT, plain, read_json, stable
@@ -96,16 +95,6 @@ class QueriesTests(unittest.TestCase):
 
 
 class ReleaseTests(unittest.TestCase):
-    def test_pack_carries_individual_queries_and_provenance(self):
-        hunts = read_json(HUNTS)
-        with zipfile.ZipFile(io.BytesIO(zip_snapshot(hunts,"test"))) as archive:
-            self.assertIsNone(archive.testzip())
-            self.assertIn(b'"evidence"',archive.read("manifest.json"))
-            for hunt in hunts:
-                for profile in hunt["variants"]:
-                    path = f"{hunt['id']}-r{hunt['revision']}-{profile}.kql"
-                    self.assertEqual(archive.read(path).decode(),hunt["variants"][profile]["queries"][str(hunt["lookback"])]["table"])
-
     def test_release_build_is_deterministic_and_has_real_provenance(self):
         inputs = [read_json(path) for path in (CATALOG,HUNTS,PROFILE_CATALOG,REPORT)]
         manifest, files = release_files(*inputs,"a" * 40)
@@ -113,6 +102,26 @@ class ReleaseTests(unittest.TestCase):
         self.assertTrue(manifest["counts"]["in_window"] > 0)
         self.assertTrue(manifest["source_commit"] == "a" * 40)
         self.assertTrue(all(item["evidence"] for item in inputs[0]["records"]))
+        self.assertIn("indicators/bulk-query.json", manifest["files"])
+        self.assertFalse(any(path.endswith(".zip") for path in files))
+        for hunt in inputs[1]:
+            for profile, variant in hunt["variants"].items():
+                path = f"downloads/{hunt['id']}-r{hunt['revision']}-{profile}.kql"
+                self.assertEqual(files[path].decode(), variant["queries"][str(hunt["lookback"])]["table"])
+
+    def test_vulnerability_hunts_link_through_reviewed_cves(self):
+        catalog, hunts, profiles, report = [read_json(path) for path in (CATALOG,HUNTS,PROFILE_CATALOG,REPORT)]
+        _, files = release_files(catalog, hunts, profiles, report, "a" * 40)
+        index = json.loads(files["intelligence/index.json"])["items"]
+        vulnerabilities = [row for row in index if row["kind"] == "Vulnerability"]
+        covered = [row for row in vulnerabilities if row["exploitation_hunts"]]
+        self.assertGreaterEqual(len(covered), 9)
+        for row in covered:
+            for hunt_id in row["exploitation_hunts"]:
+                hunt = json.loads(files[f"hunts/{hunt_id}.json"])
+                self.assertTrue(set(hunt["cves"]).intersection(row["cves"]))
+                self.assertTrue(hunt["profiles"][0].startswith("sentinel-"))
+                self.assertTrue(hunt["evidence"])
 
 
 if __name__ == "__main__":

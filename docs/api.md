@@ -16,7 +16,8 @@ Fetch `releases/<release-id>/manifest.json`, then use these relative paths.
 | `changes.json` | Release delta and current tombstones. |
 | `report.json` | Latest collection and validation summary for this release. |
 | `search.json` | Browser search terms for client-side indexes. |
-| `downloads/hunt-pack.zip` | Canonical defaults, one independently executable KQL file per entry. |
+| `indicators/bulk-query.json` | A single Sentinel IOC correlation statement per telemetry table and lookback, with snapshot date, counts and validation. |
+| `downloads/{hunt-id}-r{revision}-{profile-id}.kql` | An individually executable KQL download for a Hunt Card profile at its suggested lookback. |
 | `schemas/*.v1.json` | JSON Schema 2020-12 records. |
 
 `api/v1/history.json` lists retained snapshots. Sort and filter locally. There are no server-side search parameters or pagination. Release items are immutable once issued. The Pages host controls HTTP cache and CORS headers. Consumers that need freshness should revalidate the latest pointer.

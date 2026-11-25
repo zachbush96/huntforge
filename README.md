@@ -4,6 +4,8 @@ HuntForge publishes public threat intelligence and evidence-backed KQL for Micro
 
 Hunts default to Microsoft Sentinel Logs. Filter by source date, actor or topic. Each technique includes a definition and a Sentinel alert pivot using ATT&CK tags, plus behavioral KQL when HuntForge covers the technique.
 
+Vulnerability records link to CVE-specific exploitation hunts when reviewed evidence supports a query. Use the exploitation coverage filter to find these records. From Indicators, copy a single Sentinel KQL statement for the current release's full eligible indicator set. Select CEF or endpoint telemetry and a lookback. Results identify the matched field, event context, indicator and source evidence.
+
 On a Hunt Card, select **Explain the results to me** to analyze redacted results with an endpoint you control. Enter the full URL, model and API format. The form supports Ollama native chat and Chat Completions-compatible servers. The endpoint must allow browser requests from the HuntForge origin. Requests go directly to your endpoint, and results and API keys are kept in the form for the current visit.
 
 The initial collection spans **October 25–November 24, 2026**, inclusive. CISA KEV, CISA Advisories, FIRST EPSS, Microsoft Security, and UK NCSC provide dated coverage within their documented scopes. MITRE ATT&CK® Enterprise is a separate reference snapshot. See the run report for individual coverage and failures.
