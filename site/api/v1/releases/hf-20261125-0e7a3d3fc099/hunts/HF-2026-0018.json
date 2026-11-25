@@ -1,0 +1,111 @@
+{
+  "actors": [
+    "Storm-0940",
+    "China"
+  ],
+  "confidence": "Behavioral hypothesis",
+  "considerations": [
+    "Legitimate backup may read mailboxes. Compare source IP and environment history.",
+    "Correlate unexpected accesses with service principal sign-ins."
+  ],
+  "description": "Find successful Graph mailbox reads by the ConnectWise applications in the published Sentinel sample.",
+  "evidence": [
+    {
+      "claim": "Microsoft attributed application abuse, password spraying and cloud role or credential changes to Storm-0940, a China-state-aligned actor, in activity that included the ConnectWise Cloud Backup compromise.",
+      "location": "Observed attack patterns, Sentinel queries and ATT&CK mapping",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-10-21",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/"
+    }
+  ],
+  "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+  "history": [
+    {
+      "change": "Created",
+      "date": "2026-11-25T02:32:19Z",
+      "revision": 1,
+      "summary": "Created evidence-backed hunt and validated all supported variants."
+    }
+  ],
+  "hypothesis": "Find successful Graph mailbox reads by the ConnectWise applications in the published Sentinel sample.",
+  "id": "HF-2026-0018",
+  "indicator_ids": [
+    "HF-IOC-30B83342101D2F",
+    "HF-IOC-85B8A518112C30",
+    "HF-IOC-45D7C4479888DC"
+  ],
+  "lookback": 30,
+  "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+  "primary_table": "MicrosoftGraphActivityLogs",
+  "profiles": [
+    "sentinel-azure"
+  ],
+  "published": "2026-11-25T02:32:19Z",
+  "release_id": "hf-20261125-0e7a3d3fc099",
+  "research": "artex-storm0940",
+  "revision": 1,
+  "schema_version": 1,
+  "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+  "signature": "de6aecc3a0206b034e7280d96135c76c12d5deac9d57a626582f095c5e671dda",
+  "source_ids": [
+    "HF-INT-F111D392DD54D8"
+  ],
+  "source_published": "2026-10-21",
+  "status": "partially_validated",
+  "tactic": "Collection",
+  "tags": [
+    "Agentic AI",
+    "Nation-State",
+    "Supply Chain",
+    "Identity"
+  ],
+  "technique": "T1114.002",
+  "title": "Storm-0940 Cloud App Mail Access",
+  "updated": "2026-11-25T02:32:19Z",
+  "validation": {
+    "date": "2026-11-25T02:32:19Z",
+    "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+    "variants_checked": 10
+  },
+  "variants": {
+    "sentinel-azure": {
+      "profile_revision": 1,
+      "queries": {
+        "1": {
+          "json": "MicrosoftGraphActivityLogs\n| where TimeGenerated > ago(1d)\n| where AppId in (\"506e08f9-6e9a-4da4-942b-a099a03644ae\", \"24205314-2b89-4e07-a2a4-579e898a5640\", \"0de14c77-b9b0-4137-9360-34878a929827\")\n| where RequestMethod == \"GET\" and ResponseStatusCode between (200 .. 299)\n| where tostring(parse_url(RequestUri).Path) has_any (\"messages\", \"mailFolders\")\n| extend ReportedSource = IPAddress in (\"144.172.64.99\", \"144.172.64.60\", \"144.172.64.128\")\n| project TimeGenerated, IPAddress, AppId, ServicePrincipalId, RequestMethod, RequestUri, ResponseStatusCode, ReportedSource, ResponseSizeBytes\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "MicrosoftGraphActivityLogs\n| where TimeGenerated > ago(1d)\n| where AppId in (\"506e08f9-6e9a-4da4-942b-a099a03644ae\", \"24205314-2b89-4e07-a2a4-579e898a5640\", \"0de14c77-b9b0-4137-9360-34878a929827\")\n| where RequestMethod == \"GET\" and ResponseStatusCode between (200 .. 299)\n| where tostring(parse_url(RequestUri).Path) has_any (\"messages\", \"mailFolders\")\n| extend ReportedSource = IPAddress in (\"144.172.64.99\", \"144.172.64.60\", \"144.172.64.128\")\n| project TimeGenerated, IPAddress, AppId, ServicePrincipalId, RequestMethod, RequestUri, ResponseStatusCode, ReportedSource, ResponseSizeBytes\n| order by TimeGenerated desc\n"
+        },
+        "14": {
+          "json": "MicrosoftGraphActivityLogs\n| where TimeGenerated > ago(14d)\n| where AppId in (\"506e08f9-6e9a-4da4-942b-a099a03644ae\", \"24205314-2b89-4e07-a2a4-579e898a5640\", \"0de14c77-b9b0-4137-9360-34878a929827\")\n| where RequestMethod == \"GET\" and ResponseStatusCode between (200 .. 299)\n| where tostring(parse_url(RequestUri).Path) has_any (\"messages\", \"mailFolders\")\n| extend ReportedSource = IPAddress in (\"144.172.64.99\", \"144.172.64.60\", \"144.172.64.128\")\n| project TimeGenerated, IPAddress, AppId, ServicePrincipalId, RequestMethod, RequestUri, ResponseStatusCode, ReportedSource, ResponseSizeBytes\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "MicrosoftGraphActivityLogs\n| where TimeGenerated > ago(14d)\n| where AppId in (\"506e08f9-6e9a-4da4-942b-a099a03644ae\", \"24205314-2b89-4e07-a2a4-579e898a5640\", \"0de14c77-b9b0-4137-9360-34878a929827\")\n| where RequestMethod == \"GET\" and ResponseStatusCode between (200 .. 299)\n| where tostring(parse_url(RequestUri).Path) has_any (\"messages\", \"mailFolders\")\n| extend ReportedSource = IPAddress in (\"144.172.64.99\", \"144.172.64.60\", \"144.172.64.128\")\n| project TimeGenerated, IPAddress, AppId, ServicePrincipalId, RequestMethod, RequestUri, ResponseStatusCode, ReportedSource, ResponseSizeBytes\n| order by TimeGenerated desc\n"
+        },
+        "3": {
+          "json": "MicrosoftGraphActivityLogs\n| where TimeGenerated > ago(3d)\n| where AppId in (\"506e08f9-6e9a-4da4-942b-a099a03644ae\", \"24205314-2b89-4e07-a2a4-579e898a5640\", \"0de14c77-b9b0-4137-9360-34878a929827\")\n| where RequestMethod == \"GET\" and ResponseStatusCode between (200 .. 299)\n| where tostring(parse_url(RequestUri).Path) has_any (\"messages\", \"mailFolders\")\n| extend ReportedSource = IPAddress in (\"144.172.64.99\", \"144.172.64.60\", \"144.172.64.128\")\n| project TimeGenerated, IPAddress, AppId, ServicePrincipalId, RequestMethod, RequestUri, ResponseStatusCode, ReportedSource, ResponseSizeBytes\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "MicrosoftGraphActivityLogs\n| where TimeGenerated > ago(3d)\n| where AppId in (\"506e08f9-6e9a-4da4-942b-a099a03644ae\", \"24205314-2b89-4e07-a2a4-579e898a5640\", \"0de14c77-b9b0-4137-9360-34878a929827\")\n| where RequestMethod == \"GET\" and ResponseStatusCode between (200 .. 299)\n| where tostring(parse_url(RequestUri).Path) has_any (\"messages\", \"mailFolders\")\n| extend ReportedSource = IPAddress in (\"144.172.64.99\", \"144.172.64.60\", \"144.172.64.128\")\n| project TimeGenerated, IPAddress, AppId, ServicePrincipalId, RequestMethod, RequestUri, ResponseStatusCode, ReportedSource, ResponseSizeBytes\n| order by TimeGenerated desc\n"
+        },
+        "30": {
+          "json": "MicrosoftGraphActivityLogs\n| where TimeGenerated > ago(30d)\n| where AppId in (\"506e08f9-6e9a-4da4-942b-a099a03644ae\", \"24205314-2b89-4e07-a2a4-579e898a5640\", \"0de14c77-b9b0-4137-9360-34878a929827\")\n| where RequestMethod == \"GET\" and ResponseStatusCode between (200 .. 299)\n| where tostring(parse_url(RequestUri).Path) has_any (\"messages\", \"mailFolders\")\n| extend ReportedSource = IPAddress in (\"144.172.64.99\", \"144.172.64.60\", \"144.172.64.128\")\n| project TimeGenerated, IPAddress, AppId, ServicePrincipalId, RequestMethod, RequestUri, ResponseStatusCode, ReportedSource, ResponseSizeBytes\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "MicrosoftGraphActivityLogs\n| where TimeGenerated > ago(30d)\n| where AppId in (\"506e08f9-6e9a-4da4-942b-a099a03644ae\", \"24205314-2b89-4e07-a2a4-579e898a5640\", \"0de14c77-b9b0-4137-9360-34878a929827\")\n| where RequestMethod == \"GET\" and ResponseStatusCode between (200 .. 299)\n| where tostring(parse_url(RequestUri).Path) has_any (\"messages\", \"mailFolders\")\n| extend ReportedSource = IPAddress in (\"144.172.64.99\", \"144.172.64.60\", \"144.172.64.128\")\n| project TimeGenerated, IPAddress, AppId, ServicePrincipalId, RequestMethod, RequestUri, ResponseStatusCode, ReportedSource, ResponseSizeBytes\n| order by TimeGenerated desc\n"
+        },
+        "7": {
+          "json": "MicrosoftGraphActivityLogs\n| where TimeGenerated > ago(7d)\n| where AppId in (\"506e08f9-6e9a-4da4-942b-a099a03644ae\", \"24205314-2b89-4e07-a2a4-579e898a5640\", \"0de14c77-b9b0-4137-9360-34878a929827\")\n| where RequestMethod == \"GET\" and ResponseStatusCode between (200 .. 299)\n| where tostring(parse_url(RequestUri).Path) has_any (\"messages\", \"mailFolders\")\n| extend ReportedSource = IPAddress in (\"144.172.64.99\", \"144.172.64.60\", \"144.172.64.128\")\n| project TimeGenerated, IPAddress, AppId, ServicePrincipalId, RequestMethod, RequestUri, ResponseStatusCode, ReportedSource, ResponseSizeBytes\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "MicrosoftGraphActivityLogs\n| where TimeGenerated > ago(7d)\n| where AppId in (\"506e08f9-6e9a-4da4-942b-a099a03644ae\", \"24205314-2b89-4e07-a2a4-579e898a5640\", \"0de14c77-b9b0-4137-9360-34878a929827\")\n| where RequestMethod == \"GET\" and ResponseStatusCode between (200 .. 299)\n| where tostring(parse_url(RequestUri).Path) has_any (\"messages\", \"mailFolders\")\n| extend ReportedSource = IPAddress in (\"144.172.64.99\", \"144.172.64.60\", \"144.172.64.128\")\n| project TimeGenerated, IPAddress, AppId, ServicePrincipalId, RequestMethod, RequestUri, ResponseStatusCode, ReportedSource, ResponseSizeBytes\n| order by TimeGenerated desc\n"
+        }
+      },
+      "table": "MicrosoftGraphActivityLogs",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    }
+  }
+}

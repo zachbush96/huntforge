@@ -1,0 +1,164 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-111560"
+  ],
+  "epss": [
+    {
+      "date": "2026-11-25",
+      "epss": "0.107950000",
+      "percentile": "0.965630000"
+    },
+    {
+      "date": "2026-11-24",
+      "epss": "0.63769000",
+      "percentile": "0.99232000"
+    },
+    {
+      "date": "2026-11-23",
+      "epss": "0.63769000",
+      "percentile": "0.99239000"
+    },
+    {
+      "date": "2026-11-22",
+      "epss": "0.63769000",
+      "percentile": "0.99239000"
+    },
+    {
+      "date": "2026-11-21",
+      "epss": "0.63769000",
+      "percentile": "0.99239000"
+    },
+    {
+      "date": "2026-11-20",
+      "epss": "0.09082000",
+      "percentile": "0.95415000"
+    },
+    {
+      "date": "2026-11-19",
+      "epss": "0.09082000",
+      "percentile": "0.95401000"
+    },
+    {
+      "date": "2026-11-18",
+      "epss": "0.09082000",
+      "percentile": "0.95394000"
+    },
+    {
+      "date": "2026-11-17",
+      "epss": "0.09082000",
+      "percentile": "0.95382000"
+    },
+    {
+      "date": "2026-11-16",
+      "epss": "0.09082000",
+      "percentile": "0.95378000"
+    },
+    {
+      "date": "2026-11-15",
+      "epss": "0.09082000",
+      "percentile": "0.95377000"
+    },
+    {
+      "date": "2026-11-14",
+      "epss": "0.09082000",
+      "percentile": "0.95375000"
+    },
+    {
+      "date": "2026-11-13",
+      "epss": "0.09082000",
+      "percentile": "0.95373000"
+    },
+    {
+      "date": "2026-11-12",
+      "epss": "0.06196000",
+      "percentile": "0.93603000"
+    },
+    {
+      "date": "2026-11-11",
+      "epss": "0.06196000",
+      "percentile": "0.93596000"
+    },
+    {
+      "date": "2026-11-10",
+      "epss": "0.01060000",
+      "percentile": "0.64830000"
+    },
+    {
+      "date": "2026-11-09",
+      "epss": "0.01060000",
+      "percentile": "0.64788000"
+    },
+    {
+      "date": "2026-11-08",
+      "epss": "0.00471000",
+      "percentile": "0.40982000"
+    },
+    {
+      "date": "2026-11-07",
+      "epss": "0.00471000",
+      "percentile": "0.40959000"
+    },
+    {
+      "date": "2026-11-06",
+      "epss": "0.00471000",
+      "percentile": "0.40901000"
+    },
+    {
+      "date": "2026-11-05",
+      "epss": "0.00471000",
+      "percentile": "0.40872000"
+    },
+    {
+      "date": "2026-11-04",
+      "epss": "0.00471000",
+      "percentile": "0.40844000"
+    },
+    {
+      "date": "2026-11-03",
+      "epss": "0.00471000",
+      "percentile": "0.40769000"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "CISA listed this vulnerability based on evidence of exploitation in the wild.",
+      "location": "KEV catalog entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-10",
+      "source": "cisa-kev",
+      "source_id": "CVE-2026-111560",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=CVE-2026-111560"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-BB5BC5C5E453D1",
+  "in_window": true,
+  "kind": "Vulnerability",
+  "product": "Multiple Products",
+  "published": "2026-11-10",
+  "ransomware_use": "unknown",
+  "related": [
+    "HF-INT-F4B34728A6F8E3"
+  ],
+  "release_id": "hf-20261125-0e7a3d3fc099",
+  "remediation_due": "2026-11-13",
+  "retrieved": "2026-11-25T17:59:44Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "high",
+  "signature": "aa35891ada41ce13872dffc2d3cbed54e9ecb79fe2c2fbf32b27f46bb3db710c",
+  "source": "cisa-kev",
+  "source_id": "CVE-2026-111560",
+  "status": "active",
+  "summary": "CISA added CVE-2026-111560 to the Known Exploited Vulnerabilities catalog based on evidence of exploitation in the wild. Federal remediation due 2026-11-13.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Barracuda Networks Multiple Products OS Command Injection Vulnerability",
+  "updated": "2026-11-25T01:48:50Z",
+  "vendor": "Barracuda Networks"
+}

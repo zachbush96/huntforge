@@ -1,0 +1,43 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "The SOC Files 5: Ghost in the pipeline, or a fileless SharePoint breach by Storm-2603",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-05",
+      "source": "securelist",
+      "source_id": "securelist:121467",
+      "url": "https://securelist.com/storm-2603-fileless-toolshell-attack/121467/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-84F116F8F290CD",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-05",
+  "related": [],
+  "release_id": "hf-20261125-0e7a3d3fc099",
+  "retrieved": "2026-11-25T17:59:44Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "c330c9cebcec0fe372362849e6031d197cfd2a988260d277f521ac10f31740d2",
+  "source": "securelist",
+  "source_id": "securelist:121467",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include ransomware, apt activity, exploitation, malware.",
+  "tags": [
+    "Ransomware",
+    "APT Activity",
+    "Exploitation",
+    "Malware"
+  ],
+  "title": "The SOC Files 5: Ghost in the pipeline, or a fileless SharePoint breach by Storm-2603",
+  "updated": "2026-11-25T17:59:44Z"
+}

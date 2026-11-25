@@ -1,0 +1,40 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Millions of security cameras at risk: DoS vulnerability in Intelbras devices",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-10-28",
+      "source": "securelist",
+      "source_id": "securelist:121131",
+      "url": "https://securelist.com/intelbras-camera-vulnerability/121131/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-B1D8CBC24DB589",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-10-28",
+  "related": [],
+  "release_id": "hf-20261125-0e7a3d3fc099",
+  "retrieved": "2026-11-25T17:59:44Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "d0f1491db9f72ef2a022c6e638fcc71a625666b58f482904825a8dee017c93c7",
+  "source": "securelist",
+  "source_id": "securelist:121131",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include exploitation.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Millions of security cameras at risk: DoS vulnerability in Intelbras devices",
+  "updated": "2026-11-25T17:59:44Z"
+}

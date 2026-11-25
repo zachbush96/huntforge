@@ -1,0 +1,42 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-125132"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "libumqtt",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-19",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-323-03",
+      "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-323-03"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-BF2611689A6FA7",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-19",
+  "related": [],
+  "release_id": "hf-20261125-0e7a3d3fc099",
+  "retrieved": "2026-11-25T17:59:44Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "164537aef1822379824735fc765611dc3683bcdfd56fb79aaba0826d242efb98",
+  "source": "cisa-advisories",
+  "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-323-03",
+  "status": "active",
+  "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-125132.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "libumqtt",
+  "updated": "2026-11-25T01:48:50Z"
+}

@@ -1,0 +1,38 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Threat Overview of ARTEX Autonomous Penetration Testing Framework",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-13",
+      "source": "fbi-flash",
+      "source_id": "fbi-flash:261113",
+      "url": "https://www.ic3.gov/CSA/2026/261113.pdf"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-0985DEE5839EAF",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-13",
+  "related": [],
+  "release_id": "hf-20261125-0e7a3d3fc099",
+  "retrieved": "2026-11-25T17:59:44Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "e82c94090082774990c5881066bf7ccc9b9f1c5bd239ab6ce21c168b4aacfb05",
+  "source": "fbi-flash",
+  "source_id": "fbi-flash:261113",
+  "status": "active",
+  "summary": "Publisher security advisory.",
+  "tags": [],
+  "title": "Threat Overview of ARTEX Autonomous Penetration Testing Framework",
+  "updated": "2026-11-25T17:59:44Z"
+}

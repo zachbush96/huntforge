@@ -1,0 +1,778 @@
+{
+  "count": 110,
+  "items": [
+    {
+      "action": "created",
+      "id": "HF-INT-026A77CF85AB2C",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans le noyau Linux d'Ubuntu (20 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-0275871ABC45AB",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans les produits NetApp (19 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-08A78872DB24F2",
+      "revision": 1,
+      "title": "From a Single Click: How Lunar Spider Enabled a Near Two-Month Intrusion",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-0954AF984CFA7D",
+      "revision": 1,
+      "title": "At The Edge Clear: October 26 – November 2, 2026",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-0985DEE5839EAF",
+      "revision": 1,
+      "title": "Threat Overview of ARTEX Autonomous Penetration Testing Framework",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-098EE6DDBE901D",
+      "revision": 1,
+      "title": "The Rise of LLMJacking: How Threat Actors Monetize Compromised Cloud and Model Resources",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-0B47675042DC3D",
+      "revision": 1,
+      "title": "Unknown APT uses NetamLoader to attack a Win10 OS customized for governments in Asia",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-0B61BF75EEA2CE",
+      "revision": 1,
+      "title": "IT threat evolution in Q3 2026. Mobile statistics",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-0CA7F638E6A0B1",
+      "revision": 1,
+      "title": "COLD RELIC: A Case Study in Impersonation and Compromise",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-0E3871D4CE4FFA",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans MongoDB (23 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-0E38B49FF4294C",
+      "revision": 1,
+      "title": "Vulnérabilité dans Mattermost Server (23 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-0F62BCF48E995E",
+      "revision": 1,
+      "title": "IR trends Q3 2026: Actors impersonate IT help desks in vishing attacks as ransomware activity increases",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-11199F02706C95",
+      "revision": 1,
+      "title": "Vulnérabilité dans les produits Schneider Electric (25 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-14B0A089537B43",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans les produits VMware (20 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-18C624E47DAE90",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans le noyau Linux de Red Hat (20 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-194F0856A8DDAA",
+      "revision": 1,
+      "title": "CyberStrikeAI in the wild: the use of AI in real-world attacks on organizations",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-19A359F153FFAA",
+      "revision": 1,
+      "title": "The XG Files: Falcon C2 Flying Under The (Browser) Radar",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-19E1D88F9BAD4B",
+      "revision": 1,
+      "title": "Recent Trends and Tactics of Agentic AI Attacks",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-1F2AD1518FF673",
+      "revision": 1,
+      "title": "Joint Factsheet USG Partners Urge Hardening Industrial Refrigeration Cold Chain Monitoring Systems",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-1F55CBA15BA1B1",
+      "revision": 1,
+      "title": "Deploying AI agents securely: how Kaspersky products mitigate AI threats",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-1FB78CC504EA95",
+      "revision": 1,
+      "title": "How to protect against preinstalled Android malware",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-200C32A6C84D56",
+      "revision": 1,
+      "title": "A USB worm’s second life: Retadup spreading CoffeeLoader",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-27EC52EEB30DE0",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans les produits Moxa (20 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-2D79367FB29D5A",
+      "revision": 1,
+      "title": "Vulnérabilité dans Microsoft Office (25 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-3086DCDBE4FC40",
+      "revision": 1,
+      "title": "At The Edge Clear: November 9 – 16, 2026",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-31D4D26D1663E2",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans les produits Elastic (24 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-36CEFACC2F9F6C",
+      "revision": 1,
+      "title": "ARTEX and Friends: Enter Agentic Offensive Frameworks",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-3934D5C788FD55",
+      "revision": 1,
+      "title": "At The Edge Clear: November 2 – 9, 2026",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-3950799DA5C323",
+      "revision": 1,
+      "title": "BengalSEO Part 1: Anatomy of the Operation",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-3BC7691A13E276",
+      "revision": 1,
+      "title": "Vulnérabilité dans les produits Elastic (19 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-3C2C663BA5D4F1",
+      "revision": 1,
+      "title": "Vulnérabilité dans KeyCloak (20 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-3D51DE396C07B7",
+      "revision": 1,
+      "title": "An Active Intrusion Campaign Against Check Point Security Management Servers",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-3FAEC73BFB069B",
+      "revision": 1,
+      "title": "Blurring the Lines: Intrusion Shows Connection With Three Major Ransomware Gangs",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-402254197E1011",
+      "revision": 1,
+      "title": "Vulnérabilité dans Google Chrome (24 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-430A89AFADFD25",
+      "revision": 1,
+      "title": "Transcending the trust boundaries: how a cloud pentest works",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-4AD64D0931C0BC",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans Mitel MiCollab (17 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-4C40922EA30138",
+      "revision": 1,
+      "title": "Vulnérabilité dans Microsoft Office (23 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-4D4278325A7D7E",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans Traefik (24 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-4E5C8AF4DD171B",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans Siemens Industrial Edge (20 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-52A96B78243E3D",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans Postfix (24 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-57D1401D4EC296",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans SPIP (23 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-5C638836DD67FE",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans Microsoft Edge (23 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-5F44DBE045C550",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans les produits Palo Alto Networks (23 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-60B381A800197A",
+      "revision": 1,
+      "title": "The forced audit: how AuditTeam’s OpsAgent framework masks ransomware as consulting",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-619D0D06925DCC",
+      "revision": 1,
+      "title": "Vulnérabilité dans Palo Alto Networks PAN-OS (25 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-61F44AAFBCAD13",
+      "revision": 1,
+      "title": "Dialing for Data: Inside the Com’s High-Profile Heists",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-68A2D40A87ACA4",
+      "revision": 1,
+      "title": "Attackers Use Autonomous AI to Target Semiconductor, Defense and Civil Society Sectors",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-68BB40DBB88958",
+      "revision": 1,
+      "title": "Bissa Scanner Exposed: AI-Assisted Mass Exploitation and Credential Harvesting",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-694BD01B0D059B",
+      "revision": 1,
+      "title": "Microsoft Patch Tuesday for November 2026 — Snort rules and prominent vulnerabilities",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-699C3ADA5CAF3C",
+      "revision": 1,
+      "title": "NIK C2: The new AI-enabled command-and-control framework",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-6B7B6C8DF83EB3",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans Roundcube Webmail (23 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-6D0C67A9A80C4B",
+      "revision": 1,
+      "title": "Flash Alert: EtherRat and TukTuk C2 End in The Gentleman Ransomware",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-6DDD4B6EBAB714",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans le noyau Linux de Debian LTS (20 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-6EC58D6BA182F1",
+      "revision": 1,
+      "title": "Apache ActiveMQ Exploit Leads to LockBit Ransomware",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-71F0CE78A43E01",
+      "revision": 1,
+      "title": "IT threat evolution in Q3 2026. Non-mobile statistics",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-7814ABCC65BD5A",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans les produits Synology (23 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-7ADEEE8840EB7F",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans OpenSSL (24 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-7CE91A77F207D2",
+      "revision": 1,
+      "title": "Gootloader Malware Using SEO Poisoning and Compromised Websites to Gain Initial Access",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-7D2396112ED7B1",
+      "revision": 1,
+      "title": "Operation ShadowCloud: cloud service–based backdoors targeting government networks in Asia and Africa. Part 1",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-8251FBFE235744",
+      "revision": 1,
+      "title": "Inside KeyDrift: Analyzing historical UAT-11473 activity on Cisco SD-WAN",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-84F116F8F290CD",
+      "revision": 1,
+      "title": "The SOC Files 5: Ghost in the pipeline, or a fileless SharePoint breach by Storm-2603",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-8530162750CFD6",
+      "revision": 1,
+      "title": "Vulnérabilité dans Laravel (24 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-86108E92BE8EBC",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans Drupal (19 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-875ACA63CA61BE",
+      "revision": 1,
+      "title": "The challenge of defending against bulletproof dead drops on public blockchains",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-8772F1EF03CB38",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans les produits Splunk (19 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-8C87DEFEB75C33",
+      "revision": 1,
+      "title": "Flash Alert: From Bing Search to Ransomware: Bumblebee and AdaptixC2 Deliver Akira",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-8CD0505086DDCC",
+      "revision": 1,
+      "title": "Vulnérabilité dans Metabase (20 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-8D283944C6B163",
+      "revision": 1,
+      "title": "Cat’s Got Your Files: Lynx Ransomware",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-939E0E00F74B45",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans les produits Mattermost (20 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-949EE0ABB721D9",
+      "revision": 1,
+      "title": "NGINX HTTP/2 Use-After-Free: CVE-2026-123633",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-967CC7919DA402",
+      "revision": 1,
+      "title": "ARMORY CASTLE Exploits vSphere",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-97BA1265C2D900",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans les produits IBM (20 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-97C0BD30F3EEBD",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans les produits Mozilla (25 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-982DB6F8FB2D69",
+      "revision": 1,
+      "title": "Appraisal by AI: Model-driven victim prioritization in the VOLTA infostealer",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-9846F510287503",
+      "revision": 1,
+      "title": "ARTEX and beyond: AI-enabled penetration testing platforms",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-9C5BEE9A2047CE",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans le noyau Linux de SUSE (20 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-9CADB9F1C6E6C0",
+      "revision": 1,
+      "title": "CVE-2026-114938: Critical vulnerability in OpenJDK Java",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-9DB7FEBBFC9056",
+      "revision": 1,
+      "title": "Agentic AI Attack Frameworks in the Wild: What Our Scans and Honeypots Show",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-9F17F00C97B4C2",
+      "revision": 1,
+      "title": "Vulnérabilité dans GitLab (20 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-9F88B9F705C1A5",
+      "revision": 1,
+      "title": "Vulnérabilité dans Laravel (23 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-A4BCF09B31E3A3",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans les produits VMware (25 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-A69502CA969D44",
+      "revision": 1,
+      "title": "Black Friday, red flags: too-good-to-be-true deals hiding real threats",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-A765137CCFADF0",
+      "revision": 1,
+      "title": "UAT-12643: Suspected North Korea-aligned actor blends blockchain resilience with targeted infostealing",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-A8E37F8A11B6E3",
+      "revision": 1,
+      "title": "Operation ShadowCloud: cloud service–based backdoors targeting government networks in Asia and Africa. Part 2",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-AC9E2DF5516342",
+      "revision": 1,
+      "title": "Vulnérabilité dans Laravel (25 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-ACF20DF8A1CF14",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans le noyau Linux de Debian (20 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-AE9DD17F166FF8",
+      "revision": 1,
+      "title": "The Great Escape: Tradecraft insights from an agentic swarm",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-AFB55FB3A36EAC",
+      "revision": 1,
+      "title": "GTIG AI Threat Tracker: Agentic Threat Activity Crosses a Significant Threshold",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-B1D8CBC24DB589",
+      "revision": 1,
+      "title": "Millions of security cameras at risk: DoS vulnerability in Intelbras devices",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-B53DCD42F71E48",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans les produits Citrix (20 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-B78891736696B2",
+      "revision": 1,
+      "title": "Filter generation in practice: from algorithms to LLMs",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-C0277AE4B2F8EE",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans PHP (19 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-C083FA1FD9854E",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans Tenable Enclave Security (25 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-C1F65625AABB64",
+      "revision": 1,
+      "title": "Vulnérabilité dans les produits F5 (24 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-C627408D32940B",
+      "revision": 1,
+      "title": "Citrus Ransomware: VLESS for traffic, Sn00py for encryption, and LLMs lending a hand",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-C6EA139044AEA3",
+      "revision": 1,
+      "title": "An insecure neighbor: how a vulnerability chain led to an isolation bypass in cloud infrastructure",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-C8647446E5ECE4",
+      "revision": 1,
+      "title": "Shutting the Door on the XCPE Botnet",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-C98C083F9C33E9",
+      "revision": 1,
+      "title": "Ransomware at the hypervisor layer: how attackers use ESXi and vCenter features for malicious purposes",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-CA0BD7C6759EDE",
+      "revision": 1,
+      "title": "MLEP in KICS for Networks 5.0: how machine learning helps track network behavior of OT devices",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-CEDCEDCA768476",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans Moodle (20 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-D41E04904283A6",
+      "revision": 1,
+      "title": "From Bing Search to Ransomware: Bumblebee and AdaptixC2 Deliver Akira",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-D578CBE517D757",
+      "revision": 1,
+      "title": "CastleRAT Historical Bot Infection Special Report (Stolen Credentials)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-D66DAE4F66D8BE",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans Tenable Security Center (20 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-D6A4B64585C40A",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans Apache Tomcat (20 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-DA24BE8DB2143E",
+      "revision": 1,
+      "title": "North Korean Hackers Use Secretly Recorded Webcam Library of 900+ Tech Workers in $400M \"FaceStealer\" Crypto Theft Scheme",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-E1C0ED512D9363",
+      "revision": 1,
+      "title": "QUIC and Covert: Novel HTTP/3-Powered RATs Target Southeast Asian Governments",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-E6789E6A643102",
+      "revision": 1,
+      "title": "Virtualization security: attack layers and misconfiguration impact",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-EB78B28DE11951",
+      "revision": 1,
+      "title": "KongTuke FileFix Leads to New Interlock RAT Variant",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-EC1D5BE48EB7E2",
+      "revision": 1,
+      "title": "Vulnérabilité dans les produits Palo Alto Networks (20 novembre 2026)",
+      "type": "intelligence"
+    },
+    {
+      "action": "created",
+      "id": "HF-INT-FC3A479CCFB556",
+      "revision": 1,
+      "title": "Multiples vulnérabilités dans Symfony (25 novembre 2026)",
+      "type": "intelligence"
+    }
+  ],
+  "release_id": "hf-20261125-0e7a3d3fc099",
+  "schema_version": 1,
+  "tombstones": []
+}

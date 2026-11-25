@@ -1,0 +1,40 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Microsoft Patch Tuesday for November 2026 — Snort rules and prominent vulnerabilities",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-11",
+      "source": "cisco-talos",
+      "source_id": "cisco-talos:6af2f06a6f4a9600010b568b",
+      "url": "https://blog.talosintelligence.com/microsoft-patch-tuesday-for-november-2026/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-694BD01B0D059B",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-11",
+  "related": [],
+  "release_id": "hf-20261125-0e7a3d3fc099",
+  "retrieved": "2026-11-25T17:59:44Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "f913d27c04a5d7cf872f58d6839782a1969d5e5add82a17fcb90e64f313689bc",
+  "source": "cisco-talos",
+  "source_id": "cisco-talos:6af2f06a6f4a9600010b568b",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include exploitation.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "Microsoft Patch Tuesday for November 2026 — Snort rules and prominent vulnerabilities",
+  "updated": "2026-11-25T17:59:44Z"
+}

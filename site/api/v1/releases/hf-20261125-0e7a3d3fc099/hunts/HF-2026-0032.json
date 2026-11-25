@@ -1,0 +1,107 @@
+{
+  "actors": [],
+  "confidence": "Publisher-observed indicators",
+  "considerations": [
+    "Use NetworkMessageId to look up delivery status.",
+    "Corroborate clicks and subsequent sign-ins separately."
+  ],
+  "description": "Find reported phishing domains in mail URL extraction.",
+  "evidence": [
+    {
+      "claim": "Microsoft reported downstream destinations and a redirect path in deceptive Microsoft 365 service-health messages. The report did not confirm credential submission.",
+      "location": "Lure and redirect flow, MITRE ATT&CK, and indicators sections",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-16",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/"
+    }
+  ],
+  "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+  "history": [
+    {
+      "change": "Created",
+      "date": "2026-11-25T02:32:19Z",
+      "revision": 1,
+      "summary": "Created evidence-backed hunt and validated all supported variants."
+    }
+  ],
+  "hypothesis": "Find reported phishing domains in mail URL extraction.",
+  "id": "HF-2026-0032",
+  "indicator_ids": [
+    "HF-IOC-67384D48D4FE0E",
+    "HF-IOC-643EC22834E642",
+    "HF-IOC-4BDFC7D2DF496E",
+    "HF-IOC-A6CE6D434B06E6"
+  ],
+  "lookback": 14,
+  "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+  "primary_table": "EmailUrlInfo",
+  "profiles": [
+    "sentinel-email"
+  ],
+  "published": "2026-11-25T02:32:19Z",
+  "release_id": "hf-20261125-0e7a3d3fc099",
+  "research": "outage-phishing",
+  "revision": 1,
+  "schema_version": 1,
+  "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+  "signature": "e190b3af970de439bf43047a5ebf0dae3da806341543484e88d8fd5a72b0aef9",
+  "source_ids": [
+    "HF-INT-A08614C0DEBC42"
+  ],
+  "source_published": "2026-11-16",
+  "status": "partially_validated",
+  "tactic": "Initial Access",
+  "tags": [
+    "Phishing",
+    "Identity"
+  ],
+  "technique": "T1566.002",
+  "title": "Microsoft 365 Outage Phishing URLs in Mail",
+  "updated": "2026-11-25T02:32:19Z",
+  "validation": {
+    "date": "2026-11-25T02:32:19Z",
+    "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+    "variants_checked": 10
+  },
+  "variants": {
+    "sentinel-email": {
+      "profile_revision": 1,
+      "queries": {
+        "1": {
+          "json": "EmailUrlInfo\n| where TimeGenerated > ago(1d)\n| where UrlDomain in~ (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, NetworkMessageId, UrlDomain, Url, UrlLocation\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "EmailUrlInfo\n| where TimeGenerated > ago(1d)\n| where UrlDomain in~ (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, NetworkMessageId, UrlDomain, Url, UrlLocation\n| order by TimeGenerated desc\n"
+        },
+        "14": {
+          "json": "EmailUrlInfo\n| where TimeGenerated > ago(14d)\n| where UrlDomain in~ (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, NetworkMessageId, UrlDomain, Url, UrlLocation\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "EmailUrlInfo\n| where TimeGenerated > ago(14d)\n| where UrlDomain in~ (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, NetworkMessageId, UrlDomain, Url, UrlLocation\n| order by TimeGenerated desc\n"
+        },
+        "3": {
+          "json": "EmailUrlInfo\n| where TimeGenerated > ago(3d)\n| where UrlDomain in~ (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, NetworkMessageId, UrlDomain, Url, UrlLocation\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "EmailUrlInfo\n| where TimeGenerated > ago(3d)\n| where UrlDomain in~ (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, NetworkMessageId, UrlDomain, Url, UrlLocation\n| order by TimeGenerated desc\n"
+        },
+        "30": {
+          "json": "EmailUrlInfo\n| where TimeGenerated > ago(30d)\n| where UrlDomain in~ (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, NetworkMessageId, UrlDomain, Url, UrlLocation\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "EmailUrlInfo\n| where TimeGenerated > ago(30d)\n| where UrlDomain in~ (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, NetworkMessageId, UrlDomain, Url, UrlLocation\n| order by TimeGenerated desc\n"
+        },
+        "7": {
+          "json": "EmailUrlInfo\n| where TimeGenerated > ago(7d)\n| where UrlDomain in~ (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, NetworkMessageId, UrlDomain, Url, UrlLocation\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "EmailUrlInfo\n| where TimeGenerated > ago(7d)\n| where UrlDomain in~ (\"reallifeaccounting.com\", \"outagefixed.sbs\", \"outagerestored.sbs\")\n| project TimeGenerated, NetworkMessageId, UrlDomain, Url, UrlLocation\n| order by TimeGenerated desc\n"
+        }
+      },
+      "table": "EmailUrlInfo",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    }
+  }
+}

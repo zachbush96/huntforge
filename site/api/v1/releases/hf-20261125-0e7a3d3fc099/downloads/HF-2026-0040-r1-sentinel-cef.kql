@@ -1,0 +1,8 @@
+CommonSecurityLog
+| where TimeGenerated > ago(30d)
+| where DeviceVendor in~ ("Ivanti", "Pulse Secure") or DeviceProduct contains "Connect Secure"
+| extend EventText = strcat(Activity, " ", Message)
+| extend MatchedArtifact = extract(@"(/[.]icscap/(?:dsstatmond|h[.]py))(?:[^a-zA-Z0-9._/-]|$)", 1, EventText)
+| where isnotempty(MatchedArtifact)
+| project TimeGenerated, MatchedArtifact, Activity, DeviceVendor, DeviceProduct, DestinationHostName, SourceIP, DestinationIP, DeviceAction, Message
+| order by TimeGenerated desc

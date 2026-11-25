@@ -1,0 +1,539 @@
+{
+  "count": 19,
+  "items": [
+    {
+      "aging_review": "2026-12-26",
+      "context": "Public GSocket distribution domain. The service is dual-use.",
+      "display": "gsocket[.]io",
+      "evidence": [
+        {
+          "claim": "Microsoft observed GSocket tooling on compromised Linux servers, including renamed relay binaries, cron persistence and connections to GSocket distribution infrastructure.",
+          "location": "Advanced hunting queries and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-11",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/"
+        }
+      ],
+      "first_observed": null,
+      "id": "HF-IOC-93EEECFDCFE129",
+      "last_observed": null,
+      "original": "gsocket[.]io",
+      "record_id": "HF-INT-F3F53EF63DF395",
+      "reported": "2026-11-11",
+      "revision": 1,
+      "schema_version": 1,
+      "source_expires": null,
+      "type": "domain",
+      "value": "gsocket.io"
+    },
+    {
+      "aging_review": "2026-12-26",
+      "context": "Public GSocket distribution host. The service is dual-use.",
+      "display": "gsgg[.]b-cdn[.]net",
+      "evidence": [
+        {
+          "claim": "Microsoft observed GSocket tooling on compromised Linux servers, including renamed relay binaries, cron persistence and connections to GSocket distribution infrastructure.",
+          "location": "Advanced hunting queries and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-11",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/"
+        }
+      ],
+      "first_observed": null,
+      "id": "HF-IOC-69DD14AE2022D2",
+      "last_observed": null,
+      "original": "gsgg[.]b-cdn[.]net",
+      "record_id": "HF-INT-F3F53EF63DF395",
+      "reported": "2026-11-11",
+      "revision": 1,
+      "schema_version": 1,
+      "source_expires": null,
+      "type": "domain",
+      "value": "gsgg.b-cdn.net"
+    },
+    {
+      "aging_review": "2026-12-31",
+      "context": "Principal downstream destination.",
+      "display": "reallifeaccounting[.]com",
+      "evidence": [
+        {
+          "claim": "Microsoft reported downstream destinations and a redirect path in deceptive Microsoft 365 service-health messages. The report did not confirm credential submission.",
+          "location": "Lure and redirect flow, MITRE ATT&CK, and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-16",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/"
+        }
+      ],
+      "first_observed": null,
+      "id": "HF-IOC-67384D48D4FE0E",
+      "last_observed": null,
+      "original": "reallifeaccounting[.]com",
+      "record_id": "HF-INT-A08614C0DEBC42",
+      "reported": "2026-11-16",
+      "revision": 1,
+      "schema_version": 1,
+      "source_expires": null,
+      "type": "domain",
+      "value": "reallifeaccounting.com"
+    },
+    {
+      "aging_review": "2026-12-31",
+      "context": "Downstream destination in some messages.",
+      "display": "outagefixed[.]sbs",
+      "evidence": [
+        {
+          "claim": "Microsoft reported downstream destinations and a redirect path in deceptive Microsoft 365 service-health messages. The report did not confirm credential submission.",
+          "location": "Lure and redirect flow, MITRE ATT&CK, and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-16",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/"
+        }
+      ],
+      "first_observed": null,
+      "id": "HF-IOC-643EC22834E642",
+      "last_observed": null,
+      "original": "outagefixed[.]sbs",
+      "record_id": "HF-INT-A08614C0DEBC42",
+      "reported": "2026-11-16",
+      "revision": 1,
+      "schema_version": 1,
+      "source_expires": null,
+      "type": "domain",
+      "value": "outagefixed.sbs"
+    },
+    {
+      "aging_review": "2026-12-31",
+      "context": "Downstream destination in some messages.",
+      "display": "outagerestored[.]sbs",
+      "evidence": [
+        {
+          "claim": "Microsoft reported downstream destinations and a redirect path in deceptive Microsoft 365 service-health messages. The report did not confirm credential submission.",
+          "location": "Lure and redirect flow, MITRE ATT&CK, and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-16",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/"
+        }
+      ],
+      "first_observed": null,
+      "id": "HF-IOC-4BDFC7D2DF496E",
+      "last_observed": null,
+      "original": "outagerestored[.]sbs",
+      "record_id": "HF-INT-A08614C0DEBC42",
+      "reported": "2026-11-16",
+      "revision": 1,
+      "schema_version": 1,
+      "source_expires": null,
+      "type": "domain",
+      "value": "outagerestored.sbs"
+    },
+    {
+      "aging_review": "2026-12-31",
+      "context": "Reported downstream destination path.",
+      "display": "hxxps://reallifeaccounting[.]com/themelist0[.]html",
+      "evidence": [
+        {
+          "claim": "Microsoft reported downstream destinations and a redirect path in deceptive Microsoft 365 service-health messages. The report did not confirm credential submission.",
+          "location": "Lure and redirect flow, MITRE ATT&CK, and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-16",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/"
+        }
+      ],
+      "first_observed": null,
+      "id": "HF-IOC-A6CE6D434B06E6",
+      "last_observed": null,
+      "original": "hxxps://reallifeaccounting[.]com/themelist0[.]html",
+      "record_id": "HF-INT-A08614C0DEBC42",
+      "reported": "2026-11-16",
+      "revision": 1,
+      "schema_version": 1,
+      "source_expires": null,
+      "type": "url",
+      "value": "https://reallifeaccounting.com/themelist0.html"
+    },
+    {
+      "aging_review": "2026-12-20",
+      "context": "IP observed in successful service principal sign-ins across multiple applications.",
+      "display": "199[.]19[.]77[.]84",
+      "evidence": [
+        {
+          "claim": "Microsoft observed ARTEX-associated use of exposed cloud credentials, service-principal sign-ins from a reported IP, rapid cloud discovery and attempted access to Azure Key Vault and other resources.",
+          "location": "Credential abuse via Entra ID and indicators sections",
+          "modified": null,
+          "observation_date": "2026-10-28",
+          "published": "2026-11-05",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/"
+        }
+      ],
+      "first_observed": "2026-10-28",
+      "id": "HF-IOC-334489FDDAC4E4",
+      "last_observed": null,
+      "original": "199.19.77[.]84",
+      "record_id": "HF-INT-4B6ABBDBB70347",
+      "reported": "2026-11-05",
+      "revision": 1,
+      "schema_version": 1,
+      "source_expires": null,
+      "type": "ipv4",
+      "value": "199.19.77.84"
+    },
+    {
+      "aging_review": "2026-12-21",
+      "context": "Listed by Microsoft as an ARTEX server.",
+      "display": "91[.]92[.]240[.]238",
+      "evidence": [
+        {
+          "claim": "Microsoft reported Storm-3358 using ARTEX around financial-sector intrusions, including fast network probing, password abuse and infrastructure associated with remote access tooling.",
+          "location": "Behavioral signals and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-06",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/"
+        }
+      ],
+      "first_observed": null,
+      "id": "HF-IOC-4DAAE2BF2ABDF4",
+      "last_observed": null,
+      "original": "91.92.240[.]238",
+      "record_id": "HF-INT-631279C95E3417",
+      "reported": "2026-11-06",
+      "revision": 1,
+      "schema_version": 1,
+      "source_expires": null,
+      "type": "ipv4",
+      "value": "91.92.240.238"
+    },
+    {
+      "aging_review": "2026-12-21",
+      "context": "Listed by Microsoft as an ARTEX server.",
+      "display": "85[.]11[.]168[.]45",
+      "evidence": [
+        {
+          "claim": "Microsoft reported Storm-3358 using ARTEX around financial-sector intrusions, including fast network probing, password abuse and infrastructure associated with remote access tooling.",
+          "location": "Behavioral signals and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-06",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/"
+        }
+      ],
+      "first_observed": null,
+      "id": "HF-IOC-0A1A6CD2B306D6",
+      "last_observed": null,
+      "original": "85.11.168[.]45",
+      "record_id": "HF-INT-631279C95E3417",
+      "reported": "2026-11-06",
+      "revision": 1,
+      "schema_version": 1,
+      "source_expires": null,
+      "type": "ipv4",
+      "value": "85.11.168.45"
+    },
+    {
+      "aging_review": "2026-12-21",
+      "context": "Listed by Microsoft as an ARTEX server.",
+      "display": "31[.]77[.]229[.]35",
+      "evidence": [
+        {
+          "claim": "Microsoft reported Storm-3358 using ARTEX around financial-sector intrusions, including fast network probing, password abuse and infrastructure associated with remote access tooling.",
+          "location": "Behavioral signals and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-06",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/"
+        }
+      ],
+      "first_observed": null,
+      "id": "HF-IOC-30A64FD1F6005C",
+      "last_observed": null,
+      "original": "31.77.229[.]35",
+      "record_id": "HF-INT-631279C95E3417",
+      "reported": "2026-11-06",
+      "revision": 1,
+      "schema_version": 1,
+      "source_expires": null,
+      "type": "ipv4",
+      "value": "31.77.229.35"
+    },
+    {
+      "aging_review": "2026-12-21",
+      "context": "Listed by Microsoft as a WISP command-and-control node.",
+      "display": "199[.]19[.]95[.]66",
+      "evidence": [
+        {
+          "claim": "Microsoft reported Storm-3358 using ARTEX around financial-sector intrusions, including fast network probing, password abuse and infrastructure associated with remote access tooling.",
+          "location": "Behavioral signals and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-06",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/"
+        }
+      ],
+      "first_observed": null,
+      "id": "HF-IOC-685DF4E8FA72AD",
+      "last_observed": null,
+      "original": "199.19.95[.]66",
+      "record_id": "HF-INT-631279C95E3417",
+      "reported": "2026-11-06",
+      "revision": 1,
+      "schema_version": 1,
+      "source_expires": null,
+      "type": "ipv4",
+      "value": "199.19.95.66"
+    },
+    {
+      "aging_review": "2026-12-21",
+      "context": "Listed by Microsoft as a WISP command-and-control node.",
+      "display": "199[.]19[.]95[.]67",
+      "evidence": [
+        {
+          "claim": "Microsoft reported Storm-3358 using ARTEX around financial-sector intrusions, including fast network probing, password abuse and infrastructure associated with remote access tooling.",
+          "location": "Behavioral signals and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-06",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/"
+        }
+      ],
+      "first_observed": null,
+      "id": "HF-IOC-E3625A0D95A20C",
+      "last_observed": null,
+      "original": "199.19.95[.]67",
+      "record_id": "HF-INT-631279C95E3417",
+      "reported": "2026-11-06",
+      "revision": 1,
+      "schema_version": 1,
+      "source_expires": null,
+      "type": "ipv4",
+      "value": "199.19.95.67"
+    },
+    {
+      "aging_review": "2026-12-21",
+      "context": "Listed by Microsoft as a WISP command-and-control node.",
+      "display": "199[.]19[.]95[.]68",
+      "evidence": [
+        {
+          "claim": "Microsoft reported Storm-3358 using ARTEX around financial-sector intrusions, including fast network probing, password abuse and infrastructure associated with remote access tooling.",
+          "location": "Behavioral signals and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-06",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/"
+        }
+      ],
+      "first_observed": null,
+      "id": "HF-IOC-57C3F78D071AB1",
+      "last_observed": null,
+      "original": "199.19.95[.]68",
+      "record_id": "HF-INT-631279C95E3417",
+      "reported": "2026-11-06",
+      "revision": 1,
+      "schema_version": 1,
+      "source_expires": null,
+      "type": "ipv4",
+      "value": "199.19.95.68"
+    },
+    {
+      "aging_review": "2026-12-05",
+      "context": "Microsoft associated this address with spraying and ConnectWise-related activity.",
+      "display": "144[.]172[.]64[.]99",
+      "evidence": [
+        {
+          "claim": "Microsoft attributed application abuse, password spraying and cloud role or credential changes to Storm-0940, a China-state-aligned actor, in activity that included the ConnectWise Cloud Backup compromise.",
+          "location": "Observed attack patterns, Sentinel queries and ATT&CK mapping",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-21",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/"
+        }
+      ],
+      "first_observed": null,
+      "id": "HF-IOC-30B83342101D2F",
+      "last_observed": null,
+      "original": "144.172.64[.]99",
+      "record_id": "HF-INT-F111D392DD54D8",
+      "reported": "2026-10-21",
+      "revision": 1,
+      "schema_version": 1,
+      "source_expires": null,
+      "type": "ipv4",
+      "value": "144.172.64.99"
+    },
+    {
+      "aging_review": "2026-12-05",
+      "context": "Included in the publisher's Sentinel pivots.",
+      "display": "144[.]172[.]64[.]60",
+      "evidence": [
+        {
+          "claim": "Microsoft attributed application abuse, password spraying and cloud role or credential changes to Storm-0940, a China-state-aligned actor, in activity that included the ConnectWise Cloud Backup compromise.",
+          "location": "Observed attack patterns, Sentinel queries and ATT&CK mapping",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-21",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/"
+        }
+      ],
+      "first_observed": null,
+      "id": "HF-IOC-85B8A518112C30",
+      "last_observed": null,
+      "original": "144.172.64[.]60",
+      "record_id": "HF-INT-F111D392DD54D8",
+      "reported": "2026-10-21",
+      "revision": 1,
+      "schema_version": 1,
+      "source_expires": null,
+      "type": "ipv4",
+      "value": "144.172.64.60"
+    },
+    {
+      "aging_review": "2026-12-05",
+      "context": "Included in the publisher's Sentinel pivots.",
+      "display": "144[.]172[.]64[.]128",
+      "evidence": [
+        {
+          "claim": "Microsoft attributed application abuse, password spraying and cloud role or credential changes to Storm-0940, a China-state-aligned actor, in activity that included the ConnectWise Cloud Backup compromise.",
+          "location": "Observed attack patterns, Sentinel queries and ATT&CK mapping",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-21",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/"
+        }
+      ],
+      "first_observed": null,
+      "id": "HF-IOC-45D7C4479888DC",
+      "last_observed": null,
+      "original": "144.172.64[.]128",
+      "record_id": "HF-INT-F111D392DD54D8",
+      "reported": "2026-10-21",
+      "revision": 1,
+      "schema_version": 1,
+      "source_expires": null,
+      "type": "ipv4",
+      "value": "144.172.64.128"
+    },
+    {
+      "aging_review": "2027-01-01",
+      "context": "Skimmer campaign infrastructure named in Optimizely's investigation and shared with other activity.",
+      "display": "pay-cloud[.]online",
+      "evidence": [
+        {
+          "claim": "Optimizely reports edits to customer Project JavaScript following exploitation of a signup flaw. Its forensic investigation identified separate skimmer hosting and collection domains.",
+          "location": "How the attack worked and section 10, Indicators of compromise",
+          "modified": null,
+          "observation_date": "2026-11-16",
+          "published": "2026-11-17",
+          "source": "optimizely",
+          "source_id": "https://pages.optimizely.com/rs/947-RKE-048/images/Security%20Incident%20Report%20-%20Optimizely%20Web%20Experimentation%20-%20Nov%2017%202026.pdf",
+          "url": "https://pages.optimizely.com/rs/947-RKE-048/images/Security%20Incident%20Report%20-%20Optimizely%20Web%20Experimentation%20-%20Nov%2017%202026.pdf"
+        }
+      ],
+      "first_observed": "2026-11-16",
+      "id": "HF-IOC-211C8303EC6F63",
+      "last_observed": null,
+      "original": "pay-cloud[.]online",
+      "record_id": "HF-INT-B4C56F8C95F7AE",
+      "reported": "2026-11-17",
+      "revision": 1,
+      "schema_version": 1,
+      "source_expires": null,
+      "type": "domain",
+      "value": "pay-cloud.online"
+    },
+    {
+      "aging_review": "2027-01-01",
+      "context": "Skimmer hosting identified in the Optimizely incident investigation.",
+      "display": "pay[.]pay-cloud[.]online",
+      "evidence": [
+        {
+          "claim": "Optimizely reports edits to customer Project JavaScript following exploitation of a signup flaw. Its forensic investigation identified separate skimmer hosting and collection domains.",
+          "location": "How the attack worked and section 10, Indicators of compromise",
+          "modified": null,
+          "observation_date": "2026-11-16",
+          "published": "2026-11-17",
+          "source": "optimizely",
+          "source_id": "https://pages.optimizely.com/rs/947-RKE-048/images/Security%20Incident%20Report%20-%20Optimizely%20Web%20Experimentation%20-%20Nov%2017%202026.pdf",
+          "url": "https://pages.optimizely.com/rs/947-RKE-048/images/Security%20Incident%20Report%20-%20Optimizely%20Web%20Experimentation%20-%20Nov%2017%202026.pdf"
+        }
+      ],
+      "first_observed": "2026-11-16",
+      "id": "HF-IOC-1303BA9583EE28",
+      "last_observed": null,
+      "original": "pay.pay-cloud[.]online",
+      "record_id": "HF-INT-B4C56F8C95F7AE",
+      "reported": "2026-11-17",
+      "revision": 1,
+      "schema_version": 1,
+      "source_expires": null,
+      "type": "domain",
+      "value": "pay.pay-cloud.online"
+    },
+    {
+      "aging_review": "2027-01-01",
+      "context": "Collection endpoint identified in the Optimizely incident investigation.",
+      "display": "pay-relay[.]wordpressadmin001[.]workers[.]dev",
+      "evidence": [
+        {
+          "claim": "Optimizely reports edits to customer Project JavaScript following exploitation of a signup flaw. Its forensic investigation identified separate skimmer hosting and collection domains.",
+          "location": "How the attack worked and section 10, Indicators of compromise",
+          "modified": null,
+          "observation_date": "2026-11-16",
+          "published": "2026-11-17",
+          "source": "optimizely",
+          "source_id": "https://pages.optimizely.com/rs/947-RKE-048/images/Security%20Incident%20Report%20-%20Optimizely%20Web%20Experimentation%20-%20Nov%2017%202026.pdf",
+          "url": "https://pages.optimizely.com/rs/947-RKE-048/images/Security%20Incident%20Report%20-%20Optimizely%20Web%20Experimentation%20-%20Nov%2017%202026.pdf"
+        }
+      ],
+      "first_observed": "2026-11-16",
+      "id": "HF-IOC-B4554E88E61AED",
+      "last_observed": null,
+      "original": "pay-relay.wordpressadmin001.workers[.]dev",
+      "record_id": "HF-INT-B4C56F8C95F7AE",
+      "reported": "2026-11-17",
+      "revision": 1,
+      "schema_version": 1,
+      "source_expires": null,
+      "type": "domain",
+      "value": "pay-relay.wordpressadmin001.workers.dev"
+    }
+  ],
+  "release_id": "hf-20261125-0e7a3d3fc099",
+  "schema_version": 1
+}

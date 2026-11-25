@@ -1,0 +1,38 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "At The Edge Clear: October 26 – November 2, 2026",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-03",
+      "source": "greynoise",
+      "source_id": "greynoise:0ff07a2f-ce34-4d6e-8399-766d8d4c2ab6",
+      "url": "https://viz.greynoise.io/articles/0ff07a2f-ce34-4d6e-8399-766d8d4c2ab6"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-0954AF984CFA7D",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-03",
+  "related": [],
+  "release_id": "hf-20261125-0e7a3d3fc099",
+  "retrieved": "2026-11-25T17:59:44Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "79c35dcf9beb97875faaf6e8ed73823d5890b684123fcba90f18462551086e0a",
+  "source": "greynoise",
+  "source_id": "greynoise:0ff07a2f-ce34-4d6e-8399-766d8d4c2ab6",
+  "status": "active",
+  "summary": "Publisher research and guidance.",
+  "tags": [],
+  "title": "At The Edge Clear: October 26 – November 2, 2026",
+  "updated": "2026-11-25T17:59:44Z"
+}

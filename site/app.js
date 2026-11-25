@@ -160,18 +160,21 @@ async function navigate() {
     const preferred = state.preferences.profiles[hunt.id];
     state.profile = hunt.profiles.includes(preferred) ? preferred : hunt.profiles[0];
   }
-  render();
+  render(null, false);
   if (sequence > 1) {
-    window.scrollTo(0,0);
     const focus = state.page ? document.querySelector("#results") : document.querySelector("#main");
     if (state.page) focus?.scrollIntoView({block:"start"});
     focus?.focus({preventScroll:true});
   }
 }
 
-function render(preserve = null) {
+function render(preserve = null, keepScroll = true) {
   cancelExplanation(app.querySelector("#explain-results"));
   const navScroll = app.querySelector(".sidebar nav")?.scrollLeft || 0;
+  const sidebarScroll = app.querySelector(".sidebar")?.scrollTop || 0;
+  const paneSelector = ".page-content, .brief-main, .brief-aside";
+  const panePositions = keepScroll ? [...app.querySelectorAll(paneSelector)]
+    .map(pane => pane.scrollTop) : [];
   const brief = state.section === "brief";
   let main;
   let aside = "";
@@ -188,10 +191,16 @@ function render(preserve = null) {
   else if (state.section === "developers") main = developers(data);
   else if (["intelligence","hunts","adversaries","vulnerabilities","indicators","techniques","research"].includes(state.section)) main = catalog(data,state);
   else main = missing(data,state);
-  app.innerHTML = header(data,brief) + `<div class="layout${brief ? "" : " compact"}${state.hunt ? " hunt" : ""}">${sidebar(state,data,brief)}${main}${aside}</div>`;
-  const nav = app.querySelector(".sidebar nav");
+  app.innerHTML = header(data,brief) + `<div class="layout${brief ? "" : " compact"}${state.hunt ? " hunt" : ""}">
+    ${sidebar(state,data,brief)}<div class="page-content">${main}${aside}</div></div>`;
+  app.querySelectorAll(paneSelector).forEach((pane, index) => {
+    pane.scrollTop = panePositions[index] ?? 0;
+  });
+  const menu = app.querySelector(".sidebar");
+  menu.scrollTop = sidebarScroll;
+  const nav = menu.querySelector("nav");
   nav.scrollLeft = navScroll;
-  revealHorizontal(nav, '[aria-current="page"]');
+  nav.querySelector('[aria-current="page"]')?.scrollIntoView({block:"nearest",inline:"nearest"});
   revealHorizontal(app.querySelector(".tabs"), '[aria-selected="true"]');
   document.title = `HuntForge — ${app.querySelector("h1")?.textContent || "Threat Intelligence"}`;
   if (preserve) {

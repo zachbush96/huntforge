@@ -1,0 +1,60 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-132224"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Optimizely reports edits to customer Project JavaScript following exploitation of a signup flaw. Its forensic investigation identified separate skimmer hosting and collection domains.",
+      "location": "How the attack worked and section 10, Indicators of compromise",
+      "modified": null,
+      "observation_date": "2026-11-16",
+      "published": "2026-11-17",
+      "source": "optimizely",
+      "source_id": "https://pages.optimizely.com/rs/947-RKE-048/images/Security%20Incident%20Report%20-%20Optimizely%20Web%20Experimentation%20-%20Nov%2017%202026.pdf",
+      "url": "https://pages.optimizely.com/rs/947-RKE-048/images/Security%20Incident%20Report%20-%20Optimizely%20Web%20Experimentation%20-%20Nov%2017%202026.pdf"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T03:12:33Z",
+  "hunts": [
+    "HF-2026-0043"
+  ],
+  "id": "HF-INT-B4C56F8C95F7AE",
+  "in_window": true,
+  "indicators": [
+    "HF-IOC-211C8303EC6F63",
+    "HF-IOC-1303BA9583EE28",
+    "HF-IOC-B4554E88E61AED"
+  ],
+  "kind": "Research",
+  "published": "2026-11-17",
+  "related": [
+    "HF-INT-165729C3CBFBB2",
+    "HF-INT-2F28B8DACDF26A"
+  ],
+  "release_id": "hf-20261125-0e7a3d3fc099",
+  "retrieved": "2026-11-25T03:12:33Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "067fec48277aff6cbdfb873252a839ada89f41b12995458d276ff3cc096a3579",
+  "software": [
+    "Optimizely Web Experimentation"
+  ],
+  "source": "optimizely",
+  "source_id": "https://pages.optimizely.com/rs/947-RKE-048/images/Security%20Incident%20Report%20-%20Optimizely%20Web%20Experimentation%20-%20Nov%2017%202026.pdf",
+  "status": "active",
+  "summary": "Optimizely reports edits to customer Project JavaScript following exploitation of a signup flaw. Its forensic investigation identified separate skimmer hosting and collection domains.",
+  "tags": [
+    "Exploitation",
+    "Supply Chain",
+    "Web Applications"
+  ],
+  "techniques": [
+    "T1195.002"
+  ],
+  "title": "Optimizely Web Experimentation initial security incident report",
+  "updated": "2026-11-25T03:12:33Z"
+}

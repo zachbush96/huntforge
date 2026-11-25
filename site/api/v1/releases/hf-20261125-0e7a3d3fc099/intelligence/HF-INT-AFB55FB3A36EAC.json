@@ -1,0 +1,42 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "GTIG AI Threat Tracker: Agentic Threat Activity Crosses a Significant Threshold",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-16",
+      "source": "google-threat-intelligence",
+      "source_id": "https://cloud.google.com/blog/topics/threat-intelligence/agentic-threat-activity-crosses-a-significant-threshold/",
+      "url": "https://cloud.google.com/blog/topics/threat-intelligence/agentic-threat-activity-crosses-a-significant-threshold/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-AFB55FB3A36EAC",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-16",
+  "related": [],
+  "release_id": "hf-20261125-0e7a3d3fc099",
+  "retrieved": "2026-11-25T17:59:44Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "c5e8bb5b92dcd6acb5937cc322e90f2abede38fc7c96e3f3043545dc918a6058",
+  "source": "google-threat-intelligence",
+  "source_id": "https://cloud.google.com/blog/topics/threat-intelligence/agentic-threat-activity-crosses-a-significant-threshold/",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include agentic ai, apt activity, exploitation.",
+  "tags": [
+    "Agentic AI",
+    "APT Activity",
+    "Exploitation"
+  ],
+  "title": "GTIG AI Threat Tracker: Agentic Threat Activity Crosses a Significant Threshold",
+  "updated": "2026-11-25T17:59:44Z"
+}

@@ -1,0 +1,38 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "UAT-12643: Suspected North Korea-aligned actor blends blockchain resilience with targeted infostealing",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-18",
+      "source": "cisco-talos",
+      "source_id": "cisco-talos:6af420106df0700001a1f527",
+      "url": "https://blog.talosintelligence.com/uat-12643-suspected-north-korea-aligned-actor-blends-blockchain-resilience-with-targeted-infostealing/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-A765137CCFADF0",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-18",
+  "related": [],
+  "release_id": "hf-20261125-0e7a3d3fc099",
+  "retrieved": "2026-11-25T17:59:44Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "ad950c0481e816c49d7b1e2240cc6fcdf7a1214842884a6fc7b63ae52aa26790",
+  "source": "cisco-talos",
+  "source_id": "cisco-talos:6af420106df0700001a1f527",
+  "status": "active",
+  "summary": "Publisher research and guidance.",
+  "tags": [],
+  "title": "UAT-12643: Suspected North Korea-aligned actor blends blockchain resilience with targeted infostealing",
+  "updated": "2026-11-25T17:59:44Z"
+}

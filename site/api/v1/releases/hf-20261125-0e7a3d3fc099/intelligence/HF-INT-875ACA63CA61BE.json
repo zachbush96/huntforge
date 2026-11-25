@@ -1,0 +1,38 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "The challenge of defending against bulletproof dead drops on public blockchains",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-18",
+      "source": "cisco-talos",
+      "source_id": "cisco-talos:6af42ca66df0700001a1f52c",
+      "url": "https://blog.talosintelligence.com/the-challenge-of-defending-against-bulletproof-dead-drops-on-public-blockchains/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-875ACA63CA61BE",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-18",
+  "related": [],
+  "release_id": "hf-20261125-0e7a3d3fc099",
+  "retrieved": "2026-11-25T17:59:44Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "8acfd357ad4c8bcbe0f994bb1f3b8ffa9cca890acb93cc5a5772f2ad9147576d",
+  "source": "cisco-talos",
+  "source_id": "cisco-talos:6af42ca66df0700001a1f52c",
+  "status": "active",
+  "summary": "Publisher research and guidance.",
+  "tags": [],
+  "title": "The challenge of defending against bulletproof dead drops on public blockchains",
+  "updated": "2026-11-25T17:59:44Z"
+}

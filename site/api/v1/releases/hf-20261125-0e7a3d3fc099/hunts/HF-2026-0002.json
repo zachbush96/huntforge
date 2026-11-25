@@ -1,0 +1,154 @@
+{
+  "confidence": "Publisher-observed tooling",
+  "considerations": [
+    "Review the parent process, account and working path.",
+    "Confirm whether the activity was approved. GSocket is dual-use.",
+    "Review network events separately. Process execution alone cannot establish a relay session."
+  ],
+  "description": "Find GSocket tooling in Linux endpoint process telemetry for review.",
+  "evidence": [
+    {
+      "claim": "Microsoft observed GSocket tooling on compromised Linux servers, including renamed relay binaries, cron persistence and connections to GSocket distribution infrastructure.",
+      "location": "Advanced hunting queries and indicators sections",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-11",
+      "source": "microsoft",
+      "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/"
+    }
+  ],
+  "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+  "history": [
+    {
+      "change": "Created",
+      "date": "2026-11-25T01:48:50Z",
+      "revision": 1,
+      "summary": "Created evidence-backed hunt and validated all supported variants."
+    },
+    {
+      "change": "Updated",
+      "date": "2026-11-25T02:32:19Z",
+      "revision": 2,
+      "summary": "Revalidated after changes to profiles, source_published, tags, evidence, indicator_ids, variants, primary_table."
+    },
+    {
+      "change": "Updated",
+      "date": "2026-11-25T03:12:33Z",
+      "revision": 3,
+      "summary": "Revalidated after changes to variants."
+    }
+  ],
+  "hypothesis": "Known GSocket executable names or command-line references may identify investigated relay tooling.",
+  "id": "HF-2026-0002",
+  "indicator_ids": [
+    "HF-IOC-93EEECFDCFE129",
+    "HF-IOC-69DD14AE2022D2"
+  ],
+  "lookback": 7,
+  "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+  "primary_table": "DeviceProcessEvents",
+  "profiles": [
+    "sentinel-endpoint",
+    "defender-xdr"
+  ],
+  "published": "2026-11-25T01:48:50Z",
+  "release_id": "hf-20261125-0e7a3d3fc099",
+  "research": "gsocket",
+  "revision": 3,
+  "schema_version": 1,
+  "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+  "signature": "8be538b9d2bb5bbc2319e1ffe8046613465524000ca66068ec1d4954f1ba863a",
+  "source_ids": [
+    "HF-INT-F3F53EF63DF395"
+  ],
+  "source_published": "2026-11-11",
+  "status": "partially_validated",
+  "tactic": "Command and Control",
+  "tags": [
+    "APT Activity",
+    "Exploitation"
+  ],
+  "technique": "T1090.002",
+  "title": "GSocket Process Activity",
+  "updated": "2026-11-25T03:12:33Z",
+  "validation": {
+    "date": "2026-11-25T03:12:33Z",
+    "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+    "variants_checked": 20
+  },
+  "variants": {
+    "defender-xdr": {
+      "profile_revision": 2,
+      "queries": {
+        "1": {
+          "json": "DeviceProcessEvents\n| where Timestamp > ago(1d)\n| where FileName in~ (\"gs-netcat\", \"gsocket\", \"gsnetcat\")\n     or ProcessCommandLine contains \"gs-netcat\"\n| project Timestamp, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine, InitiatingProcessFileName\n| order by Timestamp desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceProcessEvents\n| where Timestamp > ago(1d)\n| where FileName in~ (\"gs-netcat\", \"gsocket\", \"gsnetcat\")\n     or ProcessCommandLine contains \"gs-netcat\"\n| project Timestamp, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine, InitiatingProcessFileName\n| order by Timestamp desc\n"
+        },
+        "14": {
+          "json": "DeviceProcessEvents\n| where Timestamp > ago(14d)\n| where FileName in~ (\"gs-netcat\", \"gsocket\", \"gsnetcat\")\n     or ProcessCommandLine contains \"gs-netcat\"\n| project Timestamp, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine, InitiatingProcessFileName\n| order by Timestamp desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceProcessEvents\n| where Timestamp > ago(14d)\n| where FileName in~ (\"gs-netcat\", \"gsocket\", \"gsnetcat\")\n     or ProcessCommandLine contains \"gs-netcat\"\n| project Timestamp, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine, InitiatingProcessFileName\n| order by Timestamp desc\n"
+        },
+        "3": {
+          "json": "DeviceProcessEvents\n| where Timestamp > ago(3d)\n| where FileName in~ (\"gs-netcat\", \"gsocket\", \"gsnetcat\")\n     or ProcessCommandLine contains \"gs-netcat\"\n| project Timestamp, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine, InitiatingProcessFileName\n| order by Timestamp desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceProcessEvents\n| where Timestamp > ago(3d)\n| where FileName in~ (\"gs-netcat\", \"gsocket\", \"gsnetcat\")\n     or ProcessCommandLine contains \"gs-netcat\"\n| project Timestamp, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine, InitiatingProcessFileName\n| order by Timestamp desc\n"
+        },
+        "30": {
+          "json": "DeviceProcessEvents\n| where Timestamp > ago(30d)\n| where FileName in~ (\"gs-netcat\", \"gsocket\", \"gsnetcat\")\n     or ProcessCommandLine contains \"gs-netcat\"\n| project Timestamp, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine, InitiatingProcessFileName\n| order by Timestamp desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceProcessEvents\n| where Timestamp > ago(30d)\n| where FileName in~ (\"gs-netcat\", \"gsocket\", \"gsnetcat\")\n     or ProcessCommandLine contains \"gs-netcat\"\n| project Timestamp, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine, InitiatingProcessFileName\n| order by Timestamp desc\n"
+        },
+        "7": {
+          "json": "DeviceProcessEvents\n| where Timestamp > ago(7d)\n| where FileName in~ (\"gs-netcat\", \"gsocket\", \"gsnetcat\")\n     or ProcessCommandLine contains \"gs-netcat\"\n| project Timestamp, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine, InitiatingProcessFileName\n| order by Timestamp desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceProcessEvents\n| where Timestamp > ago(7d)\n| where FileName in~ (\"gs-netcat\", \"gsocket\", \"gsnetcat\")\n     or ProcessCommandLine contains \"gs-netcat\"\n| project Timestamp, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine, InitiatingProcessFileName\n| order by Timestamp desc\n"
+        }
+      },
+      "table": "DeviceProcessEvents",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    },
+    "sentinel-endpoint": {
+      "profile_revision": 2,
+      "queries": {
+        "1": {
+          "json": "DeviceProcessEvents\n| where TimeGenerated > ago(1d)\n| where FileName in~ (\"gs-netcat\", \"gsocket\", \"gsnetcat\")\n     or ProcessCommandLine contains \"gs-netcat\"\n| project TimeGenerated, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine, InitiatingProcessFileName\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceProcessEvents\n| where TimeGenerated > ago(1d)\n| where FileName in~ (\"gs-netcat\", \"gsocket\", \"gsnetcat\")\n     or ProcessCommandLine contains \"gs-netcat\"\n| project TimeGenerated, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine, InitiatingProcessFileName\n| order by TimeGenerated desc\n"
+        },
+        "14": {
+          "json": "DeviceProcessEvents\n| where TimeGenerated > ago(14d)\n| where FileName in~ (\"gs-netcat\", \"gsocket\", \"gsnetcat\")\n     or ProcessCommandLine contains \"gs-netcat\"\n| project TimeGenerated, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine, InitiatingProcessFileName\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceProcessEvents\n| where TimeGenerated > ago(14d)\n| where FileName in~ (\"gs-netcat\", \"gsocket\", \"gsnetcat\")\n     or ProcessCommandLine contains \"gs-netcat\"\n| project TimeGenerated, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine, InitiatingProcessFileName\n| order by TimeGenerated desc\n"
+        },
+        "3": {
+          "json": "DeviceProcessEvents\n| where TimeGenerated > ago(3d)\n| where FileName in~ (\"gs-netcat\", \"gsocket\", \"gsnetcat\")\n     or ProcessCommandLine contains \"gs-netcat\"\n| project TimeGenerated, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine, InitiatingProcessFileName\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceProcessEvents\n| where TimeGenerated > ago(3d)\n| where FileName in~ (\"gs-netcat\", \"gsocket\", \"gsnetcat\")\n     or ProcessCommandLine contains \"gs-netcat\"\n| project TimeGenerated, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine, InitiatingProcessFileName\n| order by TimeGenerated desc\n"
+        },
+        "30": {
+          "json": "DeviceProcessEvents\n| where TimeGenerated > ago(30d)\n| where FileName in~ (\"gs-netcat\", \"gsocket\", \"gsnetcat\")\n     or ProcessCommandLine contains \"gs-netcat\"\n| project TimeGenerated, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine, InitiatingProcessFileName\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceProcessEvents\n| where TimeGenerated > ago(30d)\n| where FileName in~ (\"gs-netcat\", \"gsocket\", \"gsnetcat\")\n     or ProcessCommandLine contains \"gs-netcat\"\n| project TimeGenerated, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine, InitiatingProcessFileName\n| order by TimeGenerated desc\n"
+        },
+        "7": {
+          "json": "DeviceProcessEvents\n| where TimeGenerated > ago(7d)\n| where FileName in~ (\"gs-netcat\", \"gsocket\", \"gsnetcat\")\n     or ProcessCommandLine contains \"gs-netcat\"\n| project TimeGenerated, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine, InitiatingProcessFileName\n| order by TimeGenerated desc\n| summarize Results = make_list(pack_all())\n| project JSON = tostring(Results)\n",
+          "table": "DeviceProcessEvents\n| where TimeGenerated > ago(7d)\n| where FileName in~ (\"gs-netcat\", \"gsocket\", \"gsnetcat\")\n     or ProcessCommandLine contains \"gs-netcat\"\n| project TimeGenerated, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine, InitiatingProcessFileName\n| order by TimeGenerated desc\n"
+        }
+      },
+      "table": "DeviceProcessEvents",
+      "validation": {
+        "analyst": "not_run",
+        "engine": "not_run",
+        "evidence": "pass",
+        "schema": "pass",
+        "static": "pass",
+        "syntax": "pass",
+        "synthetic_fixture": "not_run",
+        "workspace": "not_run"
+      }
+    }
+  }
+}

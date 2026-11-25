@@ -1,0 +1,40 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "The Great Escape: Tradecraft insights from an agentic swarm",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-25",
+      "source": "cisco-talos",
+      "source_id": "cisco-talos:6b058e0bf78e0400015036d8",
+      "url": "https://blog.talosintelligence.com/the-great-escape-tradecraft-insights-from-an-agentic-swarm/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-AE9DD17F166FF8",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-25",
+  "related": [],
+  "release_id": "hf-20261125-0e7a3d3fc099",
+  "retrieved": "2026-11-25T17:59:44Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "e519c49a6ffa34501c623f8e64b6458e6f2630f445473172dd3c564f12e7e921",
+  "source": "cisco-talos",
+  "source_id": "cisco-talos:6b058e0bf78e0400015036d8",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include agentic ai.",
+  "tags": [
+    "Agentic AI"
+  ],
+  "title": "The Great Escape: Tradecraft insights from an agentic swarm",
+  "updated": "2026-11-25T17:59:44Z"
+}

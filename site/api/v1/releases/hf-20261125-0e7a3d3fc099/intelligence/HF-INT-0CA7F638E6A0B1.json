@@ -1,0 +1,41 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "COLD RELIC: A Case Study in Impersonation and Compromise",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-17",
+      "source": "google-threat-intelligence",
+      "source_id": "https://cloud.google.com/blog/topics/threat-intelligence/cold-relic-a-case-study-in-impersonation-and-compromise/",
+      "url": "https://cloud.google.com/blog/topics/threat-intelligence/cold-relic-a-case-study-in-impersonation-and-compromise/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-0CA7F638E6A0B1",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-17",
+  "related": [],
+  "release_id": "hf-20261125-0e7a3d3fc099",
+  "retrieved": "2026-11-25T17:59:44Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "931c59c32365d1552de7e278d8dc8ab61430f913d2dddf37cb5493a99e5a08ed",
+  "source": "google-threat-intelligence",
+  "source_id": "https://cloud.google.com/blog/topics/threat-intelligence/cold-relic-a-case-study-in-impersonation-and-compromise/",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include phishing, apt activity.",
+  "tags": [
+    "Phishing",
+    "APT Activity"
+  ],
+  "title": "COLD RELIC: A Case Study in Impersonation and Compromise",
+  "updated": "2026-11-25T17:59:44Z"
+}

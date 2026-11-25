@@ -1,0 +1,3105 @@
+{
+  "count": 44,
+  "items": [
+    {
+      "confidence": "Behavioral hypothesis",
+      "considerations": [
+        "Filter known administrative scripts and managed automation.",
+        "Review the full command line and initiating process ancestry.",
+        "Correlate destinations with internal DNS, proxy logs and approved intelligence.",
+        "Review the surrounding device timeline before broadening the lookback."
+      ],
+      "description": "Scope outbound PowerShell connections on monitored devices and correlate them with published behavior and local incident evidence.",
+      "evidence": [
+        {
+          "claim": "Microsoft observed PowerShell downloading an MSI after fraudulent remote support access.",
+          "location": "Execution and MITRE ATT&CK sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-09-02",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/09/02/impersonating-it-support-threat-actors-turn-remote-session-into-enterprise-wide-access/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/09/02/impersonating-it-support-threat-actors-turn-remote-session-into-enterprise-wide-access/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T01:48:50Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        },
+        {
+          "change": "Updated",
+          "date": "2026-11-25T01:56:27Z",
+          "revision": 2,
+          "summary": "Revalidated after changes to confidence."
+        },
+        {
+          "change": "Updated",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 3,
+          "summary": "Revalidated after changes to profiles, source_published, tags, variants, primary_table."
+        },
+        {
+          "change": "Updated",
+          "date": "2026-11-25T03:12:33Z",
+          "revision": 4,
+          "summary": "Revalidated after changes to variants."
+        }
+      ],
+      "hypothesis": "PowerShell used to retrieve a payload may leave a process-attributed network event.",
+      "id": "HF-2025-0001",
+      "indicator_ids": [],
+      "lookback": 7,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "WindowsEvent",
+      "profiles": [
+        "sentinel-windows",
+        "sentinel-endpoint",
+        "defender-xdr"
+      ],
+      "published": "2026-11-25T01:48:50Z",
+      "research": "powershell-download",
+      "revision": 4,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "d911bebdbab1118d6afc037fa4607cefe539d29c63ccb93cfed702c29bfc602d",
+      "source_ids": [
+        "HF-INT-3906A981456D92"
+      ],
+      "source_published": "2026-09-02",
+      "status": "partially_validated",
+      "tactic": "Execution",
+      "tags": [
+        "LOLBins",
+        "Phishing"
+      ],
+      "technique": "T1059.001",
+      "title": "Suspicious PowerShell Network Activity",
+      "updated": "2026-11-25T03:12:33Z",
+      "validation": {
+        "date": "2026-11-25T03:12:33Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 30
+      }
+    },
+    {
+      "confidence": "Publisher-observed tooling",
+      "considerations": [
+        "Review the parent process, account and working path.",
+        "Confirm whether the activity was approved. GSocket is dual-use.",
+        "Review network events separately. Process execution alone cannot establish a relay session."
+      ],
+      "description": "Find GSocket tooling in Linux endpoint process telemetry for review.",
+      "evidence": [
+        {
+          "claim": "Microsoft observed GSocket tooling on compromised Linux servers, including renamed relay binaries, cron persistence and connections to GSocket distribution infrastructure.",
+          "location": "Advanced hunting queries and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-11",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T01:48:50Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        },
+        {
+          "change": "Updated",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 2,
+          "summary": "Revalidated after changes to profiles, source_published, tags, evidence, indicator_ids, variants, primary_table."
+        },
+        {
+          "change": "Updated",
+          "date": "2026-11-25T03:12:33Z",
+          "revision": 3,
+          "summary": "Revalidated after changes to variants."
+        }
+      ],
+      "hypothesis": "Known GSocket executable names or command-line references may identify investigated relay tooling.",
+      "id": "HF-2026-0002",
+      "indicator_ids": [
+        "HF-IOC-93EEECFDCFE129",
+        "HF-IOC-69DD14AE2022D2"
+      ],
+      "lookback": 7,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "DeviceProcessEvents",
+      "profiles": [
+        "sentinel-endpoint",
+        "defender-xdr"
+      ],
+      "published": "2026-11-25T01:48:50Z",
+      "research": "gsocket",
+      "revision": 3,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "8be538b9d2bb5bbc2319e1ffe8046613465524000ca66068ec1d4954f1ba863a",
+      "source_ids": [
+        "HF-INT-F3F53EF63DF395"
+      ],
+      "source_published": "2026-11-11",
+      "status": "partially_validated",
+      "tactic": "Command and Control",
+      "tags": [
+        "APT Activity",
+        "Exploitation"
+      ],
+      "technique": "T1090.002",
+      "title": "GSocket Process Activity",
+      "updated": "2026-11-25T03:12:33Z",
+      "validation": {
+        "date": "2026-11-25T03:12:33Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 20
+      }
+    },
+    {
+      "confidence": "Publisher-observed indicators",
+      "considerations": [
+        "Correlate matches with mail delivery and user click telemetry.",
+        "Use the action field to distinguish blocks from permitted requests.",
+        "Review URL paths and Entra sign-ins before inferring credential exposure.",
+        "Security scanners and automated previews can generate matches."
+      ],
+      "description": "Review network or proxy events for the exact downstream domains Microsoft reported.",
+      "evidence": [
+        {
+          "claim": "Microsoft reported downstream destinations and a redirect path in deceptive Microsoft 365 service-health messages. The report did not confirm credential submission.",
+          "location": "Lure and redirect flow, MITRE ATT&CK, and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-16",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T01:48:50Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        },
+        {
+          "change": "Updated",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 2,
+          "summary": "Revalidated after changes to profiles, source_published, tags, variants, primary_table."
+        },
+        {
+          "change": "Updated",
+          "date": "2026-11-25T03:12:33Z",
+          "revision": 3,
+          "summary": "Revalidated after changes to variants."
+        }
+      ],
+      "hypothesis": "Exact destination host matches can identify traffic associated with the documented phishing campaign.",
+      "id": "HF-2026-0003",
+      "indicator_ids": [
+        "HF-IOC-67384D48D4FE0E",
+        "HF-IOC-643EC22834E642",
+        "HF-IOC-4BDFC7D2DF496E",
+        "HF-IOC-A6CE6D434B06E6"
+      ],
+      "lookback": 7,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "CommonSecurityLog",
+      "profiles": [
+        "sentinel-cef",
+        "sentinel-endpoint",
+        "defender-xdr",
+        "custom-proxy"
+      ],
+      "published": "2026-11-25T01:48:50Z",
+      "research": "outage-phishing",
+      "revision": 3,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "bfb7ee399dd8b8896aab153aca39e0fc93b1d41c49b410dc38495f2cd817e248",
+      "source_ids": [
+        "HF-INT-A08614C0DEBC42"
+      ],
+      "source_published": "2026-11-16",
+      "status": "partially_validated",
+      "tactic": "Initial Access",
+      "tags": [
+        "Phishing",
+        "Identity"
+      ],
+      "technique": "T1566.002",
+      "title": "Microsoft 365 Outage Phishing Destinations",
+      "updated": "2026-11-25T03:12:33Z",
+      "validation": {
+        "date": "2026-11-25T03:12:33Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 40
+      }
+    },
+    {
+      "confidence": "Contextual behavioral hypothesis",
+      "considerations": [
+        "Check for an authorized support ticket and verify who initiated the session.",
+        "Review nearby process and network events for activity after the support session.",
+        "A process match cannot establish that a session connected."
+      ],
+      "description": "Find Quick Assist executions for triage alongside help desk records.",
+      "evidence": [
+        {
+          "claim": "Microsoft observed fraudulent Quick Assist support sessions followed by scripting and certificate-services abuse during the investigated intrusions.",
+          "location": "Intrusion case studies and initial access sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-30",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T01:48:50Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        },
+        {
+          "change": "Updated",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 2,
+          "summary": "Revalidated after changes to profiles, source_published, tags, evidence, variants, primary_table."
+        },
+        {
+          "change": "Updated",
+          "date": "2026-11-25T03:12:33Z",
+          "revision": 3,
+          "summary": "Revalidated after changes to variants."
+        }
+      ],
+      "hypothesis": "Fraudulent remote support sessions can start with Quick Assist process activity.",
+      "id": "HF-2026-0004",
+      "indicator_ids": [],
+      "lookback": 7,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "SecurityEvent",
+      "profiles": [
+        "sentinel-windows",
+        "sentinel-endpoint",
+        "defender-xdr"
+      ],
+      "published": "2026-11-25T01:48:50Z",
+      "research": "quick-assist",
+      "revision": 3,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "9c40c2e09d132aaba9d9f14b4b5bc8afd0bb7e2415cf38cf6e18598a9e90257f",
+      "source_ids": [
+        "HF-INT-E26238C5B4C5C7"
+      ],
+      "source_published": "2026-10-30",
+      "status": "partially_validated",
+      "tactic": "Command and Control",
+      "tags": [
+        "Phishing",
+        "Identity"
+      ],
+      "technique": "T1219.002",
+      "title": "Quick Assist Process Activity",
+      "updated": "2026-11-25T03:12:33Z",
+      "validation": {
+        "date": "2026-11-25T03:12:33Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 30
+      }
+    },
+    {
+      "confidence": "Publisher-observed indicators",
+      "considerations": [
+        "Review the service principal, credential changes and resource access.",
+        "Compare the source IP with known egress and require independent evidence before escalation.",
+        "Check Azure activity and resource audit logs for follow-on actions."
+      ],
+      "description": "Review successful Entra service-principal sign-ins from a campaign-associated IP Microsoft reported.",
+      "evidence": [
+        {
+          "claim": "Microsoft observed ARTEX-associated use of exposed cloud credentials, service-principal sign-ins from a reported IP, rapid cloud discovery and attempted access to Azure Key Vault and other resources.",
+          "location": "Credential abuse via Entra ID and indicators sections",
+          "modified": null,
+          "observation_date": "2026-10-28",
+          "published": "2026-11-05",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T01:48:50Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        },
+        {
+          "change": "Updated",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 2,
+          "summary": "Revalidated after changes to title, source_published, tags, evidence, variants, primary_table."
+        }
+      ],
+      "hypothesis": "A successful sign-in from the published address warrants correlation with app ownership and expected egress.",
+      "id": "HF-2026-0005",
+      "indicator_ids": [
+        "HF-IOC-334489FDDAC4E4"
+      ],
+      "lookback": 7,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "AADServicePrincipalSignInLogs",
+      "profiles": [
+        "sentinel-entra"
+      ],
+      "published": "2026-11-25T01:48:50Z",
+      "research": "service-principal",
+      "revision": 2,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "8af0c22ed99c311cd21ff44557371d39a00ad11735441ff7594d177d66c86345",
+      "source_ids": [
+        "HF-INT-4B6ABBDBB70347"
+      ],
+      "source_published": "2026-11-05",
+      "status": "partially_validated",
+      "tactic": "Persistence",
+      "tags": [
+        "Agentic AI",
+        "Identity",
+        "Supply Chain"
+      ],
+      "technique": "T1078.004",
+      "title": "ARTEX Service Principal Sign-ins From a Reported IP",
+      "updated": "2026-11-25T02:32:19Z",
+      "validation": {
+        "date": "2026-11-25T02:32:19Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [
+        "Storm-3358"
+      ],
+      "confidence": "Publisher-observed indicators",
+      "considerations": [
+        "SourceIP and DestinationIP indicate which side matched. Check traffic direction and policy action.",
+        "Confirm independent evidence before attributing a match."
+      ],
+      "description": "Look for traffic involving IP addresses Microsoft reported around Storm-3358.",
+      "evidence": [
+        {
+          "claim": "Microsoft reported Storm-3358 using ARTEX around financial-sector intrusions, including fast network probing, password abuse and infrastructure associated with remote access tooling.",
+          "location": "Behavioral signals and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-06",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "Look for traffic involving IP addresses Microsoft reported around Storm-3358.",
+      "id": "HF-2026-0006",
+      "indicator_ids": [
+        "HF-IOC-4DAAE2BF2ABDF4",
+        "HF-IOC-0A1A6CD2B306D6",
+        "HF-IOC-30A64FD1F6005C",
+        "HF-IOC-685DF4E8FA72AD",
+        "HF-IOC-E3625A0D95A20C",
+        "HF-IOC-57C3F78D071AB1"
+      ],
+      "lookback": 14,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "CommonSecurityLog",
+      "profiles": [
+        "sentinel-cef"
+      ],
+      "published": "2026-11-25T02:32:19Z",
+      "research": "artex-finance",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "581935cd66cae671dbef5fdf9b1e5d7a2d4a18943af884de9122ba46e485ad97",
+      "source_ids": [
+        "HF-INT-631279C95E3417"
+      ],
+      "source_published": "2026-11-06",
+      "status": "partially_validated",
+      "tactic": "Reconnaissance",
+      "tags": [
+        "Agentic AI",
+        "Initial Access",
+        "Network"
+      ],
+      "technique": "T1595",
+      "title": "ARTEX and WISP Infrastructure in CEF Logs",
+      "updated": "2026-11-25T02:32:19Z",
+      "validation": {
+        "date": "2026-11-25T02:32:19Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [
+        "Storm-3358"
+      ],
+      "confidence": "Publisher-observed indicators",
+      "considerations": [
+        "Check process ancestry and file activity around permitted connections.",
+        "An address match cannot establish tool transfer, execution or actor attribution."
+      ],
+      "description": "Review process-attributed connections to reported Storm-3358 infrastructure.",
+      "evidence": [
+        {
+          "claim": "Microsoft reported Storm-3358 using ARTEX around financial-sector intrusions, including fast network probing, password abuse and infrastructure associated with remote access tooling.",
+          "location": "Behavioral signals and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-06",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        },
+        {
+          "change": "Updated",
+          "date": "2026-11-25T03:12:33Z",
+          "revision": 2,
+          "summary": "Revalidated after changes to variants."
+        }
+      ],
+      "hypothesis": "Review process-attributed connections to reported Storm-3358 infrastructure.",
+      "id": "HF-2026-0007",
+      "indicator_ids": [
+        "HF-IOC-4DAAE2BF2ABDF4",
+        "HF-IOC-0A1A6CD2B306D6",
+        "HF-IOC-30A64FD1F6005C",
+        "HF-IOC-685DF4E8FA72AD",
+        "HF-IOC-E3625A0D95A20C",
+        "HF-IOC-57C3F78D071AB1"
+      ],
+      "lookback": 14,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "DeviceNetworkEvents",
+      "profiles": [
+        "sentinel-endpoint"
+      ],
+      "published": "2026-11-25T02:32:19Z",
+      "research": "artex-finance",
+      "revision": 2,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "a473ea0185c7b9eeafc4b8737816f9590989fc14291ce1127a1368782e600ac9",
+      "source_ids": [
+        "HF-INT-631279C95E3417"
+      ],
+      "source_published": "2026-11-06",
+      "status": "partially_validated",
+      "tactic": "Command and Control",
+      "tags": [
+        "Agentic AI",
+        "Initial Access",
+        "Network"
+      ],
+      "technique": "T1105",
+      "title": "ARTEX-Associated Remote Connections on Endpoints",
+      "updated": "2026-11-25T03:12:33Z",
+      "validation": {
+        "date": "2026-11-25T03:12:33Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [
+        "Storm-3358"
+      ],
+      "confidence": "Behavioral hypothesis",
+      "considerations": [
+        "Tune the thresholds against approved scanners, load testing and monitoring.",
+        "Burst shape can support triage, but does not establish that activity came from AI."
+      ],
+      "description": "Look for five-minute bursts touching many destination hosts and ports from one source.",
+      "evidence": [
+        {
+          "claim": "Microsoft reported Storm-3358 using ARTEX around financial-sector intrusions, including fast network probing, password abuse and infrastructure associated with remote access tooling.",
+          "location": "Behavioral signals and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-06",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/"
+        }
+      ],
+      "expected_output": "One row per matching source IP and five-minute window.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "Look for five-minute bursts touching many destination hosts and ports from one source.",
+      "id": "HF-2026-0008",
+      "indicator_ids": [
+        "HF-IOC-4DAAE2BF2ABDF4",
+        "HF-IOC-0A1A6CD2B306D6",
+        "HF-IOC-30A64FD1F6005C",
+        "HF-IOC-685DF4E8FA72AD",
+        "HF-IOC-E3625A0D95A20C",
+        "HF-IOC-57C3F78D071AB1"
+      ],
+      "lookback": 7,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "CommonSecurityLog",
+      "profiles": [
+        "sentinel-cef"
+      ],
+      "published": "2026-11-25T02:32:19Z",
+      "research": "artex-finance",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "0603f7da0c70028aa2a55933f003e8615b163ad4ba691693415ae9b31ae9582e",
+      "source_ids": [
+        "HF-INT-631279C95E3417"
+      ],
+      "source_published": "2026-11-06",
+      "status": "partially_validated",
+      "tactic": "Reconnaissance",
+      "tags": [
+        "Agentic AI",
+        "Initial Access",
+        "Network"
+      ],
+      "technique": "T1595",
+      "title": "Rapid Network Probing Across Ports and Hosts",
+      "updated": "2026-11-25T02:32:19Z",
+      "validation": {
+        "date": "2026-11-25T02:32:19Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [],
+      "confidence": "Behavioral hypothesis",
+      "considerations": [
+        "Exclude approved tests and shared egress.",
+        "Check successful sign-ins and account changes near the same window."
+      ],
+      "description": "Find invalid-password failures across many user accounts from one IP.",
+      "evidence": [
+        {
+          "claim": "Microsoft reported Storm-3358 using ARTEX around financial-sector intrusions, including fast network probing, password abuse and infrastructure associated with remote access tooling.",
+          "location": "Behavioral signals and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-06",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/"
+        }
+      ],
+      "expected_output": "One row per IP and fifteen-minute window passing the account and failure thresholds.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "Find invalid-password failures across many user accounts from one IP.",
+      "id": "HF-2026-0009",
+      "indicator_ids": [
+        "HF-IOC-4DAAE2BF2ABDF4",
+        "HF-IOC-0A1A6CD2B306D6",
+        "HF-IOC-30A64FD1F6005C",
+        "HF-IOC-685DF4E8FA72AD",
+        "HF-IOC-E3625A0D95A20C",
+        "HF-IOC-57C3F78D071AB1"
+      ],
+      "lookback": 7,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "SigninLogs",
+      "profiles": [
+        "sentinel-entra"
+      ],
+      "published": "2026-11-25T02:32:19Z",
+      "research": "artex-finance",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "73a61b83eff60e61de0dabb730f5cfa85b2968921b127a3e7c9d97938982d99f",
+      "source_ids": [
+        "HF-INT-631279C95E3417"
+      ],
+      "source_published": "2026-11-06",
+      "status": "partially_validated",
+      "tactic": "Credential Access",
+      "tags": [
+        "Agentic AI",
+        "Initial Access",
+        "Network"
+      ],
+      "technique": "T1110.003",
+      "title": "Entra Password Spray Across Accounts",
+      "updated": "2026-11-25T02:32:19Z",
+      "validation": {
+        "date": "2026-11-25T02:32:19Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [],
+      "confidence": "Behavioral hypothesis",
+      "considerations": [
+        "Baseline managed automation and shared vendor egress.",
+        "Pivot by service principal ID and check credential additions and Graph activity."
+      ],
+      "description": "Review successful service principal sign-ins across multiple apps from one IP.",
+      "evidence": [
+        {
+          "claim": "Microsoft observed ARTEX-associated use of exposed cloud credentials, service-principal sign-ins from a reported IP, rapid cloud discovery and attempted access to Azure Key Vault and other resources.",
+          "location": "Credential abuse via Entra ID and indicators sections",
+          "modified": null,
+          "observation_date": "2026-10-28",
+          "published": "2026-11-05",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/"
+        }
+      ],
+      "expected_output": "One row per source IP and fifteen-minute window with four or more principals.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "Review successful service principal sign-ins across multiple apps from one IP.",
+      "id": "HF-2026-0010",
+      "indicator_ids": [
+        "HF-IOC-334489FDDAC4E4"
+      ],
+      "lookback": 7,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "AADServicePrincipalSignInLogs",
+      "profiles": [
+        "sentinel-entra"
+      ],
+      "published": "2026-11-25T02:32:19Z",
+      "research": "service-principal",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "6709cac2dd17841faa7b0da45ba59406fcdf7f48b14fbe01722cfad1a97fa5f4",
+      "source_ids": [
+        "HF-INT-4B6ABBDBB70347"
+      ],
+      "source_published": "2026-11-05",
+      "status": "partially_validated",
+      "tactic": "Initial Access",
+      "tags": [
+        "Agentic AI",
+        "Identity",
+        "Supply Chain"
+      ],
+      "technique": "T1078.004",
+      "title": "One Address Signing In as Many Service Principals",
+      "updated": "2026-11-25T02:32:19Z",
+      "validation": {
+        "date": "2026-11-25T02:32:19Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [],
+      "confidence": "Publisher-observed indicators",
+      "considerations": [
+        "Compare operation outcomes and caller identity.",
+        "Correlate addresses and timestamps with Entra service principal sign-ins."
+      ],
+      "description": "Review secret requests from the address Microsoft associated with exposed application credentials.",
+      "evidence": [
+        {
+          "claim": "Microsoft observed ARTEX-associated use of exposed cloud credentials, service-principal sign-ins from a reported IP, rapid cloud discovery and attempted access to Azure Key Vault and other resources.",
+          "location": "Credential abuse via Entra ID and indicators sections",
+          "modified": null,
+          "observation_date": "2026-10-28",
+          "published": "2026-11-05",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "Review secret requests from the address Microsoft associated with exposed application credentials.",
+      "id": "HF-2026-0011",
+      "indicator_ids": [
+        "HF-IOC-334489FDDAC4E4"
+      ],
+      "lookback": 14,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "AZKVAuditLogs",
+      "profiles": [
+        "sentinel-azure"
+      ],
+      "published": "2026-11-25T02:32:19Z",
+      "research": "service-principal",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "a1aae7e8eb7e17d9b9451c29eb3617a04ca29b2c97c78c0a1def52e298a88f1b",
+      "source_ids": [
+        "HF-INT-4B6ABBDBB70347"
+      ],
+      "source_published": "2026-11-05",
+      "status": "partially_validated",
+      "tactic": "Credential Access",
+      "tags": [
+        "Agentic AI",
+        "Identity",
+        "Supply Chain"
+      ],
+      "technique": "T1555.006",
+      "title": "Key Vault Activity From the Reported ARTEX Address",
+      "updated": "2026-11-25T02:32:19Z",
+      "validation": {
+        "date": "2026-11-25T02:32:19Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [],
+      "confidence": "Behavioral hypothesis",
+      "considerations": [
+        "Exclude documented workloads that make multi-vault accesses.",
+        "Review operation outcomes and identities before inferring secret access."
+      ],
+      "description": "Look for a caller rapidly requesting secrets across several vaults.",
+      "evidence": [
+        {
+          "claim": "Microsoft observed ARTEX-associated use of exposed cloud credentials, service-principal sign-ins from a reported IP, rapid cloud discovery and attempted access to Azure Key Vault and other resources.",
+          "location": "Credential abuse via Entra ID and indicators sections",
+          "modified": null,
+          "observation_date": "2026-10-28",
+          "published": "2026-11-05",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/"
+        }
+      ],
+      "expected_output": "One row per caller IP and five-minute window.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "Look for a caller rapidly requesting secrets across several vaults.",
+      "id": "HF-2026-0012",
+      "indicator_ids": [
+        "HF-IOC-334489FDDAC4E4"
+      ],
+      "lookback": 7,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "AZKVAuditLogs",
+      "profiles": [
+        "sentinel-azure"
+      ],
+      "published": "2026-11-25T02:32:19Z",
+      "research": "service-principal",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "fa9d3581251999029960ca0bd5988a27c83033d491f763c9c16373cdedd263e2",
+      "source_ids": [
+        "HF-INT-4B6ABBDBB70347"
+      ],
+      "source_published": "2026-11-05",
+      "status": "partially_validated",
+      "tactic": "Credential Access",
+      "tags": [
+        "Agentic AI",
+        "Identity",
+        "Supply Chain"
+      ],
+      "technique": "T1555.006",
+      "title": "Rapid Secret Requests Across Key Vaults",
+      "updated": "2026-11-25T02:32:19Z",
+      "validation": {
+        "date": "2026-11-25T02:32:19Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [],
+      "confidence": "Publisher-observed indicators",
+      "considerations": [
+        "Compare application and principal IDs with observed sign-ins.",
+        "Check response codes and positions in the tenant baseline."
+      ],
+      "description": "Pivot from the reported cloud credential abuse address to Graph activity.",
+      "evidence": [
+        {
+          "claim": "Microsoft observed ARTEX-associated use of exposed cloud credentials, service-principal sign-ins from a reported IP, rapid cloud discovery and attempted access to Azure Key Vault and other resources.",
+          "location": "Credential abuse via Entra ID and indicators sections",
+          "modified": null,
+          "observation_date": "2026-10-28",
+          "published": "2026-11-05",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "Pivot from the reported cloud credential abuse address to Graph activity.",
+      "id": "HF-2026-0013",
+      "indicator_ids": [
+        "HF-IOC-334489FDDAC4E4"
+      ],
+      "lookback": 14,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "MicrosoftGraphActivityLogs",
+      "profiles": [
+        "sentinel-azure"
+      ],
+      "published": "2026-11-25T02:32:19Z",
+      "research": "service-principal",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "d8bb42f780cac6db860a789d5d61c5404da194d65964c5332b6441521b083776",
+      "source_ids": [
+        "HF-INT-4B6ABBDBB70347"
+      ],
+      "source_published": "2026-11-05",
+      "status": "partially_validated",
+      "tactic": "Initial Access",
+      "tags": [
+        "Agentic AI",
+        "Identity",
+        "Supply Chain"
+      ],
+      "technique": "T1078.004",
+      "title": "ARTEX-Associated Microsoft Graph Activity",
+      "updated": "2026-11-25T02:32:19Z",
+      "validation": {
+        "date": "2026-11-25T02:32:19Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [],
+      "confidence": "Behavioral hypothesis",
+      "considerations": [
+        "Known provisioning and inventory apps may produce this pattern.",
+        "Inspect Graph permissions and the associated sign-in session."
+      ],
+      "description": "Look for a cloud principal querying many Graph user or group paths in quick succession.",
+      "evidence": [
+        {
+          "claim": "Microsoft observed ARTEX-associated use of exposed cloud credentials, service-principal sign-ins from a reported IP, rapid cloud discovery and attempted access to Azure Key Vault and other resources.",
+          "location": "Credential abuse via Entra ID and indicators sections",
+          "modified": null,
+          "observation_date": "2026-10-28",
+          "published": "2026-11-05",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/"
+        }
+      ],
+      "expected_output": "One row per principal, app, source IP and five-minute window.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "Look for a cloud principal querying many Graph user or group paths in quick succession.",
+      "id": "HF-2026-0014",
+      "indicator_ids": [
+        "HF-IOC-334489FDDAC4E4"
+      ],
+      "lookback": 7,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "MicrosoftGraphActivityLogs",
+      "profiles": [
+        "sentinel-azure"
+      ],
+      "published": "2026-11-25T02:32:19Z",
+      "research": "service-principal",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "61c2304be26ea739ad8749f359b77f85e5a404a16f1bc391f4b86e1756b5d11b",
+      "source_ids": [
+        "HF-INT-4B6ABBDBB70347"
+      ],
+      "source_published": "2026-11-05",
+      "status": "partially_validated",
+      "tactic": "Discovery",
+      "tags": [
+        "Agentic AI",
+        "Identity",
+        "Supply Chain"
+      ],
+      "technique": "T1087.004",
+      "title": "Burst of App-Only Directory Enumeration",
+      "updated": "2026-11-25T02:32:19Z",
+      "validation": {
+        "date": "2026-11-25T02:32:19Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [
+        "Storm-0940",
+        "China"
+      ],
+      "confidence": "Publisher-observed indicators",
+      "considerations": [
+        "These app IDs can appear during legitimate backup operations.",
+        "Prioritize reported-source matches and review ownership and expected egress."
+      ],
+      "description": "Review successful app sign-ins for the ConnectWise IDs in Microsoft's Sentinel sample.",
+      "evidence": [
+        {
+          "claim": "Microsoft attributed application abuse, password spraying and cloud role or credential changes to Storm-0940, a China-state-aligned actor, in activity that included the ConnectWise Cloud Backup compromise.",
+          "location": "Observed attack patterns, Sentinel queries and ATT&CK mapping",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-21",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "Review successful app sign-ins for the ConnectWise IDs in Microsoft's Sentinel sample.",
+      "id": "HF-2026-0015",
+      "indicator_ids": [
+        "HF-IOC-30B83342101D2F",
+        "HF-IOC-85B8A518112C30",
+        "HF-IOC-45D7C4479888DC"
+      ],
+      "lookback": 30,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "AADServicePrincipalSignInLogs",
+      "profiles": [
+        "sentinel-entra"
+      ],
+      "published": "2026-11-25T02:32:19Z",
+      "research": "artex-storm0940",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "f3732d6ae425cf23909f3752142e4a9d424a07ecc854532233968e5c51d27185",
+      "source_ids": [
+        "HF-INT-F111D392DD54D8"
+      ],
+      "source_published": "2026-10-21",
+      "status": "partially_validated",
+      "tactic": "Initial Access",
+      "tags": [
+        "Agentic AI",
+        "Nation-State",
+        "Supply Chain",
+        "Identity"
+      ],
+      "technique": "T1199",
+      "title": "Storm-0940 ConnectWise Cloud App Sign-ins",
+      "updated": "2026-11-25T02:32:19Z",
+      "validation": {
+        "date": "2026-11-25T02:32:19Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [
+        "Storm-0940",
+        "China"
+      ],
+      "confidence": "Behavioral hypothesis",
+      "considerations": [
+        "Verify the actor and key dates against an approved rotation or change ticket.",
+        "Pivot to successful service principal sign-ins after an unexpected addition."
+      ],
+      "description": "Review additions of service principal credentials or changes to application secrets and certificates.",
+      "evidence": [
+        {
+          "claim": "Microsoft attributed application abuse, password spraying and cloud role or credential changes to Storm-0940, a China-state-aligned actor, in activity that included the ConnectWise Cloud Backup compromise.",
+          "location": "Observed attack patterns, Sentinel queries and ATT&CK mapping",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-21",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "Review additions of service principal credentials or changes to application secrets and certificates.",
+      "id": "HF-2026-0016",
+      "indicator_ids": [
+        "HF-IOC-30B83342101D2F",
+        "HF-IOC-85B8A518112C30",
+        "HF-IOC-45D7C4479888DC"
+      ],
+      "lookback": 14,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "AuditLogs",
+      "profiles": [
+        "sentinel-entra"
+      ],
+      "published": "2026-11-25T02:32:19Z",
+      "research": "artex-storm0940",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "fa9e060147e6514e3dbe52a6d3a94ea563ae35a9312314eae59cbf6133b124d4",
+      "source_ids": [
+        "HF-INT-F111D392DD54D8"
+      ],
+      "source_published": "2026-10-21",
+      "status": "partially_validated",
+      "tactic": "Persistence",
+      "tags": [
+        "Agentic AI",
+        "Nation-State",
+        "Supply Chain",
+        "Identity"
+      ],
+      "technique": "T1098.001",
+      "title": "Cloud Application Credential Additions",
+      "updated": "2026-11-25T02:32:19Z",
+      "validation": {
+        "date": "2026-11-25T02:32:19Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [
+        "Storm-0940",
+        "China"
+      ],
+      "confidence": "Behavioral hypothesis",
+      "considerations": [
+        "Identify the grantor, target and exact role in the audit data.",
+        "Prioritize unexpected self-grants by service principals."
+      ],
+      "description": "Review audit events granting app roles or adding directory role members.",
+      "evidence": [
+        {
+          "claim": "Microsoft attributed application abuse, password spraying and cloud role or credential changes to Storm-0940, a China-state-aligned actor, in activity that included the ConnectWise Cloud Backup compromise.",
+          "location": "Observed attack patterns, Sentinel queries and ATT&CK mapping",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-21",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "Review audit events granting app roles or adding directory role members.",
+      "id": "HF-2026-0017",
+      "indicator_ids": [
+        "HF-IOC-30B83342101D2F",
+        "HF-IOC-85B8A518112C30",
+        "HF-IOC-45D7C4479888DC"
+      ],
+      "lookback": 14,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "AuditLogs",
+      "profiles": [
+        "sentinel-entra"
+      ],
+      "published": "2026-11-25T02:32:19Z",
+      "research": "artex-storm0940",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "5faee765ef07479428ea2d66e7f8f97f52bfe535062b768c3e6e075342680cf9",
+      "source_ids": [
+        "HF-INT-F111D392DD54D8"
+      ],
+      "source_published": "2026-10-21",
+      "status": "partially_validated",
+      "tactic": "Privilege Escalation",
+      "tags": [
+        "Agentic AI",
+        "Nation-State",
+        "Supply Chain",
+        "Identity"
+      ],
+      "technique": "T1098.003",
+      "title": "Cloud App Role Grants and Directory Role Changes",
+      "updated": "2026-11-25T02:32:19Z",
+      "validation": {
+        "date": "2026-11-25T02:32:19Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [
+        "Storm-0940",
+        "China"
+      ],
+      "confidence": "Behavioral hypothesis",
+      "considerations": [
+        "Legitimate backup may read mailboxes. Compare source IP and environment history.",
+        "Correlate unexpected accesses with service principal sign-ins."
+      ],
+      "description": "Find successful Graph mailbox reads by the ConnectWise applications in the published Sentinel sample.",
+      "evidence": [
+        {
+          "claim": "Microsoft attributed application abuse, password spraying and cloud role or credential changes to Storm-0940, a China-state-aligned actor, in activity that included the ConnectWise Cloud Backup compromise.",
+          "location": "Observed attack patterns, Sentinel queries and ATT&CK mapping",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-21",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "Find successful Graph mailbox reads by the ConnectWise applications in the published Sentinel sample.",
+      "id": "HF-2026-0018",
+      "indicator_ids": [
+        "HF-IOC-30B83342101D2F",
+        "HF-IOC-85B8A518112C30",
+        "HF-IOC-45D7C4479888DC"
+      ],
+      "lookback": 30,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "MicrosoftGraphActivityLogs",
+      "profiles": [
+        "sentinel-azure"
+      ],
+      "published": "2026-11-25T02:32:19Z",
+      "research": "artex-storm0940",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "de6aecc3a0206b034e7280d96135c76c12d5deac9d57a626582f095c5e671dda",
+      "source_ids": [
+        "HF-INT-F111D392DD54D8"
+      ],
+      "source_published": "2026-10-21",
+      "status": "partially_validated",
+      "tactic": "Collection",
+      "tags": [
+        "Agentic AI",
+        "Nation-State",
+        "Supply Chain",
+        "Identity"
+      ],
+      "technique": "T1114.002",
+      "title": "Storm-0940 Cloud App Mail Access",
+      "updated": "2026-11-25T02:32:19Z",
+      "validation": {
+        "date": "2026-11-25T02:32:19Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [
+        "Jasper Sleet",
+        "North Korea"
+      ],
+      "confidence": "Publisher-listed detection",
+      "considerations": [
+        "This query depends on the provider emitting and forwarding the named detection.",
+        "Review affected identity and device evidence before accepting attribution."
+      ],
+      "description": "Find ingested provider alerts for Jasper Sleet sign-in activity.",
+      "evidence": [
+        {
+          "claim": "Microsoft documented North Korean actors adopting AI, identified Onyx Sleet and Pearl Sleet using ARTEX, and listed Defender detections for Jasper Sleet sign-ins and Sapphire Sleet-related ProcmacSteal payloads.",
+          "location": "AI-assisted development, operational scaling and Microsoft Defender detections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-29",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/29/tracking-ai-adoption-in-north-korean-threat-actor-tradecraft/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/10/29/tracking-ai-adoption-in-north-korean-threat-actor-tradecraft/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        },
+        {
+          "change": "Updated",
+          "date": "2026-11-25T02:35:14Z",
+          "revision": 2,
+          "summary": "Revalidated after changes to variants."
+        }
+      ],
+      "hypothesis": "Find ingested provider alerts for Jasper Sleet sign-in activity.",
+      "id": "HF-2026-0019",
+      "indicator_ids": [],
+      "lookback": 30,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "SecurityAlert",
+      "profiles": [
+        "sentinel-alerts"
+      ],
+      "published": "2026-11-25T02:32:19Z",
+      "research": "dprk-ai",
+      "revision": 2,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "4c6607ed8828db8ea41abacc719ead32c7d967ee385929eebd1de3c99882a5e0",
+      "source_ids": [
+        "HF-INT-ECB2698675C7A2"
+      ],
+      "source_published": "2026-10-29",
+      "status": "partially_validated",
+      "tactic": "Initial Access",
+      "tags": [
+        "Agentic AI",
+        "Nation-State",
+        "Supply Chain",
+        "Identity"
+      ],
+      "technique": "T1078.004",
+      "title": "North Korea · Jasper Sleet Sign-in Alerts",
+      "updated": "2026-11-25T02:35:14Z",
+      "validation": {
+        "date": "2026-11-25T02:35:14Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [
+        "Sapphire Sleet",
+        "North Korea"
+      ],
+      "confidence": "Publisher-listed detection",
+      "considerations": [
+        "Determine whether the alert was a prevention, detection or test.",
+        "Check dependency and build lineage. The payload label alone does not establish actor attribution."
+      ],
+      "description": "Find ingested alerts for ProcmacSteal, a payload family reported in Sapphire Sleet's Rust software compromise.",
+      "evidence": [
+        {
+          "claim": "Microsoft documented North Korean actors adopting AI, identified Onyx Sleet and Pearl Sleet using ARTEX, and listed Defender detections for Jasper Sleet sign-ins and Sapphire Sleet-related ProcmacSteal payloads.",
+          "location": "AI-assisted development, operational scaling and Microsoft Defender detections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-29",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/29/tracking-ai-adoption-in-north-korean-threat-actor-tradecraft/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/10/29/tracking-ai-adoption-in-north-korean-threat-actor-tradecraft/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        },
+        {
+          "change": "Updated",
+          "date": "2026-11-25T02:35:14Z",
+          "revision": 2,
+          "summary": "Revalidated after changes to variants."
+        }
+      ],
+      "hypothesis": "Find ingested alerts for ProcmacSteal, a payload family reported in Sapphire Sleet's Rust software compromise.",
+      "id": "HF-2026-0020",
+      "indicator_ids": [],
+      "lookback": 30,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "SecurityAlert",
+      "profiles": [
+        "sentinel-alerts"
+      ],
+      "published": "2026-11-25T02:32:19Z",
+      "research": "dprk-ai",
+      "revision": 2,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "6068cb575925a9ed309263a25c324b74546189362e3a46b02f39bc431cefa4bf",
+      "source_ids": [
+        "HF-INT-ECB2698675C7A2"
+      ],
+      "source_published": "2026-10-29",
+      "status": "partially_validated",
+      "tactic": "Initial Access",
+      "tags": [
+        "Agentic AI",
+        "Nation-State",
+        "Supply Chain",
+        "Identity"
+      ],
+      "technique": "T1195.002",
+      "title": "North Korea · Sapphire Sleet ProcmacSteal Alerts",
+      "updated": "2026-11-25T02:35:14Z",
+      "validation": {
+        "date": "2026-11-25T02:35:14Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [],
+      "confidence": "Lab-informed defensive lead",
+      "considerations": [
+        "Baseline approved device codes and confirm what prompted authorization.",
+        "GitHub-only device grants are outside Entra sign-in telemetry."
+      ],
+      "description": "Review device-code sign-ins for unexpected users, apps and source addresses.",
+      "evidence": [
+        {
+          "claim": "Microsoft demonstrated in a lab that device code phishing can expose sessions used by coding agents, and noted earlier device-code phishing campaigns. The demonstration is distinct from observed incidents.",
+          "location": "Research scope and mitigation guidance",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-17",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/17/the-risks-of-device-code-authentication-for-ai-coding-agents/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/17/the-risks-of-device-code-authentication-for-ai-coding-agents/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "Review device-code sign-ins for unexpected users, apps and source addresses.",
+      "id": "HF-2026-0021",
+      "indicator_ids": [],
+      "lookback": 7,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "SigninLogs",
+      "profiles": [
+        "sentinel-entra"
+      ],
+      "published": "2026-11-25T02:32:19Z",
+      "research": "device-code",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "e9f46d73aba3afde09b9633152e513d48abe4e2db501d925cc0099abb4320674",
+      "source_ids": [
+        "HF-INT-636ABB4FBA14B1"
+      ],
+      "source_published": "2026-11-17",
+      "status": "partially_validated",
+      "tactic": "Credential Access",
+      "tags": [
+        "Agentic AI",
+        "Phishing",
+        "Identity"
+      ],
+      "technique": "T1528",
+      "title": "Successful Entra Device-Code Sign-ins",
+      "updated": "2026-11-25T02:32:19Z",
+      "validation": {
+        "date": "2026-11-25T02:32:19Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [],
+      "confidence": "Lab-informed defensive lead",
+      "considerations": [
+        "Identify the specific blocking policy in sign-in details.",
+        "Look for later successful grants for the same app and user."
+      ],
+      "description": "Find device-code attempts failing Conditional Access.",
+      "evidence": [
+        {
+          "claim": "Microsoft demonstrated in a lab that device code phishing can expose sessions used by coding agents, and noted earlier device-code phishing campaigns. The demonstration is distinct from observed incidents.",
+          "location": "Research scope and mitigation guidance",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-17",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/17/the-risks-of-device-code-authentication-for-ai-coding-agents/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/17/the-risks-of-device-code-authentication-for-ai-coding-agents/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "Find device-code attempts failing Conditional Access.",
+      "id": "HF-2026-0022",
+      "indicator_ids": [],
+      "lookback": 7,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "SigninLogs",
+      "profiles": [
+        "sentinel-entra"
+      ],
+      "published": "2026-11-25T02:32:19Z",
+      "research": "device-code",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "83031534c0bf666b6f5c4b5a4d28dc337adef01f1f7de8578ed15b7b89e00a8f",
+      "source_ids": [
+        "HF-INT-636ABB4FBA14B1"
+      ],
+      "source_published": "2026-11-17",
+      "status": "partially_validated",
+      "tactic": "Credential Access",
+      "tags": [
+        "Agentic AI",
+        "Phishing",
+        "Identity"
+      ],
+      "technique": "T1528",
+      "title": "Device-Code Attempts Blocked by Conditional Access",
+      "updated": "2026-11-25T02:32:19Z",
+      "validation": {
+        "date": "2026-11-25T02:32:19Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [],
+      "confidence": "Lab-informed defensive lead",
+      "considerations": [
+        "Check for shared VPNs, mobile roaming and normal tool use.",
+        "Review sign-in and token activity before deciding whether it is suspicious."
+      ],
+      "description": "Look for successful device-code sign-ins from multiple addresses for one user and app in fifteen minutes.",
+      "evidence": [
+        {
+          "claim": "Microsoft demonstrated in a lab that device code phishing can expose sessions used by coding agents, and noted earlier device-code phishing campaigns. The demonstration is distinct from observed incidents.",
+          "location": "Research scope and mitigation guidance",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-17",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/17/the-risks-of-device-code-authentication-for-ai-coding-agents/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/17/the-risks-of-device-code-authentication-for-ai-coding-agents/"
+        }
+      ],
+      "expected_output": "One row per user, app and fifteen-minute window.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "Look for successful device-code sign-ins from multiple addresses for one user and app in fifteen minutes.",
+      "id": "HF-2026-0023",
+      "indicator_ids": [],
+      "lookback": 7,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "SigninLogs",
+      "profiles": [
+        "sentinel-entra"
+      ],
+      "published": "2026-11-25T02:32:19Z",
+      "research": "device-code",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "f20615d9478938a2b8ba1dd5e19d96f905ea732f3a4a4a10a78e9c2d8b33959d",
+      "source_ids": [
+        "HF-INT-636ABB4FBA14B1"
+      ],
+      "source_published": "2026-11-17",
+      "status": "partially_validated",
+      "tactic": "Credential Access",
+      "tags": [
+        "Agentic AI",
+        "Phishing",
+        "Identity"
+      ],
+      "technique": "T1528",
+      "title": "Device-Code Grants From Multiple Network Origins",
+      "updated": "2026-11-25T02:32:19Z",
+      "validation": {
+        "date": "2026-11-25T02:32:19Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [],
+      "confidence": "Behavioral hypothesis",
+      "considerations": [
+        "Confirm the technician, session and change ticket.",
+        "Investigate unexpected commands on downstream managed endpoints."
+      ],
+      "description": "Look for shell process launches parented by ScreenConnect.",
+      "evidence": [
+        {
+          "claim": "Microsoft documented unauthorized ScreenConnect sessions, scripting, scheduled tasks, Run keys and changes to Defender exclusions while investigating SCKit.",
+          "location": "Investigation guidance and advanced hunting examples",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-13",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/13/sckit-abuses-screenconnect-deploy-remote-access-target-technician-sessions/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/13/sckit-abuses-screenconnect-deploy-remote-access-target-technician-sessions/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        },
+        {
+          "change": "Updated",
+          "date": "2026-11-25T03:12:33Z",
+          "revision": 2,
+          "summary": "Revalidated after changes to variants."
+        }
+      ],
+      "hypothesis": "Look for shell process launches parented by ScreenConnect.",
+      "id": "HF-2026-0024",
+      "indicator_ids": [],
+      "lookback": 7,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "DeviceProcessEvents",
+      "profiles": [
+        "sentinel-endpoint"
+      ],
+      "published": "2026-11-25T02:32:19Z",
+      "research": "sckit",
+      "revision": 2,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "6d43ab7983de739ea34da6e80a1b868cdd54470ed5a6fab03e3a3bbad468ecea",
+      "source_ids": [
+        "HF-INT-36ECE2AA75663D"
+      ],
+      "source_published": "2026-11-13",
+      "status": "partially_validated",
+      "tactic": "Command and Control",
+      "tags": [
+        "Supply Chain",
+        "Remote Access",
+        "LOLBins"
+      ],
+      "technique": "T1219.002",
+      "title": "ScreenConnect Spawning a Command Shell",
+      "updated": "2026-11-25T03:12:33Z",
+      "validation": {
+        "date": "2026-11-25T03:12:33Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [],
+      "confidence": "Publisher-observed artifacts",
+      "considerations": [
+        "Review registration context, trigger and referenced file.",
+        "Correlate with ScreenConnect sessions and nearby registry changes."
+      ],
+      "description": "Find scheduled task events containing two markers Microsoft identified in SCKit activity.",
+      "evidence": [
+        {
+          "claim": "Microsoft documented unauthorized ScreenConnect sessions, scripting, scheduled tasks, Run keys and changes to Defender exclusions while investigating SCKit.",
+          "location": "Investigation guidance and advanced hunting examples",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-13",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/13/sckit-abuses-screenconnect-deploy-remote-access-target-technician-sessions/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/13/sckit-abuses-screenconnect-deploy-remote-access-target-technician-sessions/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        },
+        {
+          "change": "Updated",
+          "date": "2026-11-25T03:12:33Z",
+          "revision": 2,
+          "summary": "Revalidated after changes to variants."
+        }
+      ],
+      "hypothesis": "Find scheduled task events containing two markers Microsoft identified in SCKit activity.",
+      "id": "HF-2026-0025",
+      "indicator_ids": [],
+      "lookback": 14,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "DeviceEvents",
+      "profiles": [
+        "sentinel-endpoint"
+      ],
+      "published": "2026-11-25T02:32:19Z",
+      "research": "sckit",
+      "revision": 2,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "d16e63c4f50b27e0d73b4f372040e14cf737ac907fc08112613f96d3cb0486af",
+      "source_ids": [
+        "HF-INT-36ECE2AA75663D"
+      ],
+      "source_published": "2026-11-13",
+      "status": "partially_validated",
+      "tactic": "Persistence",
+      "tags": [
+        "Supply Chain",
+        "Remote Access",
+        "LOLBins"
+      ],
+      "technique": "T1053.005",
+      "title": "RelayTrap Scheduled Task Activity",
+      "updated": "2026-11-25T03:12:33Z",
+      "validation": {
+        "date": "2026-11-25T03:12:33Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [],
+      "confidence": "Publisher-observed artifacts",
+      "considerations": [
+        "Compare the configured path with files on the host.",
+        "Review the initiating process and unexpected support activity."
+      ],
+      "description": "Review Run and RunOnce changes carrying a RelayTrap marker.",
+      "evidence": [
+        {
+          "claim": "Microsoft documented unauthorized ScreenConnect sessions, scripting, scheduled tasks, Run keys and changes to Defender exclusions while investigating SCKit.",
+          "location": "Investigation guidance and advanced hunting examples",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-13",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/13/sckit-abuses-screenconnect-deploy-remote-access-target-technician-sessions/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/13/sckit-abuses-screenconnect-deploy-remote-access-target-technician-sessions/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        },
+        {
+          "change": "Updated",
+          "date": "2026-11-25T03:12:33Z",
+          "revision": 2,
+          "summary": "Revalidated after changes to variants."
+        }
+      ],
+      "hypothesis": "Review Run and RunOnce changes carrying a RelayTrap marker.",
+      "id": "HF-2026-0026",
+      "indicator_ids": [],
+      "lookback": 14,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "DeviceRegistryEvents",
+      "profiles": [
+        "sentinel-endpoint"
+      ],
+      "published": "2026-11-25T02:32:19Z",
+      "research": "sckit",
+      "revision": 2,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "95151c46aca76553c115b11349d645beabc7266e6cad2d85bfd810ce61df0168",
+      "source_ids": [
+        "HF-INT-36ECE2AA75663D"
+      ],
+      "source_published": "2026-11-13",
+      "status": "partially_validated",
+      "tactic": "Persistence",
+      "tags": [
+        "Supply Chain",
+        "Remote Access",
+        "LOLBins"
+      ],
+      "technique": "T1547.001",
+      "title": "SCKit Run Key Persistence",
+      "updated": "2026-11-25T03:12:33Z",
+      "validation": {
+        "date": "2026-11-25T03:12:33Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [],
+      "confidence": "Behavioral hypothesis",
+      "considerations": [
+        "Confirm whether an administrator or endpoint policy created the exclusion.",
+        "Review files written into newly excluded folders."
+      ],
+      "description": "Review Defender exclusions that reference remote-support staging or RelayTrap.",
+      "evidence": [
+        {
+          "claim": "Microsoft documented unauthorized ScreenConnect sessions, scripting, scheduled tasks, Run keys and changes to Defender exclusions while investigating SCKit.",
+          "location": "Investigation guidance and advanced hunting examples",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-13",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/13/sckit-abuses-screenconnect-deploy-remote-access-target-technician-sessions/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/13/sckit-abuses-screenconnect-deploy-remote-access-target-technician-sessions/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        },
+        {
+          "change": "Updated",
+          "date": "2026-11-25T03:12:33Z",
+          "revision": 2,
+          "summary": "Revalidated after changes to variants."
+        }
+      ],
+      "hypothesis": "Review Defender exclusions that reference remote-support staging or RelayTrap.",
+      "id": "HF-2026-0027",
+      "indicator_ids": [],
+      "lookback": 7,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "DeviceRegistryEvents",
+      "profiles": [
+        "sentinel-endpoint"
+      ],
+      "published": "2026-11-25T02:32:19Z",
+      "research": "sckit",
+      "revision": 2,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "6803b90a89e12d12445701da896d7fac193fb5a222feb8a07975ba14f07c8a73",
+      "source_ids": [
+        "HF-INT-36ECE2AA75663D"
+      ],
+      "source_published": "2026-11-13",
+      "status": "partially_validated",
+      "tactic": "Defense Impairment",
+      "tags": [
+        "Supply Chain",
+        "Remote Access",
+        "LOLBins"
+      ],
+      "technique": "T1685",
+      "title": "Defender Path Exclusions Near SCKit Activity",
+      "updated": "2026-11-25T03:12:33Z",
+      "validation": {
+        "date": "2026-11-25T03:12:33Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [],
+      "confidence": "Publisher-observed indicators",
+      "considerations": [
+        "The distribution domains are dual-use. Verify whether the download was approved.",
+        "Review process, file and persistence events following the network activity."
+      ],
+      "description": "Review process-attributed connections to published GSocket distribution domains.",
+      "evidence": [
+        {
+          "claim": "Microsoft observed GSocket tooling on compromised Linux servers, including renamed relay binaries, cron persistence and connections to GSocket distribution infrastructure.",
+          "location": "Advanced hunting queries and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-11",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        },
+        {
+          "change": "Updated",
+          "date": "2026-11-25T03:12:33Z",
+          "revision": 2,
+          "summary": "Revalidated after changes to variants."
+        }
+      ],
+      "hypothesis": "Review process-attributed connections to published GSocket distribution domains.",
+      "id": "HF-2026-0028",
+      "indicator_ids": [
+        "HF-IOC-93EEECFDCFE129",
+        "HF-IOC-69DD14AE2022D2"
+      ],
+      "lookback": 14,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "DeviceNetworkEvents",
+      "profiles": [
+        "sentinel-endpoint"
+      ],
+      "published": "2026-11-25T02:32:19Z",
+      "research": "gsocket",
+      "revision": 2,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "2be39d7448bcceaec8970da479c062f2e96571542493f20fcd82cf6e746f1921",
+      "source_ids": [
+        "HF-INT-F3F53EF63DF395"
+      ],
+      "source_published": "2026-11-11",
+      "status": "partially_validated",
+      "tactic": "Command and Control",
+      "tags": [
+        "APT Activity",
+        "Exploitation"
+      ],
+      "technique": "T1105",
+      "title": "GSocket Distribution Endpoint Connections",
+      "updated": "2026-11-25T03:12:33Z",
+      "validation": {
+        "date": "2026-11-25T03:12:33Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [],
+      "confidence": "Behavioral hypothesis",
+      "considerations": [
+        "Correlate the process and account with host-level cron entries.",
+        "Renamed binaries may evade this specific name-based pivot."
+      ],
+      "description": "Look for cron starting a GSocket-related process on Linux.",
+      "evidence": [
+        {
+          "claim": "Microsoft observed GSocket tooling on compromised Linux servers, including renamed relay binaries, cron persistence and connections to GSocket distribution infrastructure.",
+          "location": "Advanced hunting queries and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-11",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        },
+        {
+          "change": "Updated",
+          "date": "2026-11-25T03:12:33Z",
+          "revision": 2,
+          "summary": "Revalidated after changes to variants."
+        }
+      ],
+      "hypothesis": "Look for cron starting a GSocket-related process on Linux.",
+      "id": "HF-2026-0029",
+      "indicator_ids": [
+        "HF-IOC-93EEECFDCFE129",
+        "HF-IOC-69DD14AE2022D2"
+      ],
+      "lookback": 7,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "DeviceProcessEvents",
+      "profiles": [
+        "sentinel-endpoint"
+      ],
+      "published": "2026-11-25T02:32:19Z",
+      "research": "gsocket",
+      "revision": 2,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "290184984becb639abc4c28d87d059db1d94bab2fb8db64038f3d8cbc7cdf1f4",
+      "source_ids": [
+        "HF-INT-F3F53EF63DF395"
+      ],
+      "source_published": "2026-11-11",
+      "status": "partially_validated",
+      "tactic": "Persistence",
+      "tags": [
+        "APT Activity",
+        "Exploitation"
+      ],
+      "technique": "T1053.003",
+      "title": "GSocket Launch From Cron",
+      "updated": "2026-11-25T03:12:33Z",
+      "validation": {
+        "date": "2026-11-25T03:12:33Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [],
+      "confidence": "Behavioral hypothesis",
+      "considerations": [
+        "Check package provenance and approved administrative work.",
+        "Correlate file creation with transfer and process execution events."
+      ],
+      "description": "Review GSocket artifacts written to the shared-memory staging area described by Microsoft.",
+      "evidence": [
+        {
+          "claim": "Microsoft observed GSocket tooling on compromised Linux servers, including renamed relay binaries, cron persistence and connections to GSocket distribution infrastructure.",
+          "location": "Advanced hunting queries and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-11",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        },
+        {
+          "change": "Updated",
+          "date": "2026-11-25T03:12:33Z",
+          "revision": 2,
+          "summary": "Revalidated after changes to variants."
+        }
+      ],
+      "hypothesis": "Review GSocket artifacts written to the shared-memory staging area described by Microsoft.",
+      "id": "HF-2026-0030",
+      "indicator_ids": [
+        "HF-IOC-93EEECFDCFE129",
+        "HF-IOC-69DD14AE2022D2"
+      ],
+      "lookback": 7,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "DeviceFileEvents",
+      "profiles": [
+        "sentinel-endpoint"
+      ],
+      "published": "2026-11-25T02:32:19Z",
+      "research": "gsocket",
+      "revision": 2,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "d2c94a8a41c08c3f32fd2ef8329be5f38b632114cc2120d3d253a200fe9e2995",
+      "source_ids": [
+        "HF-INT-F3F53EF63DF395"
+      ],
+      "source_published": "2026-11-11",
+      "status": "partially_validated",
+      "tactic": "Command and Control",
+      "tags": [
+        "APT Activity",
+        "Exploitation"
+      ],
+      "technique": "T1105",
+      "title": "GSocket-Related Files in Linux Shared Memory",
+      "updated": "2026-11-25T03:12:33Z",
+      "validation": {
+        "date": "2026-11-25T03:12:33Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [],
+      "confidence": "Publisher-observed artifacts",
+      "considerations": [
+        "Check whether the message was blocked or delivered.",
+        "Corroborate with the sender, embedded URL and campaign reporting."
+      ],
+      "description": "Look for mail matching the reported randomized outage subject format.",
+      "evidence": [
+        {
+          "claim": "Microsoft reported downstream destinations and a redirect path in deceptive Microsoft 365 service-health messages. The report did not confirm credential submission.",
+          "location": "Lure and redirect flow, MITRE ATT&CK, and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-16",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "Look for mail matching the reported randomized outage subject format.",
+      "id": "HF-2026-0031",
+      "indicator_ids": [
+        "HF-IOC-67384D48D4FE0E",
+        "HF-IOC-643EC22834E642",
+        "HF-IOC-4BDFC7D2DF496E",
+        "HF-IOC-A6CE6D434B06E6"
+      ],
+      "lookback": 14,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "EmailEvents",
+      "profiles": [
+        "sentinel-email"
+      ],
+      "published": "2026-11-25T02:32:19Z",
+      "research": "outage-phishing",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "8fa30ae9b0849a3bc78b0808499e0c2cdeca1a02b683d832c5e045211ddb86fc",
+      "source_ids": [
+        "HF-INT-A08614C0DEBC42"
+      ],
+      "source_published": "2026-11-16",
+      "status": "partially_validated",
+      "tactic": "Initial Access",
+      "tags": [
+        "Phishing",
+        "Identity"
+      ],
+      "technique": "T1566.002",
+      "title": "Microsoft 365 Outage Phishing Messages",
+      "updated": "2026-11-25T02:32:19Z",
+      "validation": {
+        "date": "2026-11-25T02:32:19Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [],
+      "confidence": "Publisher-observed indicators",
+      "considerations": [
+        "Use NetworkMessageId to look up delivery status.",
+        "Corroborate clicks and subsequent sign-ins separately."
+      ],
+      "description": "Find reported phishing domains in mail URL extraction.",
+      "evidence": [
+        {
+          "claim": "Microsoft reported downstream destinations and a redirect path in deceptive Microsoft 365 service-health messages. The report did not confirm credential submission.",
+          "location": "Lure and redirect flow, MITRE ATT&CK, and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-16",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "Find reported phishing domains in mail URL extraction.",
+      "id": "HF-2026-0032",
+      "indicator_ids": [
+        "HF-IOC-67384D48D4FE0E",
+        "HF-IOC-643EC22834E642",
+        "HF-IOC-4BDFC7D2DF496E",
+        "HF-IOC-A6CE6D434B06E6"
+      ],
+      "lookback": 14,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "EmailUrlInfo",
+      "profiles": [
+        "sentinel-email"
+      ],
+      "published": "2026-11-25T02:32:19Z",
+      "research": "outage-phishing",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "e190b3af970de439bf43047a5ebf0dae3da806341543484e88d8fd5a72b0aef9",
+      "source_ids": [
+        "HF-INT-A08614C0DEBC42"
+      ],
+      "source_published": "2026-11-16",
+      "status": "partially_validated",
+      "tactic": "Initial Access",
+      "tags": [
+        "Phishing",
+        "Identity"
+      ],
+      "technique": "T1566.002",
+      "title": "Microsoft 365 Outage Phishing URLs in Mail",
+      "updated": "2026-11-25T02:32:19Z",
+      "validation": {
+        "date": "2026-11-25T02:32:19Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [],
+      "confidence": "Behavioral hypothesis",
+      "considerations": [
+        "Forward Certification Services auditing from the CA into WindowsEvent.",
+        "Compare template, requester and time against routine issuance and incident evidence."
+      ],
+      "description": "Review AD CS certificate issuance near a suspicious support session.",
+      "evidence": [
+        {
+          "claim": "Microsoft observed fraudulent Quick Assist support sessions followed by scripting and certificate-services abuse during the investigated intrusions.",
+          "location": "Intrusion case studies and initial access sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-30",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "Review AD CS certificate issuance near a suspicious support session.",
+      "id": "HF-2026-0033",
+      "indicator_ids": [],
+      "lookback": 3,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "WindowsEvent",
+      "profiles": [
+        "sentinel-windows"
+      ],
+      "published": "2026-11-25T02:32:19Z",
+      "research": "quick-assist",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "fffb142fc2d12368c395edca97fcb7eeb0fdc4bb26050a632350612cdfeaf6bb",
+      "source_ids": [
+        "HF-INT-E26238C5B4C5C7"
+      ],
+      "source_published": "2026-10-30",
+      "status": "partially_validated",
+      "tactic": "Credential Access",
+      "tags": [
+        "Phishing",
+        "Identity"
+      ],
+      "technique": "T1649",
+      "title": "Certificate Issuance After a Suspected Help Desk Intrusion",
+      "updated": "2026-11-25T02:32:19Z",
+      "validation": {
+        "date": "2026-11-25T02:32:19Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [],
+      "confidence": "Behavioral hypothesis",
+      "considerations": [
+        "This is a narrow process-chain lead. Remote sessions may spawn processes through another parent.",
+        "Check the host timeline and support records for context."
+      ],
+      "description": "Review observed direct PowerShell child processes of Quick Assist.",
+      "evidence": [
+        {
+          "claim": "Microsoft observed fraudulent Quick Assist support sessions followed by scripting and certificate-services abuse during the investigated intrusions.",
+          "location": "Intrusion case studies and initial access sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-30",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/"
+        }
+      ],
+      "expected_output": "One row per matching event in tabular mode. A match supports triage.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        },
+        {
+          "change": "Updated",
+          "date": "2026-11-25T03:12:33Z",
+          "revision": 2,
+          "summary": "Revalidated after changes to variants."
+        }
+      ],
+      "hypothesis": "Review observed direct PowerShell child processes of Quick Assist.",
+      "id": "HF-2026-0034",
+      "indicator_ids": [],
+      "lookback": 7,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "DeviceProcessEvents",
+      "profiles": [
+        "sentinel-endpoint"
+      ],
+      "published": "2026-11-25T02:32:19Z",
+      "research": "quick-assist",
+      "revision": 2,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "faa21b37bdd4a60f0c5577e75b90cd47007733c58aad4c4dca980a7096c36b57",
+      "source_ids": [
+        "HF-INT-E26238C5B4C5C7"
+      ],
+      "source_published": "2026-10-30",
+      "status": "partially_validated",
+      "tactic": "Execution",
+      "tags": [
+        "Phishing",
+        "Identity"
+      ],
+      "technique": "T1059.001",
+      "title": "PowerShell Launched by a Remote Support Process",
+      "updated": "2026-11-25T03:12:33Z",
+      "validation": {
+        "date": "2026-11-25T03:12:33Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [],
+      "confidence": "Behavioral hypothesis",
+      "considerations": [
+        "Map vendor-specific action values before using the threshold.",
+        "Exclude approved scanners and confirm that targets are part of your intended perimeter."
+      ],
+      "description": "Find bursts of firewall denies across many ports on one destination.",
+      "evidence": [
+        {
+          "claim": "Microsoft reported Storm-3358 using ARTEX around financial-sector intrusions, including fast network probing, password abuse and infrastructure associated with remote access tooling.",
+          "location": "Behavioral signals and indicators sections",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-06",
+          "source": "microsoft",
+          "source_id": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/06/artex-abuse-expands-as-cybercriminals-target-financial-sector/"
+        }
+      ],
+      "expected_output": "One row per source, destination and five-minute window.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T02:32:19Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "Find bursts of firewall denies across many ports on one destination.",
+      "id": "HF-2026-0035",
+      "indicator_ids": [
+        "HF-IOC-4DAAE2BF2ABDF4",
+        "HF-IOC-0A1A6CD2B306D6",
+        "HF-IOC-30A64FD1F6005C",
+        "HF-IOC-685DF4E8FA72AD",
+        "HF-IOC-E3625A0D95A20C",
+        "HF-IOC-57C3F78D071AB1"
+      ],
+      "lookback": 7,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "CommonSecurityLog",
+      "profiles": [
+        "sentinel-cef"
+      ],
+      "published": "2026-11-25T02:32:19Z",
+      "research": "artex-finance",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "4ad59d60265d51aabf953360121d38d2d455284af7db28b770f306a3b73203bb",
+      "source_ids": [
+        "HF-INT-631279C95E3417"
+      ],
+      "source_published": "2026-11-06",
+      "status": "partially_validated",
+      "tactic": "Reconnaissance",
+      "tags": [
+        "Agentic AI",
+        "Initial Access",
+        "Network"
+      ],
+      "technique": "T1595",
+      "title": "Rapid Denied Probes Against a Single Network Edge",
+      "updated": "2026-11-25T02:32:19Z",
+      "validation": {
+        "date": "2026-11-25T02:32:19Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [],
+      "confidence": "Source-backed behavioral hypothesis",
+      "considerations": [
+        "Scope results to known Drupal hosts and established sites. New installations, deployments and configuration management can write this file legitimately.",
+        "Compare its change time and content to the deployment record. Corroborate unexpected database-setting or administrator changes with web and application audit logs.",
+        "This covers a subset of CVE-2026-132165 behavior. The publisher does not report settings.php modifications in the live cases cited by the advisory."
+      ],
+      "cves": [
+        "CVE-2026-132165"
+      ],
+      "description": "Find a web or PHP worker writing Drupal's per-site settings file, a lead for the installer abuse described in CVE-2026-132165.",
+      "evidence": [
+        {
+          "claim": "The Drupal Security Team received a report of live exploitation starting November 19. The team identifies settings.php writability by the web server as a condition for some exploitation paths. The hunt infers a file-write signal from this condition.",
+          "location": "Description and exploitation update",
+          "modified": null,
+          "observation_date": "2026-11-19",
+          "published": "2026-11-18",
+          "source": "drupal",
+          "source_id": "https://www.drupal.org/sa-core-2026-017",
+          "url": "https://www.drupal.org/sa-core-2026-017"
+        }
+      ],
+      "expected_output": "One row per matching file operation, with the host, path, process and file hash when collected.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T03:12:33Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "A web worker unexpectedly writing an existing site's settings.php may indicate attempted reinstallation or configuration tampering.",
+      "id": "HF-2026-0036",
+      "indicator_ids": [],
+      "lookback": 30,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "DeviceFileEvents",
+      "profiles": [
+        "sentinel-endpoint"
+      ],
+      "published": "2026-11-25T03:12:33Z",
+      "research": "drupal-core-cve-2026-132165",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "aaf8918a99b201aab4b43ea7b09cc2af020c4ed26c5ecd2066e32a9a5d31649d",
+      "source_ids": [
+        "HF-INT-30B425716EEE85"
+      ],
+      "source_published": "2026-11-18",
+      "status": "partially_validated",
+      "tactic": "Initial Access",
+      "tags": [
+        "Exploitation",
+        "Web Applications"
+      ],
+      "technique": "T1190",
+      "title": "Drupal Web Workers Writing Site Settings",
+      "updated": "2026-11-25T03:12:33Z",
+      "validation": {
+        "date": "2026-11-25T03:12:33Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [],
+      "confidence": "Source-backed behavioral hypothesis",
+      "considerations": [
+        "Review the attribution column first. A shared five-minute window with Outlook is a weaker lead because normal Outlook and SMB traffic can overlap.",
+        "Exclude approved external file services and validate endpoint, firewall and outbound NTLM records for direction, authentication and whether any connection was blocked.",
+        "Correlate the user and device timeline with recent message opens and check the installed Office build. A network event alone cannot establish authentication data exposure.",
+        "The query pivots on TCP ports 139 and 445 for publicly classified destinations. It does not measure HTTP or WebDAV behavior and returns up to 256 SMB events per device per five-minute window."
+      ],
+      "cves": [
+        "CVE-2026-124194"
+      ],
+      "description": "Find attempts from classic Outlook to reach public SMB destinations and check for kernel-attributed attempts on devices with nearby Outlook network activity.",
+      "evidence": [
+        {
+          "claim": "Brazil's government incident response center documents unintended external authentication from affected Outlook clients and recommends monitoring unexpected outbound SMB and other authentication-related connections.",
+          "location": "Sections 2 and 5(b–d), as updated November 16",
+          "modified": "2026-11-16",
+          "observation_date": null,
+          "published": "2026-10-22",
+          "source": "ctir",
+          "source_id": "https://www.gov.br/gsi/pt-br/assuntos/ctir/recomendacoes/2026/recomendacao-23-2026",
+          "url": "https://www.gov.br/gsi/pt-br/assuntos/ctir/recomendacoes/2026/recomendacao-23-2026"
+        }
+      ],
+      "expected_output": "One row per public SMB candidate, with attribution strength, device, destination, action and Outlook network activity count.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T03:12:33Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "Unexpected public SMB from Outlook, or SMB recorded under System close to Outlook activity, can help triage forced authentication associated with CVE-2026-124194.",
+      "id": "HF-2026-0037",
+      "indicator_ids": [],
+      "lookback": 30,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "DeviceNetworkEvents",
+      "profiles": [
+        "sentinel-endpoint"
+      ],
+      "published": "2026-11-25T03:12:33Z",
+      "research": "outlook-cve-2026-124194",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "94db0cbd471a69d81096c457ef5017f542afcd4dd6429a3be3be66350e760f37",
+      "source_ids": [
+        "HF-INT-6532E5CD2531FA"
+      ],
+      "source_published": "2026-10-22",
+      "status": "partially_validated",
+      "tactic": "Credential Access",
+      "tags": [
+        "Exploitation",
+        "Credential Access",
+        "Email"
+      ],
+      "technique": "T1187",
+      "title": "External SMB From Outlook and Nearby System Connections",
+      "updated": "2026-11-25T03:12:33Z",
+      "validation": {
+        "date": "2026-11-25T03:12:33Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [],
+      "confidence": "Vendor detection names",
+      "considerations": [
+        "This requires the GitLab detections or an equivalent alert integration to write to SecurityAlert. Match the published titles or preserve them as part of the alert title.",
+        "The generic Onigmo native crash signal also covers other GitLab/Ruby vulnerabilities. Corroborate with the CI regex compilation stack, related GitLab detections, and the GitLab and Ruby builds.",
+        "A rejection or worker crash can be consistent with an attempt. Review host process, file and network timelines independently for evidence of code execution."
+      ],
+      "cves": [
+        "CVE-2026-97229"
+      ],
+      "description": "Find Sentinel alerts named after the six exploitation-attempt detections that GitLab publishes for CVE-2026-97229.",
+      "evidence": [
+        {
+          "claim": "GitLab Security publishes exploitation-attempt detections for vulnerable self-managed GitLab CE/EE. Its linked Onigmo guidance identifies compile-time crash frames together with regexp_matcher.rb as corroborating traces of the CI path.",
+          "location": "Detecting CVE-2026-97229 Exploitation Attempts and linked Onigmo native worker crash detection",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-12",
+          "source": "gitlab",
+          "source_id": "https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-4-2-released/",
+          "url": "https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-4-2-released/"
+        }
+      ],
+      "expected_output": "One row per matching alert with the named detection, affected entity, alert ID and reporting product.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T03:12:33Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "A GitLab-published exploitation-attempt detection can surface requests rejected by safeguards, crash evidence or a related error burst on self-managed GitLab.",
+      "id": "HF-2026-0038",
+      "indicator_ids": [],
+      "lookback": 30,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "SecurityAlert",
+      "profiles": [
+        "sentinel-alerts"
+      ],
+      "published": "2026-11-25T03:12:33Z",
+      "research": "gitlab-ce-ee-cve-2026-97229",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "7556af13a878494e5b97a3702c89d2e08800f7e7ec85b1cfacd34becfe453281",
+      "source_ids": [
+        "HF-INT-1E237D757592BE"
+      ],
+      "source_published": "2026-10-12",
+      "status": "partially_validated",
+      "tactic": "Initial Access",
+      "tags": [
+        "Exploitation",
+        "CI/CD"
+      ],
+      "technique": "T1190",
+      "title": "GitLab CVE-2026-97229 Vendor Detection Alerts",
+      "updated": "2026-11-25T03:12:33Z",
+      "validation": {
+        "date": "2026-11-25T03:12:33Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [],
+      "confidence": "Vendor-documented crash signature",
+      "considerations": [
+        "Forward self-managed GitLab Puma worker errors as multiline CEF records. Preserve the crash header and stack in Message and use GitLab as the mapped vendor or product.",
+        "This is a corroborating signal for the CI path. It can also occur with related Onigmo flaws. Check Ruby package provenance and GitLab build because custom images may use a separately updated Ruby package.",
+        "Compare timestamps to GitLab Workhorse and application logs, then independently check for execution evidence. A crash never proves successful exploitation."
+      ],
+      "cves": [
+        "CVE-2026-97229"
+      ],
+      "description": "Look for GitLab Puma crash records containing both the CI regex matcher and native Onigmo compilation frames.",
+      "evidence": [
+        {
+          "claim": "GitLab Security publishes exploitation-attempt detections for vulnerable self-managed GitLab CE/EE. Its linked Onigmo guidance identifies compile-time crash frames together with regexp_matcher.rb as corroborating traces of the CI path.",
+          "location": "Detecting CVE-2026-97229 Exploitation Attempts and linked Onigmo native worker crash detection",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-10-12",
+          "source": "gitlab",
+          "source_id": "https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-4-2-released/",
+          "url": "https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-4-2-released/"
+        }
+      ],
+      "expected_output": "One row per forwarded Puma crash with its host mapping and original crash message for corroboration.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T03:12:33Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "A native worker crash in GitLab's CI regex compilation path can support investigation of CVE-2026-97229 even when alerts have not been integrated.",
+      "id": "HF-2026-0039",
+      "indicator_ids": [],
+      "lookback": 30,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "CommonSecurityLog",
+      "profiles": [
+        "sentinel-cef"
+      ],
+      "published": "2026-11-25T03:12:33Z",
+      "research": "gitlab-ce-ee-cve-2026-97229",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "3e86fd6ac03268f4db42004e52d9de318339ee825dd1a759e90b1252928e686e",
+      "source_ids": [
+        "HF-INT-1E237D757592BE"
+      ],
+      "source_published": "2026-10-12",
+      "status": "partially_validated",
+      "tactic": "Initial Access",
+      "tags": [
+        "Exploitation",
+        "CI/CD"
+      ],
+      "technique": "T1190",
+      "title": "GitLab CI Regex Native Worker Crashes",
+      "updated": "2026-11-25T03:12:33Z",
+      "validation": {
+        "date": "2026-11-25T03:12:33Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [],
+      "confidence": "Observed post-exploitation artifacts",
+      "considerations": [
+        "This requires Ivanti appliance process, file or forensic events mapped to CEF with paths preserved in Message or Activity. Standard VPN connection events usually lack those fields.",
+        "This is a campaign-specific post-compromise hunt. Matches support investigation of the reported incident pattern and cannot identify which vulnerability was used at a given appliance.",
+        "Verify any matching path against approved diagnostics, preserve available appliance and downstream identity evidence, and check Ivanti's guidance on forensic collection. The investigators reported log tampering."
+      ],
+      "cves": [
+        "CVE-2026-111357"
+      ],
+      "description": "Find forwarded Ivanti events that mention the hidden-directory sniffer or companion credential parser recovered by Volexity after compromise.",
+      "evidence": [
+        {
+          "claim": "Volexity recovered a masquerading packet sniffer and its credential-parsing companion script after compromise of an Ivanti Connect Secure appliance. Its October 29 update identifies CVE-2026-111357 as the privilege-escalation stage.",
+          "location": "October 29 update, LDAP Packet Capture, and Ivanti Memory Analysis with Volexity Volcano",
+          "modified": "2026-10-29",
+          "observation_date": null,
+          "published": "2026-10-13",
+          "source": "volexity",
+          "source_id": "https://www.volexity.com/blog/2026/10/13/a-series-of-unauthenticated-events-chained-exploitation-of-ivanti-connect-secure-zero-days/",
+          "url": "https://www.volexity.com/blog/2026/10/13/a-series-of-unauthenticated-events-chained-exploitation-of-ivanti-connect-secure-zero-days/"
+        }
+      ],
+      "expected_output": "One row per matching forwarded event, with the artifact, available device and network fields, and source log message.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T03:12:33Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "The combination of the appliance's hidden capture directory and a rare executable or script name can identify artifacts seen after an exploit chain involving CVE-2026-111357.",
+      "id": "HF-2026-0040",
+      "indicator_ids": [],
+      "lookback": 30,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "CommonSecurityLog",
+      "profiles": [
+        "sentinel-cef"
+      ],
+      "published": "2026-11-25T03:12:33Z",
+      "research": "ivanti-ics-cve-2026-111357",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "32c80822fbeae10367827440faf92cadbf47dc5d6028603d87d8fc81d5263933",
+      "source_ids": [
+        "HF-INT-21095F4BB1CB0F"
+      ],
+      "source_published": "2026-10-13",
+      "status": "partially_validated",
+      "tactic": "Credential Access",
+      "tags": [
+        "Exploitation",
+        "Credential Access",
+        "Network Edge"
+      ],
+      "technique": "T1040",
+      "title": "Ivanti Connect Secure Post-Compromise Capture Artifacts",
+      "updated": "2026-11-25T03:12:33Z",
+      "validation": {
+        "date": "2026-11-25T03:12:33Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [],
+      "confidence": "Vendor-managed request detection",
+      "considerations": [
+        "Forward AWS WAF events to CEF using AWS as the vendor or AWS WAF as the product. Preserve the matched rule ID in Activity or the AWS WAF JSON log object in Message.",
+        "Use the managed rule group's current version. Coverage of CVE-2026-109618 and CVE-2026-109619 overlaps, so a matched rule cannot reliably attribute the request to either CVE alone.",
+        "Check the final WAF action and corresponding origin logs. A match in count mode may pass to the application, while a block can stop the request at the edge. Neither outcome establishes code execution."
+      ],
+      "cves": [
+        "CVE-2026-109618",
+        "CVE-2026-109619"
+      ],
+      "description": "Find AWS WAF's exact managed rule IDs or structured managed-rule labels associated with the PHP2Shell vulnerabilities.",
+      "evidence": [
+        {
+          "claim": "AWS publishes PHP2Shell_BODY and PHP2Shell_BODY_Extended as managed WAF rules for request behavior associated with the PHP2Shell vulnerabilities. The rules have overlapping coverage.",
+          "location": "Updates of October 22 and 23 and AWS WAF coverage table",
+          "modified": "2026-10-29",
+          "observation_date": null,
+          "published": "2026-10-21",
+          "source": "aws-security",
+          "source_id": "https://aws.amazon.com/blogs/security/using-aws-waf-to-apply-mitigations-for-php2shell-rce-vulnerabilities-cve-2026-109618-and-cve-2026-109619/",
+          "url": "https://aws.amazon.com/blogs/security/using-aws-waf-to-apply-mitigations-for-php2shell-rce-vulnerabilities-cve-2026-109618-and-cve-2026-109619/"
+        }
+      ],
+      "expected_output": "One row per matching WAF detection, with the final WAF action, client, request, and web ACL when available.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T03:12:33Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "A PHP2Shell WAF rule match identifies a request worth reviewing for potential attempted exploitation against a PHP runtime.",
+      "id": "HF-2026-0041",
+      "indicator_ids": [],
+      "lookback": 30,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "CommonSecurityLog",
+      "profiles": [
+        "sentinel-cef"
+      ],
+      "published": "2026-11-25T03:12:33Z",
+      "research": "aws-waf-php2shell",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "e074caddb6421182b14a7bd39b97eeb5d691a7342de88538d783a1b6d0d42c71",
+      "source_ids": [
+        "HF-INT-4B2D636A485517"
+      ],
+      "source_published": "2026-10-21",
+      "status": "partially_validated",
+      "tactic": "Initial Access",
+      "tags": [
+        "Exploitation",
+        "Web Applications"
+      ],
+      "technique": "T1190",
+      "title": "AWS WAF PHP2Shell Managed Rule Matches",
+      "updated": "2026-11-25T03:12:33Z",
+      "validation": {
+        "date": "2026-11-25T03:12:33Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [],
+      "confidence": "Observed post-exploitation artifact",
+      "considerations": [
+        "Scope results to systems hosting MONAI Label. Review the process command line to verify the writer was the app service. Package installation, approved deployments and administrative tooling can account for some writes.",
+        "Confirm the container or host mounted path, file owner and hash. Review Python process starts and any unusual egress after the file event.",
+        "This targets one observed artifact. CVE-2026-133968 can produce other file writes. Launchers that hide the MONAI process name and command line require a locally tuned process filter."
+      ],
+      "cves": [
+        "CVE-2026-133968"
+      ],
+      "description": "Find writes to sitecustomize.py by the MONAI Label service or launcher, based on an artifact Amazon Threat Intelligence observed in a Cairn incident.",
+      "evidence": [
+        {
+          "claim": "Amazon Threat Intelligence observed a write to Python's sitecustomize.py on a compromised medical-imaging AI server and links to the Project MONAI advisory for the underlying file-write issue.",
+          "location": "Zero-day discovery and the linked Project MONAI advisory in Actions taken by AWS",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-20",
+          "source": "aws-security",
+          "source_id": "https://aws.amazon.com/blogs/security/chinese-nexus-actors-cairn-ai-agents-found-a-zero-day-on-their-own/",
+          "url": "https://aws.amazon.com/blogs/security/chinese-nexus-actors-cairn-ai-agents-found-a-zero-day-on-their-own/"
+        }
+      ],
+      "expected_output": "One row per matching endpoint file event with the path, initiating process and file hash when collected.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T03:12:33Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "An unexpected Python startup hook written by a MONAI Label process is a post-compromise lead for CVE-2026-133968.",
+      "id": "HF-2026-0042",
+      "indicator_ids": [],
+      "lookback": 30,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "DeviceFileEvents",
+      "profiles": [
+        "sentinel-endpoint"
+      ],
+      "published": "2026-11-25T03:12:33Z",
+      "research": "monai-cairn-cve-2026-133968",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "07788ce3b3d6fdd74c64b236da1cafa7e7bbac172a50389b638c6b8223bb5aa8",
+      "source_ids": [
+        "HF-INT-3D69E83D5307AD"
+      ],
+      "source_published": "2026-11-20",
+      "status": "partially_validated",
+      "tactic": "Persistence",
+      "tags": [
+        "Exploitation",
+        "Agentic AI"
+      ],
+      "technique": "T1546.018",
+      "title": "MONAI Label Process Writing a Python Startup Hook",
+      "updated": "2026-11-25T03:12:33Z",
+      "validation": {
+        "date": "2026-11-25T03:12:33Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [],
+      "confidence": "Vendor-confirmed campaign indicators",
+      "considerations": [
+        "Review November 16, 2026 UTC first and verify the user had a page or project in scope at that time. Some infrastructure is reused, so outside-window matches can be unrelated.",
+        "Compare endpoint browsing, CSP reports and application access logs. Distinguish blocked attempts, successful browser access, and any validated exposure using proxy action and corroborating records.",
+        "A connection to the reported collection endpoint is a higher-priority lead. Destination contact alone does not establish which site initiated it or whether information was transmitted."
+      ],
+      "cves": [
+        "CVE-2026-132224"
+      ],
+      "description": "Match proxy or firewall destinations against the exact domains confirmed in Optimizely's incident report and identify the reported role of each destination.",
+      "evidence": [
+        {
+          "claim": "Optimizely reports edits to customer Project JavaScript following exploitation of a signup flaw. Its forensic investigation identified separate skimmer hosting and collection domains.",
+          "location": "How the attack worked and section 10, Indicators of compromise",
+          "modified": null,
+          "observation_date": "2026-11-16",
+          "published": "2026-11-17",
+          "source": "optimizely",
+          "source_id": "https://pages.optimizely.com/rs/947-RKE-048/images/Security%20Incident%20Report%20-%20Optimizely%20Web%20Experimentation%20-%20Nov%2017%202026.pdf",
+          "url": "https://pages.optimizely.com/rs/947-RKE-048/images/Security%20Incident%20Report%20-%20Optimizely%20Web%20Experimentation%20-%20Nov%2017%202026.pdf"
+        }
+      ],
+      "expected_output": "One row per matching proxied or logged connection, with the exact domain, campaign role, client, and connector action.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T03:12:33Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "Contact with Optimizely's confirmed skimmer infrastructure around November 16 is a lead for downstream browser exposure associated with CVE-2026-132224.",
+      "id": "HF-2026-0043",
+      "indicator_ids": [
+        "HF-IOC-211C8303EC6F63",
+        "HF-IOC-1303BA9583EE28",
+        "HF-IOC-B4554E88E61AED"
+      ],
+      "lookback": 30,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "CommonSecurityLog",
+      "profiles": [
+        "sentinel-cef"
+      ],
+      "published": "2026-11-25T03:12:33Z",
+      "research": "optimizely-cve-2026-132224",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "f2847d31e8ef7e5e78da184dd23de41631e099416a61d916ffd4bb0ef51921b2",
+      "source_ids": [
+        "HF-INT-B4C56F8C95F7AE"
+      ],
+      "source_published": "2026-11-17",
+      "status": "partially_validated",
+      "tactic": "Initial Access",
+      "tags": [
+        "Exploitation",
+        "Supply Chain",
+        "Web Applications"
+      ],
+      "technique": "T1195.002",
+      "title": "Optimizely Web Experimentation Skimmer Connections",
+      "updated": "2026-11-25T03:12:33Z",
+      "validation": {
+        "date": "2026-11-25T03:12:33Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    },
+    {
+      "actors": [],
+      "confidence": "Observed post-exploitation artifacts",
+      "considerations": [
+        "Requires forwarded Cisco Expressway process, file or forensic logs that retain paths in Activity or Message. Ordinary call and session logs are unlikely to contain them.",
+        "Review both artifact types on the same appliance and contrast them with approved maintenance. F6 reports the numbered directories as a possible ARTEX link. Directory naming alone does not attribute activity to ARTEX.",
+        "These are post-compromise artifacts from one incident. Corroborate with appliance evidence, the cluster inventory, and the Cisco PSIRT advisory."
+      ],
+      "cves": [
+        "CVE-2026-76466"
+      ],
+      "description": "Find the shared-memory package path and numbered working-directory pattern that F6 observed on compromised Cisco Expressway appliances.",
+      "evidence": [
+        {
+          "claim": "F6 found Python packages staged in shared memory and numbered working directories under /mnt/harddisk/ on compromised Cisco Expressway appliances. The investigators report the naming pattern as a possible ARTEX link.",
+          "location": "Post-compromise Python tooling and working-directory findings",
+          "modified": null,
+          "observation_date": null,
+          "published": "2026-11-23",
+          "source": "f6",
+          "source_id": "https://www.f6.ru/blog/CVE-2026-76466/",
+          "url": "https://www.f6.ru/blog/CVE-2026-76466/"
+        }
+      ],
+      "expected_output": "One row per CEF event with the matched path and the accompanying device or network context.",
+      "history": [
+        {
+          "change": "Created",
+          "date": "2026-11-25T03:12:33Z",
+          "revision": 1,
+          "summary": "Created evidence-backed hunt and validated all supported variants."
+        }
+      ],
+      "hypothesis": "Python package staging on an Expressway appliance together with numbered working directories can identify a post-compromise pattern in one CVE-2026-76466 case.",
+      "id": "HF-2026-0044",
+      "indicator_ids": [],
+      "lookback": 30,
+      "performance": "Time filter first, then table-specific predicates and a narrow projection.",
+      "primary_table": "CommonSecurityLog",
+      "profiles": [
+        "sentinel-cef"
+      ],
+      "published": "2026-11-25T03:12:33Z",
+      "research": "expressway-cve-2026-76466",
+      "revision": 1,
+      "schema_version": 1,
+      "scope": "Evidence review, static checks, Microsoft Kusto syntax and schema analysis. Engine and workspace execution not run.",
+      "signature": "41a55b7db17e40d01a6cb146b2f130e32bf280c4025804e838f7d1c7e8a32070",
+      "source_ids": [
+        "HF-INT-2257EBF4C4B3CA"
+      ],
+      "source_published": "2026-11-23",
+      "status": "partially_validated",
+      "tactic": "Command and Control",
+      "tags": [
+        "Exploitation",
+        "Network Edge",
+        "Agentic AI"
+      ],
+      "technique": "T1105",
+      "title": "Cisco Expressway Post-Compromise Python Staging",
+      "updated": "2026-11-25T03:12:33Z",
+      "validation": {
+        "date": "2026-11-25T03:12:33Z",
+        "validator": "Microsoft.Azure.Kusto.Language 12.4.1",
+        "variants_checked": 10
+      }
+    }
+  ],
+  "release_id": "hf-20261125-0e7a3d3fc099",
+  "schema_version": 1
+}

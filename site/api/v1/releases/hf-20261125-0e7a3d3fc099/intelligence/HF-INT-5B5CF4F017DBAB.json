@@ -1,0 +1,43 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-58114"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Siemens SIMATIC",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-17",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-08",
+      "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-08"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-5B5CF4F017DBAB",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-17",
+  "related": [],
+  "release_id": "hf-20261125-0e7a3d3fc099",
+  "retrieved": "2026-11-25T17:59:44Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "df3408c68a134586bff4edc7d65081820cb7248e4445400d351f5b3743f3715d",
+  "source": "cisa-advisories",
+  "source_id": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-321-08",
+  "status": "active",
+  "summary": "Publisher security advisory. Topics include identity, exploitation. References CVE-2026-58114.",
+  "tags": [
+    "Identity",
+    "Exploitation"
+  ],
+  "title": "Siemens SIMATIC",
+  "updated": "2026-11-25T01:48:50Z"
+}

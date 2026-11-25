@@ -1,0 +1,41 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Operation ShadowCloud: cloud service–based backdoors targeting government networks in Asia and Africa. Part 1",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-17",
+      "source": "securelist",
+      "source_id": "securelist:122004",
+      "url": "https://securelist.com/operation-shadowcloud-gitdoor/122004/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-7D2396112ED7B1",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-17",
+  "related": [],
+  "release_id": "hf-20261125-0e7a3d3fc099",
+  "retrieved": "2026-11-25T17:59:44Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "65bc9360af9c6a23c89bd5c474aebe5ec8a6bbd83ef5a49bda213f4cd4b53a59",
+  "source": "securelist",
+  "source_id": "securelist:122004",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include apt activity, malware.",
+  "tags": [
+    "APT Activity",
+    "Malware"
+  ],
+  "title": "Operation ShadowCloud: cloud service–based backdoors targeting government networks in Asia and Africa. Part 1",
+  "updated": "2026-11-25T17:59:44Z"
+}

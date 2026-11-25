@@ -1,0 +1,38 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "CISA Adds One Known Exploited Vulnerability to Catalog",
+      "location": "CISA advisory archive",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-04",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/04/cisa-adds-one-known-exploited-vulnerability-catalog",
+      "url": "https://www.cisa.gov/news-events/alerts/2026/11/04/cisa-adds-one-known-exploited-vulnerability-catalog"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-C5BFEEDC9F8814",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-04",
+  "related": [],
+  "release_id": "hf-20261125-0e7a3d3fc099",
+  "retrieved": "2026-11-25T17:59:44Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "cd21e099219502ce6658f9fe34485d47a0e7957cfb59f7594794615c6bbe4cf9",
+  "source": "cisa-advisories",
+  "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/04/cisa-adds-one-known-exploited-vulnerability-catalog",
+  "status": "active",
+  "summary": "Publisher security advisory indexed in the CISA advisory archive.",
+  "tags": [],
+  "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
+  "updated": "2026-11-25T01:48:50Z"
+}

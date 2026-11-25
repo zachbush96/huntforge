@@ -1,0 +1,46 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "The FBI linked Gootloader infections from compromised websites and poisoned search results to downstream ransomware. As of October 2026, the FBI had identified more than 1,000 infected WordPress sites and 216 domains controlled by the operator.",
+      "location": "FLASH CC-111626-MW, Summary",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-16",
+      "source": "fbi-flash",
+      "source_id": "fbi-flash:261116",
+      "url": "https://www.ic3.gov/CSA/2026/261116.pdf"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-7CE91A77F207D2",
+  "in_window": true,
+  "indicators": [],
+  "kind": "Advisory",
+  "published": "2026-11-16",
+  "related": [],
+  "release_id": "hf-20261125-0e7a3d3fc099",
+  "retrieved": "2026-11-25T17:59:44Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "e659c83d7fe48c6ef3e61912147db76ed62cc2d0ffb5087d177cba9cca0b668d",
+  "software": [
+    "Gootloader"
+  ],
+  "source": "fbi-flash",
+  "source_id": "fbi-flash:261116",
+  "status": "active",
+  "summary": "The FBI linked Gootloader infections from compromised websites and poisoned search results to downstream ransomware. As of October 2026, the FBI had identified more than 1,000 infected WordPress sites and 216 domains controlled by the operator.",
+  "tags": [
+    "Malware",
+    "Ransomware"
+  ],
+  "techniques": [],
+  "title": "Gootloader Malware Using SEO Poisoning and Compromised Websites to Gain Initial Access",
+  "updated": "2026-11-25T17:59:44Z"
+}

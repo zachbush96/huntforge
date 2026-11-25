@@ -1,0 +1,44 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-115731"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "CISA Adds One Known Exploited Vulnerability to Catalog",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-17",
+      "source": "cisa-advisories",
+      "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/17/cisa-adds-one-known-exploited-vulnerability-catalog",
+      "url": "https://www.cisa.gov/news-events/alerts/2026/11/17/cisa-adds-one-known-exploited-vulnerability-catalog"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T01:48:50Z",
+  "hunts": [],
+  "id": "HF-INT-37902359FB183E",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-17",
+  "related": [
+    "HF-INT-EFF252F4FD2D10"
+  ],
+  "release_id": "hf-20261125-0e7a3d3fc099",
+  "retrieved": "2026-11-25T17:59:44Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "247f05b282ad1ea216a71eafcb97bcaebc3f316d638a2d60aa6ecff4a288e0ec",
+  "source": "cisa-advisories",
+  "source_id": "https://www.cisa.gov/news-events/alerts/2026/11/17/cisa-adds-one-known-exploited-vulnerability-catalog",
+  "status": "active",
+  "summary": "Publisher security advisory. Topics include exploitation. References CVE-2026-115731.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "CISA Adds One Known Exploited Vulnerability to Catalog",
+  "updated": "2026-11-25T01:48:50Z"
+}

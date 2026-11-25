@@ -1,0 +1,46 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "After the November Operation Endgame disruption, Shadowserver issued a CastleRAT notification report for network owners and national response teams. The public analysis reports about 2.5 million distinct affected website and account combinations.",
+      "location": "Special Report and Data Analysis sections of the public announcement",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-13",
+      "source": "shadowserver",
+      "source_id": "https://www.shadowserver.org/news/castlerat-historical-bot-infection-special-report-stolen-credentials/",
+      "url": "https://www.shadowserver.org/news/castlerat-historical-bot-infection-special-report-stolen-credentials/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-D578CBE517D757",
+  "in_window": true,
+  "indicators": [],
+  "kind": "Research",
+  "published": "2026-11-13",
+  "related": [],
+  "release_id": "hf-20261125-0e7a3d3fc099",
+  "retrieved": "2026-11-25T17:59:44Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "319f0ebccf2b300446651f64d5c3b14141c83512ece9246b522394ba8eb29475",
+  "software": [
+    "CastleRAT"
+  ],
+  "source": "shadowserver",
+  "source_id": "https://www.shadowserver.org/news/castlerat-historical-bot-infection-special-report-stolen-credentials/",
+  "status": "active",
+  "summary": "After the November Operation Endgame disruption, Shadowserver issued a CastleRAT notification report for network owners and national response teams. The public analysis reports about 2.5 million distinct affected website and account combinations.",
+  "tags": [
+    "Malware",
+    "Identity"
+  ],
+  "techniques": [],
+  "title": "CastleRAT Historical Bot Infection Special Report (Stolen Credentials)",
+  "updated": "2026-11-25T17:59:44Z"
+}

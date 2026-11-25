@@ -1,0 +1,38 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Transcending the trust boundaries: how a cloud pentest works",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-12",
+      "source": "securelist",
+      "source_id": "securelist:121921",
+      "url": "https://securelist.com/how-a-cloud-pentest-works/121921/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-430A89AFADFD25",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-12",
+  "related": [],
+  "release_id": "hf-20261125-0e7a3d3fc099",
+  "retrieved": "2026-11-25T17:59:44Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "1f72142659092fab7168b020f22e62a8f0409f69f7f44fd59ddf53d5e1775bb3",
+  "source": "securelist",
+  "source_id": "securelist:121921",
+  "status": "active",
+  "summary": "Publisher research and guidance.",
+  "tags": [],
+  "title": "Transcending the trust boundaries: how a cloud pentest works",
+  "updated": "2026-11-25T17:59:44Z"
+}

@@ -1,0 +1,38 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "The XG Files: Falcon C2 Flying Under The (Browser) Radar",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-11",
+      "source": "unit-42",
+      "source_id": "unit-42:189298",
+      "url": "https://unit42.paloaltonetworks.com/falcon-c2-browser-compromise/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T03:51:30Z",
+  "hunts": [],
+  "id": "HF-INT-19A359F153FFAA",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-11",
+  "related": [],
+  "release_id": "hf-20261125-0e7a3d3fc099",
+  "retrieved": "2026-11-25T17:59:44Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "244459fda21b2032c1462ee017a01e5cc3881b2a47c918877be96537264acb5d",
+  "source": "unit-42",
+  "source_id": "unit-42:189298",
+  "status": "active",
+  "summary": "Publisher research and guidance.",
+  "tags": [],
+  "title": "The XG Files: Falcon C2 Flying Under The (Browser) Radar",
+  "updated": "2026-11-25T17:59:44Z"
+}

@@ -1,0 +1,40 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "Multiples vulnérabilités dans les produits Splunk (19 novembre 2026)",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-19",
+      "source": "cert-fr",
+      "source_id": "cert-fr:CERTFR-2026-AVI-1576",
+      "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1576/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T03:51:30Z",
+  "hunts": [],
+  "id": "HF-INT-8772F1EF03CB38",
+  "in_window": true,
+  "kind": "Advisory",
+  "published": "2026-11-19",
+  "related": [],
+  "release_id": "hf-20261125-0e7a3d3fc099",
+  "retrieved": "2026-11-25T03:51:30Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "205d6c8e5ad17f48f7dc15109cb8c22b0545f2a926aa5908009443641f15af21",
+  "source": "cert-fr",
+  "source_id": "cert-fr:CERTFR-2026-AVI-1576",
+  "status": "active",
+  "summary": "CERT-FR security advisory. The publisher lists affected products and mitigations.",
+  "tags": [
+    "Vulnerability management"
+  ],
+  "title": "Multiples vulnérabilités dans les produits Splunk (19 novembre 2026)",
+  "updated": "2026-11-25T17:59:44Z"
+}

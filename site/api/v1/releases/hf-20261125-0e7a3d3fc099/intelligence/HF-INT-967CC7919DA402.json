@@ -1,0 +1,42 @@
+{
+  "confidence": "Publisher-reported",
+  "cves": [
+    "CVE-2026-102764"
+  ],
+  "epss": [],
+  "evidence": [
+    {
+      "claim": "ARMORY CASTLE Exploits vSphere",
+      "location": "Publisher feed entry",
+      "modified": null,
+      "observation_date": null,
+      "published": "2026-11-19",
+      "source": "google-threat-intelligence",
+      "source_id": "https://cloud.google.com/blog/topics/threat-intelligence/armory-castle-exploits-vsphere/",
+      "url": "https://cloud.google.com/blog/topics/threat-intelligence/armory-castle-exploits-vsphere/"
+    }
+  ],
+  "exploitation_hunts": [],
+  "first_retrieved": "2026-11-25T16:21:23Z",
+  "hunts": [],
+  "id": "HF-INT-967CC7919DA402",
+  "in_window": true,
+  "kind": "Research",
+  "published": "2026-11-19",
+  "related": [],
+  "release_id": "hf-20261125-0e7a3d3fc099",
+  "retrieved": "2026-11-25T17:59:44Z",
+  "revision": 1,
+  "schema_version": 1,
+  "severity": "unrated",
+  "signature": "5744eebf8736254f6828a64971af6139117dcc39bfbd49b6a233e091bb632105",
+  "source": "google-threat-intelligence",
+  "source_id": "https://cloud.google.com/blog/topics/threat-intelligence/armory-castle-exploits-vsphere/",
+  "status": "active",
+  "summary": "Publisher research and guidance. Topics include exploitation. References CVE-2026-102764.",
+  "tags": [
+    "Exploitation"
+  ],
+  "title": "ARMORY CASTLE Exploits vSphere",
+  "updated": "2026-11-25T17:59:44Z"
+}
